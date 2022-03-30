@@ -1,17 +1,12 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import React from "react";
-import Head from "next/head";
 import Layout from "../../components/Layout";
-import TopTitle from "../../components/TopTitle";
-import ElectedDirectoryFilter from "../../components/ElectedDirectoryFilter";
-import ElectedDirectory from "../../components/ElectedDirectory";
-import { useRouter } from "next/router";
-import DiscoverByState from "../../components/DiscoverByState";
-import ViewElectionCenter from "../../components/ViewElectionCenter";
+import Head from "next/head";
+import ElectionCenter from "../../components/ElectionCenter";
+import Arrow from "../../components/Arrow";
+import WhatElseWeOffer from "../../components/WhatElseWeOffer";
+
 export default function Index() {
-  const router = useRouter();
-  const query = router.query;
-  console.log(query);
   return (
     <>
       <Head>
@@ -24,11 +19,9 @@ export default function Index() {
         />
       </Head>
       <Layout>
-        <TopTitle />
-        <ElectedDirectoryFilter />
-        <ElectedDirectory />
-        <DiscoverByState />
-        <ViewElectionCenter />
+        <ElectionCenter />
+        <Arrow />
+        <WhatElseWeOffer />
       </Layout>
     </>
   );

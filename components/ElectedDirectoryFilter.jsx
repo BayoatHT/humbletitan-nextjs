@@ -38,6 +38,7 @@ export default function ElectedDirectoryFilter() {
           </div>
         </div>
       </section>
+      <ElectedRepresentatives />
     </>
   );
 }

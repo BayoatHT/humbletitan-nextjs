@@ -251,7 +251,6 @@ export default function DiscoverByState() {
     },
   ];
 
-  console.log(counties.length);
   return (
     <section className="mx-auto py-4 pt-16">
       <div className="container w-10/12 mx-auto max-w-screen-xl ">
