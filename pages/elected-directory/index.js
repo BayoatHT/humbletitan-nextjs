@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import React from "react";
-import Head from "next/head";
+import React, { useEffect } from "react";
+import axios from "axios";
 import Layout from "../../components/Layout";
 import TopTitle from "../../components/TopTitle";
 import ElectedDirectoryFilter from "../../components/ElectedDirectoryFilter";
@@ -12,17 +12,19 @@ export default function Index() {
   const router = useRouter();
   const query = router.query;
   console.log(query);
+
+  const fetchData = async () => {
+    const { data } = await axios.get(
+      `/api/officials/?address=${query.address}`
+    );
+    console.log(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  });
   return (
     <>
-      <Head>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          referrerpolicy="no-referrer"
-        />
-      </Head>
       <Layout>
         <TopTitle />
         <ElectedDirectoryFilter />

@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import axios from "axios";
 
 export default function ElectionCenter() {
+  const [elections, setElections] = useState([]);
+  // const nextElection =
+  //   elections &&
+  //   elections.map((election) => {
+  //     return election.electionDay.getTime() <= election.electionDay.getTime();
+  //   });
+  const fetchData = async () => {
+    const { data } = await axios.get(
+      `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
+    );
+    console.log(data);
+    setElections(data.elections);
+  };
+  // console.log("nextElection", nextElection);
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <section className="mx-auto py-4 pt-16">
@@ -20,16 +40,19 @@ export default function ElectionCenter() {
                   </p>
                 </div>
                 <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
-                      Elected And Appointed Officials
-                    </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
-                      View who currently represents you at all level of
-                      governments
-                    </p>
-                  </div>
+                  <Link href="/elected-officials">
+                    <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                      <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
+                      <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
+                        Elected And Appointed Officials
+                      </h5>
+                      <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
+                        View who currently represents you at all level of
+                        governments
+                      </p>
+                    </a>
+                  </Link>
+
                   <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
                     <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
                     <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
@@ -107,13 +130,15 @@ export default function ElectionCenter() {
                                         </div> --> */}
               </div>
               <div className="sm:w-[25%] w-[90%]  h-[100%] border-ea border-ea-left">
+                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot"></p>
                 <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot">
                   Spread the word. Every person who shares help us reach three
                   more voters.{" "}
                 </p>
                 <div className="flex flex-wrap justify-start gap-[10%] mt-4 ml-2">
                   <i className="fa-brands fa-twitter bg-[#55a4ff] p-[10px] rounded-full text-[#fff]"></i>
-                  <i className="fa-brands fa-facebook-f bg-[#55a4ff] py-[10px] px-[12px] rounded-full text-[#fff]"></i>
+                  <i className="fa-brands fa-twitter bg-[#55a4ff] p-[10px] rounded-full text-[#fff]"></i>
+                  <i className="fa-brands fa-facebook-f bg-[#55a4ff] py-[10px] px-[10px] rounded-full text-[#fff]"></i>
                   <i className="fa-solid fa-envelope bg-[#a660e5] p-[10px] rounded-full text-[#fff]"></i>
                 </div>
               </div>
