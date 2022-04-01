@@ -7,7 +7,7 @@ import ElectedDirectory from "../../components/ElectedDirectory";
 import UpcommingElections from "../../components/UpcommingElections";
 import ElectedRepresentatives from "../../components/ElectedRepresentatives";
 import OtherOfficials from "../../components/OtherOfficials";
-import DiscoverByState from "../../components/DiscoverByState";
+import BrowseByState from "../../components/BrowseByState";
 
 export default function index() {
   return (
@@ -19,7 +19,7 @@ export default function index() {
         <ElectedRepresentatives />
         <OtherOfficials />
         <ElectedDirectory />
-        <DiscoverByState />
+        <BrowseByState />
       </Layout>
     </>
   );

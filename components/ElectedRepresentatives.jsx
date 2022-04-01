@@ -4,6 +4,7 @@ import placeholderImg from "../assets/images/PLACE-HOLDER-600x348.jpg";
 import axios from "axios";
 import { Store } from "../utils/store";
 import { FaPhoneAlt } from "react-icons/fa";
+import { FaLink } from "react-icons/fa";
 
 export default function ElectedRepresentatives() {
   const { state } = useContext(Store);
@@ -50,20 +51,64 @@ export default function ElectedRepresentatives() {
                           </span>
                         </div>
 
-                        <ul className="bg-[#e0ecf0] sm:w-[45%] w-[100%] m-auto h-[200px] flex flex-col justify-center items-center rounded-lg mt-4">
-                          <li className="font-regular text-[20px] leading-[35px] text-[#023a51] ">
+                        <ul className="bg-[#e0ecf0] sm:w-[45%] w-[100%] m-auto h-[200px] flex flex-col justify-center p-5 rounded-lg mt-4">
+                          <li className="font-regular text-[16px] leading-[20px] text-[#023a51] ">
                             <span>{item.name}</span>
                           </li>
-                          <li className="font-regular text-[16px] leading-[35px] text-[#023a51] ">
+                          <li className="font-regular text-[12px] leading-[20px] text-[#023a51] ">
                             {item.party}
                           </li>
-                          <li className="font-regular text-[16px] leading-[35px] text-[#023a51] ">
+                          <li className="flex font-regular text-[12px] leading-[20px] text-[#023a51] ">
                             <FaPhoneAlt />
                             {item.phones}
                           </li>
-                          <li className="font-regular text-[18px] leading-[35px] text-[#023a51] ">
-                            {item.emails}
-                          </li>
+                          {item.emails && (
+                            <li className="font-regular text-[12px] leading-[20px] text-[#023a51] ">
+                              Email: {item.emails}
+                            </li>
+                          )}
+
+                          {item.channels &&
+                            item.channels.map((item, index) => {
+                              return (
+                                <li
+                                  key={index}
+                                  className="font-regular text-[12px] leading-[20px] text-[#023a51] "
+                                >
+                                  {item.type} :{item.id}
+                                </li>
+                              );
+                            })}
+                          {item.address &&
+                            item.address.map((item, index) => {
+                              return (
+                                <li
+                                  key={index}
+                                  className="font-regular text-[12px] leading-[20px] text-[#023a51] "
+                                >
+                                  Address:{" "}
+                                  {item.line1 +
+                                    " " +
+                                    item.city +
+                                    " " +
+                                    item.state +
+                                    " " +
+                                    item.zip}
+                                </li>
+                              );
+                            })}
+                          {item.urls &&
+                            item.urls.map((item, index) => {
+                              return (
+                                <li
+                                  key={index}
+                                  className="font-regular flex text-[12px] leading-[20px] text-[#023a51] "
+                                >
+                                  <FaLink />
+                                  {item}
+                                </li>
+                              );
+                            })}
                         </ul>
                       </div>
                     </div>

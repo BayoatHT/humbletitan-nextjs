@@ -1,16 +1,15 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 import { Store } from "../utils/store";
 
 export default function SearchSection(props) {
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   //   const { data } = props;
   const router = useRouter();
   const [address, setAddress] = useState("");
   const searchHandler = () => {
     dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
-    router.push(`/election-center?adddress=${address}`);
+    router.push(`/election-center`);
   };
 
   return (

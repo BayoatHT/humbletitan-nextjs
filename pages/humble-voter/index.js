@@ -6,7 +6,7 @@ import TopTitle from "../../components/TopTitle";
 import UpcommingElections from "../../components/UpcommingElections";
 import ElectedDirectory from "../../components/ElectedDirectory";
 import GetPolls from "../../components/GetPolls";
-import DiscoverByState from "../../components/DiscoverByState";
+import BrowseByState from "../../components/BrowseByState";
 
 export default function index() {
   return (
@@ -17,7 +17,7 @@ export default function index() {
         <ElectedDirectory />
         <UpcommingElections />
         <GetPolls />
-        <DiscoverByState />
+        <BrowseByState />
       </Layout>
     </>
   );

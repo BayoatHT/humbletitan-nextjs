@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 
@@ -7,6 +6,7 @@ export default function ElectionCenter() {
   const [elections, setElections] = useState([]);
   const upcommingElections = [];
   const nextElection = "";
+  const nextElectionFormatted = "";
 
   const fetchData = async () => {
     const { data } = await axios.get(
@@ -19,12 +19,14 @@ export default function ElectionCenter() {
         const date = new Date(election.electionDay);
         const result = date.getTime();
         upcommingElections.push(result);
-        // election.electionDay.getTime() <= election.electionDay.getTime();
       });
     console.log(upcommingElections);
-    nextElection = Math.min(...upcommingElections);
-    nextElection = new Date(nextElection);
-    console.log(nextElection.toDateString());
+    if (upcommingElections) {
+      nextElection = Math.min(...upcommingElections);
+      nextElection = new Date(nextElection);
+      nextElectionFormatted = nextElection.toDateString();
+      console.log(nextElectionFormatted);
+    }
   };
 
   useEffect(() => {
