@@ -119,30 +119,17 @@ export default function ElectionCenter() {
                     </p>
                   </div>
                 </div>
-                {/* <!-- <div className="flex justify-around items-center my-4 flex-wrap md:flex-row flex-col ">
-                                            <div className="w-[80%] md:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow" > 
-                                                <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                                                <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">Contribute</h5>
-                                                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">Support BallotReady&apos;s mission to promote an active and informed electorate.</p>
-                                            </div>
-                                            <div className="w-[80%] md:w-[30%] h-[200px] pt-8  px-2 bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow" > 
-                                                <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                                                <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">Reasearch Your Ballot</h5>
-                                                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">View who currently represents you at all level of governments</p>
-                                                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] absolute bottom-[0%]"><i>Available when there is an upcoming elections</i></p>
-                                            </div>
-                                            <div className="w-[80%] md:w-[30%] h-[200px] pt-8  px-2 bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow" > 
-                                                <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                                                <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">Check Registration</h5>
-                                                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">View who currently represents you at all level of governments</p>
-                                                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] absolute bottom-[0%]"><i>Available when there is an upcoming elections</i></p>
-                                            </div>
-                                            
-                                        </div> --> */}
               </div>
               <div className="sm:w-[25%] w-[90%]  h-[100%] border-ea border-ea-left">
-                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot"></p>
-                <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot">
+                <div className="border-ea-bot">
+                  <h1 className="text-[#023a51] pt-2 font-regular text-[20px]   pl-2 ">
+                    Election Date
+                  </h1>
+                  <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98]  pl-2">
+                    Tue, November 13
+                  </p>
+                </div>
+                <p className=" pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot">
                   Spread the word. Every person who shares help us reach three
                   more voters.{" "}
                 </p>
