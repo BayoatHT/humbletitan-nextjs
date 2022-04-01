@@ -5,19 +5,28 @@ import axios from "axios";
 
 export default function ElectionCenter() {
   const [elections, setElections] = useState([]);
-  // const nextElection =
-  //   elections &&
-  //   elections.map((election) => {
-  //     return election.electionDay.getTime() <= election.electionDay.getTime();
-  //   });
+  const upcommingElections = [];
+  const nextElection = "";
+
   const fetchData = async () => {
     const { data } = await axios.get(
       `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
     );
     console.log(data);
     setElections(data.elections);
+    elections &&
+      elections.map((election) => {
+        const date = new Date(election.electionDay);
+        const result = date.getTime();
+        upcommingElections.push(result);
+        // election.electionDay.getTime() <= election.electionDay.getTime();
+      });
+    console.log(upcommingElections);
+    nextElection = Math.min(...upcommingElections);
+    nextElection = new Date(nextElection);
+    console.log(nextElection.toDateString());
   };
-  // console.log("nextElection", nextElection);
+
   useEffect(() => {
     fetchData();
   }, []);
