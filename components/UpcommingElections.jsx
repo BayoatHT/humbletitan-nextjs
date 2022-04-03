@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 export default function UpcommingElections({ state }) {
+  // const options = {
+  //   method: "GET",
+  //   url: "https://free-news.p.rapidapi.com/v1/search",
+  //   params: { q: "new york", lang: "en", page: "2" },
+  //   headers: {
+  //     "X-RapidAPI-Host": "free-news.p.rapidapi.com",
+  //     "X-RapidAPI-Key": "3be5ca2b13mshaf3263c772c5f80p1fc514jsnc025172a53f0",
+  //   },
+  // };
+  // const fetchNews = async () => {
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // };
+  // useEffect(() => {
+  //   fetchNews();
+  // }, []);
   return (
     <section className="mx-auto py-4 pt-12">
       <div className="container w-10/12 mx-auto max-w-screen-xl">

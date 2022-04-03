@@ -81,7 +81,7 @@ export default function BrowseByState() {
                     return (
                       <li
                         key={index}
-                        className="mt-12 font-bold-2 text-[1rem] style-heading transition duration-150 ease-out w-[33.3%] md:w-[20%]"
+                        className="mt-12 font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[33.3%] md:w-[20%]"
                       >
                         {state}
                       </li>
