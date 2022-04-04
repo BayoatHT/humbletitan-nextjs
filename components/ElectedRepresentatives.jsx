@@ -12,13 +12,24 @@ export default function ElectedRepresentatives() {
   const [officials, setOfficials] = useState("");
   const [offices, setOffices] = useState("");
   const [officailIndeces, setOfficailIndeces] = useState([]);
+  const [newOffices, setNewOffices] = useState([]);
   const fetchData = async () => {
-    const { data } = await axios.get(
-      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${voterAddress}`
-    );
-    console.log(data);
-    setOfficials(data.officials);
-    setOffices(data.offices);
+    await axios
+      .get(
+        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${voterAddress}`
+      )
+      .then((result) => {
+        console.log(result.data);
+        setOfficials(result.data.officials);
+        setOffices(result.data.offices);
+      })
+      .then(() => {
+        offices &&
+          offices.map((item) => {
+            setNewOffices([...newOffices, item.officialIndices]);
+            console.log(newOffices);
+          });
+      });
   };
   useEffect(() => {
     fetchData();
@@ -111,53 +122,57 @@ export default function ElectedRepresentatives() {
           <div className="flex flex-wrap mx-4 mb-10 m-auto">
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-4 mb-10 m-auto justify-between">
-                {offices &&
+                {/* {offices &&
                   offices.map((office, index) => {
-                    // setOfficailIndeces([
-                    //   ...officailIndeces,
-                    //   office.officailIndeces,
-                    // ]);
-                    return (
-                      <div
-                        key={index}
-                        className="w-[100%] sm:w-[100%] md:w-[100%] lg:w-6/12 mt-10 "
-                      >
-                        <div>
+                    office.officialIndices.map((office, index) => {
+                      return (
+                        <div key={index}>
                           <h4 className="font-bold text-[28px] lg:text-[35px] xl:text-[3rem] leading-[47px]  text-[#023a51] mt-4">
-                            {office.name}
+                            Hello {+1}
                           </h4>
                         </div>
+                      );
+                    });
+                    <div
+                      key={index}
+                      className="w-[100%] sm:w-[100%] md:w-[100%] lg:w-6/12 mt-10 "
+                    >
+                      <div>
+                        <h4 className="font-bold text-[28px] lg:text-[35px] xl:text-[3rem] leading-[47px]  text-[#023a51] mt-4">
+                          {office.name}
+                        </h4>
+                      </div>
 
-                        <div className="flex justify-between items-center flex-col sm:flex-row">
-                          <div className="relative  sm:w-[45%] w-[100%] m-auto h-[200px] rounded-lg mt-4 overflow-hidden">
-                            <span className="img_container">
-                              <Image
-                                src={placeholderImg}
-                                className="absolute object-cover"
-                                alt=""
-                                layout="responsive"
-                              />
-                            </span>
-                          </div>
+                      <div className="flex justify-between items-center flex-col sm:flex-row">
+                        <div className="relative  sm:w-[45%] w-[100%] m-auto h-[200px] rounded-lg mt-4 overflow-hidden">
+                          <span className="img_container">
+                            <Image
+                              src={placeholderImg}
+                              className="absolute object-cover"
+                              alt=""
+                              layout="responsive"
+                            />
+                          </span>
+                        </div>
 
-                          <ul className="bg-[#e0ecf0] sm:w-[45%] w-[100%] m-auto h-[200px] flex flex-col justify-center p-5 rounded-lg mt-4">
-                            <li className="font-regular text-[16px] leading-[20px] text-[#023a51] ">
-                              <span>{office.officialIndices}</span>
-                            </li>
-                            <li className="font-regular text-[12px] leading-[20px] text-[#023a51] ">
-                              {}
-                            </li>
-                            <li className="flex font-regular text-[12px] leading-[20px] text-[#023a51] ">
-                              <FaPhoneAlt />
-                              {}
-                            </li>
-                            {/* {item.emails && (
+                        <ul className="bg-[#e0ecf0] sm:w-[45%] w-[100%] m-auto h-[200px] flex flex-col justify-center p-5 rounded-lg mt-4">
+                          <li className="font-regular text-[16px] leading-[20px] text-[#023a51] ">
+                            <span>{office.officialIndices}</span>
+                          </li>
+                          <li className="font-regular text-[12px] leading-[20px] text-[#023a51] ">
+                            {}
+                          </li>
+                          <li className="flex font-regular text-[12px] leading-[20px] text-[#023a51] ">
+                            <FaPhoneAlt />
+                            {}
+                          </li> */}
+                {/* {item.emails && (
                             <li className="font-regular text-[12px] leading-[20px] text-[#023a51] ">
                               Email: {item.emails}
                             </li>
                           )} */}
 
-                            {/* {item.channels &&
+                {/* {item.channels &&
                             item.channels.map((item, index) => {
                               return (
                                 <li
@@ -168,7 +183,7 @@ export default function ElectedRepresentatives() {
                                 </li>
                               );
                             })} */}
-                            {/* {item.address &&
+                {/* {item.address &&
                             item.address.map((item, index) => {
                               return (
                                 <li
@@ -186,7 +201,7 @@ export default function ElectedRepresentatives() {
                                 </li>
                               );
                             })} */}
-                            {/* {item.urls &&
+                {/* {item.urls &&
                             item.urls.map((item, index) => {
                               return (
                                 <li
@@ -198,11 +213,10 @@ export default function ElectedRepresentatives() {
                                 </li>
                               );
                             })} */}
-                          </ul>
-                        </div>
+                {/* </ul>
                       </div>
-                    );
-                  })}
+                    </div>;
+                  })} */}
                 {/* {officials &&
                 officials.map((item, index) => {
                   return (

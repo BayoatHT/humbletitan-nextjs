@@ -1,34 +1,171 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { Store } from "../utils/store";
 
 export default function ElectionCenter() {
   const [elections, setElections] = useState([]);
+  const { state } = useContext(Store);
+  const { voterAddress } = state;
+  const [stateName, setStateName] = useState();
+  const [stateData, setStateData] = useState([]);
   const upcommingElections = [];
   const nextElection = "";
   const nextElectionFormatted = "";
 
   const fetchData = async () => {
-    const { data } = await axios.get(
-      `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
-    );
-    console.log(data);
-    setElections(data.elections);
-    elections &&
-      elections.map((election) => {
-        const date = new Date(election.electionDay);
-        const result = date.getTime();
-        upcommingElections.push(result);
+    await axios
+      .get(
+        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${voterAddress}`
+      )
+      .then((result) => {
+        const state = result.data.normalizedInput.state;
+        console.log(state);
+        setStateName(
+          state === "AZ"
+            ? "Arizona"
+            : state === "AL"
+            ? "Alabama"
+            : state === "AK"
+            ? "Alaska"
+            : state === "AR"
+            ? "Arkansas"
+            : state === "CA"
+            ? "California"
+            : state === "CO"
+            ? "Colorado"
+            : state === "CT"
+            ? "Connecticut"
+            : state === "DE"
+            ? "Delaware"
+            : state === "FL"
+            ? "Florida"
+            : state === "GA"
+            ? "Georgia"
+            : state === "HI"
+            ? "Hawaii"
+            : state === "ID"
+            ? "Idaho"
+            : state === "IL"
+            ? "Illinois"
+            : state === "IN"
+            ? "Indiana"
+            : state === "IA"
+            ? "Iowa"
+            : state === "KS"
+            ? "Kansas"
+            : state === "KY"
+            ? "Kentucky"
+            : state === "LA"
+            ? "Louisiana"
+            : state === "ME"
+            ? "Maine"
+            : state === "MD"
+            ? "Maryland"
+            : state === "MA"
+            ? "Massachusetts"
+            : state === "MI"
+            ? "Michigan"
+            : state === "MN"
+            ? "Minnesota"
+            : state === "MS"
+            ? "Mississippi"
+            : state === "MO"
+            ? "Missouri"
+            : state === "MT"
+            ? "Montana"
+            : state === "NE"
+            ? "Nebraska"
+            : state === "NV"
+            ? "Nevada"
+            : state === "NH"
+            ? "New Hampshire"
+            : state === "NJ"
+            ? "New Jersey"
+            : state === "NM"
+            ? "New Mexico"
+            : state === "NY"
+            ? "New York"
+            : state === "NC"
+            ? "North Carolina"
+            : state === "ND"
+            ? "North Dakota"
+            : state === "OH"
+            ? "Ohio"
+            : state === "OK"
+            ? "Oklahoma"
+            : state === "OR"
+            ? "Oregon"
+            : state === "PA"
+            ? "Pennsylvania"
+            : state === "RI"
+            ? "Rhode Island"
+            : state === "SC"
+            ? "South Carolina"
+            : state === "SD"
+            ? "South Dakota"
+            : state === "TN"
+            ? "Tennessee"
+            : state === "TX"
+            ? "Texas"
+            : state === "UT"
+            ? "Utah"
+            : state === "VT"
+            ? "Vermont"
+            : state === "VA"
+            ? "Virginia"
+            : state === "WA"
+            ? "Washington"
+            : state === "WV"
+            ? "West Virginia"
+            : state === "WI"
+            ? "Wisconsin"
+            : state === "WY"
+            ? "Wyoming"
+            : state
+        );
+        console.log(stateName);
       });
-    console.log(upcommingElections);
-    if (upcommingElections) {
-      nextElection = Math.min(...upcommingElections);
-      nextElection = new Date(nextElection);
-      nextElectionFormatted = nextElection.toDateString();
-      console.log(nextElectionFormatted);
-    }
-  };
 
+    const arr = [];
+    await axios.get("api/sheets").then((result) => {
+      result.data.values.map((item) => {
+        arr.push({
+          state: item[0] || "",
+          electionDescription: item[1] || "",
+          electionDate: item[2] || "",
+          statusOfData: item[3] || "",
+          electionId: item[4] || "",
+        });
+      });
+    });
+
+    console.log(arr);
+    setStateData(
+      arr.filter((item) => {
+        return item.state === stateName;
+      })
+    );
+    console.log(stateData);
+    // const { data } = await axios.get(
+    //   `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
+    // );
+    // console.log(data);
+    // setElections(data.elections);
+    // elections &&
+    //   elections.map((election) => {
+    //     const date = new Date(election.electionDay);
+    //     const result = date.getTime();
+    //     upcommingElections.push(result);
+    //   });
+    // console.log(upcommingElections);
+    // if (upcommingElections) {
+    //   nextElection = Math.min(...upcommingElections);
+    //   nextElection = new Date(nextElection);
+    //   nextElectionFormatted = nextElection.toDateString();
+    //   console.log(nextElectionFormatted);
+    // }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -125,9 +262,17 @@ export default function ElectionCenter() {
                   <h1 className="text-[#023a51] pt-2 font-regular text-[20px]   pl-2 ">
                     Election Date
                   </h1>
-                  <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98]  pl-2">
-                    Tue, November 13
-                  </p>
+                  {stateData &&
+                    stateData.map((item, index) => {
+                      return (
+                        <p
+                          key={index}
+                          className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98]  pl-2"
+                        >
+                          {item.electionDate}
+                        </p>
+                      );
+                    })}
                 </div>
                 <p className=" pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot">
                   Spread the word. Every person who shares help us reach three

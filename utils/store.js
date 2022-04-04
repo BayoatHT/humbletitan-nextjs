@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 export const Store = createContext();
 const initialState = {
   voterAddress: Cookies.get("voterAddress"),
+  stateName: "",
 };
 
 function reducer(state, action) {
@@ -11,7 +12,8 @@ function reducer(state, action) {
     case "ADD_VOTER_ADDRESS":
       Cookies.set("voterAddress", action.payload);
       return { ...state, voterAddress: action.payload };
-
+    case "STATE_DATA":
+      return { ...state, stateName: action.payload };
     default:
       return state;
   }
