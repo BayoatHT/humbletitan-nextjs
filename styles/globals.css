@@ -2509,11 +2509,7 @@ input {
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  width: 400px;
   margin: auto;
-  margin-bottom: 20px;
-  text-align: center;
 }
 .official_info{
   padding-left: 15px;
@@ -2521,8 +2517,23 @@ input {
   padding-top: 15px;
   text-align: left;
 }
-.official_info h1{
-  font-size: 20px;
+.office_name{
+  line-height: 1.2em;
+  max-height: 1.5em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.official_address{
+  line-height: 1.2em;
+  max-height: 3em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .official_info p{
   color: rgb(102, 102, 102);

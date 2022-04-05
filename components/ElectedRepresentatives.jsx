@@ -16,37 +16,49 @@ export default function ElectedRepresentatives({ officials }) {
   console.log(aofficials);
   const [filter, setFilter] = useState({
     all: true,
-    fedral: false,
-    state: false,
-    local: false,
+    administrativeArea1: false,
+    administrativeArea2: false,
+    country: false,
+    international: false,
+    locality: false,
+    regional: false,
+    special: false,
+    subLocality1: false,
+    subLocality2: false,
     filterName: "all",
   });
   const colored =
-    "bg-[#023a51] md:w-[18%] w-[45%] py-[20px]  rounded-[5px] mt-6 mx-[5px] font-bold text-[20px] leading-[25px] text-[#fff] border-yellow";
+    "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md-text[16px] lg:text-[18px] lg:py-[15px] whitespace-nowrap overflow-hidden text-ellipsis   rounded-[5px] mt-6 mx-[5px] font-bold text-[12px] leading-[25px] text-[#fff] border-yellow";
   const white =
-    "bg-[#fff] md:w-[18%] w-[45%] py-[20px]  rounded-[5px] mt-6 mx-[5px] font-bold text-[20px] leading-[25px] text-[#023a51] border-yellow";
+    "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md-text[16px] lg:text-[18px] lg:py-[15px] rounded-[5px] mt-6 mx-[5px] whitespace-nowrap overflow-hidden text-ellipsis font-bold text-[12px] leading-[25px] text-[#023a51] border-yellow";
   return (
     <>
       <section className="mx-auto py-4 pt-12">
         <div className="container w-10/12 mx-auto max-w-screen-xl">
           <div className="flex flex-wrap mx-4 mb-10 m-auto">
             <div className="flex flex-col">
-              <h2 className="font-bold text-[40px] md:text-[55px] leading-[50px] mb-2 text-[#023a51]">
+              <h2 className="font-bold text-[27px] md:text-[55px] leading-[50px] mb-2 text-[#023a51]">
                 The Elected Directory
               </h2>
             </div>
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg mt-[0.5rem]">
-              <h6 className="font-bold text-[28px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
-                Filters
+              <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
+                Filter by Official Level&apos;s: ({filter.filterName})
               </h6>
               <div className="flex flex-wrap mb-10 mt-[0.5rem]  justify-between  items-center m-auto">
                 <button
                   onClick={() => {
                     setFilter({
                       all: true,
-                      fedral: false,
-                      state: false,
-                      local: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
                       filterName: "all",
                     });
                   }}
@@ -58,42 +70,183 @@ export default function ElectedRepresentatives({ officials }) {
                   onClick={() => {
                     setFilter({
                       all: false,
-                      fedral: true,
-                      state: false,
-                      local: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: true,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "country",
+                    });
+                  }}
+                  className={filter.country ? colored : white}
+                >
+                  Country
+                </button>
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: true,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "administrativeArea1",
                       filterName: "administrativeArea1",
                     });
                   }}
-                  className={filter.fedral ? colored : white}
+                  className={filter.administrativeArea1 ? colored : white}
                 >
-                  administrativeArea1
+                  Administrative Area1
                 </button>
                 <button
                   onClick={() => {
                     setFilter({
                       all: false,
-                      fedral: false,
-                      state: true,
-                      local: false,
+                      administrativeArea1: false,
+                      administrativeArea2: true,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
                       filterName: "administrativeArea2",
                     });
                   }}
-                  className={filter.state ? colored : white}
+                  className={filter.administrativeArea2 ? colored : white}
                 >
-                  administrativeArea2
+                  Administrative Area2
+                </button>
+
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: true,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "international",
+                    });
+                  }}
+                  className={filter.international ? colored : white}
+                >
+                  International
                 </button>
                 <button
                   onClick={() => {
                     setFilter({
                       all: false,
-                      fedral: false,
-                      state: false,
-                      local: true,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: true,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "locality",
                     });
                   }}
-                  className={filter.local ? colored : white}
+                  className={filter.locality ? colored : white}
                 >
-                  Local
+                  Locality
+                </button>
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: true,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "regional",
+                    });
+                  }}
+                  className={filter.regional ? colored : white}
+                >
+                  Regional
+                </button>
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: true,
+                      subLocality1: false,
+                      subLocality2: false,
+                      filterName: "special",
+                    });
+                  }}
+                  className={filter.special ? colored : white}
+                >
+                  Special
+                </button>
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: true,
+                      subLocality2: false,
+                      filterName: "subLocality1",
+                    });
+                  }}
+                  className={filter.subLocality1 ? colored : white}
+                >
+                  Sub Locality1
+                </button>
+                <button
+                  onClick={() => {
+                    setFilter({
+                      all: false,
+                      administrativeArea1: false,
+                      administrativeArea2: false,
+                      country: false,
+                      international: false,
+                      locality: false,
+                      regional: false,
+                      special: false,
+                      subLocality1: false,
+                      subLocality2: true,
+                      filterName: "subLocality2",
+                    });
+                  }}
+                  className={filter.subLocality2 ? colored : white}
+                >
+                  Sub Locality2
                 </button>
               </div>
             </div>
@@ -104,7 +257,7 @@ export default function ElectedRepresentatives({ officials }) {
         <div className="container w-10/12 mx-auto max-w-screen-xl">
           <div className="flex flex-wrap mx-4 mb-10 m-auto">
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
-              <div className="flex flex-wrap mx-4 mb-10 m-auto justify-between">
+              <div className="flex flex-wrap mx-4 mb-10 m-auto justify-start">
                 {filter.filterName === "all" &&
                   aofficials.map((item, index) => {
                     const {
@@ -119,38 +272,49 @@ export default function ElectedRepresentatives({ officials }) {
                       phones,
                     } = item;
                     return (
-                      <div key={index} className="card">
+                      <div
+                        key={index}
+                        className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
+                      >
                         {photoUrl ? (
                           <Image
                             src={`/api/imageProxy?url=${encodeURIComponent(
                               photoUrl
                             )}`}
-                            alt="John"
+                            alt="photo"
                             width={"100%"}
-                            height={"100px"}
+                            height={"80px"}
                             layout="responsive"
+                            className="grow-0"
                           />
                         ) : (
                           <Image
-                            className="officialsImage"
                             src={placeholderImg}
+                            width={"100%"}
+                            height={"80px"}
                             layout="responsive"
-                            alt="official name"
+                            alt="photo"
+                            className="grow-0"
                           />
                         )}
-                        <div className="official_info">
-                          <h1>{name}</h1>
-                          <p>{office.name}</p>
-                          <p>{party}</p>
+                        <div className="official_info grow">
+                          <h1 className="text-[23px] text-[#023a51] font-bold ">
+                            {name}
+                          </h1>
+
+                          <p className=" office_name py-[10px] ">
+                            {office.name}
+                          </p>
+                          <p className=" py-[5px]"> Party: {party}</p>
                           {address?.map((item, index) => {
                             return (
                               <div key={index} className="flex">
                                 <FaMapMarkerAlt
                                   color="#023a51"
-                                  size={24}
-                                  className="pt-[5px]"
+                                  size={30}
+                                  className="pt-[10px]"
                                 />{" "}
-                                <p className="ml-[5px]">
+                                <p className="ml-[5px] official_address py-[10px] ">
                                   {item.line1} {item.city} {item.state}{" "}
                                   {item.zip}
                                 </p>
@@ -158,20 +322,27 @@ export default function ElectedRepresentatives({ officials }) {
                             );
                           })}
                           {emails && (
-                            <div className="flex">
-                              <MdAlternateEmail
-                                color="#023a51"
-                                size={24}
-                                className="pt-[5px]"
-                              />
-                              <p className="ml-[5px]">{emails}</p>
-                            </div>
+                            <Link href={`mailto:${emails}`} passHref>
+                              <a>
+                                <div className="flex">
+                                  <MdAlternateEmail
+                                    color="#023a51"
+                                    size={30}
+                                    className="pt-[3px] hover:text-[#000]"
+                                  />
+                                  <p className="ml-[5px] text-[#023a51] ">
+                                    {emails}
+                                  </p>
+                                </div>
+                              </a>
+                            </Link>
                           )}
                           <div
-                            className="social_links"
-                            style={{ margin: "24px 0" }}
+                            className="text-center flex items-center flex-wrap jutify-center "
+                            style={{ margin: "30px 0" }}
                           >
                             {channels?.map((item, index) => {
+                              <p className="float-left">Social Links: </p>;
                               return item.type == "Facebook" ? (
                                 <Link
                                   className="hover:text-[#000]"
@@ -179,45 +350,57 @@ export default function ElectedRepresentatives({ officials }) {
                                   href={`https://www.facebook.com/${item.id}`}
                                   passHref
                                 >
-                                  <TiSocialFacebookCircular
-                                    color="#3b5998"
-                                    size={"24px"}
-                                  />
+                                  <a>
+                                    <TiSocialFacebookCircular
+                                      color="#023a51"
+                                      size={30}
+                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                    />
+                                  </a>
                                 </Link>
                               ) : item.type == "Twitter" ? (
                                 <Link
                                   href={`https://www.twitter.com/${item.id}`}
                                   passHref
                                 >
-                                  <TiSocialTwitter
-                                    color="#1DA1F2"
-                                    size={"24px"}
-                                  />
+                                  <a>
+                                    <TiSocialTwitter
+                                      color="#023a51"
+                                      size={30}
+                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                    />
+                                  </a>
                                 </Link>
                               ) : item.type == "YouTube" ? (
                                 <Link
                                   href={`https://www.youtube.com/${item.id}`}
                                   passHref
                                 >
-                                  <TiSocialYoutubeCircular
-                                    color="#FF0000"
-                                    size={"24px"}
-                                  />
+                                  <a>
+                                    <TiSocialYoutubeCircular
+                                      color="#023a51"
+                                      size={30}
+                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                    />
+                                  </a>
                                 </Link>
                               ) : null;
                             })}
-                          </div>
-                          <div className="flex mr-[10px] cursor-pinter justify-center items-center">
+
                             {urls?.map((item, index) => {
                               return (
                                 <Link
-                                  className="hover:text-[#000] "
+                                  className="hover:text-[#000] mb-[5px] "
                                   key={index}
                                   href={item}
                                   passHref
                                 >
                                   <a>
-                                    <FaLink size={"20px"} color="#023a51" />
+                                    <FaLink
+                                      size={"20px"}
+                                      color="#023a51"
+                                      className="mx-[10px]"
+                                    />
                                   </a>
                                 </Link>
                               );
@@ -249,38 +432,47 @@ export default function ElectedRepresentatives({ officials }) {
                         phones,
                       } = item;
                       return (
-                        <div key={index} className="card">
+                        <div
+                          key={index}
+                          className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
+                        >
                           {photoUrl ? (
                             <Image
                               src={`/api/imageProxy?url=${encodeURIComponent(
                                 photoUrl
                               )}`}
-                              alt="John"
+                              alt="photo"
                               width={"100%"}
-                              height={"100%"}
+                              height={"80px"}
                               layout="responsive"
                             />
                           ) : (
                             <Image
                               className="officialsImage"
                               src={placeholderImg}
+                              alt="photo"
+                              width={"100%"}
+                              height={"80px"}
                               layout="responsive"
-                              alt="official name"
                             />
                           )}
-                          <div className="official_info">
-                            <h1>{name}</h1>
-                            <p>{office.name}</p>
-                            <p>{party}</p>
+                          <div className="official_info grow">
+                            <h1 className="text-[23px] text-[#023a51] font-bold">
+                              {name}
+                            </h1>
+                            <p className="office_name py-[10px]">
+                              {office.name}
+                            </p>
+                            <p className=" py-[5px]">{party}</p>
                             {address?.map((item, index) => {
                               return (
                                 <div key={index} className="flex">
                                   <FaMapMarkerAlt
                                     color="#023a51"
                                     size={24}
-                                    className="pt-[5px]"
+                                    className="pt-[10px]"
                                   />{" "}
-                                  <p className="ml-[5px]">
+                                  <p className=" ml-[5px] official_address py-[10px] ">
                                     {item.line1} {item.city} {item.state}{" "}
                                     {item.zip}
                                   </p>
@@ -288,20 +480,27 @@ export default function ElectedRepresentatives({ officials }) {
                               );
                             })}
                             {emails && (
-                              <div className="flex">
-                                <MdAlternateEmail
-                                  color="#023a51"
-                                  size={24}
-                                  className="pt-[5px]"
-                                />
-                                <p className="ml-[5px]">{emails}</p>
-                              </div>
+                              <Link href={`mailto:${emails}`} passHref>
+                                <a>
+                                  <div className="flex">
+                                    <MdAlternateEmail
+                                      color="#023a51"
+                                      size={30}
+                                      className="pt-[3px] hover:text-[#000]"
+                                    />
+                                    <p className="ml-[5px] text-[#023a51] ">
+                                      {emails}
+                                    </p>
+                                  </div>
+                                </a>
+                              </Link>
                             )}
                             <div
-                              className="social_links"
-                              style={{ margin: "24px 0" }}
+                              className="text-center flex items-center flex-wrap jutify-center "
+                              style={{ margin: "30px 0" }}
                             >
                               {channels?.map((item, index) => {
+                                <p className="float-left">Social Links: </p>;
                                 return item.type == "Facebook" ? (
                                   <Link
                                     className="hover:text-[#000]"
@@ -309,44 +508,58 @@ export default function ElectedRepresentatives({ officials }) {
                                     href={`https://www.facebook.com/${item.id}`}
                                     passHref
                                   >
-                                    <TiSocialFacebookCircular
-                                      color="#3b5998"
-                                      size={"24px"}
-                                    />
+                                    <a>
+                                      <TiSocialFacebookCircular
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
                                   </Link>
                                 ) : item.type == "Twitter" ? (
                                   <Link
                                     href={`https://www.twitter.com/${item.id}`}
                                     passHref
                                   >
-                                    <TiSocialTwitter
-                                      color="#1DA1F2"
-                                      size={"24px"}
-                                    />
+                                    <a>
+                                      <TiSocialTwitter
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
                                   </Link>
                                 ) : item.type == "YouTube" ? (
                                   <Link
                                     href={`https://www.youtube.com/${item.id}`}
                                     passHref
                                   >
-                                    <TiSocialYoutubeCircular
-                                      color="#FF0000"
-                                      size={"24px"}
-                                    />
+                                    <a>
+                                      <TiSocialYoutubeCircular
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
                                   </Link>
                                 ) : null;
                               })}
-                            </div>
-                            <div className="flex mr-[10px] cursor-pinter justify-center items-center">
+
                               {urls?.map((item, index) => {
                                 return (
                                   <Link
-                                    className="hover:text-[#000]"
+                                    className="hover:text-[#000] mb-[5px] "
                                     key={index}
-                                    href={`https://www.facebook.com/${item.id}`}
+                                    href={item}
                                     passHref
                                   >
-                                    <FaLink size={"20px"} color="#023a51" />
+                                    <a>
+                                      <FaLink
+                                        size={"20px"}
+                                        color="#023a51"
+                                        className="mx-[10px]"
+                                      />
+                                    </a>
                                   </Link>
                                 );
                               })}
