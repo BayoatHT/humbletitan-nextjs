@@ -12,13 +12,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
-export default function State() {
-  const router = useRouter();
-  const query = router.query;
-  const { index } = query;
+export default function State({ articles, data, index }) {
+  // const router = useRouter();
+  // const query = router.query;
+  // const { index } = query;
+  // const stateName = index;
+  const newArticles = articles;
+  const newData = data;
   const stateName = index;
-  const [stateData, setStateData] = useState([]);
-  const [articles, setArticles] = useState([]);
+  // console.log(newArticles);
+  // console.log(newData);
+  // console.log(newStateName);
   const [sliderRef, setSliderRef] = useState(null);
   const sliderSettings = {
     dots: true,
@@ -53,107 +57,112 @@ export default function State() {
       },
     ],
   };
-  const options = {
-    method: "GET",
-    url: "https://free-news.p.rapidapi.com/v1/search",
-    params: { q: stateName + " Elections", lang: "en", page: "1" },
-    headers: {
-      "X-RapidAPI-Host": "free-news.p.rapidapi.com",
-      "X-RapidAPI-Key": "3be5ca2b13mshaf3263c772c5f80p1fc514jsnc025172a53f0",
-    },
-  };
-  const fetchData = async () => {
-    await axios
-      .request(options)
-      .then(function (response) {
-        setArticles(response.data.articles);
-        console.log("articles", articles);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    // const arr = [];
-    // await axios.get("/api/sheets").then((result) => {
-    //   result.data.values.map((item) => {
-    //     arr.push({
-    //       state: item[0] || "",
-    //       electionDescription: item[1] || "",
-    //       electionDate: item[2] || "",
-    //       statusOfData: item[3] || "",
-    //       electionId: item[4] || "",
-    //     });
-    //   });
-    // });
+  // const options = {
+  //   method: "GET",
+  //   url: "https://free-news.p.rapidapi.com/v1/search",
+  //   params: { q: stateName + " Elections", lang: "en", page: "1" },
+  //   headers: {
+  //     "X-RapidAPI-Host": "free-news.p.rapidapi.com",
+  //     "X-RapidAPI-Key": "3be5ca2b13mshaf3263c772c5f80p1fc514jsnc025172a53f0",
+  //   },
+  // };
+  // const fetchData = async () => {
+  //   await axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       setArticles(response.data.articles);
+  //       console.log("articles", articles);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  //   const arr = [];
+  //   await axios.get("/api/sheets").then((result) => {
+  //     result.data.values.map((item) => {
+  //       arr.push({
+  //         state: item[0] || "",
+  //         electionDescription: item[1] || "",
+  //         electionDate: item[2] || "",
+  //         statusOfData: item[3] || "",
+  //         electionId: item[4] || "",
+  //       });
+  //     });
+  //   });
 
-    // console.log(arr);
-    // setStateData(
-    //   arr.length > 0 &&
-    //     arr.filter((item) => {
-    //       return item.state === stateName;
-    //     })
-    // );
-    // console.log(stateData);
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  //   console.log(arr);
+  //   setStateData(
+  //     arr.length > 0 &&
+  //       arr.filter((item) => {
+  //         return item.state === stateName;
+  //       })
+  //   );
+  //   console.log(stateData);
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
   return (
     <Layout>
       {/* State's Elections Date */}
       <section className="mx-auto py-4 bg-[#2cbc63]">
         <div className="flex flex-col text-[#023a51] text-center items-center justify-center container w-12/12 mx-auto max-w-screen-xl h-[250px] ">
           <h4 className="text-[30px]">Next Election(s) in {stateName}</h4>
-          {/* {stateData &&
-            stateData.map((item, index) => {
-              return ( */}
-          <div className=" px-[30px] py-[10px] rounded">
-            <h2 className="text-[20px] font-bold">Election description</h2>
-            <h3 className="text-[22px] flex flex-row items-center justify-center">
-              <FaCalendarAlt />
-              <span className="font-bold"> 13, September 2022</span>
-            </h3>
-          </div>
-          {/* );
-            })} */}
+          {newData?.map((item, index) => {
+            return (
+              <div key={index} className=" px-[30px] py-[10px] rounded">
+                <h2 className="text-[20px] font-bold">
+                  {item.state} {item.electionDescription}
+                </h2>
+                <h3 className="text-[22px] flex flex-row items-center justify-center">
+                  <FaCalendarAlt />
+                  <span className="font-bold">{item.electionDate}</span>
+                </h3>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* News Cards */}
+      {/* State's News Cards */}
 
-      <section className="mx-auto py-4 px-[20px]">
+      {/* <section className="mx-auto py-4 px-[20px]">
         <h1 className="text-center text-[30px] font-bold text-[#023a51]">
           News {stateName}
         </h1>
         <Slider ref={setSliderRef} {...sliderSettings}>
-          {articles &&
-            articles.map((article, index) => {
-              return (
-                <Link
-                  key={index}
-                  className="cursor-pointer"
-                  href={`/news/${article._id}`}
-                  passHref
-                >
-                  <div className="card m-[10px] border ">
-                    <Image
-                      src={placeholderImg}
-                      className="card-img-top"
-                      alt="Img"
-                    />
-                    <div className="card-body p-[5px]">
-                      <div className="flex space-between">
-                        <p className="text-[#555555] text-[12px]">
-                          Author: {article.author ? article.author : "Unknown"}
-                        </p>
-                      </div>
-                      <h5 className="card-title text-[#023a51] font-bold">
-                        {article.title && article.title}
-                      </h5>
+          {newArticles?.map((article, index) => {
+            return (
+              <Link
+                key={index}
+                className="cursor-pointer"
+                href={`${article.link}`}
+                passHref
+              >
+                <div className="card m-[10px] border ">
+                  <Image
+                    src={`/api/imageProxy?url=${encodeURIComponent(
+                      article.image
+                    )}`}
+                    className="card-img-top"
+                    alt="Img"
+                    width={"100%"}
+                    height={"100%"}
+                    layout="responsive"
+                  />
+                  <div className="card-body p-[5px]">
+                    <div className="flex space-between">
+                      <p className="text-[#555555] text-[12px]">
+                        Author: {article.author ? article.author : "Unknown"}
+                      </p>
                     </div>
+                    <h5 className="card-title text-[#023a51] font-bold">
+                      {article.title && article.title}
+                    </h5>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            );
+          })}
         </Slider>
         <div className="sliderBtns flex items-center justify-center p-[20px]">
           <button
@@ -169,20 +178,71 @@ export default function State() {
             <BsChevronRight size={20} />
           </button>
         </div>
-      </section>
+      </section> */}
       <BrowsByState />
     </Layout>
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const { params } = context;
-//   const { state } = params;
-//   console.log(params);
-//   return {
-//     props: {
-//       state,
-//       params,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  const {
+    params: { index },
+  } = context;
+
+  var articles = [];
+  var data = [];
+
+  // const options = {
+  //   method: "GET",
+  //   url: "https://free-news.p.rapidapi.com/v1/search",
+  //   params: { q: index + " Elections", lang: "en", page: "1" },
+  //   headers: {
+  //     "X-RapidAPI-Host": "free-news.p.rapidapi.com",
+  //     "X-RapidAPI-Key": "3be5ca2b13mshaf3263c772c5f80p1fc514jsnc025172a53f0",
+  //   },
+  // };
+
+  // try {
+  //   await axios.request(options).then(function (response) {
+  //     articles = response.data.articles;
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
+  const arr = [];
+
+  await axios
+    .get("/api/sheets")
+    .then((result) => {
+      alert("function running");
+      result.data.values.map((item) => {
+        arr.push({
+          state: item[0] || "",
+          electionDescription: item[1] || "",
+          electionDate: item[2] || "",
+          statusOfData: item[3] || "",
+          electionId: item[4] || "",
+        });
+      });
+    })
+    .then(() => {
+      data =
+        arr.length > 0 &&
+        arr.filter((item) => {
+          return item.state === index;
+        });
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return {
+    props: {
+      articles,
+      data,
+      index,
+    },
+  };
+}

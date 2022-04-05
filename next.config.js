@@ -10,4 +10,8 @@ module.exports = withPWA({
     SHEET_ID: "1ZNcwc9U6dYNzVOQmheECnnZDtH6zxdwbkT9Ns8iOX9k",
   },
   reactStrictMode: true,
+  images: {
+    domains: ["*.*.*"],
+    formats: ["image/avif", "image/webp"],
+  },
 });

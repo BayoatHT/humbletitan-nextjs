@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../utils/store";
-import Head from "next/head";
 
 export default function SearchSection(props) {
   const { state, dispatch } = useContext(Store);
@@ -10,7 +9,7 @@ export default function SearchSection(props) {
   const [address, setAddress] = useState("");
   const searchHandler = () => {
     dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
-    router.push(`/election-center/`);
+    router.push(`/election-center/${address}`);
   };
 
   return (

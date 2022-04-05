@@ -3,7 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import { Store } from "../utils/store";
 
-export default function ElectionCenter() {
+export default function ElectionCenter({ address }) {
   const [elections, setElections] = useState([]);
   const { state } = useContext(Store);
   const { voterAddress } = state;
@@ -128,7 +128,7 @@ export default function ElectionCenter() {
       });
 
     const arr = [];
-    await axios.get("api/sheets").then((result) => {
+    await axios.get("/api/sheets").then((result) => {
       result.data.values.map((item) => {
         arr.push({
           state: item[0] || "",
@@ -137,16 +137,14 @@ export default function ElectionCenter() {
           statusOfData: item[3] || "",
           electionId: item[4] || "",
         });
+        setStateData(
+          arr.filter((item) => {
+            return item.state === stateName;
+          })
+        );
       });
     });
 
-    console.log(arr);
-    setStateData(
-      arr.filter((item) => {
-        return item.state === stateName;
-      })
-    );
-    console.log(stateData);
     // const { data } = await axios.get(
     //   `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
     // );
@@ -188,7 +186,7 @@ export default function ElectionCenter() {
                   </p>
                 </div>
                 <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
-                  <Link href="/elected-officials">
+                  <Link href={`/elected-officials/${voterAddress}`}>
                     <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
                       <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
                       <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
