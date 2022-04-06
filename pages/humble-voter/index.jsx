@@ -16,7 +16,7 @@ export default function index({ majorElections }) {
         <TopTitle />
         <SearchSection />
         <ElectedDirectory />
-        {/* <UpcommingElections majorElections={majorElections} /> */}
+        <UpcommingElections majorElections={majorElections} />
         <GetPolls />
         <BrowseByState />
       </Layout>
@@ -24,19 +24,19 @@ export default function index({ majorElections }) {
   );
 }
 
-// export async function getServerSideProps() {
-//   var majorElections = [];
-//   await axios
-//     .get(
-//       "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
-//     )
-//     .then((result) => {
-//       majorElections = result.data.elections;
-//       console.log(majorElections);
-//     });
-//   return {
-//     props: {
-//       majorElections,
-//     },
-//   };
-// }
+export async function getServerSideProps() {
+  var majorElections = [];
+  await axios
+    .get(
+      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+    )
+    .then((result) => {
+      majorElections = result.data.elections;
+      console.log(majorElections);
+    });
+  return {
+    props: {
+      majorElections,
+    },
+  };
+}

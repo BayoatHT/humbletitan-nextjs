@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import placeholderImg from "../assets/images/PLACE-HOLDER-600x348.jpg";
+import Image1 from "../assets/images/196224814_196223307-3d98ee55a0804500ba0bbd7f9da439b1_t800.jpg";
+import Image2 from "../assets/images/hG7uo-1577649974-154205-blog-S097092219-300.jpg";
+import Image3 from "../assets/images/3316.webp";
 
 export default function GetPolls() {
   return (
@@ -15,12 +18,15 @@ export default function GetPolls() {
             <div className="flex flex-wrap mx-4 mb-10 m-auto justify-between gap-y-[25px]">
               <div className="w-12/12 md:w-[48%]  xl:w-[30%] flex md:block justify-center flex-col items-center">
                 <div className="relative w-[100%] md:w-[100%]">
-                  <Image
-                    src={placeholderImg}
-                    layout="responsive"
-                    alt=""
-                    className=" w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
-                  />
+                  <div className="img_container">
+                    <Image
+                      src={Image1}
+                      layout="responsive"
+                      alt=""
+                      className=" w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
+                    />
+                  </div>
+
                   <h2 className="absolute top-[70%] left-[10%] text-[#fedc4b] text-[2rem] font-bold">
                     01
                   </h2>
@@ -35,12 +41,14 @@ export default function GetPolls() {
               </div>
               <div className="w-12/12 md:w-[48%]  xl:w-[30%] flex md:block justify-center flex-col items-center">
                 <div className="relative w-[100%] md:w-[100%]">
-                  <Image
-                    src={placeholderImg}
-                    layout="responsive"
-                    alt=""
-                    className="w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
-                  />
+                  <div className="img_container">
+                    <Image
+                      src={Image2}
+                      layout="responsive"
+                      alt=""
+                      className="w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
+                    />
+                  </div>
                   <h2 className="absolute top-[70%] left-[10%] text-[#fedc4b] text-[2rem] font-bold">
                     02
                   </h2>
@@ -55,12 +63,14 @@ export default function GetPolls() {
               </div>
               <div className="w-12/12 md:w-[48%]  xl:w-[30%] flex md:block justify-center flex-col items-center">
                 <div className="relative w-[100%] md:w-[100%]">
-                  <Image
-                    src={placeholderImg}
-                    layout="responsive"
-                    alt=""
-                    className="w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
-                  />
+                  <div className="img_container">
+                    <Image
+                      src={Image3}
+                      layout="responsive"
+                      alt=""
+                      className="w-[100%] md:w-[100%] h-[200px] object-cover mt-4 rounded-lg"
+                    />
+                  </div>
                   <h2 className="absolute top-[70%] left-[10%] text-[#fedc4b] text-[2rem] font-bold">
                     03
                   </h2>

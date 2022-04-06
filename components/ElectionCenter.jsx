@@ -81,7 +81,7 @@ export default function ElectionCenter({ stateName, dates }) {
                     </a>
                   </Link>
 
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 hover:bg-[#ececec] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  hover:bg-[#ececec] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
                     <BiSearchAlt2
                       size={35}
                       color="#2d5672"
@@ -131,7 +131,7 @@ export default function ElectionCenter({ stateName, dates }) {
                       View who currently represents you at all level of
                       governments
                     </p>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[12px] text-[#a39c98] absolute bottom-[0%]">
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[12px] text-[#a39c98] absolute bottom-[2%]">
                       <i>* Available when there is an upcoming elections</i>
                     </p>
                   </div>
@@ -143,7 +143,7 @@ export default function ElectionCenter({ stateName, dates }) {
                     <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
                       Set a time, Data, go to address
                     </p>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] absolute bottom-[0%]">
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[12px] text-[#a39c98] absolute bottom-[2%]">
                       <i>* Available when there is an upcoming elections</i>
                     </p>
                   </div>

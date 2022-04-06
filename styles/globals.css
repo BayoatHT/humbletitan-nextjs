@@ -2494,11 +2494,12 @@ input {
   border: 2px solid #eaeaea !important;
   border-left: 0px !important;
 }
-.img_container span {
-  width: 100%;
-  height: 100%;
+.img_container span  {
+  width: 100% !important;
+  height: 250px !important;
 }
-.img_container img {
+
+.img_container span img {
   object-fit: cover !important;
 }
 @media (max-width: 639px) {

@@ -274,28 +274,32 @@ export default function ElectedRepresentatives({ officials }) {
                     return (
                       <div
                         key={index}
-                        className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
+                        className="card flex flex-col w-[100%] h-[550px] sm:h-[550px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
                       >
                         {photoUrl ? (
-                          <Image
-                            src={`/api/imageProxy?url=${encodeURIComponent(
-                              photoUrl
-                            )}`}
-                            alt="photo"
-                            width={"100%"}
-                            height={"100%"}
-                            layout="responsive"
-                            className="grow-0 h-[100px] "
-                          />
+                          <div className="img_container">
+                            <Image
+                              src={`/api/imageProxy?url=${encodeURIComponent(
+                                photoUrl
+                              )}`}
+                              alt="photo"
+                              width={"100%"}
+                              height={"100%"}
+                              layout="responsive"
+                              className="grow-0 h-[100px] "
+                            />
+                          </div>
                         ) : (
-                          <Image
-                            src={placeholderImg}
-                            width={"100%"}
-                            height={"100%"}
-                            layout="responsive"
-                            alt="photo"
-                            className="grow-0 h-[100px]"
-                          />
+                          <div className="img_container">
+                            <Image
+                              src={placeholderImg}
+                              width={"100%"}
+                              height={"100%"}
+                              layout="responsive"
+                              alt="photo"
+                              className="grow-0 h-[100px]"
+                            />
+                          </div>
                         )}
                         <div className="official_info grow">
                           <p className=" office_name py-[5px] ">
@@ -437,19 +441,19 @@ export default function ElectedRepresentatives({ officials }) {
                           className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
                         >
                           {photoUrl ? (
-                            <div className="img_container h-[250px]">
+                            <div className="img_container">
                               <Image
                                 src={`/api/imageProxy?url=${encodeURIComponent(
                                   photoUrl
                                 )}`}
                                 alt="photo"
                                 width={"100%"}
-                                height={"80px"}
+                                height={"100px"}
                                 layout="responsive"
                               />
                             </div>
                           ) : (
-                            <div className="img_container h-[250px]">
+                            <div className="img_container">
                               <Image
                                 className="officialsImage"
                                 src={placeholderImg}

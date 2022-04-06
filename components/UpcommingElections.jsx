@@ -7,44 +7,40 @@ export default function UpcommingElections({ majorElections }) {
         <div className="flex flex-wrap mx-4 mb-10 m-auto">
           <div className="flex flex-col mb-10">
             <h2 className="font-bold text-[35px] md:text-[3rem] mb-10 text-[#023a51] leading-[47px]">
-              Upcoming Us Elections
+              Upcoming Us Major Elections
             </h2>
           </div>
 
-          <div className="container w-12/12 mx-auto bg-[#efeded] max-w-screen-xl rounded-lg">
-            <div className="flex flex-wrap mx-4 mb-10 mt-10 justify-between  m-auto">
-              <div className="w-12/12 md:w-6/12 items-center flex flex-col w-full md:w-[50%]">
-                <div className="flex">
-                  <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[100%] md:w-[90%] rounded-lg h-[50px] pt-[5px] text-center">
-                    Election Name
+          <div className="container w-12/12 mx-auto px-[20px] bg-[#efeded] max-w-screen-xl rounded-lg">
+            <div className="flex justify-between flex-row ">
+              <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[63%]  rounded-lg h-[50px] pt-[5px] text-center">
+                Election Name
+              </h2>
+              <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[32%]  rounded-lg h-[50px] pt-[5px] text-center">
+                Date
+              </h2>
+            </div>
+
+            {majorElections?.map((item, index) => {
+              return (
+                <div key={index} className="flex justify-between flex-row ">
+                  <h2
+                    key={index}
+                    type="text"
+                    className=" my-4 font-bold text-[1rem] bg-[#fff]  w-[63%]  rounded-lg leading-loose h-[40px] py-[5px] px-[10px] "
+                  >
+                    {item.name}
                   </h2>
-                  <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[100%] md:w-[90%] rounded-lg h-[50px] pt-[5px] text-center">
-                    Date
+                  <h2
+                    key={index}
+                    type="text"
+                    className="my-4 font-bold text-[1rem] bg-[#fff]  w-[32%]  rounded-lg leading-loose h-[40px] py-[5px] px-[10px] "
+                  >
+                    {item.electionDay}
                   </h2>
                 </div>
-
-                {majorElections?.map((item, index) => {
-                  return (
-                    <div key={index} className="flex">
-                      <h2
-                        key={index}
-                        type="text"
-                        className=" w-[100%] md:w-[90%] rounded-lg border-none my-2 h-[50px]"
-                      >
-                        {item.name} : {item.electionDay}{" "}
-                      </h2>
-                      <h2
-                        key={index}
-                        type="text"
-                        className=" w-[100%] md:w-[90%] rounded-lg border-none my-2 h-[50px]"
-                      >
-                        {item.name} : {item.electionDay}{" "}
-                      </h2>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
