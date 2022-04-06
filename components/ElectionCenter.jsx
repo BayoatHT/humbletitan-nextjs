@@ -1,276 +1,169 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
+import { FaCalendarAlt } from "react-icons/fa";
+import { AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { BsListCheck } from "react-icons/bs";
+import { MdHowToVote } from "react-icons/md";
 import { Store } from "../utils/store";
 
-export default function ElectionCenter({ address }) {
-  const [elections, setElections] = useState([]);
+export default function ElectionCenter({ stateName, dates }) {
   const { state } = useContext(Store);
   const { voterAddress } = state;
-  const [stateName, setStateName] = useState();
-  const [stateData, setStateData] = useState([]);
-  const upcommingElections = [];
-  const nextElection = "";
-  const nextElectionFormatted = "";
 
-  const fetchData = async () => {
-    await axios
-      .get(
-        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${voterAddress}`
-      )
-      .then((result) => {
-        const state = result.data.normalizedInput.state;
-        console.log(state);
-        setStateName(
-          state === "AZ"
-            ? "Arizona"
-            : state === "AL"
-            ? "Alabama"
-            : state === "AK"
-            ? "Alaska"
-            : state === "AR"
-            ? "Arkansas"
-            : state === "CA"
-            ? "California"
-            : state === "CO"
-            ? "Colorado"
-            : state === "CT"
-            ? "Connecticut"
-            : state === "DE"
-            ? "Delaware"
-            : state === "FL"
-            ? "Florida"
-            : state === "GA"
-            ? "Georgia"
-            : state === "HI"
-            ? "Hawaii"
-            : state === "ID"
-            ? "Idaho"
-            : state === "IL"
-            ? "Illinois"
-            : state === "IN"
-            ? "Indiana"
-            : state === "IA"
-            ? "Iowa"
-            : state === "KS"
-            ? "Kansas"
-            : state === "KY"
-            ? "Kentucky"
-            : state === "LA"
-            ? "Louisiana"
-            : state === "ME"
-            ? "Maine"
-            : state === "MD"
-            ? "Maryland"
-            : state === "MA"
-            ? "Massachusetts"
-            : state === "MI"
-            ? "Michigan"
-            : state === "MN"
-            ? "Minnesota"
-            : state === "MS"
-            ? "Mississippi"
-            : state === "MO"
-            ? "Missouri"
-            : state === "MT"
-            ? "Montana"
-            : state === "NE"
-            ? "Nebraska"
-            : state === "NV"
-            ? "Nevada"
-            : state === "NH"
-            ? "New Hampshire"
-            : state === "NJ"
-            ? "New Jersey"
-            : state === "NM"
-            ? "New Mexico"
-            : state === "NY"
-            ? "New York"
-            : state === "NC"
-            ? "North Carolina"
-            : state === "ND"
-            ? "North Dakota"
-            : state === "OH"
-            ? "Ohio"
-            : state === "OK"
-            ? "Oklahoma"
-            : state === "OR"
-            ? "Oregon"
-            : state === "PA"
-            ? "Pennsylvania"
-            : state === "RI"
-            ? "Rhode Island"
-            : state === "SC"
-            ? "South Carolina"
-            : state === "SD"
-            ? "South Dakota"
-            : state === "TN"
-            ? "Tennessee"
-            : state === "TX"
-            ? "Texas"
-            : state === "UT"
-            ? "Utah"
-            : state === "VT"
-            ? "Vermont"
-            : state === "VA"
-            ? "Virginia"
-            : state === "WA"
-            ? "Washington"
-            : state === "WV"
-            ? "West Virginia"
-            : state === "WI"
-            ? "Wisconsin"
-            : state === "WY"
-            ? "Wyoming"
-            : state
-        );
-        console.log(stateName);
-      });
-
-    const arr = [];
-    await axios.get("/api/sheets").then((result) => {
-      result.data.values.map((item) => {
-        arr.push({
-          state: item[0] || "",
-          electionDescription: item[1] || "",
-          electionDate: item[2] || "",
-          statusOfData: item[3] || "",
-          electionId: item[4] || "",
-        });
-        setStateData(
-          arr.filter((item) => {
-            return item.state === stateName;
-          })
-        );
-      });
-    });
-
-    // const { data } = await axios.get(
-    //   `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY`
-    // );
-    // console.log(data);
-    // setElections(data.elections);
-    // elections &&
-    //   elections.map((election) => {
-    //     const date = new Date(election.electionDay);
-    //     const result = date.getTime();
-    //     upcommingElections.push(result);
-    //   });
-    // console.log(upcommingElections);
-    // if (upcommingElections) {
-    //   nextElection = Math.min(...upcommingElections);
-    //   nextElection = new Date(nextElection);
-    //   nextElectionFormatted = nextElection.toDateString();
-    //   console.log(nextElectionFormatted);
-    // }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
   return (
     <>
-      <section className="mx-auto py-4 pt-16">
-        <div className="container w-12/12 mx-auto max-w-screen-xl ">
-          <div className="flex flex-wrap mx-4 mb-10 m-auto ">
-            <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg relative flex justify-between items-center flex-col sm:flex-row">
-              <div className="w-[90%] sm:w-[75%] bg-[#f7f7f7]  border-ea">
-                <div className=" bg-[#f7f7f7] flex flex-col justify-center items-center border-ea-bot ">
-                  <p className="font-regular pt-2 text-[10px] text-[#023a51]">
+      <section>
+        <div>
+          <div className="flex flex-wrap mb-10 ">
+            <div className=" mx-auto  rounded-lg relative flex justify-between items-center flex-col sm:flex-row">
+              <div className="w-[100%] bg-[#f7f7f7]  border-ea">
+                {/* <div className=" bg-[#f7f7f7] flex flex-col justify-center items-center border-ea-bot ">
+                  <p className="font-regular pt-2 text-[13px] text-[#023a51]">
                     WELCOME TO THE
                   </p>
-                  <h3 className="font-bold text-[35px] md:text-[2rem] leading-[47px] mb-1 text-[#023a51]">
+                  <h3 className="font-bold text-[40px] md:text-[2rem] leading-[47px] mb-1 text-[#023a51]">
                     Election Center
                   </h3>
-                  <p className="text-[#023a51] font-regular mb-4 text-[10px] ">
+                  <p className="text-[#023a51] font-regular mb-4 text-[13px] ">
                     Every vote matters. We&apos;re here to help you inform guys.
                   </p>
+                </div> */}
+                <div className=" bg-[#f7f7f7] pt-[20px] flex flex-col justify-center items-center border-ea-bot ">
+                  <div className="flex flex-col text-[#023a51] text-center items-center justify-center container w-12/12 mx-auto max-w-screen-xl ">
+                    <h4 className="text-[35px]">
+                      Upcomming Election(s) in{" "}
+                      <span className="font-bold">{stateName}</span>
+                    </h4>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        {dates
+                          ?.filter((item) => item.statusOfData !== "Expired")
+                          .map((item, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className=" py-[20px] px-[5px] flex  text-left w-mx"
+                              >
+                                <h2 className="text-[20px] font-bold">
+                                  {index + 1}) {item.state}{" "}
+                                  {item.electionDescription} ||
+                                </h2>
+                                <h3 className="text-[22px] ml-[15px] flex flex-row items-center ">
+                                  <FaCalendarAlt />
+                                  <span className="font-bold ml-[10px]">
+                                    {item.electionDate}
+                                  </span>
+                                </h3>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
                   <Link href={`/elected-officials/${voterAddress}`}>
-                    <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
-                      <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                      <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
+                    <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] hover:bg-[#ececec] pt-8  px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                      <AiOutlineUser
+                        size={35}
+                        color="#2d5672"
+                        className=" mb-2 "
+                      />
+                      <h5 className="font-bold text-[20px] py-2  leading-[15px] text-[#2d5672]">
                         Elected And Appointed Officials
                       </h5>
-                      <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
+                      <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
                         View who currently represents you at all level of
                         governments
                       </p>
                     </a>
                   </Link>
 
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
-                      Find out how to vote
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 hover:bg-[#ececec] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                    <BiSearchAlt2
+                      size={35}
+                      color="#2d5672"
+                      className=" mb-2 "
+                    />
+                    <h5 className="font-bold text-[20px] pt-2 leading-[15px] text-[#2d5672]">
+                      Check Registration
                     </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] pb-[18px]">
-                      Set a time, date, go to address.{" "}
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] pb-[18px]">
+                      View who currently represents you at all level of
+                      governments
                     </p>
                   </div>
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 px-6 hover:bg-[#ececec] bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                    <HiOutlineSpeakerphone
+                      size={35}
+                      color="#2d5672"
+                      className=" mb-2 "
+                    />
+                    <h5 className="font-bold text-[20px] pt-2 leading-[15px] text-[#2d5672]">
                       Get Involved
                     </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
                       Help your community vote informed with BallotReady
                     </p>
                   </div>
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 hover:bg-[#ececec] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                    <AiOutlineUsergroupAdd
+                      size={35}
+                      color="#2d5672"
+                      className=" mb-2 "
+                    />
+                    <h5 className="font-bold text-[20px] pt-2 leading-[15px] text-[#2d5672]">
                       Contribute
                     </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
                       Support BallotReady&apos;s mission to promote an active
                       and informed electorate.
                     </p>
                   </div>
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8 hover:bg-[#ececec] px-6 bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow">
+                    <BsListCheck size={35} color="#2d5672" className=" mb-2 " />
+                    <h5 className="font-bold text-[20px] pt-2 leading-[15px] text-[#2d5672]">
                       Reasearch Your Ballot
                     </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
                       View who currently represents you at all level of
                       governments
                     </p>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] absolute bottom-[0%]">
-                      <i>Available when there is an upcoming elections</i>
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[12px] text-[#a39c98] absolute bottom-[0%]">
+                      <i>* Available when there is an upcoming elections</i>
                     </p>
                   </div>
-                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-2 bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow">
-                    <i className="fas fa-user text-[#2d5672] text-[20px]"></i>
-                    <h5 className="font-bold text-[12px] pt-2 leading-[15px] text-[#2d5672]">
-                      Check Registration
+                  <div className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] pt-8  px-6 hover:bg-[#ececec] bg-[#ececec] mt-4 flex flex-col justify-center relative cards-shadow">
+                    <MdHowToVote size={35} color="#2d5672" className=" mb-2 " />
+                    <h5 className="font-bold text-[20px] pt-2 leading-[15px] text-[#2d5672]">
+                      Find out how to vote
                     </h5>
-                    <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] ">
-                      View who currently represents you at all level of
-                      governments
+                    <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">
+                      Set a time, Data, go to address
                     </p>
                     <p className="text-[#b3bbc2] pt-2 font-regular text-[10px] text-[#a39c98] absolute bottom-[0%]">
-                      <i>Available when there is an upcoming elections</i>
+                      <i>* Available when there is an upcoming elections</i>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="sm:w-[25%] w-[90%]  h-[100%] border-ea border-ea-left">
+              {/* <div className="sm:w-[25%] w-[90%]  h-[100%] border-ea border-ea-left">
                 <div className="border-ea-bot">
                   <h1 className="text-[#023a51] pt-2 font-regular text-[20px]   pl-2 ">
                     Election Date
                   </h1>
-                  {stateData &&
-                    stateData.map((item, index) => {
-                      return (
-                        <p
-                          key={index}
-                          className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98]  pl-2"
-                        >
-                          {item.electionDate}
-                        </p>
-                      );
-                    })}
+                  {dates?.map((item, index) => {
+                    return (
+                      <p
+                        key={index}
+                        className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98]  pl-2"
+                      >
+                        {item.electionDate}
+                      </p>
+                    );
+                  })}
                 </div>
                 <p className=" pt-2 font-regular text-[10px] text-[#a39c98]  pl-2 border-ea-bot">
                   Spread the word. Every person who shares help us reach three
@@ -282,7 +175,7 @@ export default function ElectionCenter({ address }) {
                   <i className="fa-brands fa-facebook-f bg-[#55a4ff] py-[10px] px-[10px] rounded-full text-[#fff]"></i>
                   <i className="fa-solid fa-envelope bg-[#a660e5] p-[10px] rounded-full text-[#fff]"></i>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

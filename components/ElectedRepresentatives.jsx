@@ -283,29 +283,29 @@ export default function ElectedRepresentatives({ officials }) {
                             )}`}
                             alt="photo"
                             width={"100%"}
-                            height={"80px"}
+                            height={"100%"}
                             layout="responsive"
-                            className="grow-0"
+                            className="grow-0 h-[100px] "
                           />
                         ) : (
                           <Image
                             src={placeholderImg}
                             width={"100%"}
-                            height={"80px"}
+                            height={"100%"}
                             layout="responsive"
                             alt="photo"
-                            className="grow-0"
+                            className="grow-0 h-[100px]"
                           />
                         )}
                         <div className="official_info grow">
+                          <p className=" office_name py-[5px] ">
+                            {office.name}
+                          </p>
                           <h1 className="text-[23px] text-[#023a51] font-bold ">
                             {name}
                           </h1>
 
-                          <p className=" office_name py-[10px] ">
-                            {office.name}
-                          </p>
-                          <p className=" py-[5px]"> Party: {party}</p>
+                          <p className=" py-[5px]"> {party}</p>
                           {address?.map((item, index) => {
                             return (
                               <div key={index} className="flex">
@@ -437,39 +437,43 @@ export default function ElectedRepresentatives({ officials }) {
                           className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
                         >
                           {photoUrl ? (
-                            <Image
-                              src={`/api/imageProxy?url=${encodeURIComponent(
-                                photoUrl
-                              )}`}
-                              alt="photo"
-                              width={"100%"}
-                              height={"80px"}
-                              layout="responsive"
-                            />
+                            <div className="img_container h-[250px]">
+                              <Image
+                                src={`/api/imageProxy?url=${encodeURIComponent(
+                                  photoUrl
+                                )}`}
+                                alt="photo"
+                                width={"100%"}
+                                height={"80px"}
+                                layout="responsive"
+                              />
+                            </div>
                           ) : (
-                            <Image
-                              className="officialsImage"
-                              src={placeholderImg}
-                              alt="photo"
-                              width={"100%"}
-                              height={"80px"}
-                              layout="responsive"
-                            />
+                            <div className="img_container h-[250px]">
+                              <Image
+                                className="officialsImage"
+                                src={placeholderImg}
+                                alt="photo"
+                                width={"100%"}
+                                height={"80px"}
+                                layout="responsive"
+                              />
+                            </div>
                           )}
                           <div className="official_info grow">
-                            <h1 className="text-[23px] text-[#023a51] font-bold">
-                              {name}
-                            </h1>
-                            <p className="office_name py-[10px]">
+                            <p className=" office_name py-[5px] ">
                               {office.name}
                             </p>
+                            <h1 className="text-[23px] text-[#023a51] font-bold ">
+                              {name}
+                            </h1>
                             <p className=" py-[5px]">{party}</p>
                             {address?.map((item, index) => {
                               return (
                                 <div key={index} className="flex">
                                   <FaMapMarkerAlt
                                     color="#023a51"
-                                    size={24}
+                                    size={30}
                                     className="pt-[10px]"
                                   />{" "}
                                   <p className=" ml-[5px] official_address py-[10px] ">

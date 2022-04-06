@@ -1,15 +1,22 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../utils/store";
-
+import { BiLoaderCircle } from "react-icons/bi";
 export default function SearchSection(props) {
   const { state, dispatch } = useContext(Store);
+  const [searchText, setSearchText] = useState("Search");
   //   const { data } = props;
   const router = useRouter();
   const [address, setAddress] = useState("");
   const searchHandler = () => {
-    dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
-    router.push(`/election-center/${address}`);
+    if (address == "") {
+      alert("Input your address");
+    } else {
+      setSearchText(<BiLoaderCircle size={30} />);
+      dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
+      localStorage.setItem("voter_address", address);
+      router.push(`/election-center/${address}`);
+    }
   };
 
   return (
@@ -38,9 +45,9 @@ export default function SearchSection(props) {
 
               <button
                 onClick={searchHandler}
-                className="bg-[#00d665] text-[16px] h-[60px] font-bold leading-[15px]  lg:px-[1rem] px-[10px] rounded-[5px] w-[100%] md:w-[15%] text-[#fff]"
+                className="bg-[#00d665] flex items-center justify-center text-[16px] h-[60px] font-bold leading-[15px]  lg:px-[1rem] px-[10px] rounded-[5px] w-[100%] md:w-[15%] text-[#fff]"
               >
-                Get Started
+                {searchText}
               </button>
             </div>
             <h6 className=" mb-2  font-regular text-[1rem] text-[#023a51] rounded-lg ml-[0%] lg:ml-[7%] ">
