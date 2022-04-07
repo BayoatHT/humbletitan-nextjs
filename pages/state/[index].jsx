@@ -187,7 +187,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("http://localhost:3000/api/sheets")
+    .get("https://h-t.vercel.app/api/sheets")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({
