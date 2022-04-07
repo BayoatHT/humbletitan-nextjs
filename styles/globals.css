@@ -2526,6 +2526,15 @@ input {
 overflow: hidden;
 text-overflow: ellipsis;
 }
+.official_email{
+   line-height: 1.2em;
+  max-height: 1.5em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+overflow: hidden;
+text-overflow: ellipsis;
+}
 .official_address{
   line-height: 1.2em;
   max-height: 3em;

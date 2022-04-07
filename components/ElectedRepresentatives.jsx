@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import placeholderImg from "../assets/images/PLACE-HOLDER-600x348.jpg";
+import placeholderImg from "../assets/images/Profile_avatar_placeholder_large.png";
+import Joseph from "../assets/images/P20210303AS-1901-cropped.webp";
+import Kamala from "../assets/images/Kamala_Harris_Vice_Presidential_Portrait.jpg";
 import { Store } from "../utils/store";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
@@ -28,9 +30,9 @@ export default function ElectedRepresentatives({ officials }) {
     filterName: "all",
   });
   const colored =
-    "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md-text[16px] lg:text-[18px] lg:py-[15px] whitespace-nowrap overflow-hidden text-ellipsis   rounded-[5px] mt-6 mx-[5px] font-bold text-[12px] leading-[25px] text-[#fff] border-yellow";
+    "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
   const white =
-    "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md-text[16px] lg:text-[18px] lg:py-[15px] rounded-[5px] mt-6 mx-[5px] whitespace-nowrap overflow-hidden text-ellipsis font-bold text-[12px] leading-[25px] text-[#023a51] border-yellow";
+    "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
   return (
     <>
       <section className="mx-auto py-4 pt-12">
@@ -105,7 +107,7 @@ export default function ElectedRepresentatives({ officials }) {
                   }}
                   className={filter.administrativeArea1 ? colored : white}
                 >
-                  Administrative Area1
+                  Admin Area1
                 </button>
                 <button
                   onClick={() => {
@@ -125,7 +127,7 @@ export default function ElectedRepresentatives({ officials }) {
                   }}
                   className={filter.administrativeArea2 ? colored : white}
                 >
-                  Administrative Area2
+                  Admin Area2
                 </button>
 
                 <button
@@ -255,9 +257,9 @@ export default function ElectedRepresentatives({ officials }) {
       </section>
       <section className="mx-auto ">
         <div className="container w-10/12 mx-auto max-w-screen-xl">
-          <div className="flex flex-wrap mx-4 mb-10 m-auto">
+          <div className="flex flex-wrap mb-10 m-auto">
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
-              <div className="flex flex-wrap mx-4 mb-10 m-auto justify-start">
+              <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
                 {filter.filterName === "all" &&
                   aofficials.map((item, index) => {
                     const {
@@ -274,7 +276,7 @@ export default function ElectedRepresentatives({ officials }) {
                     return (
                       <div
                         key={index}
-                        className="card flex flex-col w-[100%] h-[550px] sm:h-[550px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
+                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
                       >
                         {photoUrl ? (
                           <div className="img_container">
@@ -287,6 +289,28 @@ export default function ElectedRepresentatives({ officials }) {
                               height={"100%"}
                               layout="responsive"
                               className="grow-0 h-[100px] "
+                            />
+                          </div>
+                        ) : name === "Joseph R. Biden" ? (
+                          <div className="img_container">
+                            <Image
+                              src={Joseph}
+                              width={"100%"}
+                              height={"100%"}
+                              layout="responsive"
+                              alt="photo"
+                              className="grow-0 h-[100px]"
+                            />
+                          </div>
+                        ) : name === "Kamala D. Harris" ? (
+                          <div className="img_container">
+                            <Image
+                              src={Kamala}
+                              width={"100%"}
+                              height={"100%"}
+                              layout="responsive"
+                              alt="photo"
+                              className="grow-0 h-[100px]"
                             />
                           </div>
                         ) : (
@@ -302,10 +326,10 @@ export default function ElectedRepresentatives({ officials }) {
                           </div>
                         )}
                         <div className="official_info grow">
-                          <p className=" office_name py-[5px] ">
+                          <p className=" text-[14px] office_name py-[5px] ">
                             {office.name}
                           </p>
-                          <h1 className="text-[23px] text-[#023a51] font-bold ">
+                          <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
                             {name}
                           </h1>
 
@@ -318,7 +342,7 @@ export default function ElectedRepresentatives({ officials }) {
                                   size={30}
                                   className="pt-[10px]"
                                 />{" "}
-                                <p className="ml-[5px] official_address py-[10px] ">
+                                <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
                                   {item.line1} {item.city} {item.state}{" "}
                                   {item.zip}
                                 </p>
@@ -334,7 +358,7 @@ export default function ElectedRepresentatives({ officials }) {
                                     size={30}
                                     className="pt-[3px] hover:text-[#000]"
                                   />
-                                  <p className="ml-[5px] text-[#023a51] ">
+                                  <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
                                     {emails}
                                   </p>
                                 </div>
@@ -346,7 +370,6 @@ export default function ElectedRepresentatives({ officials }) {
                             style={{ margin: "30px 0" }}
                           >
                             {channels?.map((item, index) => {
-                              <p className="float-left">Social Links: </p>;
                               return item.type == "Facebook" ? (
                                 <Link
                                   className="hover:text-[#000]"
@@ -438,7 +461,7 @@ export default function ElectedRepresentatives({ officials }) {
                       return (
                         <div
                           key={index}
-                          className="card flex flex-col w-[100%] h-[450px] sm:h-[500px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
+                          className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
                         >
                           {photoUrl ? (
                             <div className="img_container">
@@ -450,6 +473,28 @@ export default function ElectedRepresentatives({ officials }) {
                                 width={"100%"}
                                 height={"100px"}
                                 layout="responsive"
+                              />
+                            </div>
+                          ) : name === "Joseph R. Biden" ? (
+                            <div className="img_container">
+                              <Image
+                                src={Joseph}
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px]"
+                              />
+                            </div>
+                          ) : name === "Kamala D. Harris" ? (
+                            <div className="img_container">
+                              <Image
+                                src={Kamala}
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px]"
                               />
                             </div>
                           ) : (
@@ -496,7 +541,7 @@ export default function ElectedRepresentatives({ officials }) {
                                       size={30}
                                       className="pt-[3px] hover:text-[#000]"
                                     />
-                                    <p className="ml-[5px] text-[#023a51] ">
+                                    <p className="ml-[5px] mt-[5px] text-[#023a51] truncate   ">
                                       {emails}
                                     </p>
                                   </div>
@@ -508,7 +553,6 @@ export default function ElectedRepresentatives({ officials }) {
                               style={{ margin: "30px 0" }}
                             >
                               {channels?.map((item, index) => {
-                                <p className="float-left">Social Links: </p>;
                                 return item.type == "Facebook" ? (
                                   <Link
                                     className="hover:text-[#000]"

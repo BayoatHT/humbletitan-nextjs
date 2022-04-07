@@ -63,41 +63,37 @@ export default function BrowseByState() {
   ];
 
   return (
-    <section className="mx-auto py-4 pt-16">
-      <div className="container w-10/12 mx-auto max-w-screen-xl ">
-        <div className="flex flex-wrap mx-4 mb-10 m-auto ">
-          <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg  rounded-b-none">
-            <h5 className="font-bold text-[18px] mt-12 ml-2 leading-[27px] text-[#023a51]">
-              Browse By State:
-            </h5>
-          </div>
+    <div className="px-[10px]">
+      <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg  rounded-b-none">
+        <h5 className="font-bold text-[18px] mt-12 ml-2 leading-[27px] text-[#023a51]">
+          Browse By State:
+        </h5>
+      </div>
 
-          <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg rounded-t-none">
-            <div className="flex flex-wrap mx-4 mb-10 m-auto justify-start md:justify-between ">
-              <div className="w-12/12 ">
-                <ul className="flex flex-wrap ">
-                  {states.map((state, index) => {
-                    return (
-                      <Link
-                        onClick={() =>
-                          dispatch({ type: "STATE_DATA", payload: state })
-                        }
-                        href={`/state/${state}`}
-                        key={index}
-                        passHref
-                      >
-                        <li className="mt-12 cursor-pointer font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[33.3%] md:w-[20%]">
-                          {state}
-                        </li>
-                      </Link>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+      <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg rounded-t-none">
+        <div className="flex flex-wrap mx-4 mb-10 m-auto justify-start md:justify-between ">
+          <div className="w-12/12 ">
+            <ul className="flex flex-wrap justify-between ">
+              {states.map((state, index) => {
+                return (
+                  <Link
+                    onClick={() =>
+                      dispatch({ type: "STATE_DATA", payload: state })
+                    }
+                    href={`/state/${state}`}
+                    key={index}
+                    passHref
+                  >
+                    <li className="mt-10 cursor-pointer font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[45%] md:w-[33.3%] lg:w-[20%] ">
+                      {state}
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

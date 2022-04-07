@@ -6,17 +6,17 @@ export default function UpcommingElections({ majorElections }) {
       <div className="container w-10/12 mx-auto max-w-screen-xl">
         <div className="flex flex-wrap mx-4 mb-10 m-auto">
           <div className="flex flex-col mb-10">
-            <h2 className="font-bold text-[35px] md:text-[3rem] mb-10 text-[#023a51] leading-[47px]">
-              Upcoming Us Major Elections
+            <h2 className="font-bold text-[35px] md:text-[3rem]  text-[#023a51] ">
+              Upcomming Us Major Elections
             </h2>
           </div>
 
           <div className="container w-12/12 mx-auto px-[20px] bg-[#efeded] max-w-screen-xl rounded-lg">
             <div className="flex justify-between flex-row ">
-              <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[63%]  rounded-lg h-[50px] pt-[5px] text-center">
+              <h2 className="my-4 font-bold text-[1rem] leading-[40px] md:leading-[50px] md:text-[1.5rem] bg-[#e0ecf0]  w-[63%]  rounded-lg h-[40px] md:h-[50px]  text-center">
                 Election Name
               </h2>
-              <h2 className="my-4 font-bold text-[1.5rem] bg-[#e0ecf0]  w-[32%]  rounded-lg h-[50px] pt-[5px] text-center">
+              <h2 className="my-4 font-bold text-[1rem] leading-[40px] md:leading-[50px] md:text-[1.5rem] bg-[#e0ecf0]  w-[32%]  rounded-lg h-[40px] md:h-[50px]  text-center">
                 Date
               </h2>
             </div>
@@ -27,14 +27,14 @@ export default function UpcommingElections({ majorElections }) {
                   <h2
                     key={index}
                     type="text"
-                    className=" my-4 font-bold text-[1rem] bg-[#fff]  w-[63%]  rounded-lg leading-loose h-[40px] py-[5px] px-[10px] "
+                    className=" my-2 font-bold leading-[30px] md:leading-[40px] md:text-[1rem] text-[.6rem]  bg-[#fff]  w-[65%] whitespace-nowrap text-ellipsis overflow-hidden rounded-lg h-[30px] md:h-[40px] px-[10px] "
                   >
                     {item.name}
                   </h2>
                   <h2
                     key={index}
                     type="text"
-                    className="my-4 font-bold text-[1rem] bg-[#fff]  w-[32%]  rounded-lg leading-loose h-[40px] py-[5px] px-[10px] "
+                    className="my-2 font-bold leading-[30px] md:leading-[40px] md:text-[1rem] text-[.6rem] bg-[#fff]  w-[30%]  rounded-lg h-[30px] md:h-[40px] px-[5px] text-center "
                   >
                     {item.electionDay}
                   </h2>

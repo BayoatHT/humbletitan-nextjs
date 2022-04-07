@@ -38,7 +38,7 @@ export default function SearchSection(props) {
                 type="text"
                 onChange={(e) => setAddress(e.target.value)}
                 value={address}
-                className=" border-width-[1px] pl-[10px] border-slate-700 border-solid lg:w-[70%] h-[60px]  rounded-[5px] w-[100%] placeholder:italic placeholder:font-regular placeholder: leading-[20px]"
+                className=" border-width-[1px] pl-[16px] border-slate-700 border-solid lg:w-[70%] h-[60px]  rounded-[5px] w-[100%] placeholder:italic placeholder:font-regular placeholder: leading-[20px]"
                 placeholder="e.g., 1452 E 53rd St, Chicago, IL"
                 name="search"
               />

@@ -5,6 +5,7 @@ export const Store = createContext();
 const initialState = {
   voterAddress: Cookies.get("voterAddress"),
   stateName: "",
+  countyName: "",
 };
 
 function reducer(state, action) {
@@ -14,6 +15,8 @@ function reducer(state, action) {
       return { ...state, voterAddress: action.payload };
     case "STATE_DATA":
       return { ...state, stateName: action.payload };
+    case "CountyName":
+      return { ...state, countyName: action.payload };
     default:
       return state;
   }

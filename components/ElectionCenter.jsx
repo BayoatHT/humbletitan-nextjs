@@ -7,11 +7,12 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 import { BsListCheck } from "react-icons/bs";
 import { MdHowToVote } from "react-icons/md";
 import { Store } from "../utils/store";
+import { useRouter } from "next/router";
 
 export default function ElectionCenter({ stateName, dates }) {
-  const { state } = useContext(Store);
-  const { voterAddress } = state;
-
+  const router = useRouter();
+  const address = router.query.index;
+  console.log(address);
   return (
     <>
       <section>
@@ -32,7 +33,7 @@ export default function ElectionCenter({ stateName, dates }) {
                 </div> */}
                 <div className=" bg-[#f7f7f7] pt-[20px] flex flex-col justify-center items-center border-ea-bot ">
                   <div className="flex flex-col text-[#023a51] text-center items-center justify-center container w-12/12 mx-auto max-w-screen-xl ">
-                    <h4 className="text-[35px]">
+                    <h4 className="text-[25px] sm:text-[35px]">
                       Upcomming Election(s) in{" "}
                       <span className="font-bold">{stateName}</span>
                     </h4>
@@ -46,14 +47,14 @@ export default function ElectionCenter({ stateName, dates }) {
                                 key={index}
                                 className=" py-[20px] px-[5px] flex  text-left w-mx"
                               >
-                                <h2 className="text-[20px] font-bold">
+                                <h2 className="text-[16px] sm:text-[20px] font-bold">
                                   {index + 1}) {item.state}{" "}
                                   {item.electionDescription} ||
                                 </h2>
-                                <h3 className="text-[22px] ml-[15px] flex flex-row items-center ">
+                                <h3 className="sm:text-[22px] text-[14px] ml-[15px] flex flex-row items-center ">
                                   <FaCalendarAlt />
-                                  <span className="font-bold ml-[10px]">
-                                    {item.electionDate}
+                                  <span className="font-bold  ml-[5px]">
+                                    {new Date(item.electionDate).toDateString()}
                                   </span>
                                 </h3>
                               </div>
@@ -64,14 +65,14 @@ export default function ElectionCenter({ stateName, dates }) {
                   </div>
                 </div>
                 <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
-                  <Link href={`/elected-officials/${voterAddress}`}>
-                    <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] hover:bg-[#ececec] pt-8  px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
+                  <Link href={`/elected-officials/${address}`}>
+                    <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] hover:bg-[#ececec] pt-8 pb-[10px] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
                       <AiOutlineUser
                         size={35}
                         color="#2d5672"
                         className=" mb-2 "
                       />
-                      <h5 className="font-bold text-[20px] py-2  leading-[15px] text-[#2d5672]">
+                      <h5 className="font-bold text-[20px] py-2  leading-[22px] text-[#2d5672]">
                         Elected And Appointed Officials
                       </h5>
                       <p className="text-[#b3bbc2] pt-2 font-regular text-[16px] text-[#a39c98] ">

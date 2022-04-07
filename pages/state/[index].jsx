@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { useContext, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
 import Image from "next/image";
@@ -7,22 +6,15 @@ import Link from "next/link";
 import Layout from "../../components/Layout";
 import BrowsByState from "../../components/BrowseByState";
 import { FaCalendarAlt } from "react-icons/fa";
-import placeholderImg from "../../assets/images/PLACE-HOLDER-600x348.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
+import BrowseByCounty from "../../components/BrowseByCounty";
+import { Store } from "../../utils/store";
 
 export default function State({ articles, data, index }) {
-  // const router = useRouter();
-  // const query = router.query;
-  // const { index } = query;
-  // const stateName = index;
-  const newArticles = articles;
+  const { state } = useContext(Store);
   const stateName = index;
-  console.log(data.length);
-  // console.log(newArticles);
-  // console.log(newData);
-  // console.log(newStateName);
   const [sliderRef, setSliderRef] = useState(null);
   const sliderSettings = {
     dots: false,
@@ -63,11 +55,18 @@ export default function State({ articles, data, index }) {
       {/* State's Elections Date */}
       <section className="mx-auto py-4 bg-[#f7f7f7]">
         <div className=" text-[#023a51]  container w-12/12 mx-auto max-w-screen-xl ">
-          <h4 className="text-[35px] text-center">
+          <h4 className="text-[25px] mb-[10px] sm:text-[35px] text-center">
             {data?.length !== 0
               ? "Upcomming Election(s) in"
-              : " Sorry! There is no upcomming elections in "}{" "}
-            <span className="font-bold">{stateName}</span>
+              : " Sorry! There is no upcomming elections in"}{" "}
+            <span className="font-bold text-[25px] sm:text-[35px]">
+              {stateName}
+            </span>
+            {state.countyName && (
+              <span className="font-bold text-[25px] sm:text-[35px]">
+                and in {state.countyName}
+              </span>
+            )}
           </h4>
           <div className="flex flex-col items-center justify-center">
             <div>
@@ -79,13 +78,13 @@ export default function State({ articles, data, index }) {
                       key={index}
                       className=" py-[20px] px-[5px] flex  text-left w-mx"
                     >
-                      <h2 className="text-[20px] font-bold">
+                      <h2 className="text-[14px] sm:text-[20px] font-bold">
                         {index + 1}) {item.state} {item.electionDescription} ||
                       </h2>
-                      <h3 className="text-[22px] ml-[15px] flex flex-row items-center ">
+                      <h3 className="sm:text-[22px] text-[14px] ml-[15px] flex flex-row items-center ">
                         <FaCalendarAlt />
-                        <span className="font-bold ml-[10px]">
-                          {item.electionDate}
+                        <span className="font-bold  ml-[5px]">
+                          {new Date(item.electionDate).toDateString()}
                         </span>
                       </h3>
                     </div>
@@ -103,7 +102,7 @@ export default function State({ articles, data, index }) {
           Election articles of {stateName}
         </h1>
         <Slider ref={setSliderRef} {...sliderSettings}>
-          {newArticles?.map((article, index) => {
+          {articles?.map((article, index) => {
             return (
               <Link
                 key={index}
@@ -122,9 +121,9 @@ export default function State({ articles, data, index }) {
                     height={"100%"}
                     layout="responsive"
                   />
-                  <div className="card-body p-[5px]">
+                  <div className="card-body py-[10px] px-[10px]">
                     <div className="flex space-between">
-                      <p className="text-[#555555] text-[12px]">
+                      <p className="text-[#555555] truncate text-[12px]">
                         Author: {article.author ? article.author : "Unknown"}
                       </p>
                     </div>
@@ -153,6 +152,7 @@ export default function State({ articles, data, index }) {
         </div>
       </section>
       <BrowsByState />
+      <BrowseByCounty />
     </Layout>
   );
 }

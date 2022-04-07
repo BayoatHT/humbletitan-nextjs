@@ -53,7 +53,7 @@ export default function GetPolls() {
                     02
                   </h2>
                 </div>
-                <h4 className="font-bold text-[25px] md:text-[1.5rem] lg:text-[1.5rem]  xl:text-[1.5rem]   mt-4 text-[#023a51] leading-[30px]">
+                <h4 className="font-bold text-[25px] text-center md:text-[1.5rem] lg:text-[1.5rem]  xl:text-[1.5rem]   mt-4 text-[#023a51] leading-[30px]">
                   Consider your options
                 </h4>
                 <p className="font-regular  text-[18px] leading-[30px] text-[#59667d] text-center md:text-left mt-2 w-[100%] md:w-[80%]">

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Store } from "../utils/store";
 
 const counties = [
   {
@@ -193,8 +194,9 @@ const counties = [
 ];
 
 export default function BrowseByCounty() {
+  const { dispatch } = useContext(Store);
   return (
-    <div>
+    <div className="px-[10px]">
       <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg  rounded-b-none">
         <h5 className="font-bold text-[18px] mt-12 ml-2 leading-[27px] text-[#023a51]">
           Browse By County:
@@ -204,12 +206,15 @@ export default function BrowseByCounty() {
       <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg rounded-t-none">
         <div className="flex flex-wrap mx-4 mb-10 m-auto justify-start md:justify-between ">
           <div className="w-12/12 ">
-            <ul className="flex flex-wrap ">
+            <ul className="flex flex-wrap jutify-between ">
               {counties.map((county, index) => {
                 return (
                   <li
                     key={index}
-                    className="mt-12 font-bold-2 text-[1rem] style-heading transition duration-150 ease-out w-[33.3%] md:w-[20%]"
+                    onClick={() =>
+                      dispatch({ tyepe: "CountyName", payload: county.name })
+                    }
+                    className="mt-10 cursor-pointer ml-[10px] font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[45%] md:w-[33.3%] lg:w-[20%] "
                   >
                     {county.name}
                   </li>
