@@ -178,7 +178,6 @@ export async function getServerSideProps(context) {
   try {
     await axios.request(options).then(function (response) {
       articles = response.data.articles;
-      console.log(articles);
     });
   } catch (error) {
     console.log(error.message);
@@ -187,7 +186,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("https://h-t.vercel.app/api/sheets")
+    .get("https://h-t.vercel.app/api/stateelections")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({
@@ -208,7 +207,7 @@ export async function getServerSideProps(context) {
       console.log(data);
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
 
   return {
