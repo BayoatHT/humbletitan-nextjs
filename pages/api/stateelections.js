@@ -5,7 +5,7 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   const auth = new google.auth.GoogleAuth({
-    keyFile: "spreadSheet.json",
+    keyFile: "credintials.json",
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
 
