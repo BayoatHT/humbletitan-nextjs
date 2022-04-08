@@ -186,7 +186,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("https://h-t.vercel.app//api/stateelections")
+    .get("https://h-t.vercel.app/api/stateelections")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({
