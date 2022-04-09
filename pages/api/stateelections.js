@@ -1,11 +1,11 @@
 import { google } from "googleapis";
 import nc from "next-connect";
-
+import path from "path";
 const handler = nc();
 
 handler.get(async (req, res) => {
   const auth = new google.auth.GoogleAuth({
-    keyFile: { "credintials.json": { includeFiles: "/**" } },
+    keyFile: path.resolve("./credintials.json"),
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
 
