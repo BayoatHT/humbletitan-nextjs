@@ -19,7 +19,7 @@ export default function State({ articles, data, index }) {
   const sliderSettings = {
     dots: false,
     infinite: true,
-    speed: 600,
+    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [

@@ -5,7 +5,7 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   const auth = new google.auth.GoogleAuth({
-    keyFile: "credintials.json",
+    keyFile: { "credintials.json": { includeFiles: "/**" } },
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
 
@@ -15,14 +15,6 @@ handler.get(async (req, res) => {
 
   const spreadsheetId = "1ZNcwc9U6dYNzVOQmheECnnZDtH6zxdwbkT9Ns8iOX9k";
   const range = "Copy of VIP 2022 Planned Coverage!A11:E900";
-  const ranges = [
-    "Copy of VIP 2022 Planned Coverage!A10:E150",
-    "Copy of VIP 2022 Planned Coverage!A11:E150",
-    "Copy of VIP 2022 Planned Coverage!A10:E150",
-    "Copy of VIP 2022 Planned Coverage!A10:E150",
-    "Copy of VIP 2022 Planned Coverage!E10:E150",
-  ];
-
   const metaData = await googleSheets.spreadsheets.get({
     auth,
     spreadsheetId,
