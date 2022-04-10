@@ -2500,7 +2500,8 @@ input {
 }
 
 .img_container span img {
-  object-fit: cover !important;
+  /* object-fit: cover !important; */
+  object-fit: inherit !important;
 }
 @media (max-width: 639px) {
   .border-ea-left {
@@ -2573,12 +2574,6 @@ text-overflow: ellipsis;
   cursor: pointer;
   width: 100%;
   font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
 }
 
 .card span {

@@ -4,13 +4,7 @@ import "tailwindcss/tailwind.css";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import ElectionCenter from "../../components/ElectionCenter";
-import Arrow from "../../components/Arrow";
-import WhatElseWeOffer from "../../components/WhatElseWeOffer";
-import { useRouter } from "next/router";
 export default function Index({ stateName, electionDates }) {
-  const router = useRouter();
-  const { index } = router.query;
-  console.log(index);
   return (
     <>
       <Layout>
@@ -26,8 +20,6 @@ export async function getServerSideProps(context) {
   } = context;
   const address = index;
   console.log("address", address);
-  // const address = localStorage.getItem("voter_address");
-  console.log("localStorage: ", address);
   var stateName = "";
   var electionDates = [];
   await axios
@@ -146,7 +138,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("http://localhost:3000/api/sheets")
+    .get("http://localhost:3000/api/stateelections")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({

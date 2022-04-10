@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import ElectionDate from "./ElectionDate";
 import { FaCalendarAlt } from "react-icons/fa";
 import { AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { HiOutlineSpeakerphone } from "react-icons/hi";
 import { BsListCheck } from "react-icons/bs";
 import { MdHowToVote } from "react-icons/md";
-import { Store } from "../utils/store";
-import { useRouter } from "next/router";
+import WhatElseWeOffer from "./WhatElseWeOffer";
 
 export default function ElectionCenter({ stateName, dates }) {
-  const router = useRouter();
-  const address = router.query.index;
-  console.log(address);
+  console.log(stateName);
   return (
     <>
+      <ElectionDate stateName={stateName} data={dates} />
+      <WhatElseWeOffer stateName={stateName} />
       <section>
         <div>
           <div className="flex flex-wrap mb-10 ">
@@ -31,41 +31,9 @@ export default function ElectionCenter({ stateName, dates }) {
                     Every vote matters. We&apos;re here to help you inform guys.
                   </p>
                 </div> */}
-                <div className=" bg-[#f7f7f7] pt-[20px] flex flex-col justify-center items-center border-ea-bot ">
-                  <div className="flex flex-col text-[#023a51] text-center items-center justify-center container w-12/12 mx-auto max-w-screen-xl ">
-                    <h4 className="text-[25px] sm:text-[35px]">
-                      Upcomming Election(s) in{" "}
-                      <span className="font-bold">{stateName}</span>
-                    </h4>
-                    <div className="flex flex-col items-center justify-center">
-                      <div>
-                        {dates
-                          ?.filter((item) => item.statusOfData !== "Expired")
-                          .map((item, index) => {
-                            return (
-                              <div
-                                key={index}
-                                className=" py-[20px] px-[5px] flex  text-left w-mx"
-                              >
-                                <h2 className="text-[16px] sm:text-[20px] font-bold">
-                                  {index + 1}) {item.state}{" "}
-                                  {item.electionDescription} ||
-                                </h2>
-                                <h3 className="sm:text-[22px] text-[14px] ml-[15px] flex flex-row items-center ">
-                                  <FaCalendarAlt />
-                                  <span className="font-bold  ml-[5px]">
-                                    {new Date(item.electionDate).toDateString()}
-                                  </span>
-                                </h3>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
-                  <Link href={`/elected-officials/${address}`}>
+
+                {/* <div className="flex justify-around items-center my-4 flex-wrap  gap-y-[20px] pb-[15px]">
+                  <Link href={`/elected-officials/${stateName}`}>
                     <a className="w-[90%] sm:w-[45%] lg:w-[30%] h-[200px] hover:bg-[#ececec] pt-8 pb-[10px] px-6 bg-[#fff] mt-4 flex flex-col justify-center cards-shadow">
                       <AiOutlineUser
                         size={35}
@@ -148,7 +116,7 @@ export default function ElectionCenter({ stateName, dates }) {
                       <i>* Available when there is an upcoming elections</i>
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
               {/* <div className="sm:w-[25%] w-[90%]  h-[100%] border-ea border-ea-left">
                 <div className="border-ea-bot">

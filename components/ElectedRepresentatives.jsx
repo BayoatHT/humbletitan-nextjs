@@ -12,10 +12,14 @@ import { MdAlternateEmail } from "react-icons/md";
 import { TiSocialFacebookCircular } from "react-icons/ti";
 import { TiSocialTwitter } from "react-icons/ti";
 import { TiSocialYoutubeCircular } from "react-icons/ti";
+import { useRouter } from "next/router";
+export default function ElectedRepresentatives({ officials, address }) {
+  const router = useRouter();
+  const { index } = router.query;
+  const stateName = index;
+  console.log(address);
+  console.log(index);
 
-export default function ElectedRepresentatives({ officials }) {
-  const aofficials = officials;
-  console.log(aofficials);
   const [filter, setFilter] = useState({
     all: true,
     administrativeArea1: false,
@@ -40,7 +44,7 @@ export default function ElectedRepresentatives({ officials }) {
           <div className="flex flex-wrap mx-4 mb-10 m-auto">
             <div className="flex flex-col">
               <h2 className="font-bold text-[27px] md:text-[55px] leading-[50px] mb-2 text-[#023a51]">
-                The Elected Directory
+                The Elected Directory [{address || stateName}]
               </h2>
             </div>
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg mt-[0.5rem]">
@@ -261,7 +265,7 @@ export default function ElectedRepresentatives({ officials }) {
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
                 {filter.filterName === "all" &&
-                  aofficials.map((item, index) => {
+                  officials.map((item, index) => {
                     const {
                       name,
                       address,
@@ -276,7 +280,7 @@ export default function ElectedRepresentatives({ officials }) {
                     return (
                       <div
                         key={index}
-                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] "
+                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
                       >
                         {photoUrl ? (
                           <div className="img_container">
@@ -288,7 +292,7 @@ export default function ElectedRepresentatives({ officials }) {
                               width={"100%"}
                               height={"100%"}
                               layout="responsive"
-                              className="grow-0 h-[100px] "
+                              className="grow-0 h-[100px] rounded-lg"
                             />
                           </div>
                         ) : name === "Joseph R. Biden" ? (
@@ -299,7 +303,7 @@ export default function ElectedRepresentatives({ officials }) {
                               height={"100%"}
                               layout="responsive"
                               alt="photo"
-                              className="grow-0 h-[100px]"
+                              className="grow-0 h-[100px] rounded-lg"
                             />
                           </div>
                         ) : name === "Kamala D. Harris" ? (
@@ -310,7 +314,7 @@ export default function ElectedRepresentatives({ officials }) {
                               height={"100%"}
                               layout="responsive"
                               alt="photo"
-                              className="grow-0 h-[100px]"
+                              className="grow-0 h-[100px] rounded-lg"
                             />
                           </div>
                         ) : (
@@ -321,7 +325,7 @@ export default function ElectedRepresentatives({ officials }) {
                               height={"100%"}
                               layout="responsive"
                               alt="photo"
-                              className="grow-0 h-[100px]"
+                              className="grow-0 h-[100px] rounded-lg"
                             />
                           </div>
                         )}
@@ -434,14 +438,17 @@ export default function ElectedRepresentatives({ officials }) {
                             })}
                           </div>
                         </div>
-                        <a href={`tel:${phones}`} className="contact_btn">
+                        <a
+                          href={`tel:${phones}`}
+                          className="contact_btn rounded-b-lg"
+                        >
                           Contact
                         </a>
                       </div>
                     );
                   })}
                 {filter.filterName !== "all" &&
-                  aofficials
+                  officials
                     ?.filter(
                       (official) =>
                         official.office.levels[0] === filter.filterName
@@ -461,7 +468,7 @@ export default function ElectedRepresentatives({ officials }) {
                       return (
                         <div
                           key={index}
-                          className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
+                          className="card flex flex-col rounded-lg w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
                         >
                           {photoUrl ? (
                             <div className="img_container">
@@ -473,6 +480,7 @@ export default function ElectedRepresentatives({ officials }) {
                                 width={"100%"}
                                 height={"100px"}
                                 layout="responsive"
+                                className="rounded-lg"
                               />
                             </div>
                           ) : name === "Joseph R. Biden" ? (
@@ -483,7 +491,7 @@ export default function ElectedRepresentatives({ officials }) {
                                 height={"100%"}
                                 layout="responsive"
                                 alt="photo"
-                                className="grow-0 h-[100px]"
+                                className="grow-0 h-[100px] rounded-lg"
                               />
                             </div>
                           ) : name === "Kamala D. Harris" ? (
@@ -494,13 +502,13 @@ export default function ElectedRepresentatives({ officials }) {
                                 height={"100%"}
                                 layout="responsive"
                                 alt="photo"
-                                className="grow-0 h-[100px]"
+                                className="grow-0 h-[100px] rounded-lg"
                               />
                             </div>
                           ) : (
                             <div className="img_container">
                               <Image
-                                className="officialsImage"
+                                className="officialsImage rounded-lg"
                                 src={placeholderImg}
                                 alt="photo"
                                 width={"100%"}
@@ -617,7 +625,10 @@ export default function ElectedRepresentatives({ officials }) {
                               })}
                             </div>
                           </div>
-                          <a href={`tel:${phones}`} className="contact_btn">
+                          <a
+                            href={`tel:${phones}`}
+                            className="contact_btn rounded-b-lg"
+                          >
                             Contact
                           </a>
                         </div>

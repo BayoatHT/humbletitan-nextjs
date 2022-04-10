@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Store } from "../utils/store";
 import { BiLoaderCircle } from "react-icons/bi";
 export default function SearchSection(props) {
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
   const [searchText, setSearchText] = useState("Search");
   //   const { data } = props;
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function SearchSection(props) {
 
   return (
     <>
-      <section className="mx-auto bg-[#e0ecf0] py-4 mt-16">
+      <section className="mx-auto bg-[#e0ecf0] py-4">
         <div className="container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
           <div className="mx-auto w-10/12 md:w-10/12 ">
             <h2 className="font-bold  text-[40px] leading-[40px] md:leading-[50px] pt-8 text-center text-[#023a51]">
