@@ -9,13 +9,13 @@ export default function StateNews({ stateName, articles }) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: false,
           dots: false,
@@ -24,7 +24,7 @@ export default function StateNews({ stateName, articles }) {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
           initialSlide: 2,
         },
@@ -57,7 +57,7 @@ export default function StateNews({ stateName, articles }) {
                   src={`/api/imageProxy?url=${encodeURIComponent(
                     article.media
                   )}`}
-                  className="card-img-top grow rounded-lg"
+                  className="card-img-top grow rounded-t-lg"
                   alt="Img"
                   width={"100%"}
                   height={"100%"}

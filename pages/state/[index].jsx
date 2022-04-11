@@ -1,20 +1,26 @@
 import React from "react";
-
 import axios from "axios";
-
 import Layout from "../../components/Layout";
 import BrowsByState from "../../components/BrowseByState";
 import SearchSection from "../../components/SearchSection";
 import ElectedRepresentatives from "../../components/ElectedRepresentatives";
 import StateNews from "../../components/StateNews";
 import ElectionDate from "../../components/ElectionDate";
+import UpcommingElections from "../../components/UpcommingElections";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function State({ articles, data, index, formedOfficials }) {
+export default function State({
+  articles,
+  data,
+  index,
+  formedOfficials,
+  majorElections,
+}) {
   return (
     <Layout>
       <ElectionDate data={data} stateName={index} />
+      <UpcommingElections majorElections={majorElections} />
       <ElectedRepresentatives officials={formedOfficials} address={index} />
       <SearchSection />
       <StateNews stateName={index} articles={articles} />
@@ -74,7 +80,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("http://localhost:3000/api/stateelections")
+    .get("https://h-t.vercel.app/api/stateelections")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({
@@ -98,12 +104,23 @@ export async function getServerSideProps(context) {
       console.log(error.message);
     });
 
+  var majorElections = [];
+  await axios
+    .get(
+      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+    )
+    .then((result) => {
+      majorElections = result.data.elections;
+      console.log(majorElections);
+    });
+
   return {
     props: {
       articles,
       data,
       index,
       formedOfficials,
+      majorElections,
     },
   };
 }

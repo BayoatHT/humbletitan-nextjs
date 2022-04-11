@@ -8,11 +8,9 @@ export default function ElectionDate({ data, stateName }) {
       <div className=" text-[#023a51]  container w-12/12 mx-auto max-w-screen-xl ">
         <h4 className="text-[25px] sm:text-[35px] text-center">
           {data?.length !== 0
-            ? "Upcomming Election(s) in"
-            : " We provide data the nearer we are to an election. The next chance to vote in “Enter state/county/”  won’t be here for a bit. In the meantime, prepare with our guide on what's coming and who's already represent you."}{" "}
-          <span className="font-bold text-[25px] sm:text-[35px]">
-            {stateName}
-          </span>
+            ? `Upcomming Election(s) in ${stateName}`
+            : `We provide data the nearer we are to an election. The next chance to vote in 
+                  <span className="font-bold" >${stateName}</span>  won't be here for a bit. In the meantime, prepare with our guide on what's coming and who's already represent you.`}{" "}
           {state.countyName && (
             <span className="font-bold text-[25px] sm:text-[35px]">
               and in {state.countyName}
