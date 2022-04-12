@@ -107,9 +107,9 @@ export default function AllRepresentatives({ officials }) {
                   onClick={() => {
                     setFilter({
                       all: false,
+                      country: true,
                       administrativeArea1: false,
                       administrativeArea2: false,
-                      country: true,
                       international: false,
                       locality: false,
                       regional: false,
@@ -289,7 +289,7 @@ export default function AllRepresentatives({ officials }) {
             </div>
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg mt-[0.5rem]">
               <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
-                Filter by Offices: ()
+                Filter by Offices:
               </h6>
               <div className="flex flex-wrap mb-10 mt-[0.5rem]  justify-start  items-center m-auto">
                 <select
@@ -451,8 +451,11 @@ export default function AllRepresentatives({ officials }) {
           <div className="flex flex-wrap mb-10 m-auto">
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
-                {filter.filterName === "all" &&
-                  allofficials.map((item, index) => {
+                {allofficials.length <= 0 ? (
+                  <span>Loading...</span>
+                ) : (
+                  filter.filterName === "all" &&
+                  allofficials?.map((item, index) => {
                     const {
                       name,
                       address,
@@ -806,7 +809,9 @@ export default function AllRepresentatives({ officials }) {
                         </div>
                       );
                     }
-                  })}
+                  })
+                )}
+
                 {filter.filterName !== "all" &&
                   allofficials
                     ?.filter(
@@ -825,6 +830,177 @@ export default function AllRepresentatives({ officials }) {
                         channels,
                         phones,
                       } = item;
+                      if (selectedParty === "all") {
+                        return (
+                          <div
+                            key={index}
+                            className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
+                          >
+                            {photoUrl ? (
+                              <div className="img_container">
+                                <Image
+                                  src={`/api/imageProxy?url=${encodeURIComponent(
+                                    photoUrl
+                                  )}`}
+                                  alt="photo"
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            ) : name === "Joseph R. Biden" ? (
+                              <div className="img_container">
+                                <Image
+                                  src={Joseph}
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  alt="photo"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            ) : name === "Kamala D. Harris" ? (
+                              <div className="img_container">
+                                <Image
+                                  src={Kamala}
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  alt="photo"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            ) : (
+                              <div className="img_container">
+                                <Image
+                                  src={placeholderImg}
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  alt="photo"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            )}
+                            <div className="official_info grow">
+                              <p className=" text-[14px] office_name py-[5px] ">
+                                {office.name}
+                              </p>
+                              <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
+                                {name}
+                              </h1>
+
+                              <p className=" py-[5px]"> {party}</p>
+                              {address?.map((item, index) => {
+                                return (
+                                  <div key={index} className="flex">
+                                    <FaMapMarkerAlt
+                                      color="#023a51"
+                                      size={30}
+                                      className="pt-[10px]"
+                                    />{" "}
+                                    <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
+                                      {item.line1} {item.city} {item.state}{" "}
+                                      {item.zip}
+                                    </p>
+                                  </div>
+                                );
+                              })}
+                              {emails && (
+                                <Link href={`mailto:${emails}`} passHref>
+                                  <a>
+                                    <div className="flex">
+                                      <MdAlternateEmail
+                                        color="#023a51"
+                                        size={30}
+                                        className="pt-[3px] hover:text-[#000]"
+                                      />
+                                      <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
+                                        {emails}
+                                      </p>
+                                    </div>
+                                  </a>
+                                </Link>
+                              )}
+                              <div
+                                className="text-center flex items-center flex-wrap jutify-center "
+                                style={{ margin: "30px 0" }}
+                              >
+                                {channels?.map((item, index) => {
+                                  return item.type == "Facebook" ? (
+                                    <Link
+                                      className="hover:text-[#000]"
+                                      key={index}
+                                      href={`https://www.facebook.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialFacebookCircular
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : item.type == "Twitter" ? (
+                                    <Link
+                                      href={`https://www.twitter.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialTwitter
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : item.type == "YouTube" ? (
+                                    <Link
+                                      href={`https://www.youtube.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialYoutubeCircular
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : null;
+                                })}
+
+                                {urls?.map((item, index) => {
+                                  return (
+                                    <Link
+                                      className="hover:text-[#000] mb-[5px] "
+                                      key={index}
+                                      href={item}
+                                      passHref
+                                    >
+                                      <a>
+                                        <FaLink
+                                          size={"20px"}
+                                          color="#023a51"
+                                          className="mx-[10px]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                            <a
+                              href={`tel:${phones}`}
+                              className="contact_btn rounded-b-lg"
+                            >
+                              Contact
+                            </a>
+                          </div>
+                        );
+                      }
                       if (party === selectedParty) {
                         return (
                           <div
