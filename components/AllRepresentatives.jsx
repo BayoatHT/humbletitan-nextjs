@@ -62,7 +62,6 @@ export default function AllRepresentatives({ officials }) {
           .get(`https://humble-titan.herokuapp.com/${selectedOffice}`)
           .then(({ data }) => {
             setAllOfficials(data);
-            console.log(data);
           });
       } catch (error) {
         console.log(error.message);
