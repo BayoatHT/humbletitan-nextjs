@@ -19,7 +19,7 @@ export default function index({ officials }) {
 
 export async function getServerSideProps() {
   var officials = [];
-  await axios.get("http://localhost:8000/").then(({ data }) => {
+  await axios.get("https://humble-titan.herokuapp.com/").then(({ data }) => {
     officials = data;
   });
 
