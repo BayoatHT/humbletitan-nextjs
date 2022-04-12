@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import TopTitle from "../../components/TopTitle";
-import ElectedDirectory from "../../components/ElectedDirectory";
 import BrowseByState from "../../components/BrowseByState";
 import AllRepresentatives from "../../components/AllRepresentatives";
 import axios from "axios";

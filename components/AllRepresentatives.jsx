@@ -13,13 +13,9 @@ import { TiSocialFacebookCircular } from "react-icons/ti";
 import { TiSocialTwitter } from "react-icons/ti";
 import { TiSocialYoutubeCircular } from "react-icons/ti";
 import { useRouter } from "next/router";
-export default function AllRepresentatives({ officials, address }) {
-  const router = useRouter();
-  const { index } = router.query;
-  const stateName = index;
-  var parties = officials.map((o) => o.party);
-  console.log(parties);
-  console.log(index);
+import axios from "axios";
+export default function AllRepresentatives({ officials }) {
+  const [allofficials, setAllOfficials] = useState(officials);
 
   const [filter, setFilter] = useState({
     all: true,
@@ -34,16 +30,44 @@ export default function AllRepresentatives({ officials, address }) {
     subLocality2: false,
     filterName: "all",
   });
+  const [selectedOffice, setSelectedOffice] = useState("all");
+  const [selectedParty, setSelectedParty] = useState("all");
+  const [partyInput, setPartyInput] = useState("all");
 
-  const [selectedOffice, setSelectedOffice] = useState("");
-  const [selectedParty, setSelectedParty] = useState("");
   const colored =
     "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
   const white =
     "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
 
-  const officeFilter = () => {
-    alert(selectedOffice + selectedParty);
+  const officeFilter = async () => {
+    setSelectedParty(partyInput);
+    if (selectedOffice === "all") {
+      setAllOfficials(officials);
+    } else if (selectedOffice !== "all") {
+      setFilter({
+        all: true,
+        administrativeArea1: false,
+        administrativeArea2: false,
+        country: false,
+        international: false,
+        locality: false,
+        regional: false,
+        special: false,
+        subLocality1: false,
+        subLocality2: false,
+        filterName: "all",
+      });
+      try {
+        await axios
+          .get(`https://humble-titan.herokuapp.com/${selectedOffice}`)
+          .then(({ data }) => {
+            setAllOfficials(data);
+            console.log(data);
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   };
   return (
     <>
@@ -271,146 +295,138 @@ export default function AllRepresentatives({ officials, address }) {
               <div className="flex flex-wrap mb-10 mt-[0.5rem]  justify-start  items-center m-auto">
                 <select
                   value={selectedOffice}
-                  onChange={(e) => setSelectedOffice(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedOffice(e.target.value);
+                    setPartyInput("all");
+                  }}
                   className="bg-[#fff] w-[100%] outline-0 cursor-pointer py-[5px] lg:w-[58%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow"
                 >
                   <option value="all">All</option>
-                  <option value="President of the United States">
+                  <option value="president">
                     President of the United States
                   </option>
-                  <option value="Vice President of the United States">
+                  <option value="visePresident">
                     Vice President of the United States
                   </option>
-                  <option value="U.S. Senator">U.S. Senator</option>
-                  <option value="U.S. Representative">
-                    U.S. Representative
-                  </option>
-                  <option value="Governor">Governor</option>
-                  <option value="Lieutenant Governor">
+                  <option value="senators">U.S. Senator</option>
+                  <option value="USRepresentative">U.S. Representative</option>
+                  <option value="governors">Governor</option>
+                  <option value="lieutenantGovernors">
                     Lieutenant Governor
                   </option>
-                  <option value="Supreme Court Justice">
+                  <option value="SupremeCourtJustice">
                     Supreme Court Justice
                   </option>
-                  <option value="Court of Appeals Judge">
+                  <option value="CourtOfAppealsJudge">
                     Court of Appeals Judge
                   </option>
-                  <option value="Public Service Commissioner">
+                  <option value="PublicServiceCommissioner">
                     Public Service Commissioner
                   </option>
-                  <option value="Attorney General">Attorney General</option>
-                  <option value="State Treasurer">State Treasurer</option>
-                  <option value="Commissioner of Agriculture">
+                  <option value="AttorneyGeneral">Attorney General</option>
+                  <option value="StateTreasurer">State Treasurer</option>
+                  <option value="CommissionerOfAgriculture">
                     Commissioner of Agriculture
                   </option>
-                  <option value="Commissioner of Agriculture and Industries">
-                    Commissioner of Agriculture and Industries
-                  </option>
-                  <option value="Commissioner of Agriculture and Forestry">
-                    Commissioner of Agriculture and Forestry
-                  </option>
-                  <option value="State Auditor">State Auditor</option>
-                  <option value="Secretary of State">Secretary of State</option>
-                  <option value="Public Service Commission President">
+                  <option value="StateAuditor">State Auditor</option>
+                  <option value="SecretaryOfState">Secretary of State</option>
+                  <option value="PublicServiceCommissionPresident">
                     Public Service Commission President
                   </option>
-                  <option value="Supreme Court Associate Justice">
+                  <option value="SupremeCourtAssociateJustice">
                     Supreme Court Associate Justice
                   </option>
-                  <option value="Supreme Court Chief Justice">
+                  <option value="SupremeCourtChiefJustice">
                     Supreme Court Chief Justice
                   </option>
-                  <option value="Commissioner of State Lands">
+                  <option value="CommissionerOfStateLands">
                     Commissioner of State Lands
                   </option>
-                  <option value="State Supreme Court Justice">
+                  <option value="StateSupremeCourtJustice">
                     State Supreme Court Justice
                   </option>
-                  <option value="State Mine Inspector">
+                  <option value="StateMineInspector">
                     State Mine Inspector
                   </option>
-                  <option value="Superintendent of Public Instruction">
+                  <option value="SuperintendentOfPublicInstruction">
                     Superintendent of Public Instruction
                   </option>
-                  <option value="Corporation Commissioner">
+                  <option value="CorporationCommissioner">
                     Corporation Commissioner
                   </option>
-                  <option value="State Controller">State Controller</option>
-                  <option value="Insurance Commissioner">
+                  <option value="StateController">State Controller</option>
+                  <option value="InsuranceCommissioner">
                     Insurance Commissioner
                   </option>
-                  <option value="State Comptroller">State Comptroller</option>
+                  <option value="StateComptroller">State Comptroller</option>
                   <option value="Mayor">Mayor</option>
-                  <option value="City Council Chairman">
+                  <option value="CityCouncilChairman">
                     City Council Chairman
                   </option>
-                  <option value="City Council Member">
-                    City Council Member
-                  </option>
-                  <option value="Auditor of Accounts">
-                    Auditor of Accounts
-                  </option>
-                  <option value="Chief Financial Officer">
+                  <option value="CityCouncilMember">City Council Member</option>
+                  <option value="AuditorOfAccounts">Auditor of Accounts</option>
+                  <option value="ChiefFinancialOfficer">
                     Chief Financial Officer
                   </option>
-                  <option value="Office of Hawaiian Affairs Trustee">
+                  <option value="OfficeOfHawaiianAffairsTrustee">
                     Office of Hawaiian Affairs Trustee
                   </option>
-                  <option value="State Auditor of Public Accounts">
+                  <option value="StateAuditorOfPublicAccounts">
                     State Auditor of Public Accounts
                   </option>
-                  <option value="Board of Elementary and Secondary Education Member">
+                  <option value="BoardofElementaryandSecondaryEducationMember">
                     Board of Elementary and Secondary Education Member
                   </option>
-                  <option value="Commissioner of Insurance">
+                  <option value="CommissionerofInsurance">
                     Commissioner of Insurance
                   </option>
-                  <option value="Secretary of the Commonwealth">
+                  <option value="SecretaryoftheCommonwealth">
                     Secretary of the Commonwealth
                   </option>
-                  <option value="State Board of Education Member">
+                  <option value="StateBoardofEducationMember">
                     State Board of Education Member
                   </option>
-                  <option value="University Trustee">University Trustee</option>
+                  <option value="UniversityTrustee">University Trustee</option>
                   <option value="Regent">Regent</option>
-                  <option value="University Governor">
+                  <option value="UniversityGovernor">
                     University Governor
                   </option>
-                  <option value="Commissioner of Labor">
+                  <option value="CommissionerofLabor">
                     Commissioner of Labor
                   </option>
-                  <option value="Tax Commissioner">Tax Commissioner</option>
-                  <option value="Public Advocate">Public Advocate</option>
-                  <option value="City Comptroller">City Comptroller</option>
-                  <option value="Court of Criminal Appeals Judge">
+                  <option value="TaxCommissioner">Tax Commissioner</option>
+                  <option value="PublicAdvocate">Public Advocate</option>
+                  <option value="CityComptroller">City Comptroller</option>
+                  <option value="CourtofCriminalAppealsJudge">
                     Court of Criminal Appeals Judge
                   </option>
-                  <option value="Auditor General">Auditor General</option>
-                  <option value="General Treasurer">General Treasurer</option>
-                  <option value="Superintendent of Education">
+                  <option value="AuditorGeneral">Auditor General</option>
+                  <option value="GeneralTreasurer">General Treasurer</option>
+                  <option value="SuperintendentofEducation">
                     Superintendent of Education
                   </option>
-                  <option value="Public Utilities Commissioner">
+                  <option value="PublicUtilitiesCommissioner">
                     Public Utilities Commissioner
                   </option>
-                  <option value="School and State Land Commissioner">
+                  <option value="SchoolandStateLandCommissioner">
                     School and State Land Commissioner
                   </option>
-                  <option value="Railroad Commissioner">
+                  <option value="RailroadCommissioner">
                     Railroad Commissioner
                   </option>
-                  <option value="Commissioner of General Land Office">
+                  <option value="CommissionerofGeneralLandOffice">
                     Commissioner of General Land Office
                   </option>
-                  <option value="Comptroller of Public Accounts">
+                  <option value="ComptrollerofPublicAccounts">
                     Comptroller of Public Accounts
                   </option>
                 </select>
                 <select
-                  value={selectedParty}
-                  onChange={(e) => setSelectedParty(e.target.value)}
+                  value={partyInput}
+                  onChange={(e) => setPartyInput(e.target.value)}
                   className="bg-[#fff] w-[100%] outline-0 cursor-pointer md:w-[20%] py-[5px] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow"
                 >
+                  <option value="all">All</option>
                   <option value="Democratic Party">Democratic Party</option>
                   <option value="Republican Party">Republican Party</option>
                   <option value="Unaffiliated">Unaffiliated</option>
@@ -437,7 +453,7 @@ export default function AllRepresentatives({ officials, address }) {
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
                 {filter.filterName === "all" &&
-                  officials.map((item, index) => {
+                  allofficials.map((item, index) => {
                     const {
                       name,
                       address,
@@ -449,198 +465,11 @@ export default function AllRepresentatives({ officials, address }) {
                       channels,
                       phones,
                     } = item;
-                    return (
-                      <div
-                        key={index}
-                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
-                      >
-                        {photoUrl ? (
-                          <div className="img_container">
-                            <Image
-                              src={`/api/imageProxy?url=${encodeURIComponent(
-                                photoUrl
-                              )}`}
-                              alt="photo"
-                              width={"100%"}
-                              height={"100%"}
-                              layout="responsive"
-                              className="grow-0 h-[100px] rounded-lg"
-                            />
-                          </div>
-                        ) : name === "Joseph R. Biden" ? (
-                          <div className="img_container">
-                            <Image
-                              src={Joseph}
-                              width={"100%"}
-                              height={"100%"}
-                              layout="responsive"
-                              alt="photo"
-                              className="grow-0 h-[100px] rounded-lg"
-                            />
-                          </div>
-                        ) : name === "Kamala D. Harris" ? (
-                          <div className="img_container">
-                            <Image
-                              src={Kamala}
-                              width={"100%"}
-                              height={"100%"}
-                              layout="responsive"
-                              alt="photo"
-                              className="grow-0 h-[100px] rounded-lg"
-                            />
-                          </div>
-                        ) : (
-                          <div className="img_container">
-                            <Image
-                              src={placeholderImg}
-                              width={"100%"}
-                              height={"100%"}
-                              layout="responsive"
-                              alt="photo"
-                              className="grow-0 h-[100px] rounded-lg"
-                            />
-                          </div>
-                        )}
-                        <div className="official_info grow">
-                          <p className=" text-[14px] office_name py-[5px] ">
-                            {office.name}
-                          </p>
-                          <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
-                            {name}
-                          </h1>
-
-                          <p className=" py-[5px]"> {party}</p>
-                          {address?.map((item, index) => {
-                            return (
-                              <div key={index} className="flex">
-                                <FaMapMarkerAlt
-                                  color="#023a51"
-                                  size={30}
-                                  className="pt-[10px]"
-                                />{" "}
-                                <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
-                                  {item.line1} {item.city} {item.state}{" "}
-                                  {item.zip}
-                                </p>
-                              </div>
-                            );
-                          })}
-                          {emails && (
-                            <Link href={`mailto:${emails}`} passHref>
-                              <a>
-                                <div className="flex">
-                                  <MdAlternateEmail
-                                    color="#023a51"
-                                    size={30}
-                                    className="pt-[3px] hover:text-[#000]"
-                                  />
-                                  <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
-                                    {emails}
-                                  </p>
-                                </div>
-                              </a>
-                            </Link>
-                          )}
-                          <div
-                            className="text-center flex items-center flex-wrap jutify-center "
-                            style={{ margin: "30px 0" }}
-                          >
-                            {channels?.map((item, index) => {
-                              return item.type == "Facebook" ? (
-                                <Link
-                                  className="hover:text-[#000]"
-                                  key={index}
-                                  href={`https://www.facebook.com/${item.id}`}
-                                  passHref
-                                >
-                                  <a>
-                                    <TiSocialFacebookCircular
-                                      color="#023a51"
-                                      size={30}
-                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
-                                    />
-                                  </a>
-                                </Link>
-                              ) : item.type == "Twitter" ? (
-                                <Link
-                                  href={`https://www.twitter.com/${item.id}`}
-                                  passHref
-                                >
-                                  <a>
-                                    <TiSocialTwitter
-                                      color="#023a51"
-                                      size={30}
-                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
-                                    />
-                                  </a>
-                                </Link>
-                              ) : item.type == "YouTube" ? (
-                                <Link
-                                  href={`https://www.youtube.com/${item.id}`}
-                                  passHref
-                                >
-                                  <a>
-                                    <TiSocialYoutubeCircular
-                                      color="#023a51"
-                                      size={30}
-                                      className="mx-[10px] mb-[5px] hover:text-[#000]"
-                                    />
-                                  </a>
-                                </Link>
-                              ) : null;
-                            })}
-
-                            {urls?.map((item, index) => {
-                              return (
-                                <Link
-                                  className="hover:text-[#000] mb-[5px] "
-                                  key={index}
-                                  href={item}
-                                  passHref
-                                >
-                                  <a>
-                                    <FaLink
-                                      size={"20px"}
-                                      color="#023a51"
-                                      className="mx-[10px]"
-                                    />
-                                  </a>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                        <a
-                          href={`tel:${phones}`}
-                          className="contact_btn rounded-b-lg"
-                        >
-                          Contact
-                        </a>
-                      </div>
-                    );
-                  })}
-                {filter.filterName !== "all" &&
-                  officials
-                    ?.filter(
-                      (official) =>
-                        official.office.levels[0] === filter.filterName
-                    )
-                    .map((item, index) => {
-                      const {
-                        name,
-                        address,
-                        party,
-                        urls,
-                        emails,
-                        photoUrl,
-                        office,
-                        channels,
-                        phones,
-                      } = item;
+                    if (selectedParty === "all") {
                       return (
                         <div
                           key={index}
-                          className="card flex flex-col rounded-lg w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
+                          className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
                         >
                           {photoUrl ? (
                             <div className="img_container">
@@ -650,9 +479,9 @@ export default function AllRepresentatives({ officials, address }) {
                                 )}`}
                                 alt="photo"
                                 width={"100%"}
-                                height={"100px"}
+                                height={"100%"}
                                 layout="responsive"
-                                className="rounded-lg"
+                                className="grow-0 h-[100px] rounded-lg"
                               />
                             </div>
                           ) : name === "Joseph R. Biden" ? (
@@ -680,23 +509,24 @@ export default function AllRepresentatives({ officials, address }) {
                           ) : (
                             <div className="img_container">
                               <Image
-                                className="officialsImage rounded-lg"
                                 src={placeholderImg}
-                                alt="photo"
                                 width={"100%"}
-                                height={"80px"}
+                                height={"100%"}
                                 layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px] rounded-lg"
                               />
                             </div>
                           )}
                           <div className="official_info grow">
-                            <p className=" office_name py-[5px] ">
+                            <p className=" text-[14px] office_name py-[5px] ">
                               {office.name}
                             </p>
-                            <h1 className="text-[23px] text-[#023a51] font-bold ">
+                            <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
                               {name}
                             </h1>
-                            <p className=" py-[5px]">{party}</p>
+
+                            <p className=" py-[5px]"> {party}</p>
                             {address?.map((item, index) => {
                               return (
                                 <div key={index} className="flex">
@@ -705,7 +535,7 @@ export default function AllRepresentatives({ officials, address }) {
                                     size={30}
                                     className="pt-[10px]"
                                   />{" "}
-                                  <p className=" ml-[5px] official_address py-[10px] ">
+                                  <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
                                     {item.line1} {item.city} {item.state}{" "}
                                     {item.zip}
                                   </p>
@@ -721,7 +551,7 @@ export default function AllRepresentatives({ officials, address }) {
                                       size={30}
                                       className="pt-[3px] hover:text-[#000]"
                                     />
-                                    <p className="ml-[5px] mt-[5px] text-[#023a51] truncate   ">
+                                    <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
                                       {emails}
                                     </p>
                                   </div>
@@ -805,6 +635,367 @@ export default function AllRepresentatives({ officials, address }) {
                           </a>
                         </div>
                       );
+                    }
+                    if (party === selectedParty) {
+                      return (
+                        <div
+                          key={index}
+                          className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
+                        >
+                          {photoUrl ? (
+                            <div className="img_container">
+                              <Image
+                                src={`/api/imageProxy?url=${encodeURIComponent(
+                                  photoUrl
+                                )}`}
+                                alt="photo"
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                className="grow-0 h-[100px] rounded-lg"
+                              />
+                            </div>
+                          ) : name === "Joseph R. Biden" ? (
+                            <div className="img_container">
+                              <Image
+                                src={Joseph}
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px] rounded-lg"
+                              />
+                            </div>
+                          ) : name === "Kamala D. Harris" ? (
+                            <div className="img_container">
+                              <Image
+                                src={Kamala}
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px] rounded-lg"
+                              />
+                            </div>
+                          ) : (
+                            <div className="img_container">
+                              <Image
+                                src={placeholderImg}
+                                width={"100%"}
+                                height={"100%"}
+                                layout="responsive"
+                                alt="photo"
+                                className="grow-0 h-[100px] rounded-lg"
+                              />
+                            </div>
+                          )}
+                          <div className="official_info grow">
+                            <p className=" text-[14px] office_name py-[5px] ">
+                              {office.name}
+                            </p>
+                            <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
+                              {name}
+                            </h1>
+
+                            <p className=" py-[5px]"> {party}</p>
+                            {address?.map((item, index) => {
+                              return (
+                                <div key={index} className="flex">
+                                  <FaMapMarkerAlt
+                                    color="#023a51"
+                                    size={30}
+                                    className="pt-[10px]"
+                                  />{" "}
+                                  <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
+                                    {item.line1} {item.city} {item.state}{" "}
+                                    {item.zip}
+                                  </p>
+                                </div>
+                              );
+                            })}
+                            {emails && (
+                              <Link href={`mailto:${emails}`} passHref>
+                                <a>
+                                  <div className="flex">
+                                    <MdAlternateEmail
+                                      color="#023a51"
+                                      size={30}
+                                      className="pt-[3px] hover:text-[#000]"
+                                    />
+                                    <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
+                                      {emails}
+                                    </p>
+                                  </div>
+                                </a>
+                              </Link>
+                            )}
+                            <div
+                              className="text-center flex items-center flex-wrap jutify-center "
+                              style={{ margin: "30px 0" }}
+                            >
+                              {channels?.map((item, index) => {
+                                return item.type == "Facebook" ? (
+                                  <Link
+                                    className="hover:text-[#000]"
+                                    key={index}
+                                    href={`https://www.facebook.com/${item.id}`}
+                                    passHref
+                                  >
+                                    <a>
+                                      <TiSocialFacebookCircular
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
+                                  </Link>
+                                ) : item.type == "Twitter" ? (
+                                  <Link
+                                    href={`https://www.twitter.com/${item.id}`}
+                                    passHref
+                                  >
+                                    <a>
+                                      <TiSocialTwitter
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
+                                  </Link>
+                                ) : item.type == "YouTube" ? (
+                                  <Link
+                                    href={`https://www.youtube.com/${item.id}`}
+                                    passHref
+                                  >
+                                    <a>
+                                      <TiSocialYoutubeCircular
+                                        color="#023a51"
+                                        size={30}
+                                        className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                      />
+                                    </a>
+                                  </Link>
+                                ) : null;
+                              })}
+
+                              {urls?.map((item, index) => {
+                                return (
+                                  <Link
+                                    className="hover:text-[#000] mb-[5px] "
+                                    key={index}
+                                    href={item}
+                                    passHref
+                                  >
+                                    <a>
+                                      <FaLink
+                                        size={"20px"}
+                                        color="#023a51"
+                                        className="mx-[10px]"
+                                      />
+                                    </a>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          <a
+                            href={`tel:${phones}`}
+                            className="contact_btn rounded-b-lg"
+                          >
+                            Contact
+                          </a>
+                        </div>
+                      );
+                    }
+                  })}
+                {filter.filterName !== "all" &&
+                  allofficials
+                    ?.filter(
+                      (official) =>
+                        official.office.levels[0] === filter.filterName
+                    )
+                    .map((item, index) => {
+                      const {
+                        name,
+                        address,
+                        party,
+                        urls,
+                        emails,
+                        photoUrl,
+                        office,
+                        channels,
+                        phones,
+                      } = item;
+                      if (party === selectedParty) {
+                        return (
+                          <div
+                            key={index}
+                            className="card flex flex-col rounded-lg w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%]"
+                          >
+                            {photoUrl ? (
+                              <div className="img_container">
+                                <Image
+                                  src={`/api/imageProxy?url=${encodeURIComponent(
+                                    photoUrl
+                                  )}`}
+                                  alt="photo"
+                                  width={"100%"}
+                                  height={"100px"}
+                                  layout="responsive"
+                                  className="rounded-lg"
+                                />
+                              </div>
+                            ) : name === "Joseph R. Biden" ? (
+                              <div className="img_container">
+                                <Image
+                                  src={Joseph}
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  alt="photo"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            ) : name === "Kamala D. Harris" ? (
+                              <div className="img_container">
+                                <Image
+                                  src={Kamala}
+                                  width={"100%"}
+                                  height={"100%"}
+                                  layout="responsive"
+                                  alt="photo"
+                                  className="grow-0 h-[100px] rounded-lg"
+                                />
+                              </div>
+                            ) : (
+                              <div className="img_container">
+                                <Image
+                                  className="officialsImage rounded-lg"
+                                  src={placeholderImg}
+                                  alt="photo"
+                                  width={"100%"}
+                                  height={"80px"}
+                                  layout="responsive"
+                                />
+                              </div>
+                            )}
+                            <div className="official_info grow">
+                              <p className=" office_name py-[5px] ">
+                                {office.name}
+                              </p>
+                              <h1 className="text-[23px] text-[#023a51] font-bold ">
+                                {name}
+                              </h1>
+                              <p className=" py-[5px]">{party}</p>
+                              {address?.map((item, index) => {
+                                return (
+                                  <div key={index} className="flex">
+                                    <FaMapMarkerAlt
+                                      color="#023a51"
+                                      size={30}
+                                      className="pt-[10px]"
+                                    />{" "}
+                                    <p className=" ml-[5px] official_address py-[10px] ">
+                                      {item.line1} {item.city} {item.state}{" "}
+                                      {item.zip}
+                                    </p>
+                                  </div>
+                                );
+                              })}
+                              {emails && (
+                                <Link href={`mailto:${emails}`} passHref>
+                                  <a>
+                                    <div className="flex">
+                                      <MdAlternateEmail
+                                        color="#023a51"
+                                        size={30}
+                                        className="pt-[3px] hover:text-[#000]"
+                                      />
+                                      <p className="ml-[5px] mt-[5px] text-[#023a51] truncate   ">
+                                        {emails}
+                                      </p>
+                                    </div>
+                                  </a>
+                                </Link>
+                              )}
+                              <div
+                                className="text-center flex items-center flex-wrap jutify-center "
+                                style={{ margin: "30px 0" }}
+                              >
+                                {channels?.map((item, index) => {
+                                  return item.type == "Facebook" ? (
+                                    <Link
+                                      className="hover:text-[#000]"
+                                      key={index}
+                                      href={`https://www.facebook.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialFacebookCircular
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : item.type == "Twitter" ? (
+                                    <Link
+                                      href={`https://www.twitter.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialTwitter
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : item.type == "YouTube" ? (
+                                    <Link
+                                      href={`https://www.youtube.com/${item.id}`}
+                                      passHref
+                                    >
+                                      <a>
+                                        <TiSocialYoutubeCircular
+                                          color="#023a51"
+                                          size={30}
+                                          className="mx-[10px] mb-[5px] hover:text-[#000]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  ) : null;
+                                })}
+
+                                {urls?.map((item, index) => {
+                                  return (
+                                    <Link
+                                      className="hover:text-[#000] mb-[5px] "
+                                      key={index}
+                                      href={item}
+                                      passHref
+                                    >
+                                      <a>
+                                        <FaLink
+                                          size={"20px"}
+                                          color="#023a51"
+                                          className="mx-[10px]"
+                                        />
+                                      </a>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                            <a
+                              href={`tel:${phones}`}
+                              className="contact_btn rounded-b-lg"
+                            >
+                              Contact
+                            </a>
+                          </div>
+                        );
+                      }
                     })}
               </div>
             </div>
