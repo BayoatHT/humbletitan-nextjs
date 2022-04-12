@@ -8,7 +8,8 @@ export default function ElectionDate({ data, stateName }) {
       <div className=" text-[#023a51]  container w-12/12 mx-auto max-w-screen-xl ">
         {data?.length !== 0 ? (
           <h4 className="text-[25px] sm:text-[35px] text-center">
-            Upcomming Election(s) in ${stateName}
+            Upcomming Election(s) in{" "}
+            <span className="font-bold"> {stateName} </span>
           </h4>
         ) : (
           <h4 className="text-[25px] sm:text-[35px] text-center">
