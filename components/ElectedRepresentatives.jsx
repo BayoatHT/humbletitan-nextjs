@@ -49,7 +49,7 @@ export default function ElectedRepresentatives({ officials, address }) {
             </div>
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg mt-[0.5rem]">
               <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
-                Filter by Official Level&apos;s: ({filter.filterName})
+                Filter by Official&apos;s Level: ({filter.filterName})
               </h6>
               <div className="flex flex-wrap mb-10 mt-[0.5rem]  justify-between  items-center m-auto">
                 <button
@@ -292,7 +292,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                               width={"100%"}
                               height={"100%"}
                               layout="responsive"
-                              className="grow-0 h-[100px] rounded-lg"
+                              className=" h-[100px] rounded-lg"
                             />
                           </div>
                         ) : name === "Joseph R. Biden" ? (
@@ -303,7 +303,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                               height={"100%"}
                               layout="responsive"
                               alt="photo"
-                              className="grow-0 h-[100px] rounded-lg"
+                              className=" h-[100px] rounded-lg"
                             />
                           </div>
                         ) : name === "Kamala D. Harris" ? (

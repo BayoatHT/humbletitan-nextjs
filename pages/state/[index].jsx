@@ -9,6 +9,7 @@ import ElectionDate from "../../components/ElectionDate";
 import UpcommingElections from "../../components/UpcommingElections";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import StateElectionDates from "../../components/StateElectionDates";
 
 export default function State({
   articles,
@@ -19,11 +20,10 @@ export default function State({
 }) {
   return (
     <Layout>
-      <ElectionDate data={data} stateName={index} />
-      <UpcommingElections majorElections={majorElections} />
-      <ElectedRepresentatives officials={formedOfficials} address={index} />
+      <StateElectionDates data={data} majorElections={majorElections} stateName={index} />
       <SearchSection />
       <StateNews stateName={index} articles={articles} />
+      <ElectedRepresentatives officials={formedOfficials} address={index} />
       <BrowsByState />
     </Layout>
   );

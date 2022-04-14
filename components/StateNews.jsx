@@ -39,7 +39,7 @@ export default function StateNews({ stateName, articles }) {
     ],
   };
   return (
-    <section className="mx-auto py-4 px-[20px]">
+    <section className="container mx-auto py-4 pt-16 max-w-screen-xl">
       <h1 className="text-center my-8 text-[40px] font-bold text-[#023a51]">
         Election articles of {stateName}
       </h1>

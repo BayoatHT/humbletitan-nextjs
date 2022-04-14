@@ -308,7 +308,7 @@ export default function BrowseByState() {
                           key={index}
                           onClick={() =>
                             dispatch({
-                              tyepe: "CountyName",
+                              tyepe: "COUNTY_NAME",
                               payload: county.name,
                             })
                           }

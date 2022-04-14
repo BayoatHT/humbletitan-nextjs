@@ -56,7 +56,7 @@ const Header = () => {
                       FAQS
                     </a>
                   </li>
-                  <li className="abcd_mainmenu abcd_relative">
+                  <li className="abcd_mainmenu flex items-center abcd_relative">
                     <a
                       href="https://www.humbletitan.com/about/"
                       className="a_abcd"
