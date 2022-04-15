@@ -19,6 +19,12 @@ export default function ElectedRepresentatives({ officials, address }) {
   const stateName = index;
   console.log(address);
   console.log(index);
+  const array = officials.map((item) => {
+    return item.office.levels[0]
+  })
+  let uniq = a => [...new Set(a)];
+  const filtered = uniq(array);
+  console.log(filtered);
 
   const [filter, setFilter] = useState({
     all: true,
@@ -33,10 +39,25 @@ export default function ElectedRepresentatives({ officials, address }) {
     subLocality2: false,
     filterName: "all",
   });
+  const filterData = (item) => {
+    setFilter({
+      all: item === 'all' ? true : false,
+      administrativeArea1: item === 'administrativeArea1' ? true : false,
+      administrativeArea2: item === 'administrativeArea2' ? true : false,
+      country: item === 'country' ? true : false,
+      international: item === 'international' ? true : false,
+      locality: item === 'locality' ? true : false,
+      regional: item === 'regional' ? true : false,
+      special: item === 'special' ? true : false,
+      subLocality1: item === 'subLocality1' ? true : false,
+      subLocality2: item === 'subLocality2' ? true : false,
+      filterName: item,
+    })
+  }
   const colored =
-    "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
+    "bg-[#023a51]  w-[28%]  py-[5px] px-[5px] md:w-[20%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
   const white =
-    "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
+    "bg-[#fff] w-[28%] py-[5px] px-[5px] md:w-[20%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
   return (
     <>
       <section className="mx-auto py-4 pt-12">
@@ -51,7 +72,8 @@ export default function ElectedRepresentatives({ officials, address }) {
               <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
                 Filter by Official&apos;s Level: ({filter.filterName})
               </h6>
-              <div className="flex flex-wrap mb-10 mt-[0.5rem]  justify-between  items-center m-auto">
+              <div className="flex flex-wrap mb-10 mt-[0.5rem] items-center m-auto">
+
                 <button
                   onClick={() => {
                     setFilter({
@@ -72,188 +94,18 @@ export default function ElectedRepresentatives({ officials, address }) {
                 >
                   All
                 </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: true,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "country",
-                    });
-                  }}
-                  className={filter.country ? colored : white}
-                >
-                  Country
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: true,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "administrativeArea1",
-                      filterName: "administrativeArea1",
-                    });
-                  }}
-                  className={filter.administrativeArea1 ? colored : white}
-                >
-                  Admin Area1
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: true,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "administrativeArea2",
-                    });
-                  }}
-                  className={filter.administrativeArea2 ? colored : white}
-                >
-                  Admin Area2
-                </button>
+                {
+                  filtered?.map((item, index) => {
+                    return <button
+                      key={index}
+                      onClick={() => filterData(item)}
+                      className={filter.filterName === item ? colored : white}
+                    >
+                      {item.toUpperCase()}
+                    </button>
+                  })
+                }
 
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: true,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "international",
-                    });
-                  }}
-                  className={filter.international ? colored : white}
-                >
-                  International
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: true,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "locality",
-                    });
-                  }}
-                  className={filter.locality ? colored : white}
-                >
-                  Locality
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: true,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "regional",
-                    });
-                  }}
-                  className={filter.regional ? colored : white}
-                >
-                  Regional
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: true,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "special",
-                    });
-                  }}
-                  className={filter.special ? colored : white}
-                >
-                  Special
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: true,
-                      subLocality2: false,
-                      filterName: "subLocality1",
-                    });
-                  }}
-                  className={filter.subLocality1 ? colored : white}
-                >
-                  Sub Locality1
-                </button>
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: false,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: true,
-                      filterName: "subLocality2",
-                    });
-                  }}
-                  className={filter.subLocality2 ? colored : white}
-                >
-                  Sub Locality2
-                </button>
               </div>
             </div>
           </div>

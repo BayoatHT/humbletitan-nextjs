@@ -32,7 +32,6 @@ export async function getServerSideProps() {
     )
     .then((result) => {
       majorElections = result.data.elections;
-      console.log(majorElections);
     });
   return {
     props: {

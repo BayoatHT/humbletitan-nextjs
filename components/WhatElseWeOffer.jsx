@@ -30,7 +30,7 @@ export default function WhatElseWeOffer({ stateName }) {
                   className="w-[90%] object-cover rounded-lg m-auto"
                 />
                 <h4 className="font-bold text-[20px] leading-[30px] my-4 text-[#023a51] mx-6  ">
-                  Elected Directory
+                  Elected Directory of {stateName}
                 </h4>
               </div>
             </a>
