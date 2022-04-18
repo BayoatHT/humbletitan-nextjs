@@ -4,8 +4,6 @@ import Link from "next/link";
 import placeholderImg from "../assets/images/Profile_avatar_placeholder_large.png";
 import Joseph from "../assets/images/P20210303AS-1901-cropped.webp";
 import Kamala from "../assets/images/Kamala_Harris_Vice_Presidential_Portrait.jpg";
-import { Store } from "../utils/store";
-import { FaPhoneAlt } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
@@ -24,7 +22,6 @@ export default function ElectedRepresentatives({ officials, address }) {
   })
   let uniq = a => [...new Set(a)];
   const filtered = uniq(array);
-  console.log(filtered);
 
   const [filter, setFilter] = useState({
     all: true,
@@ -182,7 +179,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                           </div>
                         )}
                         <div className="official_info grow">
-                          <p className=" text-[14px] office_name py-[5px] ">
+                          <p title={office.name} className=" text-[14px] office_name py-[5px] ">
                             {office.name}
                           </p>
                           <h1 className="text-[20px] sm:text-[23px] text-[#023a51] font-bold ">
@@ -198,7 +195,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                                   size={30}
                                   className="pt-[10px]"
                                 />{" "}
-                                <p className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
+                                <p title={item?.line1 + " " + item?.city + " " + item?.state + " " + item?.zip} className="ml-[5px] text-[14px] official_email official_address py-[10px] ">
                                   {item.line1} {item.city} {item.state}{" "}
                                   {item.zip}
                                 </p>
@@ -210,11 +207,12 @@ export default function ElectedRepresentatives({ officials, address }) {
                               <a>
                                 <div className="flex">
                                   <MdAlternateEmail
+                                    title={emails}
                                     color="#023a51"
                                     size={30}
                                     className="pt-[3px] hover:text-[#000]"
                                   />
-                                  <p className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
+                                  <p title={emails} className="ml-[5px] mt-[5px] text-[#023a51] truncate  ">
                                     {emails}
                                   </p>
                                 </div>
@@ -235,6 +233,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                                 >
                                   <a>
                                     <TiSocialFacebookCircular
+                                      title={item.id}
                                       color="#023a51"
                                       size={30}
                                       className="mx-[10px] mb-[5px] hover:text-[#000]"
@@ -248,6 +247,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                                 >
                                   <a>
                                     <TiSocialTwitter
+                                      title={item.id}
                                       color="#023a51"
                                       size={30}
                                       className="mx-[10px] mb-[5px] hover:text-[#000]"
@@ -261,6 +261,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                                 >
                                   <a>
                                     <TiSocialYoutubeCircular
+                                      title={item.id}
                                       color="#023a51"
                                       size={30}
                                       className="mx-[10px] mb-[5px] hover:text-[#000]"
@@ -280,6 +281,7 @@ export default function ElectedRepresentatives({ officials, address }) {
                                 >
                                   <a>
                                     <FaLink
+                                      title={item}
                                       size={"20px"}
                                       color="#023a51"
                                       className="mx-[10px]"
