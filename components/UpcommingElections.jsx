@@ -22,8 +22,7 @@ export default function UpcommingElections({ majorElections }) {
             </div>
 
             {majorElections
-              ?.filter((item) => !item.name.includes("Test"))
-              .map((item, index) => {
+              ?.map((item, index) => {
                 return (
                   <div key={index} className="flex justify-between flex-row ">
                     <h2

@@ -32,6 +32,7 @@ export async function getServerSideProps() {
     )
     .then((result) => {
       majorElections = result.data.elections;
+      majorElections = majorElections?.filter(e => !e.name.includes("Test"))
     });
   return {
     props: {

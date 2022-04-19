@@ -4,11 +4,11 @@ import "tailwindcss/tailwind.css";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import ElectionCenter from "../../components/ElectionCenter";
-export default function Index({ stateName, electionDates }) {
+export default function Index({ stateName, electionDates, details }) {
   return (
     <>
       <Layout>
-        <ElectionCenter stateName={stateName} dates={electionDates} />
+        <ElectionCenter data={details} stateName={stateName} dates={electionDates} />
       </Layout>
     </>
   );
@@ -161,10 +161,28 @@ export async function getServerSideProps(context) {
     .catch((error) => {
       console.log(error);
     });
+
+  var majorElections = []
+  var id;
+  var details = []
+  await axios
+    .get(
+      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+    )
+    .then((result) => {
+      majorElections = result.data.elections;
+      majorElections = majorElections?.filter(e => !e.name.includes("Test"))
+      id = majorElections[0].id
+    }).then(async () => {
+      const { data } = await axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${stateName}&electionId=${id}`)
+      details = data.state[0].electionAdministrationBody;
+    })
+
   return {
     props: {
       electionDates,
       stateName,
+      details
     },
   };
 }

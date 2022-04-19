@@ -9,11 +9,11 @@ import { BsListCheck } from "react-icons/bs";
 import { MdHowToVote } from "react-icons/md";
 import WhatElseWeOffer from "./WhatElseWeOffer";
 
-export default function ElectionCenter({ stateName, dates }) {
+export default function ElectionCenter({ stateName, dates, data }) {
   console.log(stateName);
   return (
     <>
-      <ElectionDate stateName={stateName} data={dates} />
+      <ElectionDate details={data} stateName={stateName} data={dates} />
       <WhatElseWeOffer stateName={stateName} />
       <section>
         <div>
