@@ -4,11 +4,12 @@ import "tailwindcss/tailwind.css";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import ElectionCenter from "../../components/ElectionCenter";
-export default function Index({ stateName, electionDates, details }) {
+export default function Index({ stateName, electionDates, contests, pollingLocations, stateDetails }) {
+
   return (
     <>
       <Layout>
-        <ElectionCenter data={details} stateName={stateName} dates={electionDates} />
+        <ElectionCenter contests={contests} pollingLocations={pollingLocations} stateDetails={stateDetails} stateName={stateName} dates={electionDates} />
       </Layout>
     </>
   );
@@ -156,7 +157,7 @@ export async function getServerSideProps(context) {
         arr.filter((item) => {
           return item.state === stateName;
         });
-      console.log(electionDates);
+      // console.log(electionDates);
     })
     .catch((error) => {
       console.log(error);
@@ -164,25 +165,31 @@ export async function getServerSideProps(context) {
 
   var majorElections = []
   var id;
-  var details = []
+  var stateDetails = []
+  var pollingLocations = []
+  var contests = []
   await axios
     .get(
       "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
     )
     .then((result) => {
       majorElections = result.data.elections;
-      majorElections = majorElections?.filter(e => !e.name.includes("Test"))
+      // majorElections = majorElections?.filter(e => !e.name.includes("Test"))
       id = majorElections[0].id
     }).then(async () => {
-      const { data } = await axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${stateName}&electionId=${id}`)
-      details = data.state[0].electionAdministrationBody;
+      const { data } = await axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${address}&electionId=${id}`)
+      stateDetails = data?.state
+      pollingLocations = data.pollingLocations ? data.pollingLocations : []
+      contests = data?.contests
     })
 
   return {
     props: {
       electionDates,
       stateName,
-      details
+      stateDetails,
+      pollingLocations,
+      contests
     },
   };
 }
