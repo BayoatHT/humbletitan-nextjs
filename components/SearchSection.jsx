@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../utils/store";
-import { BiLoaderCircle } from "react-icons/bi";
+import { Rings } from 'react-loading-icons'
+
+
 export default function SearchSection(props) {
   const { dispatch } = useContext(Store);
   const [searchText, setSearchText] = useState("Search");
@@ -10,9 +12,9 @@ export default function SearchSection(props) {
   const [address, setAddress] = useState("");
   const searchHandler = () => {
     if (address == "") {
-      alert("Input your address");
+      alert("Input your full address");
     } else {
-      setSearchText(<BiLoaderCircle size={30} />);
+      setSearchText(<Rings />);
       dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
       localStorage.setItem("voter_address", address);
       router.push(`/election-center/${address}`);

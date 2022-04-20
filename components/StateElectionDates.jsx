@@ -8,10 +8,10 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
     return (
         <section className=" bg-[#f7f7f7]  ">
             <div className="container mx-auto py-4 pt-16 flex flex-wrap max-w-screen-xl" >
-                <div className="mx-auto flex flex-col justify-center w-12/12 lg:w-6/12  py-10 bg-[#f7f7f7]">
+                <div className="mx-auto flex flex-col  w-12/12 lg:w-6/12  py-10 bg-[#f7f7f7]">
                     <div className=" text-[#023a51]  ">
                         {data?.length !== 0 ? (
-                            <h4 className=" sm:text-[35px] font-bold text-[35px] md:text-[3rem] text-center text-[#023a51] ">
+                            <h4 className=" sm:text-[35px] font-bold text-[35px] md:text-[2.5rem] text-center text-[#023a51] ">
                                 Upcomming Election(s) <br /> in{" "}
                                 <span className="font-bold"> {stateName} </span>
                             </h4>
@@ -59,7 +59,7 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
                     <div className="  mx-auto">
                         <div className="flex flex-wrap mx-4 mb-10 m-auto">
                             <div className="flex flex-col mb-10">
-                                <h2 className="font-bold text-[35px] md:text-[3rem] text-center text-[#023a51] ">
+                                <h2 className="font-bold text-[35px] md:text-[2.5rem] text-center text-[#023a51] ">
                                     Upcomming Major Elections - U.S.A
                                 </h2>
                             </div>
