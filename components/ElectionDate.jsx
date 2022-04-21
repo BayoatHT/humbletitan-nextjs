@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { GoLinkExternal } from 'react-icons/go'
-import { BsFillPhoneFill } from 'react-icons/bs'
-import { AiTwotoneMail } from 'react-icons/ai'
+import { GoLinkExternal } from 'react-icons/go';
+import { BsFillPhoneFill } from 'react-icons/bs';
+import { AiTwotoneMail } from 'react-icons/ai';
 import { FaLink } from "react-icons/fa";
 import { Store } from "../utils/store";
 import { MdAlternateEmail } from "react-icons/md";
@@ -18,6 +18,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
   const [locationInfo, setLocationInfo] = useState(pollingLocations)
   const { electionAdministrationBody: { absenteeVotingInfoUrl, ballotInfoUrl, correspondenceAddress, electionInfoUrl, electionRegistrationConfirmationUrl, electionRegistrationUrl, votingLocationFinderUrl } } = stateInfo[0]
 
+  const dateToday = new Date().getTime()
 
   useEffect(() => {
 
@@ -55,7 +56,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
               <div className="flex mt-[20px] flex-col items-center justify-center">
                 <div>
                   {data
-                    ?.filter((item) => item.statusOfData !== "Expired")
+                    ?.filter(item => item.statusOfData !== "Expired" && new Date(item.electionDate) >= dateToday)
                     .map((item, index) => {
                       return (
                         <div

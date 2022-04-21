@@ -15,11 +15,10 @@ export default function ElectedRepresentatives({ officials, address }) {
   const router = useRouter();
   const { index } = router.query;
   const stateName = index;
-  console.log(address);
-  console.log(index);
   const array = officials.map((item) => {
     return item.office.levels[0]
   })
+  console.log(officials.length);
   let uniq = a => [...new Set(a)];
   const filtered = uniq(array);
 
@@ -52,9 +51,9 @@ export default function ElectedRepresentatives({ officials, address }) {
     })
   }
   const colored =
-    "bg-[#023a51]  w-[28%]  py-[5px] px-[5px] md:w-[20%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
+    "bg-[#023a51]  max-w-fit  py-[5px] px-[15px] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
   const white =
-    "bg-[#fff] w-[28%] py-[5px] px-[5px] md:w-[20%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
+    "bg-[#fff] max-w-fit py-[5px] px-[15px]  md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
   return (
     <>
       <section className="mx-auto py-4 pt-12">
@@ -66,44 +65,52 @@ export default function ElectedRepresentatives({ officials, address }) {
               </h2>
             </div>
             <div className="container w-12/12 mx-auto  max-w-screen-xl rounded-lg mt-[0.5rem]">
-              <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
-                Filter by Official&apos;s Level: ({filter.filterName})
-              </h6>
-              <div className="flex flex-wrap mb-10 mt-[0.5rem] items-center m-auto">
+              {officials.length !== 0 ?
+                <>
 
-                <button
-                  onClick={() => {
-                    setFilter({
-                      all: true,
-                      administrativeArea1: false,
-                      administrativeArea2: false,
-                      country: false,
-                      international: false,
-                      locality: false,
-                      regional: false,
-                      special: false,
-                      subLocality1: false,
-                      subLocality2: false,
-                      filterName: "all",
-                    });
-                  }}
-                  className={filter.all ? colored : white}
-                >
-                  All
-                </button>
-                {
-                  filtered?.map((item, index) => {
-                    return <button
-                      key={index}
-                      onClick={() => filterData(item)}
-                      className={filter.filterName === item ? colored : white}
+                  <h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">
+                    Filter by Official&apos;s Level: ({filter.filterName})
+                  </h6>
+                  <div className="flex flex-wrap mb-10 mt-[0.5rem] items-center m-auto">
+
+                    <button
+                      onClick={() => {
+                        setFilter({
+                          all: true,
+                          administrativeArea1: false,
+                          administrativeArea2: false,
+                          country: false,
+                          international: false,
+                          locality: false,
+                          regional: false,
+                          special: false,
+                          subLocality1: false,
+                          subLocality2: false,
+                          filterName: "all",
+                        });
+                      }}
+                      className={filter.all ? colored : white}
                     >
-                      {item.toUpperCase()}
+                      All
                     </button>
-                  })
-                }
+                    {
+                      filtered?.map((item, index) => {
+                        return <button
+                          key={index}
+                          onClick={() => filterData(item)}
+                          className={filter.filterName === item ? colored : white}
+                        >
+                          {item.toUpperCase()}
+                        </button>
+                      })
+                    }
 
-              </div>
+                  </div>
+                </>
+                :
+
+                (<h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">Oops; Not Available </h6>)
+              }
             </div>
           </div>
         </div>
@@ -113,8 +120,9 @@ export default function ElectedRepresentatives({ officials, address }) {
           <div className="flex flex-wrap mb-10 m-auto">
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
-                {filter.filterName === "all" &&
-                  officials.map((item, index) => {
+                {
+                  filter.filterName === "all" &&
+                  officials?.map((item, index) => {
                     const {
                       name,
                       address,
@@ -300,8 +308,10 @@ export default function ElectedRepresentatives({ officials, address }) {
                         </a>
                       </div>
                     );
-                  })}
-                {filter.filterName !== "all" &&
+                  })
+                }
+                {
+                  filter.filterName !== "all" &&
                   officials
                     ?.filter(
                       (official) =>

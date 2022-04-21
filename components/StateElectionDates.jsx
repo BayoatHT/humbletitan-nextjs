@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Store } from "../utils/store";
 
-
+const dateToday = new Date()
 export default function StateElectionDates({ data, stateName, majorElections }) {
     const { state } = useContext(Store);
     return (
@@ -17,8 +17,7 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
                             </h4>
                         ) : (
                             <h4 className="text-[25px] px-[15px] sm:text-[35px] text-[#023a51] text-justify">
-                                We provide data the nearer we are to an election. The next chance to
-                                vote in <span className="font-bold"> {stateName} </span> won&apos;t
+                                We provide data the nearer we are to an election. The next election in <span className="font-bold"> {stateName} </span> won&apos;t
                                 be here for a bit. In the meantime, prepare with our guide on
                                 what&apos;s coming and who&apos;s already represent you.
                             </h4>
@@ -32,7 +31,7 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
                         <div className="flex mt-[20px] flex-col items-center justify-center">
                             <div>
                                 {data
-                                    ?.filter((item) => item.statusOfData !== "Expired")
+                                    ?.filter((item) => item.statusOfData !== "Expired" && new Date(item.electionDate) >= dateToday)
                                     .map((item, index) => {
                                         return (
                                             <div

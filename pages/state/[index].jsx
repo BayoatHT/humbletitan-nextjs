@@ -22,9 +22,9 @@ export default function State({
     <Layout>
       <StateElectionDates data={data} majorElections={majorElections} stateName={index} />
       <SearchSection />
-      <StateNews stateName={index} articles={articles} />
       <ElectedRepresentatives officials={formedOfficials} address={index} />
       <BrowsByState />
+      <StateNews stateName={index} articles={articles} />
     </Layout>
   );
 }
@@ -75,13 +75,17 @@ export async function getServerSideProps(context) {
         });
       formedOfficials = officials;
       console.log(formedOfficials);
-    });
+    })
+    .catch((error) => {
+      console.log(error.message);
+    })
 
   const arr = [];
 
   await axios
     .get("https://h-t.vercel.app/api/stateelections")
     .then((result) => {
+      console.log(result);
       result.data.values.map((item) => {
         arr.push({
           state: item[0] || "",
@@ -98,9 +102,9 @@ export async function getServerSideProps(context) {
         arr.filter((item) => {
           return item.state === index;
         });
-      console.log(data);
     })
     .catch((error) => {
+      data = ''
       console.log(error.message);
     });
 

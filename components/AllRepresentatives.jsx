@@ -39,9 +39,9 @@ export default function AllRepresentatives() {
 
 
   const colored =
-    "bg-[#023a51]  w-[28%]  py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
+    "bg-[#023a51] py-[5px] px-[15px] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px]   rounded-[5px] mt-4 mx-[5px] font-bold text-[12px] leading-[13px] text-[#fff]  border-yellow";
   const white =
-    "bg-[#fff] w-[28%] py-[5px] md:w-[18%] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
+    "bg-[#fff] py-[5px] px-[15px] md:text[16px] lg:text-[18px] md:leading-[18px] lg:py-[15px] rounded-[5px] mt-4 mx-[5px]  font-bold text-[12px] leading-[13px] text-[#023a51]  border-yellow";
 
 
   const filterHandler = async () => {
@@ -194,124 +194,7 @@ export default function AllRepresentatives() {
                       )
                     })
                   }
-                  {/* <option value="President of the United States">
-                    President of the United States
-                  </option>
-                  <option value="Vice President of the United States">
-                    Vice President of the United States
-                  </option>
-                  <option value="U.S. Senator">U.S. Senator</option>
-                  <option value="U.S. Representative">U.S. Representative</option>
-                  <option value="Governor">Governor</option>
-                  <option value="lieutenantGovernors">
-                    Lieutenant Governor
-                  </option>
-                  <option value="SupremeCourtJustice">
-                    Supreme Court Justice
-                  </option>
-                  <option value="CourtOfAppealsJudge">
-                    Court of Appeals Judge
-                  </option>
-                  <option value="PublicServiceCommissioner">
-                    Public Service Commissioner
-                  </option>
-                  <option value="AttorneyGeneral">Attorney General</option>
-                  <option value="StateTreasurer">State Treasurer</option>
-                  <option value="CommissionerOfAgriculture">
-                    Commissioner of Agriculture
-                  </option>
-                  <option value="StateAuditor">State Auditor</option>
-                  <option value="SecretaryOfState">Secretary of State</option>
-                  <option value="PublicServiceCommissionPresident">
-                    Public Service Commission President
-                  </option>
-                  <option value="SupremeCourtAssociateJustice">
-                    Supreme Court Associate Justice
-                  </option>
-                  <option value="SupremeCourtChiefJustice">
-                    Supreme Court Chief Justice
-                  </option>
-                  <option value="CommissionerOfStateLands">
-                    Commissioner of State Lands
-                  </option>
-                  <option value="StateSupremeCourtJustice">
-                    State Supreme Court Justice
-                  </option>
-                  <option value="StateMineInspector">
-                    State Mine Inspector
-                  </option>
-                  <option value="SuperintendentOfPublicInstruction">
-                    Superintendent of Public Instruction
-                  </option>
-                  <option value="CorporationCommissioner">
-                    Corporation Commissioner
-                  </option>
-                  <option value="StateController">State Controller</option>
-                  <option value="InsuranceCommissioner">
-                    Insurance Commissioner
-                  </option>
-                  <option value="StateComptroller">State Comptroller</option>
-                  <option value="Mayor">Mayor</option>
-                  <option value="CityCouncilChairman">
-                    City Council Chairman
-                  </option>
-                  <option value="CityCouncilMember">City Council Member</option>
-                  <option value="AuditorOfAccounts">Auditor of Accounts</option>
-                  <option value="ChiefFinancialOfficer">
-                    Chief Financial Officer
-                  </option>
-                  <option value="OfficeOfHawaiianAffairsTrustee">
-                    Office of Hawaiian Affairs Trustee
-                  </option>
-                  <option value="StateAuditorOfPublicAccounts">
-                    State Auditor of Public Accounts
-                  </option>
-                  <option value="BoardofElementaryandSecondaryEducationMember">
-                    Board of Elementary and Secondary Education Member
-                  </option>
-                  <option value="CommissionerofInsurance">
-                    Commissioner of Insurance
-                  </option>
-                  <option value="SecretaryoftheCommonwealth">
-                    Secretary of the Commonwealth
-                  </option>
-                  <option value="StateBoardofEducationMember">
-                    State Board of Education Member
-                  </option>
-                  <option value="UniversityTrustee">University Trustee</option>
-                  <option value="Regent">Regent</option>
-                  <option value="UniversityGovernor">
-                    University Governor
-                  </option>
-                  <option value="CommissionerofLabor">
-                    Commissioner of Labor
-                  </option>
-                  <option value="TaxCommissioner">Tax Commissioner</option>
-                  <option value="PublicAdvocate">Public Advocate</option>
-                  <option value="CityComptroller">City Comptroller</option>
-                  <option value="CourtofCriminalAppealsJudge">
-                    Court of Criminal Appeals Judge
-                  </option>
-                  <option value="AuditorGeneral">Auditor General</option>
-                  <option value="GeneralTreasurer">General Treasurer</option>
-                  <option value="SuperintendentofEducation">
-                    Superintendent of Education
-                  </option>
-                  <option value="PublicUtilitiesCommissioner">
-                    Public Utilities Commissioner
-                  </option>
-                  <option value="SchoolandStateLandCommissioner">
-                    School and State Land Commissioner
-                  </option>
-                  <option value="RailroadCommissioner">
-                    Railroad Commissioner
-                  </option>
-                  <option value="CommissionerofGeneralLandOffice">
-                    Commissioner of General Land Office
-                  </option>
-                  <option value="ComptrollerofPublicAccounts">
-                    Comptroller of Public Accounts
-                  </option> */}
+
                 </select>
 
                 <button
@@ -354,7 +237,7 @@ export default function AllRepresentatives() {
                     return (
                       <div
                         key={index}
-                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
+                        className="animate-pulse card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
                       >
                         {photoUrl ? (
                           <div className="img_container">

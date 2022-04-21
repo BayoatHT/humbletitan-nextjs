@@ -36,7 +36,9 @@ export async function getServerSideProps(context) {
         });
       formedOfficials = officials;
       console.log(formedOfficials);
-    });
+    }).catch((error) => {
+      console.log(error.message)
+    })
 
   return {
     props: {
