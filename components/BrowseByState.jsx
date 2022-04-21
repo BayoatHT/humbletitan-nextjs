@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router'
 import { Store } from "../utils/store";
 
 export default function BrowseByState() {
   const { dispatch } = useContext(Store);
+  const router = useRouter()
   const states = [
     "Alaska",
     "Alabama",
@@ -306,11 +308,10 @@ export default function BrowseByState() {
                       return (
                         <li
                           key={index}
-                          onClick={() =>
-                            dispatch({
-                              tyepe: "COUNTY_NAME",
-                              payload: county.name,
-                            })
+                          onClick={() => {
+                            dispatch({ type: "SET_COUNTY", payload: county.name })
+                            router.push(`/election-center/${county.name}`)
+                          }
                           }
                           className="mt-10 cursor-pointer font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[45%] md:w-[33.3%] lg:w-[20%] "
                         >

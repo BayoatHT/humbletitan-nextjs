@@ -12,13 +12,19 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { TiSocialYoutubeCircular } from "react-icons/ti";
 import Link from 'next/link'
 export default function ElectionDate({ data, stateName, pollingLocations, stateDetails, contests }) {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const [stateInfo, setStateInfo] = useState(stateDetails)
   const [contestsDetails, setContestsDetails] = useState(contests);
   const [locationInfo, setLocationInfo] = useState(pollingLocations)
   const { electionAdministrationBody: { absenteeVotingInfoUrl, ballotInfoUrl, correspondenceAddress, electionInfoUrl, electionRegistrationConfirmationUrl, electionRegistrationUrl, votingLocationFinderUrl } } = stateInfo[0]
-  console.log(contestsDetails)
 
+
+  useEffect(() => {
+
+    return () => {
+      dispatch({ type: 'SET_COUNTY', payload: '' })
+    }
+  }, [dispatch])
   return (
     <>
       <section className=" bg-[#f7f7f7]  ">
@@ -39,9 +45,11 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                 </h4>
               )}
               {state.countyName && (
-                <span className="font-bold text-[25px] sm:text-[35px]">
-                  and in {state.countyName}
-                </span>
+                <div className="flex justify-center">
+                  <h4 className="font-bold text-[20px] max-w-fit bg-[#AAB7B8] p-[10px] rounded ">
+                    {state.countyName && state.countyName}
+                  </h4>
+                </div>
               )}
 
               <div className="flex mt-[20px] flex-col items-center justify-center">
@@ -130,10 +138,8 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                             <div key={index} className="pb-20">
                               {
                                 office &&
-                                <>
-                                  <h3 className="text-[14px] block sm:text-[35px] mt-6 mb-[10px] ml-3 font-bold" >Office {index + 1} : <span className="text-[14px] sm:text-[20px] mb-[10px] ml-3 font-normal mt-[10px]">{office} </span> </h3>
+                                <h3 className="text-[14px] block sm:text-[35px] mt-6 mb-[10px] ml-3 font-bold" >Office {index + 1} : <span className="text-[14px] sm:text-[20px] mb-[10px] ml-3 font-normal mt-[10px]">{office} </span> </h3>
 
-                                </>
                               }
                               {
                                 district &&
@@ -195,7 +201,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                                               <Link
                                                 className="hover:text-[#000]"
                                                 key={index}
-                                                href={`https:/www.facebook.com/${item.id}`}
+                                                href={item.id}
                                                 passHref
                                               >
                                                 <a>
@@ -209,7 +215,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                                               </Link>
                                             ) : item.type == "Twitter" ? (
                                               <Link
-                                                href={`https:/www.twitter.com/${item.id}`}
+                                                href={item.id}
                                                 passHref
                                               >
                                                 <a>
@@ -223,7 +229,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                                               </Link>
                                             ) : item.type == "YouTube" ? (
                                               <Link
-                                                href={`https:/www.youtube.com/${item.id}`}
+                                                href={item.id}
                                                 passHref
                                               >
                                                 <a>

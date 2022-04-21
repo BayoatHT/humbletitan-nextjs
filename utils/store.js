@@ -15,7 +15,7 @@ function reducer(state, action) {
       return { ...state, voterAddress: action.payload };
     case "STATE_DATA":
       return { ...state, stateName: action.payload };
-    case "COUNTY_NAME":
+    case "SET_COUNTY":
       return { ...state, countyName: action.payload };
     default:
       return state;
