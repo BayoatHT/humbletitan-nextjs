@@ -237,7 +237,7 @@ export default function AllRepresentatives() {
                     return (
                       <div
                         key={index}
-                        className="animate-pulse card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
+                        className="card flex flex-col w-[100%] h-[600px] md:w-[45%] mb-[20px] mx-[4px] lg:w-[32%] rounded-lg "
                       >
                         {photoUrl ? (
                           <div className="img_container">
