@@ -29,6 +29,7 @@ import { FaLinkedinIn, FaPhoneSquareAlt } from "react-icons/fa";
 import { GiClockwork, GiNetworkBars } from 'react-icons/gi'
 import { VscWorkspaceTrusted } from 'react-icons/vsc'
 import { CgWorkAlt } from 'react-icons/cg'
+import GetAQuote from '../../components/GetAQuote';
 
 
 export default function About() {
@@ -43,7 +44,7 @@ export default function About() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] '>
-                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 md:pt-10 mb-10 font-extralight leading-[69px] ' >About Us</h1>
+                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 md:pt-10 mb-10   leading-[69px] ' >About Us</h1>
                                 <div className='md:flex items-center md:mt-20 justify-around mb-20 ' >
                                     <div>
                                         <Image className='rounded-xl' src={aboutAgency2} alt="image" />
@@ -68,11 +69,11 @@ export default function About() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] md:w-8/12 text-[#023A51] '>
-                                <h2 className=' text-[45px] md:text-[55px] text- pt-3 md:pt-10 font-extralight leading-[69px] tracking-[-2px] ' >Overview<span className='text-[#2cbc63]'>.</span> </h2>
+                                <h2 className=' text-[45px] md:text-[55px] text- pt-3 md:pt-10   leading-[69px] tracking-[-2px] ' >Overview<span className='text-[#2cbc63]'>.</span> </h2>
                                 <p className='text-[22px] mt-4 '>We’re all affected by business and politics, two critical areas where many look to make the best possible decisions. Still, despite our best efforts, absorbing the noise and making sense of what matters poses a challenge. In response we’ve built Humble Titan as a problem solving three-tiered platform:</p>
                                 <br />
 
-                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10 font-extralight md:leading-[50px] tracking-[-2px] ' >Individuals<span className='text-[#2cbc63]'>:</span></h6>
+                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10   md:leading-[50px] tracking-[-2px] ' >Individuals<span className='text-[#2cbc63]'>:</span></h6>
 
                                 <p className='text-[22px] mt-4 font-thin ' >When it comes to American Business and Politics, we’re organizing and giving away as much as we possibly can.</p>
                                 <br />
@@ -82,7 +83,7 @@ export default function About() {
                                 <br />
                                 <p className='text-[22px] mt-4 ' >Tell us how we may do more.</p>
 
-                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10 font-extralight md:leading-[50px] tracking-[-2px] ' >Businesses<span className='text-[#2cbc63]'>:</span></h6>
+                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10   md:leading-[50px] tracking-[-2px] ' >Businesses<span className='text-[#2cbc63]'>:</span></h6>
 
                                 <p className='text-[22px] mt-4 ' >We dissect businesses of all industries and sectors on a daily basis. Regardless of vertical, we can explain to you what a healthy balance sheet, income statement, and cash flow should look like. Our Due Diligence reports prove this.</p>
                                 <br />
@@ -91,7 +92,7 @@ export default function About() {
                                 <p className='text-[22px] mt-4 ' >Get in touch to build or improve your brand’s website. As a client, you’ll surpass the standards of a public traded company.</p>
 
 
-                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10 font-extralight md:leading-[50px] tracking-[-2px] '>For the Dreamer/Entrepreneur<span className='text-[#2cbc63]'>:</span></h6>
+                                <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10   md:leading-[50px] tracking-[-2px] '>For the Dreamer/Entrepreneur<span className='text-[#2cbc63]'>:</span></h6>
 
                                 <p className='text-[22px] mt-4 ' >Here our founder admits a personal vendetta. He’s been labeled a dreamer for the majority of his life. Though he claims to have found strength in the tag, he struggles with the connotation. “People say ‘dreamer’ and dismiss your ideas as pie in the sky. They stop listening.”</p>
                                 <br />
@@ -354,21 +355,7 @@ export default function About() {
                 </section>
 
                 {/* Get a Quote */}
-                <section className='heading md:my-20'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto md:flex justify-around items-center w-10/12 md:w-11/12 drop-shadow-2xl bg-[#023A51] p-10 py-20 rounded-xl '>
-                            <div className='text-[#fff] ' >
-                                <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>HT Digital Marketing Services<span className='text-[#2cbc63]'>.</span></p>
-                                <br />
-                                <p className='text-[18px]'>We will take care of your online design, strategy, content, and execution. Get in touch for elite services.</p>
-                            </div>
-                            <div className='flex flex-col mt-4'>
-                                <button className='green_roudend_btn ' >Get a Qoute</button>
-                                <button className='dark_roudend_btn flex items-center mt-4 '><FaPhoneSquareAlt /> (555) 802-1234</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <GetAQuote />
             </Layout>
         </>
     )

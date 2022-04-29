@@ -31,9 +31,7 @@ import rocketIcon from '../assets/imgs/rocket-icon.png'
 import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
 
-// text=#023A51
-// green="#2cbc63
-// blueBg="#e0ecf0
+
 export default function index() {
     return (
         <>
@@ -46,7 +44,7 @@ export default function index() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex flex-wrap w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] '>
-                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 font-extralight leading-[69px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
+                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10   leading-[69px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-10 ' >Products and services that empower you to <br /> make better decisions.</h2>
                                 <button className='green_roudend_btn text-[18px] mb-10'>Stock Due Diligence Reports </button>
                             </div>
