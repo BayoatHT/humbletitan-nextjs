@@ -12,22 +12,22 @@ export default function FilterData() {
     const router = useRouter()
 
 
- 
+
     const query = router.query
     useEffect(() => {
 
-        const getData = async () => { 
+        const getData = async () => {
 
-                const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
-                 const { data } = await axios.get(url)
-             
-                setCustomPages(data)
-            } 
+            const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
+            const { data } = await axios.get(url)
+
+            setCustomPages(data)
+        }
         getData()
     }, [router])
     console.log(customPages);
 
-    
+
     return (
         <div>
             <Head>
@@ -35,7 +35,7 @@ export default function FilterData() {
                 <meta name="description" content="Humble Titan is providing you data of more than seven thousands tickers from all over the world." />
 
             </Head>
-            <Layout>
+            <Layout >
                 <CustomCard query={query} customPages={customPages} />
             </Layout>
         </div>

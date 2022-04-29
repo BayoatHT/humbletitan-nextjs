@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import React from "react";
 import Layout from "../../components/Layout";
+import Head from 'next/head'
 import SearchSection from "../../components/SearchSection";
 import TopTitle from "../../components/TopTitle";
 import UpcommingElections from "../../components/UpcommingElections";
@@ -8,11 +9,16 @@ import ElectedDirectory from "../../components/ElectedDirectory";
 import GetPolls from "../../components/GetPolls";
 import BrowseByState from "../../components/BrowseByState";
 import axios from "axios";
+import Heading from "../../components/Heading";
 
 export default function index({ majorElections }) {
   return (
     <>
-      <Layout>
+      <Head>
+        <title>Humble voter</title>
+      </Head>
+      <Layout >
+        <Heading />
         <TopTitle />
         <SearchSection />
         <ElectedDirectory />

@@ -1,3 +1,4 @@
+import "tailwindcss/tailwind.css";
 import logo_header from "../assets/imgs/HT-Standard-Logo.png";
 import web_design from "../assets/imgs/web-design-menu-225x300.jpg";
 import content_marketing_menu from "../assets/imgs/content-marketing-menu-225x300.jpg";
@@ -43,7 +44,7 @@ const Header = () => {
                   <li>
                     <a
                       href="https://www.humbletitan.com/offices/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[12px]"
                     >
                       Offices
                     </a>
@@ -51,18 +52,28 @@ const Header = () => {
                   <li>
                     <a
                       href="https://www.humbletitan.com/faqs/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[12px]"
                     >
                       FAQS
                     </a>
                   </li>
-                  <li className="abcd_mainmenu flex items-center abcd_relative">
+                  <li className="abcd_mainmenu flex abcd_relative">
                     <a
                       href="https://www.humbletitan.com/about/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[12px]"
                     >
                       About Us
                     </a>
+                    <FaChevronDown
+                      style={{
+                        position: "relative",
+                        top: "3px",
+                        left: "1px",
+                        cursor: "pointer",
+                        marginLeft: "5px",
+                        color: '#023A51',
+                      }}
+                    />
                     <ul
                       className="abcd_submenu ul_abcd"
                       style={{ height: "44.39px", minWidth: "140px" }}
@@ -79,19 +90,12 @@ const Header = () => {
                         </a>{" "}
                       </li>
                     </ul>
-                    <FaChevronDown
-                      style={{
-                        position: "relative",
-                        top: "3px",
-                        left: "1px",
-                        cursor: "pointer",
-                      }}
-                    />
+
                   </li>
                 </ul>
                 <div className="abcd_row abcd_align-center">
                   <div className="header_search_input_wrapper_abcd">
-                    <FaSearch />
+                    <FaSearch color="#023A51" className="text-[18px] " />
                     <input
                       type="text"
                       placeholder="Search Stocks, Business &amp; Politics"
@@ -101,31 +105,31 @@ const Header = () => {
                     <li className="li_abcd">
                       {" "}
                       <a className="a_abcd" href="#">
-                        <FaFacebookF />
+                        <FaFacebookF className="text-[18px]" color="#023A51" />
                       </a>
                     </li>
                     <li className="li_abcd">
                       {" "}
                       <a className="a_abcd" href="#">
-                        <FaTwitter />
+                        <FaTwitter className="text-[18px]" color="#023A51" />
                       </a>
                     </li>
                     <li className="li_abcd">
                       {" "}
                       <a className="a_abcd" href="#">
-                        <FaInstagram />
+                        <FaInstagram className="text-[18px]" color="#023A51" />
                       </a>
                     </li>
                     <li className="li_abcd">
                       {" "}
                       <a className="a_abcd" href="#">
-                        <FaLinkedinIn />
+                        <FaLinkedinIn className="text-[18px]" color="#023A51" />
                       </a>
                     </li>
                     <li className="li_abcd">
                       {" "}
                       <a className="a_abcd" href="#">
-                        <FaYoutube />
+                        <FaYoutube className="text-[18px]" color="#023A51" />
                       </a>
                     </li>
                   </ul>
@@ -138,7 +142,7 @@ const Header = () => {
                 </div>
                 <ul className="abcd_row abcd_justify-between abcd_nav abcd_align-center ul_abcd">
                   <li>
-                    <a href="https://www.humbletitan.com/" className="a_abcd">
+                    <a href="https://www.humbletitan.com/" className="a_abcd text-[#023A51] text-[18px]">
                       {" "}
                       Home
                     </a>
@@ -146,14 +150,14 @@ const Header = () => {
                   <li className="abcd_mainmenu abcd_relative">
                     <a
                       href="https://www.humbletitan.com/politics/"
-                      className="active a_abcd"
+                      className="active a_abcd text-[#023A51] text-[18px]"
                     >
                       Politics{" "}
                       <FaChevronDown
                         style={{
                           position: "relative",
-                          top: "3px",
-                          left: "1px",
+                          left: '2px',
+                          display: 'inline'
                         }}
                       />
                     </a>
@@ -181,7 +185,7 @@ const Header = () => {
                   <li>
                     <a
                       href="https://www.humbletitan.com/education/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Education
                     </a>
@@ -189,14 +193,14 @@ const Header = () => {
                   <li className="abcd_mainmenu">
                     <a
                       href="https://www.humbletitan.com/services/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Services{" "}
                       <FaChevronDown
                         style={{
                           position: "relative",
-                          top: "3px",
-                          left: "1px",
+                          left: '2px',
+                          display: 'inline'
                         }}
                       />
                     </a>
@@ -265,15 +269,15 @@ const Header = () => {
                   <li className="abcd_mainmenu">
                     <a
                       href="https://www.humbletitan.com/tram-seo/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] "
                     >
                       <strong>TRAM SEO Course</strong>{" "}
-                      <span className="newbadge">New</span>{" "}
+                      <span className="newbadge_abcd text-[16px] ">New</span>{" "}
                       <FaChevronDown
                         style={{
                           position: "relative",
-                          top: "3px",
                           left: "1px",
+                          display: 'inline'
                         }}
                       />
                     </a>
@@ -429,7 +433,7 @@ const Header = () => {
                   <li>
                     <a
                       href="https://www.humbletitan.com/news/"
-                      className="a_abcd"
+                      className="a_abcd text-[#023A51] text-[18px] "
                     >
                       Magazine
                     </a>
@@ -437,7 +441,7 @@ const Header = () => {
                   <li className="btn btn-primary">
                     <a
                       href="https://www.humbletitan.com/contact/"
-                      className="a_abcd"
+                      className="a_abcd text-[#fff] text-center bg-[#2cbc63] sm:w-[100px] py-[0px] px-[20px] rounded-3xl text-[18px]"
                     >
                       Hire Us
                     </a>
@@ -471,7 +475,7 @@ const Header = () => {
               href="https://www.humbletitan.com/politics/"
               className="active abcd_responsive_header_font"
             >
-              Politics{" "}
+              Politics
               <FaChevronDown
                 style={{ position: "relative", top: "3px", left: "1px" }}
               />

@@ -12,7 +12,7 @@ const Empower = () => {
                                 ambitions.</span>
                         </h2>
                         <p className="text-center_abcd mb-2_abcd p_abcd">Please be sure to explore other Humble Titan offerings
-                            below. We’ll continue
+                            below. We&apos;ll continue
                             to expand our content so you
                             can expand your ambitions.</p>
                         <EmpowerImages />

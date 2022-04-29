@@ -1,6 +1,6 @@
- 
 
-const Heading = () => {
+
+const Heading = ({ heading }) => {
     return (
         <>
             <div className="abcd_hero_abcd">

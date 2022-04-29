@@ -3,6 +3,10 @@ import HT_Standard_Logo from '../assets/imgs/HT-Standard-Logo.png'
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
+
+    const backToTop = () => {
+        window.scrollTo(0, 0)
+    }
     return (
         <>
             <footer className="abcd_footer mt-5_abcd">
@@ -62,7 +66,7 @@ const Footer = () => {
                             <FaYoutube />
                         </div>
                         <div className="abcd_col-4 txt-center_abcd mt-15_abcd full-width_abcd">
-                            <span>Back to top</span>
+                            <span onClick={() => backToTop()} className="text-[18px] " >Back to top</span>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgrounImage: {
+        'explore': "url('assets/images/ht-home-banner-2.jpg')"
+      }
+    },
   },
   plugins: [],
 };
