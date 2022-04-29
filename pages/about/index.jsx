@@ -63,7 +63,7 @@ export default function About() {
 
 
 
-                {/* Hero */}
+                {/* Overview */}
                 <section className='heading my-10 md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
