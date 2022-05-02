@@ -17,7 +17,7 @@ import { FaSearch } from 'react-icons/fa'
 export default function Category() {
     const { query: { index } } = useRouter()
     const categorySearch = index
-    const news = newsByCategories.find((item) => item.category === categorySearch)
+    const news = newsByCategories?.find((item) => item.category === categorySearch)
     console.log(news)
     const { category, title, h1_1, h1_2, h2_1, h2_2 } = news
     console.log(category)
@@ -28,20 +28,20 @@ export default function Category() {
 
     const handleFilter = (e) => {
         setSearch(e)
-        setFilterdCategories(categories.filter((item) => item.includes(search)))
+        setFilterdCategories(categories?.filter((item) => item.includes(search)))
     }
 
     return (
         <>
             <Head>
-                <title>{title}</title>
+                <title>{title && title}</title>
             </Head>
             <Layout >
 
                 <section className='heading'>
                     <div className=" container mx-auto md:flex justify-around flex-wrap max-w-screen-xl">
                         <div className='px-4' >
-                            <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{h1_1}</h1>
+                            <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{h1_1 && h1_1}</h1>
 
                         </div>
                         <div className='flex justify-center mt-6 md:mt-10' >
