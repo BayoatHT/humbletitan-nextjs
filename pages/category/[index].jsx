@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
 import Head from 'next/head'
@@ -14,13 +13,9 @@ import { newsByCategories } from '../../utils/newsByCategories';
 import { FaSearch } from 'react-icons/fa'
 
 
-export default function Category() {
-    const { query: { index } } = useRouter()
-    const categorySearch = index
-    const news = newsByCategories?.find((item) => item.category === categorySearch)
-    console.log(news)
+export default function Category({ news }) {
+
     const { category, title, h1_1, h1_2, h2_1, h2_2 } = news
-    console.log(category)
 
     const categories = ['economics', 'tram-seo', 'business-dictionary']
     const [search, setSearch] = useState('')
@@ -118,4 +113,17 @@ export default function Category() {
             </Layout>
         </>
     )
+}
+
+
+
+export async function getServerSideProps(ctx) {
+    const { query: { index } } = ctx
+    var categorySearch = index
+    const news = newsByCategories?.find((item) => item.category === categorySearch)
+    return {
+        props: {
+            news
+        },
+    };
 }
