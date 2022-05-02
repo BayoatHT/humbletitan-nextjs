@@ -44,7 +44,7 @@ export default function Home() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex flex-wrap w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] '>
-                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
+                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 leading-[69px] tracking-[-3px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-10 ' >Products and services that empower you to <br /> make better decisions.</h2>
                                 <button className='green_roudend_btn text-[18px] mb-10'>Stock Due Diligence Reports </button>
                             </div>
@@ -132,12 +132,12 @@ export default function Home() {
                 <section className='heading ' >
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 ' >
-                            <h1 className=' text-[50px]  md:text-[60px] text-center md:text-left text-[#023A51] font-semibold py-20' >Our Services</h1>
+                            <h1 className=' text-[50px] md:text-[60px] text-center md:text-left text-[#023A51] font-semibold py-20' >Our Services</h1>
                         </div>
 
                         <div className=' mx-auto flex flex-wrap  w-12/12 md:w-11/12 text-[#023A51]' style={{ backgroundImage: `url(${HTHomeBanner.src})`, width: '100%', height: '100%', backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}>
 
-                            <div className='bg-[#fff] rounded-xl mx-10 md:mx-0 p-10 md:mt-10 md:ml-10 drop-shadow-md ' >
+                            <div className='bg-[#fff] rounded-xl mx-10 md:mx-0 p-10 mt-10 md:ml-10 drop-shadow-md ' >
                                 <p className='text-[40px] md:text-[60px] text-[#023A51] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >
                                     Market smarter. <br /> Take full <br /> advantage of the <br /> internet
                                 </p>
@@ -274,7 +274,7 @@ export default function Home() {
                                 <div className='text-[#023A51] w-[100%] md:pl-20  ' >
                                     <p className='text-[20px] my-10 ' >The Humble Trader</p>
                                     <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Analyze the <br /> performance of <br /> companies on the <br /> US Stock <br /> Exchange</p>
-                                    <p className='text-[20px] my-10 ' >Do your due diligence. Feel like an expert in a matter <br /> of seconds. You won’t believe how easy <br /> we’ve made it is to discern a good company from a <br /> bad one.</p>
+                                    <p className='text-[22px] my-10 ' >Do your due diligence. Feel like an expert in a matter <br /> of seconds. You won’t believe how easy <br /> we’ve made it is to discern a good company from a <br /> bad one.</p>
                                     <button className='green_roudend_btn' >List of publicly traded companies</button>
                                 </div>
                             </div>

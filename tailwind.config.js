@@ -5,10 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgrounImage: {
-        'explore': "url('assets/images/ht-home-banner-2.jpg')"
-      }
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
+    
   },
   plugins: [],
 };
