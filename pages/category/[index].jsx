@@ -10,7 +10,7 @@ import TradeDeficit from '../../assets/imgs/Trade-Deficit-min-400x282.jpg'
 import SupplySide from '../../assets/imgs/Supply-side-policies-min-400x282.jpg'
 import SupplyMin from '../../assets/imgs/Supply-min-400x282.jpg'
 
-import { newsByCategories } from './newsByCategories';
+import { newsByCategories } from '../../utils/newsByCategories';
 import { FaSearch } from 'react-icons/fa'
 
 
