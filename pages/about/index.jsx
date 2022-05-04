@@ -75,7 +75,7 @@ export default function About() {
 
                                 <h6 className='text-[25px] md:text-[35px] text- pt-3 md:pt-10   md:leading-[50px] tracking-[-2px] ' >Individuals<span className='text-[#2cbc63]'>:</span></h6>
 
-                                <p className='text-[22px] mt-4 font-thin ' >When it comes to American Business and Politics, we’re organizing and giving away as much as we possibly can.</p>
+                                <p className='text-[22px] mt-4 ' >When it comes to American Business and Politics, we’re organizing and giving away as much as we possibly can.</p>
                                 <br />
                                 <p className='text-[22px] mt-4 ' >We appreciate that the tools most of us need to live better-informed lives are usually inaccessible. We also get that the main difference between those who are able to sort out their lives and those who can’t is knowledge.</p>
                                 <br />

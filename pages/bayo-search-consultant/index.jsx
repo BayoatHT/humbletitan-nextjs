@@ -209,6 +209,7 @@ export default function Bayo_search_consultant() {
                             </p>
 
                             <br />
+                            <p></p>
                             <p className=' text-[26px] py-2 font-light '>My name is Bayo Adesina, the founder of Humble Titan and creator of the SEO TRAM method. </p>
                             <br />
                             <p className=' text-[26px] py-2 font-light '>This means, on one hand, I’m responsible for helping people understand business, economics, and the stock market. While, on the other hand, I created and gave away the highest level of organic search education online.</p>
@@ -424,33 +425,33 @@ export default function Bayo_search_consultant() {
 
                         <p className='text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ' >Organizations I work with</p>
 
-                        <div className='flex flex-wrap text-[#023A51] mt-10 justify-around' >
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%]  mb-10' >
+                        <div className='md:flex flex-wrap text-[#023A51] mt-10 justify-around' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                 <p className='text-[35px] '>Politicians</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humblePoliticians} alt="image" />
                             </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%] mb-10 ' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
                                 <p className='text-[35px] '>Political Campaigns</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humblePoliticalCampaigns} alt="image" />
                             </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%] mb-10 ' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
                                 <p className='text-[35px] '>NGOs</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleNgos} alt="image" />
                             </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%] mb-10 ' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
                                 <p className='text-[35px] '>Charities</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleCharities} alt="image" />
                             </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%] mb-10 ' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
                                 <p className='text-[35px] '>Universities</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleUniversities} alt="image" />
                             </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[90%] sm:w-[45%] mb-10 ' >
+                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
                                 <p className='text-[35px] '>Enterprise Business</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleEnterprises} alt="image" />
@@ -464,7 +465,7 @@ export default function Bayo_search_consultant() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12'>
                             <div className='md:flex flex-col text-[#023A51] items-center'>
-                                <p className='text-[30px] md:text-[45px] font-bold '>Discover my story below</p>
+                                <p className='text-[30px] md:text-[40px] font-bold '>Discover my story below</p>
                                 <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                             </div>
                         </div>
