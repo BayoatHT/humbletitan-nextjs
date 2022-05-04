@@ -7,7 +7,7 @@ export default function GetAQuote() {
             <div className=" container w-12/12 mx-auto max-w-screen-xl">
                 <div className='mx-auto md:flex justify-around items-center w-10/12 md:w-11/12 drop-shadow-2xl bg-[#023A51] p-10 py-20 rounded-xl '>
                     <div className='text-[#fff] ' >
-                        <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>HT Digital Marketing Services<span className='text-[#2cbc63]'>.</span></p>
+                        <h1 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>HT Digital Marketing Services<span className='text-[#2cbc63]'>.</span></h1>
                         <br />
                         <p className='text-[18px]'>We will take care of your online design, strategy, content, and execution. Get in touch for elite services.</p>
                     </div>

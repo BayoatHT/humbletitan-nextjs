@@ -20,23 +20,23 @@ export default function DiscoverMore() {
                     <p className='text-[24px] text-[#023A51] font-bold text-center '>Explore our offering:</p>
 
                     <div className='flex justify-around flex-wrap py-10 ' >
-                        <div className='hover:scale-105 transition delay-300 group ' >
+                        <div className='hover:scale-105 transition duration-300 group ' >
                             <Image className=' rounded-xl group-hover:drop-shadow-lg cursor-pointer ' src={DigitalServices} alt="image" />
                             <p className='text-[26px] mb-6 text-center' >Digital Marketing <br /> Services</p>
                         </div>
-                        <div className='hover:scale-105 transition delay-300 group '>
+                        <div className='hover:scale-105 transition duration-300 group '>
                             <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleTrader} alt="image" />
                             <p className='text-[26px] mb-6 text-center' >Stocks & Business <br /> Analysis</p>
                         </div>
-                        <div className='hover:scale-105 transition delay-300 group '>
+                        <div className='hover:scale-105 transition duration-300 group '>
                             <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={TRAMSEO} alt="image" />
                             <p className='text-[26px] mb-6 text-center' >TRAM SEO <br /> Course</p>
                         </div>
-                        <div className='hover:scale-105 transition delay-300 group '>
+                        <div className='hover:scale-105 transition duration-300 group '>
                             <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleVoter} alt="image" />
                             <p className='text-[26px] mb-6 text-center' >Politics & Ballot <br /> Information</p>
                         </div>
-                        <div className='hover:scale-105 transition delay-300 group '>
+                        <div className='hover:scale-105 transition duration-300 group '>
                             <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={Humblemind} alt="image" />
                             <p className='text-[26px] mb-6 text-center' >Educational <br /> Resources</p>
                         </div>
