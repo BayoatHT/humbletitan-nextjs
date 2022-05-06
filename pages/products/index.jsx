@@ -36,7 +36,7 @@ import ProductLanguageApp from '../../assets/imgs/6-Product-Language-App.jpg'
 import { FaChevronDown } from 'react-icons/fa'
 import DiscoverMore from '../../components/DiscoverMore'
 
-export default function index() {
+export default function Products() {
     return (
         <>
             <Head>
@@ -278,8 +278,8 @@ export default function index() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-center  w-10/12 md:w-11/12 '>
-                            <p className='text-[40px] text-[#023A51] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] md:px-10' >Want to get serious about your business and online strategy<span className='text-[#2cbc63]' >?</span></p>
-                            <p className='text-[30px] text-[#2cbc63] md:text-[40px] font-light mt-4 leading-[40px] md:leading-[55px] tracking-[-2px] md:px-10' >Get in touch. Web Design. Content Marketing. SEO. Website Management. </p>
+                            <p className='text-[40px] font-bold text-[#023A51] md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] md:px-10' >Want to get serious about your business and online strategy<span className='text-[#2cbc63]' >?</span></p>
+                            <p className='text-[26px] text-[#2cbc63] md:text-[35px] mt-4 leading-[35px] md:leading-[44px] tracking-[-2px] md:px-10' >Get in touch. Web Design. Content Marketing. SEO. Website Management. </p>
                             <button className='green_roudend_btn my-6' >Request a Quote</button>
                             <p className='text-[16px] text-[#023A51]'> Delighted to help.</p>
                         </div>
