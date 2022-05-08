@@ -45,7 +45,9 @@ export default function Education() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >Educational Dictionaries</p>
+                            <p className=' text-[50px] md:text-[60px] text-[#59667d] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >The more you know. The more you can.</p>
+                            <p className=' text-[30px] md:text-[35px] text-[#00989e] font-bold leading-[39px] md:leading-[44px] tracking-[-2px] py-4 ' >“Never doubt that a small group of thoughtful, committed, citizens can change the world. Indeed, it is the only thing that ever has.”</p>
+
 
 
                             <div className='md:flex flex-wrap text-[#023A51] justify-around' >
