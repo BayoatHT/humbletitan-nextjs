@@ -17,7 +17,7 @@ export default function SearchSection(props) {
       setSearchText(<Rings />);
       dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
       localStorage.setItem("voter_address", address);
-      router.push(`/election-center/${address}`);
+      router.push(`/politics/election-center/${address}`);
     }
   };
 

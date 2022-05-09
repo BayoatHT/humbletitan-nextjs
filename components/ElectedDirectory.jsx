@@ -10,7 +10,7 @@ export default function ElectedDirectory() {
     <section className="mx-auto py-4 pt-16">
       <div className="container w-10/12 mx-auto max-w-screen-xl">
         <div className="flex flex-wrap mx-4 mb-10 m-auto justify-between gap-y-[25px]">
-          <Link href="/elected-directory" passHref>
+          <Link href="/politics/elected-directory" passHref>
             <a className="w-12/12 md:w-[48%]">
               <h2 className="font-bold text-[28px] lg:text-[35px] xl:text-[3rem] leading-[47px]  my-4 text-[#023a51]">
                 Elected Directory

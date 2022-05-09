@@ -279,7 +279,7 @@ export default function BrowseByState() {
                           onClick={() =>
                             dispatch({ type: "STATE_DATA", payload: state })
                           }
-                          href={`/state/${state}`}
+                          href={`/politics/states/${state}`}
                           key={index}
                           passHref
                         >

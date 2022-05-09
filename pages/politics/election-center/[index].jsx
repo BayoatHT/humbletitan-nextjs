@@ -2,8 +2,8 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
 import axios from "axios";
-import Layout from "../../components/Layout";
-import ElectionCenter from "../../components/ElectionCenter";
+import Layout from "../../../components/Layout";
+import ElectionCenter from "../../../components/ElectionCenter";
 export default function Index({ stateName, electionDates, contests, pollingLocations, stateDetails }) {
 
   return (

@@ -1,15 +1,15 @@
 import React from "react";
 import axios from "axios";
-import Layout from "../../components/Layout";
-import BrowsByState from "../../components/BrowseByState";
-import SearchSection from "../../components/SearchSection";
-import ElectedRepresentatives from "../../components/ElectedRepresentatives";
-import StateNews from "../../components/StateNews";
-import ElectionDate from "../../components/ElectionDate";
-import UpcommingElections from "../../components/UpcommingElections";
+import Layout from "../../../components/Layout";
+import BrowsByState from "../../../components/BrowseByState";
+import SearchSection from "../../../components/SearchSection";
+import ElectedRepresentatives from "../../../components/ElectedRepresentatives";
+import StateNews from "../../../components/StateNews";
+import ElectionDate from "../../../components/ElectionDate";
+import UpcommingElections from "../../../components/UpcommingElections";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import StateElectionDates from "../../components/StateElectionDates";
+import StateElectionDates from "../../../components/StateElectionDates";
 
 export default function State({
   articles,
