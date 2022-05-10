@@ -76,7 +76,7 @@ export default function Bayo_search_consultant() {
                                 <div className='text-[#023A51] w-[100%] md:mr-20 ' >
                                     <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>I ensure organizations succeed online</p>
                                     <p className='text-[30px] my-10 ' >Get in touch to contract my <br /> services. Explore below to <br /> learn why you can trust me to deliver.</p>
-                                    <button className='green_roudend_btn mb-10 ' >Get a Consultation</button>
+                                    <button className='green_rounded_btn mb-10 ' >Get a Consultation</button>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Establish a strong presence online </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Reach more people than ever before </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
@@ -216,7 +216,7 @@ export default function Bayo_search_consultant() {
                             <br />
                             <p className=' text-[26px] py-2 font-light '>What this means for you is access to a talent that’s able to guarantee a drastic improvement in your digital footprint. Plus, I ensure your strategy is competitive with the best in your industry.</p>
                             <div className='text-center mt-10'>
-                                <button className='green_roudend_btn '>Get a Consultation</button>
+                                <button className='green_rounded_btn '>Get a Consultation</button>
 
                             </div>
                         </div>
@@ -410,7 +410,7 @@ export default function Bayo_search_consultant() {
                                 </div>
                             </div>
                             <div className='flex justify-center w-[100%] '>
-                                <button className='green_roudend_btn my-10'>Get a Consultation</button>
+                                <button className='green_rounded_btn my-10'>Get a Consultation</button>
 
                             </div>
                         </div>

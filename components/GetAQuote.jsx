@@ -12,7 +12,7 @@ export default function GetAQuote() {
                         <p className='text-[18px]'>We will take care of your online design, strategy, content, and execution. Get in touch for elite services.</p>
                     </div>
                     <div className='flex flex-col mt-4'>
-                        <button className='green_roudend_btn ' >Get a Qoute</button>
+                        <button className='green_rounded_btn ' >Get a Qoute</button>
                         <button className='dark_roudend_btn flex items-center justify-center mt-4 '><FaPhoneSquareAlt /> (555) 802-1234</button>
                     </div>
                 </div>

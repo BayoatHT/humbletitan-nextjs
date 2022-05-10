@@ -46,7 +46,7 @@ export default function Home() {
                             <div className='  '>
                                 <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >Products and services that empower you to <br /> make better decisions.</h2>
-                                <button className='green_roudend_btn text-[18px] mb-10'>Stock Due Diligence Reports </button>
+                                <button className='green_rounded_btn text-[18px] mb-10'>Stock Due Diligence Reports </button>
                             </div>
                             <div className='' >
                                 <Image src={heroImg} alt="image" />
@@ -83,7 +83,7 @@ export default function Home() {
 
                                 <div className=' md:flex justify-between items-center '>
                                     <p className='text-[22px] extralight text-[#023A51] ' >Discover how much more <br /> you could be <br /> achieving online</p>
-                                    <button className='green_roudend_btn my-6  ' >Select a service</button>
+                                    <button className='green_rounded_btn my-6  ' >Select a service</button>
                                 </div>
 
                                 <a className=' text-[18px]  md:text-[20px] extralight text-[#023A51] py-10  ' href="#">Learn about our founder, Bayo</a>
@@ -142,7 +142,7 @@ export default function Home() {
                                     Market smarter. <br /> Take full <br /> advantage of the <br /> internet
                                 </p>
                                 <p className='text-[20px] ' >Data. Design. Content & a mastery our <br /> your target audience. We do the hard <br /> work, so it&apos;s easy to perform better.</p>
-                                <button className='green_roudend_btn my-5'>Got a challenge? Let us know!</button>
+                                <button className='green_rounded_btn my-5'>Got a challenge? Let us know!</button>
                             </div>
 
                         </div>
@@ -252,7 +252,7 @@ export default function Home() {
                                         </div>
                                         <div className='py-4 '>
                                             <div>
-                                                <button className='green_roudend_btn'>Get in touch</button>
+                                                <button className='green_rounded_btn'>Get in touch</button>
                                             </div>
                                         </div>
                                     </div>
@@ -275,7 +275,7 @@ export default function Home() {
                                     <p className='text-[20px] my-10 ' >The Humble Trader</p>
                                     <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Analyze the <br /> performance of <br /> companies on the <br /> US Stock <br /> Exchange</p>
                                     <p className='text-[22px] my-10 ' >Do your due diligence. Feel like an expert in a matter <br /> of seconds. You won’t believe how easy <br /> we’ve made it is to discern a good company from a <br /> bad one.</p>
-                                    <button className='green_roudend_btn' >List of publicly traded companies</button>
+                                    <button className='green_rounded_btn' >List of publicly traded companies</button>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +294,7 @@ export default function Home() {
                                 </div>
                                 <h1 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ' >A step-by-step <br /> course for ranking <br /> on Google</h1>
                                 <p className='text-[20px]'  >We teach you the professional way to manage <br /> the organic success of any idea, product or <br /> service on the internet</p>
-                                <button className='green_roudend_btn my-10' >Start learning today</button>
+                                <button className='green_rounded_btn my-10' >Start learning today</button>
                             </div>
                             <div className='pt-[40px] md:pl-20 '>
                                 <div className='md:flex items-center ' >
@@ -325,7 +325,7 @@ export default function Home() {
                             <p className='text-[20px]' >Subscribe below to our magazine, the Humble  Mind for <br /> our latest updates.</p>
                             <h2 className='text-[24px] font-bold py-6 ' >Hear from us first</h2>
                             <input className='block outline-[#2cbc63] p-2 rounded-xl text-[20px] w-[100%]' type="text" placeholder='Enter your email' />
-                            <button className='green_roudend_btn my-10' >Subscribe</button>
+                            <button className='green_rounded_btn my-10' >Subscribe</button>
                         </div>
                     </div>
                 </section>

@@ -82,7 +82,7 @@ export default function Contact() {
                                     </div>
                                     <div className='py-4 '>
                                         <div>
-                                            <button className='green_roudend_btn'>Get in touch</button>
+                                            <button className='green_rounded_btn'>Get in touch</button>
                                         </div>
                                     </div>
                                 </div>

@@ -299,7 +299,7 @@ export default function About() {
                                     <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >Careers</p>
                                     <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Want to be a <br /> part of our team<span className='text-[#2cbc63]'>?</span></p>
                                     <p className='text-[20px] my-10 ' >Vestibulum ante ipsum primis faucibus orci luctus et ultrices posuere.</p>
-                                    <button className='green_roudend_btn_oulined' >See Openings</button>
+                                    <button className='green_rounded_btn_oulined' >See Openings</button>
                                 </div>
                             </div>
                         </div>
@@ -347,7 +347,7 @@ export default function About() {
 
                             <br />
                             <div className='text-center' >
-                                <button className='green_roudend_btn_oulined my-10' >View All Offices</button>
+                                <button className='green_rounded_btn_oulined my-10' >View All Offices</button>
 
                             </div>
                         </div>

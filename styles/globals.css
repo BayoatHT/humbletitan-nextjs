@@ -2656,20 +2656,21 @@ input {
     text-overflow: ellipsis;
 }
 
-.green_roudend_btn {
+.green_rounded_btn {
     border-radius: 50px;
     padding: 13px 30px;
     color: white;
     font-size: 16px;
+    font-weight: bold;
     background-color: #2cbc63;
 }
 
-.green_roudend_btn:hover {
+.green_rounded_btn:hover {
     filter: brightness(110%)
 }
 
 @media (min-width: 768px) {
-    .green_roudend_btn {
+    .green_rounded_btn {
         border-radius: 50px;
         padding: 13px 30px;
         color: white;
@@ -2678,9 +2679,10 @@ input {
     }
 }
 
-.green_roudend_btn_oulined {
+.green_rounded_btn_oulined {
     font-size: 16px;
     border-radius: 50px;
+    font-weight: bold;
     padding: 13px 30px;
     border: 1px solid #2cbc63;
     color: #2cbc63;
@@ -2688,7 +2690,7 @@ input {
     transition: all .5s;
 }
 
-.green_roudend_btn_oulined:hover {
+.green_rounded_btn_oulined:hover {
     color: #fff;
     background-color: #2cbc63;
 }
@@ -2725,7 +2727,7 @@ input {
 }
 
 @media (min-width: 768px) {
-    .green_roudend_btn_oulined {
+    .green_rounded_btn_oulined {
         border-radius: 50px;
         padding: 13px 30px;
         border: 1px solid #2cbc63;
@@ -2735,7 +2737,7 @@ input {
         transition: all .5s;
     }
 
-    .green_roudend_btn_oulined:hover {
+    .green_rounded_btn_oulined:hover {
         color: #fff;
         font-size: 18px;
         background-color: #2cbc63;

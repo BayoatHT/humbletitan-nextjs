@@ -147,7 +147,7 @@ export default function Education() {
                             <div className='flex justify-center'>
                                 <div className='p-10 bg-[#eefaf3] w-[80%] mt-10 rounded-xl'>
                                     <p className='text-[24px] text-[#2cbc63] font-bold  '>Discover what the internet can do for your business or idea.</p>
-                                    <button className='green_roudend_btn mt-4' >Talk to us!</button>
+                                    <button className='green_rounded_btn mt-4' >Talk to us!</button>
                                 </div>
                             </div>
 

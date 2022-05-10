@@ -164,7 +164,7 @@ export default function team() {
                                         </div>
                                         <div className='bg-[#f9fafb] flex flex-col justify-between p-10 rounded mb-2 md:w-[48%] '>
                                             <p className='text-[20px] font-bold ' >More Free Accounting Tools for Your Business</p>
-                                            <button className='green_roudend_btn' >View all tools</button>
+                                            <button className='green_rounded_btn' >View all tools</button>
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +285,7 @@ export default function team() {
                                         </div>
                                         <div className='py-4 '>
                                             <div>
-                                                <button className='green_roudend_btn'>Get in touch</button>
+                                                <button className='green_rounded_btn'>Get in touch</button>
                                             </div>
                                         </div>
                                     </div>

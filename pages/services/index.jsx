@@ -2,10 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
-import { FaCheck } from 'react-icons/fa'
-import { GiClockwork, GiNetworkBars } from 'react-icons/gi'
-import { VscWorkspaceTrusted } from 'react-icons/vsc'
-import { CgWorkAlt } from 'react-icons/cg'
+import { FaCheck, FaChartLine, FaUserTie, FaStar } from 'react-icons/fa'
+import { GiElectric } from 'react-icons/gi'
 import GetAQuote from '../../components/GetAQuote'
 
 
@@ -77,7 +75,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Websites for All Verticals </p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -96,7 +94,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Web Performance Monitoring </p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -115,7 +113,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Thorough Quality Checks</p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -134,7 +132,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Constant Reporting and Feedback</p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -153,7 +151,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Growth Overview</p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -174,7 +172,7 @@ export default function Services() {
                                         <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Life Skills</p>
                                         <br />
                                         <div className='flex justify-center'>
-                                            <button className='green_roudend_btn font-bold w-[100%] '>Discover More</button>
+                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
                                         </div>
                                     </div>
@@ -195,7 +193,7 @@ export default function Services() {
                                 <br />
                                 <p className='text-[22px] text-[#59667d] ' >Backed by 11 years of experience, we are ready to offer simple <br /> and effective solutions to your complex problems.</p>
                                 <br />
-                                <button className='green_roudend_btn font-bold' >Contact us</button>
+                                <button className='green_rounded_btn font-bold' >Contact us</button>
                             </div>
                         </div>
                     </div>
@@ -237,24 +235,24 @@ export default function Services() {
                             <div className='pt-[40px] md:flex flex-wrap justify-around md:w-5/10 '>
                                 <div className='md:flex justify-around'>
                                     <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] ' >
-                                        <GiClockwork className='text-[26px] ' />
+                                        <FaStar className='text-[26px] ' />
                                         <p className='text-[24px] font-bold ' >Creativity</p>
                                         <p className='text-[18px]  ' >We embrace the opportunity to solve your challenge.</p>
                                     </div>
                                     <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <GiNetworkBars className='text-[26px] ' />
+                                        <GiElectric className='text-[26px] ' />
                                         <p className='text-[24px] font-bold ' >Passion</p>
                                         <p className='text-[18px]' >Your success means as much to us as it does to you.</p>
                                     </div>
                                 </div>
                                 <div className='md:flex justify-around'>
                                     <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <VscWorkspaceTrusted className='text-[26px] ' />
+                                        <FaUserTie className='text-[26px] ' />
                                         <p className='text-[24px] font-bold ' >Professionalism</p>
                                         <p className='text-[18px]' >Respect and Integrity are among our fundamentals.</p>
                                     </div>
                                     <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <CgWorkAlt className='text-[26px] ' />
+                                        <FaChartLine className='text-[26px] ' />
                                         <p className='text-[24px] font-bold ' >Value-centricity</p>
                                         <p className='text-[18px]' >We cut out the fluff and focus on providing a service that makes a difference.</p>
                                     </div>
@@ -277,7 +275,7 @@ export default function Services() {
                                     <br />
                                     <p className='text-[22px] ' >The most sensitive aspect of our work is getting to know you and your vision. Aside from that, we are ready to stun you with our commitment to excellence. Whether you are a for-profit, charity, political campaign, e-commerce, educational platform or other. Get in touch.</p>
                                     <br />
-                                    <button className='green_roudend_btn' >View all Industries</button>
+                                    <button className='green_rounded_btn' >View all Industries</button>
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
                                     <Image className='rounded-xl p-10' src={industriesniche} alt="image" />

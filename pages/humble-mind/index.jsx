@@ -64,7 +64,7 @@ export default function Magzine() {
                                 <div className=' '>
                                     <h2 className='text-[24px] font-bold py-6 ' >Hear from us first</h2>
                                     <input className='block outline-[#2cbc63] border p-2 rounded-xl text-[20px] w-[100%]' type="text" placeholder='Enter your email' />
-                                    <button className='green_roudend_btn my-10 px-10' >Subscribe</button>
+                                    <button className='green_rounded_btn my-10 px-10' >Subscribe</button>
                                 </div>
                             </div>
 
