@@ -2,44 +2,43 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../../components/Layout";
 import Image from 'next/image'
-import { FaChevronRight, FaBullhorn, FaIcons, FaUserTie, FaChartLine, FaStar } from 'react-icons/fa'
+import { FaChevronRight, FaTools, FaUserTie, FaChartLine, FaStar, FaClipboardCheck, FaChartPie } from 'react-icons/fa'
 import { GiElectric } from 'react-icons/gi'
-import { RiCodeBoxFill } from 'react-icons/ri'
 import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
 
 
-import HTwebdesignfeatured from '../../../assets/imgs/HT-web-design-featured-600x586.png'
-import webdesignexpectations from '../../../assets/imgs/web-design-expectations-1024x1024.jpg'
-import webdesignimpact from '../../../assets/imgs/web-design-impact-600x600.jpg'
+import HTSeoSizedFeatured from '../../../assets/imgs/HT-seo-sized-featured-600x586.png'
+import seoExpectations from '../../../assets/imgs/seo-expectations-600x600.jpg'
 import HTLogoRetina from '../../../assets/imgs/HT-Logo-Retina-200x31.png'
-import otherSeoService from '../../../assets/imgs/other-seo-service.jpg'
 import otherContentMarketingService from '../../../assets/imgs/other-content-marketing-service.jpg'
+import otherWebDesignService from '../../../assets/imgs/other-web-design-service.jpg'
 import otherWebManagementService from '../../../assets/imgs/other-web-management-service.jpg'
+import seoImpact from '../../../assets/imgs/seo-impact-600x600.jpg'
 
-export default function WebDesign() {
+export default function SearchEngineOptimization() {
     return (
         <>
             <Head>
-                <title>Web Design - Humble Titan</title>
+                <title>Search Engine Optimization - Humble Titan</title>
             </Head>
             <Layout>
 
 
-                {/* Web Design */}
+                {/* Search Engine Optimization */}
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
-                                    <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Web Design</p>
-                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>We design stunning websites<span className='text-[#2cbc63]'>.</span></h1>
+                                    <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Search Engine Optimization</p>
+                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>We drastically improve Google Search Rankings<span className='text-[#2cbc63]'>.</span></h1>
                                     <br />
-                                    <p className='text-[22px] ' >Build for speed, performance, engagement, and competition. We create the bedrock for your online marketing strategy.</p>
+                                    <p className='text-[22px] ' >Drive high-value traffic to your website. Convert more users and gain the upper hand against competitors.</p>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={HTwebdesignfeatured} alt="image" />
+                                    <Image className='rounded-xl p-10' src={HTSeoSizedFeatured} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -49,42 +48,40 @@ export default function WebDesign() {
 
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <p className=' text-[40px] md:text-[50px] mb-20 text-[#023A51] font-bold text-center leading-[50px] md:leading-[59px] tracking-[-2px] '>More than design. We transform <br /> your vision into an online reality<span className='text-[#2cbc63]'>.</span></p>
+                        <p className=' text-[40px] md:text-[50px] mb-20 text-[#023A51] font-bold text-center leading-[50px] md:leading-[59px] tracking-[-2px] '>Extend online reach. Attract <br /> thousands of new visitors to <br /> your website<span className='text-[#2cbc63]'>.</span></p>
                         <div className='mx-auto md:flex flex-wrap justify-around text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='flex justify-between md:w-[45%] mb-6  '>
-                                <FaBullhorn className='text-[#2cbc63] w-[120px] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaTools className='text-[#2cbc63] w-[120px] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold  '>Translate your Brand Online
+                                    <p className=' text-[26px] font-semibold  '>1. Technical Optimization
                                     </p>
                                     <br />
                                     <p className='text-[22px] ' >Amplify your brand. Tell us your strategy, we’ll make sure it resonates with your target audience.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <RiCodeBoxFill className='text-[#2cbc63] mr-2 w-[150px] text-[150px] -translate-y-12 ' />
+                                <FaClipboardCheck className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>The Latest Web Technology
-                                    </p>
+                                    <p className=' text-[26px] font-semibold'>2. Relevance Optimization</p>
                                     <br />
-                                    <p className='text-[22px] '>Don’t get left behind. Reach users on desktop, mobile, and tablet with our responsive designs. Gain full control over your web performance by choosing from 200+ web features.</p>
+                                    <p className='text-[22px] ' >Rank for more terms than ever before. Receive recommendations on new page implementation, on-page metadata optimization, and TF-IDF copy. We deliver great content.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <FaIcons className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaChartLine className='text-[#2cbc63] mr-2 w-[150px] text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>Modern Design
+                                    <p className=' text-[26px] font-semibold'>3. Authority Optimization
                                     </p>
                                     <br />
-                                    <p className='text-[22px] ' >Make the right impression. We carefully select page layouts. We source tidy and professional images. We choose iconic typography. We create custom graphics and much more.</p>
+                                    <p className='text-[22px] '>Improve the expertise, authority, and trustworthiness of your site. We deliver campaigns that attract external links to boost your backlink profile. We establish your reputation, setting your brand apart from online competitors.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <FaUserTie className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaChartPie className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>We Serve All Verticals
-                                    </p>
+                                    <p className=' text-[26px] font-semibold'>4. Monitoring Performance</p>
                                     <br />
-                                    <p className='text-[22px] ' >Whether you are looking for a corporate, e-commerce, catalogue, institutional, or brochure site. We offer the experience and expertise to surpass your expectations.</p>
+                                    <p className='text-[22px] ' >We keep an eye on real-time data from Google and other search engines. We extract and report on critical insights. We make relevant recommendations that allow you to make well-informed marketing decisions.</p>
                                 </div>
                             </div>
                         </div>
@@ -99,17 +96,17 @@ export default function WebDesign() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={webdesignexpectations} alt="image" />
+                                    <Image className='rounded-xl p-10' src={seoExpectations} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >What You Can Expect</p>
-                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>A transformation of your ideas into a website people want to see and use<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>An uplift of web traffic quality and quantity. Better rankings, more online visits<span className='text-[#2cbc63]'>.</span></p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >As web designers, we deliver a marketing communication tool that drives online performance.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We unlock organic web opportunities, shifting business reliance on branded search and paid channels.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Our sites are clean, mobile-friendly, and designed for engagement. Once we understand your needs, we layout a seamless user interface, map a smooth user experience, plus hand over a coded system that’s easy to manage.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We diligently work to stay ahead of the ever-evolving digital landscape. Not only do we continue to master how computer-programmed algorithms work, but we are also able to diversify your approach to the search. Take advantage of the many features of search engine results pages: featured snippets, voice search, revenue-driving positions, and local SEO.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Whether you are an e-commerce brand, need a lead gen site, or simply have an idea to promote, we’ll custom deliver your web presence.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >Brief us on your brand and objectives. We’ll deliver in-depth research on your market and the needs of your core audience. You’ll be impressed by our ability to translate these insights into an organic campaign that search engines like Google will love.</p>
                                     <br />
                                 </div>
                             </div>
@@ -118,10 +115,10 @@ export default function WebDesign() {
 
                         <div className='md:flex flex-wrap justify-around my-20 '>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                <p className='text-[20px] text-[#59667d]  '>Web Features</p>
+                                <p className='text-[20px] text-[#59667d]  '>SEO Deliverables</p>
                                 <br />
                                 <hr />
-                                <p className='text-[34px] font-bold text-[#023A51] ' >200 +</p>
+                                <p className='text-[34px] font-bold text-[#023A51] ' >25 +</p>
 
                             </div>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
@@ -132,10 +129,10 @@ export default function WebDesign() {
 
                             </div>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                <p className='text-[20px] text-[#59667d]  '>Web Customizations</p>
+                                <p className='text-[20px] text-[#59667d]  '>Verticals Servede</p>
                                 <br />
                                 <hr />
-                                <p className='text-[34px] font-bold text-[#023A51] ' >Unlimited</p>
+                                <p className='text-[34px] font-bold text-[#023A51] ' >All</p>
 
                             </div>
                         </div>
@@ -143,8 +140,8 @@ export default function WebDesign() {
 
                         <div className='flex flex-col items-center  ' >
                             <div className='md:w-[33%] text-center'>
-                                <p className='text-[22px] text-[#59667d] ' >You already have the pieces to the puzzle, let’s help you put it all together. Get in touch for a quote on your new website today.</p>
-                                <button className='green_rounded_btn mt-4 ' >Get a Web Design Quote </button>
+                                <p className='text-[22px] text-[#59667d] ' >Time to get noticed online. Let’s blow you away with our ability to improve web visibility and business revenue.</p>
+                                <button className='green_rounded_btn mt-4 ' >Get an SEO Quote</button>
 
                             </div>
                         </div>
@@ -158,19 +155,17 @@ export default function WebDesign() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={webdesignimpact} alt="image" />
+                                    <Image className='rounded-xl p-10' src={seoImpact} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Business Impact</p>
-                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>An established brand identity in the dynamic digital landscape<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>Boost web visibility. Claim a larger share of your search audience<span className='text-[#2cbc63]'>.</span></p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >A modern website will unlock new opportunities.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >Make your way up Google’s first search engine results page.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >It is an efficient way to quickly develop business accessibility and credibility. It will connect your ideas, products, and services to a limitless audience.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >The first thing most people do when they want to research, solve a problem, or make a purchase, is to look for solutions online. It’s no wonder that over 93% of all online experiences begin with a search engine. SEO is the discipline that allows businesses to place their brand ahead of the general search behavior of a target audience.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Add value to the experience of customers, clients, and stakeholders, by investing in this owned communication platform.</p>
-                                    <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Contact us today. Gain a strategic asset that stands out from competitors.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >Thus, when done well, SEO is the long-term marketing strategy that will continue to drive visitors to your site for years to come. It transforms a website into an indispensable marketing resource.</p>
                                     <br />
                                 </div>
                             </div>
@@ -227,30 +222,30 @@ export default function WebDesign() {
                             <div className='flex flex-col items-center mb-20 ' >
                                 <div className='md:w-[40%] text-center'>
                                     <p className=' text-[40px] text-[#023A51] font-bold md:text-[50px] mb-4 leading-[50px] md:leading-[59px] tracking-[-2px] '>Our Commitment</p>
-                                    <p className='text-[22px] text-[#59667d] ' >Businesses don’t pay for vanity projects, they execute a mission statement with real values. We get that.  The objective of our designs is to drive performance.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >If you haven’t heard about search engine optimization, chances are, potential customers haven’t heard of you either. We offer the elite of modern-day marketing.</p>
                                 </div>
                             </div>
                             <div className='md:flex mx-auto justify-center' >
                                 <div className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[40%] p-10 ' >
-                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Web Design Deliverables</p>
+                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Search Engine Optimization Deliverables</p>
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Website Wire framing</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Local SEO</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Web Architecture Planning</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />International GEO Targeting</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Unique Page Layouts</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Technical Optimization</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />User Experience Optimization</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Research and Analysis</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Fully Designed Website</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />On Page Recommendations</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Cross Technology Implementation</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />SERP 2 and 3 Optimizations</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Webmaster Synchronization</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Technical Audits and Insights</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Content Management System</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Voice Search Optimization</p>
                                     <br />
 
 
@@ -263,13 +258,13 @@ export default function WebDesign() {
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Your Passion Shapes our Creativity.</p>
+                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Online search is the future of business</p>
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We take on the responsibility of translating hours of research and planning into a visual magnet that attracts new customers while spreading a brand message.</p>
+                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >Never before in history have we been closer to exactly mapping how customers think [about ideas, services, products], discover, and behave. We are proud to be experts in the interdisciplinary skill that is search engine optimization.</p>
                                     <br />
-                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >Bring your ideas to our table so we may show you how your story fits on an /about us/ page. We know how to highlight the most important aspects of your brand from your /home/ page. We understand the importance of  crafting well designed /service/, /product/, /location/, /category/, and /blog/ pages.</p>
+                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We specialize in web visibility and positioning. That means we have the technical skills to ensure your site is indexed by search engines. We deliver strategies to develop organic relevance, driving web performance. We establish your site authority and monitor results.</p>
                                     <br />
 
 
@@ -397,10 +392,10 @@ export default function WebDesign() {
 
                             <div className='md:flex flex-wrap justify-around my-20'>
                                 <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] '>
-                                    <Image className='rounded-xl' src={otherSeoService} alt="image" />
-                                    <p className='text-[24px] tracking-[-0.5px] font-bold  '>Search Engine Optimization</p>
+                                    <Image className='rounded-xl' src={otherWebDesignService} alt="image" />
+                                    <p className='text-[24px] tracking-[-0.5px] font-bold  '>Web Design</p>
                                     <br />
-                                    <p className='text-[18px] text-[#59667d] '>Improve organic visibility. Reach more users online.</p>
+                                    <p className='text-[18px] text-[#59667d] '>We will build a website that reflects your business objectives.</p>
                                     <br />
                                     <button className='text-[20px] font-bold hover:text-[#2cbc63] transition duration-300 '>Read more</button>
                                 </div>

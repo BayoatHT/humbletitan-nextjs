@@ -2,44 +2,44 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../../components/Layout";
 import Image from 'next/image'
-import { FaChevronRight, FaBullhorn, FaIcons, FaUserTie, FaChartLine, FaStar } from 'react-icons/fa'
+import { FaChevronRight, FaPoll, FaFireAlt, FaUserTie, FaCheckCircle, FaChartLine, FaStar } from 'react-icons/fa'
 import { GiElectric } from 'react-icons/gi'
-import { RiCodeBoxFill } from 'react-icons/ri'
 import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
 
 
-import HTwebdesignfeatured from '../../../assets/imgs/HT-web-design-featured-600x586.png'
-import webdesignexpectations from '../../../assets/imgs/web-design-expectations-1024x1024.jpg'
-import webdesignimpact from '../../../assets/imgs/web-design-impact-600x600.jpg'
+import HTWebManagmentFeatured from '../../../assets/imgs/HT-web-managment-featured-600x586.png'
+import webManagementExpectations from '../../../assets/imgs/web-management-expectations-600x600.jpg'
+import webManagementImpact from '../../../assets/imgs/web-management-impact-600x600.jpg'
 import HTLogoRetina from '../../../assets/imgs/HT-Logo-Retina-200x31.png'
 import otherSeoService from '../../../assets/imgs/other-seo-service.jpg'
 import otherContentMarketingService from '../../../assets/imgs/other-content-marketing-service.jpg'
-import otherWebManagementService from '../../../assets/imgs/other-web-management-service.jpg'
+import otherWebDesignService from '../../../assets/imgs/other-web-design-service.jpg'
 
-export default function WebDesign() {
+
+export default function WebPerformanceManagement() {
     return (
         <>
             <Head>
-                <title>Web Design - Humble Titan</title>
+                <title>Web Performance Management - Humble Titan</title>
             </Head>
             <Layout>
 
 
-                {/* Web Design */}
+                {/*Web Performance Management*/}
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
-                                    <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Web Design</p>
-                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>We design stunning websites<span className='text-[#2cbc63]'>.</span></h1>
+                                    <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Web Performance Management</p>
+                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>We execute an effective online strategy<span className='text-[#2cbc63]'>.</span></h1>
                                     <br />
-                                    <p className='text-[22px] ' >Build for speed, performance, engagement, and competition. We create the bedrock for your online marketing strategy.</p>
+                                    <p className='text-[22px] md:text-[26px] ' >We will manage the day-to-day operations of your website. Receive monthly deliverables and reports to stay on track.</p>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={HTwebdesignfeatured} alt="image" />
+                                    <Image className='rounded-xl p-10' src={HTWebManagmentFeatured} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -49,42 +49,43 @@ export default function WebDesign() {
 
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <p className=' text-[40px] md:text-[50px] mb-20 text-[#023A51] font-bold text-center leading-[50px] md:leading-[59px] tracking-[-2px] '>More than design. We transform <br /> your vision into an online reality<span className='text-[#2cbc63]'>.</span></p>
+                        <p className=' text-[40px] md:text-[50px] mb-20 text-[#023A51] font-bold text-center leading-[50px] md:leading-[59px] tracking-[-2px] '>We will manage the day-to-day <br /> operations of your website<span className='text-[#2cbc63]'>.</span></p>
                         <div className='mx-auto md:flex flex-wrap justify-around text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='flex justify-between md:w-[45%] mb-6  '>
-                                <FaBullhorn className='text-[#2cbc63] w-[120px] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaUserTie className='text-[#2cbc63] w-[120px] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold  '>Translate your Brand Online
+                                    <p className=' text-[26px] font-semibold  '>1. Understanding client objectives
                                     </p>
                                     <br />
-                                    <p className='text-[22px] ' >Amplify your brand. Tell us your strategy, we’ll make sure it resonates with your target audience.</p>
+                                    <p className='text-[22px] ' >We take into account the business reality of clients, mapping out campaigns that will help each business achieve its objectives per KPI.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <RiCodeBoxFill className='text-[#2cbc63] mr-2 w-[150px] text-[150px] -translate-y-12 ' />
+                                <FaFireAlt className='text-[#2cbc63] mr-2 w-[150px] text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>The Latest Web Technology
+                                    <p className=' text-[26px] font-semibold'>
+                                        2. Identifying client strengths/weaknesses
                                     </p>
                                     <br />
                                     <p className='text-[22px] '>Don’t get left behind. Reach users on desktop, mobile, and tablet with our responsive designs. Gain full control over your web performance by choosing from 200+ web features.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <FaIcons className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaPoll className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>Modern Design
+                                    <p className=' text-[26px] font-semibold'>3. Stay ahead of market trends and competitors
                                     </p>
                                     <br />
-                                    <p className='text-[22px] ' >Make the right impression. We carefully select page layouts. We source tidy and professional images. We choose iconic typography. We create custom graphics and much more.</p>
+                                    <p className='text-[22px] ' >We keep up with the ever-evolving search environment. We monitor niche trends and run frequent audits on competitors to maintain the strategic edge of our clients.</p>
                                 </div>
                             </div>
                             <div className='flex md:w-[45%] mb-6 '>
-                                <FaUserTie className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
+                                <FaCheckCircle className='text-[#2cbc63] mr-2 text-[150px] -translate-y-12 ' />
                                 <div>
-                                    <p className=' text-[26px] font-semibold'>We Serve All Verticals
+                                    <p className=' text-[26px] font-semibold'>4. Consistent performance monitoring
                                     </p>
                                     <br />
-                                    <p className='text-[22px] ' >Whether you are looking for a corporate, e-commerce, catalogue, institutional, or brochure site. We offer the experience and expertise to surpass your expectations.</p>
+                                    <p className='text-[22px] ' >Receive monthly reports and insights based on current search data (fed directly from the search engine webmaster tools).</p>
                                 </div>
                             </div>
                         </div>
@@ -93,23 +94,25 @@ export default function WebDesign() {
 
 
 
-                {/* Web Design expectations */}
+                {/* Web Management expectations */}
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={webdesignexpectations} alt="image" />
+                                    <Image className='rounded-xl p-10' src={webManagementExpectations} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >What You Can Expect</p>
-                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>A transformation of your ideas into a website people want to see and use<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>Business and web performance that’s driven in a purposeful way<span className='text-[#2cbc63]'>.</span></p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >As web designers, we deliver a marketing communication tool that drives online performance.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We assess the immediate needs, long-term goals, competition, and situation of our clients.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Our sites are clean, mobile-friendly, and designed for engagement. Once we understand your needs, we layout a seamless user interface, map a smooth user experience, plus hand over a coded system that’s easy to manage.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We provide data-driven forecasts to clarify the direction we aim to take our clients. Once project plans are agreed on, we provide a monthly statement of work with deliverable due dates.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Whether you are an e-commerce brand, need a lead gen site, or simply have an idea to promote, we’ll custom deliver your web presence.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >Our campaigns are designed to reflect the unique ambitions of our clients as their brands grow further into the digital marketing space.</p>
+                                    <br />
+                                    <p className='text-[22px] text-[#59667d] ' >As we plan, execute and monitor the impact of the activity, we offer support to stakeholders so that their offline business objectives are always aligned with an online strategy.</p>
                                     <br />
                                 </div>
                             </div>
@@ -118,24 +121,24 @@ export default function WebDesign() {
 
                         <div className='md:flex flex-wrap justify-around my-20 '>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                <p className='text-[20px] text-[#59667d]  '>Web Features</p>
+                                <p className='text-[20px] text-[#59667d]  '>Management Deliverables</p>
                                 <br />
                                 <hr />
-                                <p className='text-[34px] font-bold text-[#023A51] ' >200 +</p>
+                                <p className='text-[34px] font-bold text-[#023A51] ' >50 +</p>
 
                             </div>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                <p className='text-[20px] text-[#59667d]  '>Delivery</p>
+                                <p className='text-[20px] text-[#59667d]  '>Plans</p>
                                 <br />
                                 <hr />
-                                <p className='text-[34px] font-bold text-[#023A51] ' >2 Weeks Avg.</p>
+                                <p className='text-[34px] font-bold text-[#023A51] ' >1 Year Minimum</p>
 
                             </div>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                <p className='text-[20px] text-[#59667d]  '>Web Customizations</p>
+                                <p className='text-[20px] text-[#59667d]  '>Business Niches</p>
                                 <br />
                                 <hr />
-                                <p className='text-[34px] font-bold text-[#023A51] ' >Unlimited</p>
+                                <p className='text-[34px] font-bold text-[#023A51] ' >All</p>
 
                             </div>
                         </div>
@@ -143,8 +146,8 @@ export default function WebDesign() {
 
                         <div className='flex flex-col items-center  ' >
                             <div className='md:w-[33%] text-center'>
-                                <p className='text-[22px] text-[#59667d] ' >You already have the pieces to the puzzle, let’s help you put it all together. Get in touch for a quote on your new website today.</p>
-                                <button className='green_rounded_btn mt-4 ' >Get a Web Design Quote </button>
+                                <p className='text-[22px] text-[#59667d] ' >You know your business. Focus on what you do best. Let us handle the rest. We deliver elite web marketing.</p>
+                                <button className='green_rounded_btn mt-4 ' >Get a Management Quote </button>
 
                             </div>
                         </div>
@@ -158,20 +161,17 @@ export default function WebDesign() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={webdesignimpact} alt="image" />
+                                    <Image className='rounded-xl p-10' src={webManagementImpact} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >Business Impact</p>
-                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>An established brand identity in the dynamic digital landscape<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className=' text-[40px] font-bold md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] '>Elite web expertise dedicated to your your brand<span className='text-[#2cbc63]'>.</span></p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >A modern website will unlock new opportunities.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We ensure clients are always empowered with the real-time insights that inform business-critical decisions. Stay ahead of the latest online trends. Rely on the expertise of industry-leading experts. We help clients tap into the limitless opportunities of the modern marketing ecosystem.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >It is an efficient way to quickly develop business accessibility and credibility. It will connect your ideas, products, and services to a limitless audience.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >By applying the latest methodologies and technology to business needs, we translate strategy into traffic, leads, conversions and revenue.</p>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Add value to the experience of customers, clients, and stakeholders, by investing in this owned communication platform.</p>
-                                    <br />
-                                    <p className='text-[22px] text-[#59667d] ' >Contact us today. Gain a strategic asset that stands out from competitors.</p>
-                                    <br />
+
                                 </div>
                             </div>
                         </div>
@@ -227,31 +227,36 @@ export default function WebDesign() {
                             <div className='flex flex-col items-center mb-20 ' >
                                 <div className='md:w-[40%] text-center'>
                                     <p className=' text-[40px] text-[#023A51] font-bold md:text-[50px] mb-4 leading-[50px] md:leading-[59px] tracking-[-2px] '>Our Commitment</p>
-                                    <p className='text-[22px] text-[#59667d] ' >Businesses don’t pay for vanity projects, they execute a mission statement with real values. We get that.  The objective of our designs is to drive performance.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >We offer a winning strategy backed by careful planning and precise execution. You can trust us to put your objectives first.</p>
                                 </div>
                             </div>
                             <div className='md:flex mx-auto justify-center' >
                                 <div className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[40%] p-10 ' >
-                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Web Design Deliverables</p>
+                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Web Management Deliverables</p>
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Website Wire framing</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Project Plans</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Web Architecture Planning</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Search Term Position Tracking</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Unique Page Layouts</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />On page and Internal Link Audit</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />User Experience Optimization</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Cannibalization Audit</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Fully Designed Website</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Backlink Audit</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Cross Technology Implementation</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Monthly Web Health Check</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Webmaster Synchronization</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Competitor Analysis</p>
                                     <br />
-                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Content Management System</p>
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Performance Forecasts</p>
                                     <br />
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Weekly/Monthly Calls</p>
+                                    <br />
+                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaChevronRight className='translate-y-2  mr-[12px]' color='#2cbc63' />Performance Reports</p>
+                                    <br />
+
 
 
                                 </div>
@@ -263,17 +268,16 @@ export default function WebDesign() {
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>Your Passion Shapes our Creativity.</p>
+                                    <p className=' text-[20px] font-bold md:text-[24px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>You’ll always progress as our managed client.</p>
                                     <br />
                                     <hr />
                                     <br />
-                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We take on the responsibility of translating hours of research and planning into a visual magnet that attracts new customers while spreading a brand message.</p>
+                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We grow web visibility. Regardless of where your business currently stands, we will drive results.</p>
                                     <br />
-                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >Bring your ideas to our table so we may show you how your story fits on an /about us/ page. We know how to highlight the most important aspects of your brand from your /home/ page. We understand the importance of  crafting well designed /service/, /product/, /location/, /category/, and /blog/ pages.</p>
+                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We’ll audit your site and we’ll tell you every single thing you can do to improve. We’ll provide a technical analysis that uncovers the functional and design opportunities you are yet to take advantage of. We reduce client’s reliance on branded and paid search.</p>
                                     <br />
-
-
-
+                                    <p className='text-[20px] text-center md:text-[22px] text-[#59667d] flex ' >We consistently scan the marketing landscape for solutions that are most applicable to business objectives.</p>
+                                    <br />
                                 </div>
                             </div>
                         </div>
@@ -413,10 +417,10 @@ export default function WebDesign() {
                                     <button className='text-[20px] font-bold hover:text-[#2cbc63] transition duration-300 '>Read more</button>
                                 </div>
                                 <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] '>
-                                    <Image className='rounded-xl' src={otherWebManagementService} alt="image" />
-                                    <p className='text-[24px] tracking-[-0.5px] font-bold  '>Website Management</p>
+                                    <Image className='rounded-xl' src={otherWebDesignService} alt="image" />
+                                    <p className='text-[24px] tracking-[-0.5px] font-bold  '>Web Design</p>
                                     <br />
-                                    <p className='text-[18px] text-[#59667d] '>We will manage the day-to-day operations of your website.</p>
+                                    <p className='text-[18px] text-[#59667d] '>We will build a website that reflects your business objectives.</p>
                                     <br />
                                     <button className='text-[20px] font-bold hover:text-[#2cbc63] transition duration-300 '>Read more</button>
                                 </div>
