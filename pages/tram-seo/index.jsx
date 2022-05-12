@@ -21,7 +21,7 @@ export default function TramSeo() {
     return (
         <>
             <Head>
-                <title>Services - Humble Titan</title>
+                <title>TRAM SEO Course - Humble Titan</title>
             </Head>
             <Layout>
 
