@@ -43,7 +43,7 @@ const Header = () => {
                 <ul className="abcd_row mr-auto_abcd ul_abcd abcd_align-center">
                   <li>
                     <a
-                      href="https://www.humbletitan.com/offices/"
+                      href="https://h-t.vercel.app/offices/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       Offices
@@ -51,7 +51,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.humbletitan.com/faqs/"
+                      href="https://h-t.vercel.app/faqs/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       FAQS
@@ -59,7 +59,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu flex abcd_relative">
                     <a
-                      href="https://www.humbletitan.com/about/"
+                      href="https://h-t.vercel.app/about/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       About Us
@@ -83,7 +83,7 @@ const Header = () => {
                         style={{ padding: "12px 20px" }}
                       >
                         <a
-                          href="https://www.humbletitan.com/team/"
+                          href="https://h-t.vercel.app/the-team/"
                           className="a_abcd"
                         >
                           THE TEAM
@@ -142,15 +142,15 @@ const Header = () => {
                 </div>
                 <ul className="abcd_row abcd_justify-between abcd_nav abcd_align-center ul_abcd">
                   <li>
-                    <a href="https://www.humbletitan.com/" className="a_abcd text-[#023A51] text-[18px]">
+                    <a href="https://h-t.vercel.app/" className="a_abcd text-[#023A51] text-[18px]">
                       {" "}
                       Home
                     </a>
                   </li>
                   <li className="abcd_mainmenu abcd_relative">
                     <a
-                      href="https://www.humbletitan.com/politics/"
-                      className="active a_abcd text-[#023A51] text-[18px]"
+                      href="https://h-t.vercel.app/politics/"
+                      className=" a_abcd text-[#023A51] text-[18px]"
                     >
                       Politics{" "}
                       <FaChevronDown
@@ -164,7 +164,7 @@ const Header = () => {
                     <ul className="abcd_submenu ul_abcd">
                       <li className="abcd_menu-politics">
                         <a
-                          href="https://www.humbletitan.com/due-diligence/abcd-stock/"
+                          href="https://h-t.vercel.app/due-diligence/abcd-stock/"
                           className="a_abcd"
                         >
                           {" "}
@@ -173,7 +173,7 @@ const Header = () => {
                       </li>
                       <li className="abcd_menu-politics">
                         <a
-                          href="https://www.humbletitan.com/bayo-search-consultant/"
+                          href="https://h-t.vercel.app/bayo-search-consultant/"
                           className="a_abcd"
                         >
                           {" "}
@@ -184,7 +184,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.humbletitan.com/education/"
+                      href="https://h-t.vercel.app/education/"
                       className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Education
@@ -192,7 +192,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href="https://www.humbletitan.com/services/"
+                      href="https://h-t.vercel.app/services/"
                       className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Services{" "}
@@ -209,7 +209,7 @@ const Header = () => {
                         <div className="abcd_menu_font">
                           {" "}
                           <a
-                            href="https://www.humbletitan.com/services/web-design/"
+                            href="https://h-t.vercel.app/services/web-design/"
                             className="a_abcd"
                           >
                             {" "}
@@ -222,7 +222,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://www.humbletitan.com/services/content-marketing/"
+                            href="https://h-t.vercel.app/services/content-marketing/"
                             className="a_abcd"
                           >
                             {" "}
@@ -238,7 +238,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://www.humbletitan.com/services/content-marketing/"
+                            href="https://h-t.vercel.app/services/content-marketing/"
                             className="a_abcd"
                           >
                             {" "}
@@ -251,7 +251,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://www.humbletitan.com/services/web-performance-management/"
+                            href="https://h-t.vercel.app/services/web-performance-management/"
                             className="a_abcd"
                           >
                             {" "}
@@ -268,7 +268,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href="https://www.humbletitan.com/tram-seo/"
+                      href="https://h-t.vercel.app/tram-seo/"
                       className="a_abcd text-[#023A51] "
                     >
                       <strong>TRAM SEO Course</strong>{" "}
@@ -294,7 +294,7 @@ const Header = () => {
                           </div>
                           <div className="abcd_font_terms">
                             <a
-                              href="https://www.humbletitan.com/tram-seo-course/"
+                              href="https://h-t.vercel.app/tram-seo-course/"
                               className="a_abcd"
                             >
                               Standard Package
@@ -310,7 +310,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                               className="a_abcd"
                             >
                               Passion Pakage
@@ -326,7 +326,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                               className="a_abcd"
                             >
                               Professional Pakage
@@ -342,7 +342,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                               className="a_abcd"
                             >
                               About the course
@@ -353,7 +353,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                               className="a_abcd"
                             >
                               About the Founder
@@ -372,7 +372,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://www.humbletitan.com/tram-seo-course/technical-course/"
+                            href="https://h-t.vercel.app/tram-seo-course/technical-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -385,7 +385,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://www.humbletitan.com/tram-seo-course/authority-course/"
+                            href="https://h-t.vercel.app/tram-seo-course/authority-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -403,7 +403,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://www.humbletitan.com/tram-seo-course/ranking-course/"
+                            href="https://h-t.vercel.app/tram-seo-course/ranking-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -416,7 +416,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://www.humbletitan.com/tram-seo-course/monitoring-course/"
+                            href="https://h-t.vercel.app/tram-seo-course/monitoring-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -432,7 +432,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.humbletitan.com/news/"
+                      href="https://h-t.vercel.app/news/"
                       className="a_abcd text-[#023A51] text-[18px] "
                     >
                       Magazine
@@ -440,7 +440,7 @@ const Header = () => {
                   </li>
                   <li className="btn btn-primary">
                     <a
-                      href="https://www.humbletitan.com/contact/"
+                      href="https://h-t.vercel.app/contact/"
                       className="a_abcd text-[#fff] text-center bg-[#2cbc63] sm:w-[100px] py-[0px] px-[20px] rounded-3xl text-[18px]"
                     >
                       Hire Us
@@ -465,14 +465,14 @@ const Header = () => {
           </div>
 
           <a
-            href="https://www.humbletitan.com/"
+            href="https://h-t.vercel.app/"
             className="abcd_my_head_color abcd_responsive_header_font"
           >
             Home
           </a>
           <button type="button" className="abcd_collapsible  abcd_menu_active">
             <a
-              href="https://www.humbletitan.com/politics/"
+              href="https://h-t.vercel.app/politics/"
               className="active abcd_responsive_header_font"
             >
               Politics
@@ -483,27 +483,27 @@ const Header = () => {
           </button>
           <div className="abcd_content">
             <a
-              href="https://www.humbletitan.com/due-diligence/abcd-stock/"
+              href="https://h-t.vercel.app/due-diligence/abcd-stock/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               ABCD Stock
             </a>
             <a
-              href="https://www.humbletitan.com/bayo-search-consultant/"
+              href="https://h-t.vercel.app/bayo-search-consultant/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               Founder & Consultant
             </a>
           </div>
           <a
-            href="https://www.humbletitan.com/education/"
+            href="https://h-t.vercel.app/education/"
             className="abcd_my_head_color abcd_responsive_header_font"
           >
             Education
           </a>
           <button type="button" className="abcd_collapsible">
             <a
-              href="https://www.humbletitan.com/services/"
+              href="https://h-t.vercel.app/services/"
               className="abcd_my_head_color abcd_responsive_header_font"
             >
               Services{" "}
@@ -514,25 +514,25 @@ const Header = () => {
           </button>
           <div className="abcd_content">
             <a
-              href="https://www.humbletitan.com/services/web-design/"
+              href="https://h-t.vercel.app/services/web-design/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               web design
             </a>
             <a
-              href="https://www.humbletitan.com/services/content-marketing/"
+              href="https://h-t.vercel.app/services/content-marketing/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               content Marketing
             </a>
             <a
-              href="https://www.humbletitan.com/services/search-engine-optimization/"
+              href="https://h-t.vercel.app/services/search-engine-optimization/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               search engine optimization
             </a>
             <a
-              href="https://www.humbletitan.com/services/search-engine-optimization/"
+              href="https://h-t.vercel.app/services/search-engine-optimization/"
               className="abcd_my_head_color abcd_collapse_font"
             >
               Web Management
@@ -540,7 +540,7 @@ const Header = () => {
           </div>
           <button type="button" className="abcd_collapsible">
             <a
-              href="https://www.humbletitan.com/tram-seo/"
+              href="https://h-t.vercel.app/tram-seo/"
               className="abcd_my_head_color abcd_responsive_header_font"
             >
               Tram Seo Course{" "}
@@ -552,7 +552,7 @@ const Header = () => {
           <div className="abcd_content">
             <div className="abcd_row abcd_justify-center abcd_align-center">
               <a
-                href="https://www.humbletitan.com/tram-seo/"
+                href="https://h-t.vercel.app/tram-seo/"
                 className="abcd_my_head_color abcd_collapse_font"
               >
                 standar Package
@@ -566,7 +566,7 @@ const Header = () => {
             </div>
             <div className="abcd_row abcd_justify-center abcd_align-center">
               <a
-                href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                 className="abcd_my_head_color abcd_collapse_font"
               >
                 Passion Packages
@@ -579,7 +579,7 @@ const Header = () => {
             </div>
             <div className="abcd_row abcd_justify-center abcd_align-center">
               <a
-                href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+                href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
                 className="abcd_my_head_color abcd_collapse_font"
               >
                 Professional Packages
@@ -591,26 +591,26 @@ const Header = () => {
               </div>
             </div>
             <a
-              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
               className="abcd_my_head_color abcd_collapse_font"
             >
               About the Course
             </a>
             <a
-              href="https://www.humbletitan.com/due-diligence/abcd-stock/#"
+              href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
               className="abcd_my_head_color abcd_collapse_font"
             >
               About the Founder
             </a>
           </div>
           <a
-            href="https://www.humbletitan.com/news/"
+            href="https://h-t.vercel.app/news/"
             className="abcd_my_head_color abcd_responsive_header_font"
           >
             Magazine
           </a>
           <a
-            href="https://www.humbletitan.com/contact/"
+            href="https://h-t.vercel.app/contact/"
             className="abcd_my_head_color abcd_responsive_header_font"
           >
             Hire us

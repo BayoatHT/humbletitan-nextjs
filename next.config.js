@@ -14,7 +14,7 @@ module.exports = withPWA({
   optimizeFonts: true,
   reactStrictMode: true,
   images: {
-    domains: ["*.*.*"],
+    domains: ["*.*.*", "localhost"],
     formats: ["image/avif", "image/webp"],
   },
 });

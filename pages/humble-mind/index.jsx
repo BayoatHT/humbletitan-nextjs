@@ -2,6 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
+import axios from 'axios'
+import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 import UnemploymentTrap from '../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
 import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
@@ -9,7 +12,9 @@ import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x42
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import GetAQuote from '../../components/GetAQuote';
 
-export default function Magzine() {
+export default function Magzine({ data }) {
+    const blogs = data.data
+    const router = useRouter()
     return (
         <>
             <Head>
@@ -33,7 +38,26 @@ export default function Magzine() {
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className=' md:flex flex-wrap justify-around '>
-                                <div className='md:flex justify-around'>
+                                <div className='md:flex flex-wrap justify-around'>
+                                    {
+                                        blogs?.map((blog) => {
+                                            const post = blog?.attributes
+                                            const blogImage = post.blogImage.data.attributes
+                                            const blogImageUrl = `http://localhost:1337${blogImage.url}`
+                                            return (
+                                                <Link key={blog?.id} href={`/humble-mind/blogs/${post.slug}`} passHref  >
+                                                    <a className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center group rounded mb-2 md:w-[48%] '>
+                                                        <div className="w-[100%] ">
+                                                            <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage.height} width={blogImage.width} alt="image" />
+
+                                                        </div>
+                                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] group-hover:text-[#2cbc63] ease-in duration-300 ' >{blog.attributes.title}</p>
+                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tags.data[0].attributes.name}</p>
+                                                    </a>
+                                                </Link>
+                                            )
+                                        })
+                                    }
                                     <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
 
                                         <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
@@ -127,4 +151,13 @@ export default function Magzine() {
             </Layout>
         </>
     )
+}
+
+export async function getServerSideProps(ctx) {
+    const { data } = await axios.get("http://localhost:1337/api/blogs?populate=*")
+    return {
+        props: {
+            data
+        },
+    };
 }
