@@ -12,8 +12,9 @@ import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x42
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import GetAQuote from '../../components/GetAQuote';
 
-export default function Magzine({ data }) {
+export default function Magazine({ data }) {
     const blogs = data.data
+    console.log(blogs)
     const router = useRouter()
     return (
         <>
@@ -45,14 +46,14 @@ export default function Magzine({ data }) {
                                             const blogImage = post.blogImage.data.attributes
                                             const blogImageUrl = `https://humble-titan-strapi.herokuapp.com${blogImage.url}`
                                             return (
-                                                <Link key={blog?.id} href={`/humble-mind/blogs/${post.slug}`} passHref  >
+                                                <Link key={blog?.id} href={`/humble-mind/blogs/${post?.slug}`} passHref  >
                                                     <a className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center group rounded mb-2 md:w-[48%] '>
                                                         <div className="w-[100%] ">
-                                                            <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage.height} width={blogImage.width} alt="image" />
+                                                            <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height} width={blogImage?.width} alt="image" />
 
                                                         </div>
                                                         <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] group-hover:text-[#2cbc63] ease-in duration-300 ' >{blog.attributes.title}</p>
-                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tags.data[0].attributes.name}</p>
+                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tags.data[0]?.attributes.name}</p>
                                                     </a>
                                                 </Link>
                                             )

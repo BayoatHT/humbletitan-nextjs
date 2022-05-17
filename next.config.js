@@ -14,7 +14,7 @@ module.exports = withPWA({
   optimizeFonts: true,
   reactStrictMode: true,
   images: {
-    domains: ["*.*.*", "https://humble-titan-strapi.herokuapp.com"],
+    domains: ["*.*.*", "humble-titan-strapi.herokuapp.com"],
     formats: ["image/avif", "image/webp"],
   },
 });
