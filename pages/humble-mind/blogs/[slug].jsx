@@ -20,8 +20,7 @@ export default function Blog({ data }) {
     console.log(blog)
     const blogImage = blog.blogImage.data.attributes
     console.log(blogImage)
-    const blogImageUrl = `http://localhost:1337${blogImage.url}`
-    // let blogImage = "http://localhost:1337" + data.data[1].attributes.blogImage.data.attributes.url
+    const blogImageUrl = `https://humble-titan-strapi.herokuapp.com${blogImage.url}`
     return (
         <>
             <Head>
@@ -60,7 +59,7 @@ export default function Blog({ data }) {
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='flex justify-center'>
                                 <div className='w-[80%]'>
-                                    <Image className='rounded-lg' src={blogImageUrl} layout="responsive" height={blogImage.height} width={blogImage.width} alt="Blog Image" />
+                                    <Image className='rounded-[20px] ' src={blogImageUrl} layout="responsive" height={blogImage.height} width={blogImage.width} alt="Blog Image" />
 
                                 </div>
 
@@ -240,7 +239,7 @@ export default function Blog({ data }) {
 
 export async function getServerSideProps(ctx) {
     const { query: { slug } } = ctx
-    const { data } = await axios.get(`http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
+    const { data } = await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
     return {
         props: {
             data,

@@ -43,7 +43,7 @@ export default function Magzine({ data }) {
                                         blogs?.map((blog) => {
                                             const post = blog?.attributes
                                             const blogImage = post.blogImage.data.attributes
-                                            const blogImageUrl = `http://localhost:1337${blogImage.url}`
+                                            const blogImageUrl = `https://humble-titan-strapi.herokuapp.com${blogImage.url}`
                                             return (
                                                 <Link key={blog?.id} href={`/humble-mind/blogs/${post.slug}`} passHref  >
                                                     <a className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center group rounded mb-2 md:w-[48%] '>
@@ -154,7 +154,7 @@ export default function Magzine({ data }) {
 }
 
 export async function getServerSideProps(ctx) {
-    const { data } = await axios.get("http://localhost:1337/api/blogs?populate=*")
+    const { data } = await axios.get("https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*")
     return {
         props: {
             data
