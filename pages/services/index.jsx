@@ -31,7 +31,7 @@ export default function Services() {
 
 
                 {/* services */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -42,7 +42,7 @@ export default function Services() {
                                     <p className='text-[22px] ' >We&apos;re here to help. Get in touch to discover how we deliver the remarkable like no other agency can.</p>
 
                                 </div>
-                                <div className='md:ml-20 md:w-[50%] ' >
+                                <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
                                     <Image className='rounded-xl p-10' src={Digitalmarketingservicesfeatured} alt="image" />
                                 </div>
                             </div>
@@ -51,7 +51,7 @@ export default function Services() {
                 </section>
 
                 {/* Elite services at your disposal. */}
-                <section className='heading bg-[#f9fafb] md:my-20'>
+                <section className='heading bg-[#f9fafb] my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='text-[#023A51] py-12 ' >
@@ -185,7 +185,7 @@ export default function Services() {
 
 
                 {/* contact us */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 flex justify-center md:w-11/12  '>
                             <div className='text-[#023A51] text-center w-[100%] md:w-[70%]  ' >
@@ -202,7 +202,7 @@ export default function Services() {
 
 
                 {/* HT Testimonial Bayo */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -265,7 +265,7 @@ export default function Services() {
 
 
                 {/* Industries we serve */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -277,7 +277,7 @@ export default function Services() {
                                     <br />
                                     <button className='green_rounded_btn' >View all Industries</button>
                                 </div>
-                                <div className='md:ml-20 md:w-[50%] ' >
+                                <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
                                     <Image className='rounded-xl p-10' src={industriesniche} alt="image" />
                                 </div>
                             </div>

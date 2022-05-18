@@ -23,7 +23,7 @@ export default function Contact() {
                 <section className='heading md:py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='w-7/12 text-center '  >
+                            <div className='md:w-7/12 text-center py-10 '  >
                                 <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Contact Us</h1>
                             </div>
                         </div>
@@ -36,7 +36,7 @@ export default function Contact() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex flex-col items-center w-10/12 md:w-11/12 '>
                             <div className='md:w-7/12 text-[#023A51] ' >
-                                <h2 className=' text-[40px] font-bold ' >Humble Titan</h2>
+                                <h2 className=' text-[40px] font-semibold ' >Humble Titan</h2>
                                 <h2 className=' text-[50px] md:text-[60px] leading-[59px] md:leading-[69px] tracking-[-2px] font-bold ' >We’re the elite digital marketing service</h2>
                             </div>
 
@@ -89,7 +89,7 @@ export default function Contact() {
                             </div>
 
 
-                            <div className=' w-8/12 ' >
+                            <div className=' md:w-8/12 ' >
                                 <p className='text-[#023A51] text-[50px] md:text-[60px] font-bold leading-[59px] md:leading-[69px] tracking-[-2px] ' >As opposed to telling you the kind of service you can expect from us. We built this website to show you our passion for marketing, business, and politics.  Now, imagine what we can do for you.
                                     We’d love to hear from businesses (of all verticals), NGOs, Political Campaigns, Charities, and more. Let’s stun you with excellence.</p>
                             </div>
@@ -132,33 +132,33 @@ export default function Contact() {
 
 
                 {/* Frequently Asked Questions */}
-                <section className='heading md:py-10 bg-[#e0ecf0]'>
+                <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className=' text-center '  >
                                 <h2 className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] ' >Frequently Asked Questions</h2>
-                                <div className='md:flex flex-wrap text-[#023A51] justify-around' >
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                <div className='flex flex-wrap text-[#023A51] justify-around mt-10 ' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Sed lectus purus lobortis eu aliquet?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Morbi augue egestas malesuada?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Vivamus suscipit ut erat quis cursus?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Donec bibendum enim at nunc accumsan sagittis?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Aliquam pharetra nulla consequat dolor faucibus tempus?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
-                                    <div className=' rounded-xl p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
                                         <p className='text-[22px] font-semibold leading-[30px] '>Vivamus suscipit ut erat quis cursu?</p>
                                         <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
                                     </div>
@@ -173,7 +173,7 @@ export default function Contact() {
 
 
                 {/* Abstract */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -186,7 +186,7 @@ export default function Contact() {
                                     <p className='text-[20px] font-bold ' >Laura Park</p>
                                     <p className='text-[18px] '>Founder - Abstract</p>
                                 </div>
-                                <div className='md:mr-22 md:w-[45%]' >
+                                <div className='md:mr-22 mt-10 md:mt-0 md:w-[45%]' >
                                     <Image className='rounded-xl p-10' src={testimonial} alt="image" />
                                 </div>
                             </div>

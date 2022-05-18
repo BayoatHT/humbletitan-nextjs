@@ -31,7 +31,7 @@ export default function Education() {
                 <section className='heading md:py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='w-7/12' >
+                            <div className='md:w-7/12 pb-6' >
                                 <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Education</p>
                                 <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Educational resources for the humble mind<span className='text-[#2cbc63]'>.</span></h1>
                                 <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>The more you know, the more you can achieve. Here you&apos;ll find carefully curated content intended to empower decision-making.</p>
@@ -50,7 +50,7 @@ export default function Education() {
 
 
 
-                            <div className='md:flex flex-wrap text-[#023A51] justify-around' >
+                            <div className='flex flex-wrap text-[#023A51] justify-around ' >
                                 <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Business Dictionary</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
@@ -99,7 +99,7 @@ export default function Education() {
                             <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >Learn SEO & Online Success</p>
 
 
-                            <div className='md:flex flex-wrap text-[#023A51] justify-around' >
+                            <div className='flex flex-wrap text-[#023A51] justify-around' >
                                 <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Technical SEO</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
@@ -157,27 +157,27 @@ export default function Education() {
 
 
                             <div className='mx-auto text-[#023A51] py-20 flex flex-wrap justify-between text-center '>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%]  ' >
+                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10  ' >
                                     <Image src={homeWebAndMobileDesign} alt="image" />
                                     <h1 className='text-[30px] py-2' >Web & Mobile <br /> Design</h1>
                                     <p className='text-[18px] text-left  p-4' >More than design. We transform your vision into an online reality.</p>
                                     <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Get Design</button>
                                 </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] '>
+                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
                                     <Image src={homeSeoService} alt="image" />
                                     <h1 className='text-[30px] py-2' >Search Engine Optimization</h1>
                                     <p className='text-[18px] text-left p-4' >Extend your brand&apos;s organic reach. Attract thousands of new visitors to your website.</p>
                                     <button className='text-[#fff] text-[20px] py-2 font-bold border rounded-[50px] px-10 bg-[#2cbc63] hover:bg-[#fff] hover:text-[#59667d] transition duration-300  ' >Optimize your site</button>
 
                                 </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] '>
+                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
                                     <Image src={homeContentManagementService} alt="image" />
                                     <h1 className='text-[30px] py-2' >Content <br /> Marketing</h1>
                                     <p className='text-[18px] text-left p-4' >With a focus on engagement, we specialize in brand elevating web content.</p>
                                     <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Reach more users</button>
 
                                 </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] '>
+                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
                                     <Image src={homeWebManagement} alt="image" />
                                     <h1 className='text-[30px] py-2' >Website <br /> Management</h1>
                                     <p className='text-[18px] text-left p-4' >Let&apos;s take care of your bsuiness. We will manage the day-to-day operations of your website.</p>
@@ -205,7 +205,7 @@ export default function Education() {
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
                             <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >HT Mind Mag</p>
 
-                            <div className='md:flex flex-wrap text-[#023A51] justify-around' >
+                            <div className='flex flex-wrap text-[#023A51] justify-around' >
                                 <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Activism</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>

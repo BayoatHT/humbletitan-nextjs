@@ -144,7 +144,7 @@ export default function Bayo_search_consultant() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12' >
                             <p className='text-[55px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[64px] md:leading-[122px] tracking-[-3px] ' >What you get</p>
-                            <div className='md:flex mx-auto flex-wrap text-[#023A51] mt-10' >
+                            <div className='flex mx-auto flex-wrap justify-around text-[#023A51] mt-10' >
                                 <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
                                     <Image className='rounded-xl' src={humbleBrandVisibility} alt="image" />
                                     <p className='text-[20px] '>Increased brand visibility</p>
@@ -425,7 +425,7 @@ export default function Bayo_search_consultant() {
 
                         <p className='text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ' >Organizations I work with</p>
 
-                        <div className='md:flex flex-wrap text-[#023A51] mt-10 justify-around' >
+                        <div className='flex flex-wrap text-[#023A51] mt-10 justify-around' >
                             <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                 <p className='text-[35px] '>Politicians</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>

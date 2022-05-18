@@ -562,7 +562,7 @@ const Header = () => {
                 Politics
               </a>
               <div
-                className="absolute p-2  bg-[#fff] right-10 top-[22px]"
+                className="absolute right-10 top-[22px]"
                 onClick={() => politicsStylesHandler()} >
                 <FaChevronDown className={politicsIcon} />
 
@@ -593,7 +593,7 @@ const Header = () => {
                 Services
               </a>
               <div
-                className="absolute p-2  bg-[#fff] right-10 top-[22px]"
+                className="absolute right-10 top-[22px]"
                 onClick={() => servicesStylesHandler()} >
                 <FaChevronDown className={servicesIcon}
                 />
@@ -625,7 +625,7 @@ const Header = () => {
                 Tram SEO Course
               </a>
               <div
-                className="absolute p-2  bg-[#fff] right-10 top-[22px]"
+                className="absolute right-10 top-[22px]"
                 onClick={() => tramStylesHandler()} >
                 <FaChevronDown className={tramIcon}
                 />
@@ -661,162 +661,6 @@ const Header = () => {
 
 
           </div>
-          {/* <div className="flex flex-col items-center">
-            <div>
-              <a
-                href="https://h-t.vercel.app/"
-                className="abcd_my_head_color abcd_responsive_header_font"
-              >
-                Home
-              </a>
-            </div>
-            <div className="">
-              <a
-                href="https://h-t.vercel.app/politics/"
-                className="active abcd_responsive_header_font"
-              >
-                Politics
-              </a>
-              <FaChevronDown
-                style={{ position: "relative", top: "3px", left: "1px" }}
-              />
-            </div>
-            <div className="abcd_content">
-              <a
-                href="https://h-t.vercel.app/due-diligence/abcd-stock/"
-                className=""
-              >
-                ABCD Stock
-              </a>
-              <a
-                href="https://h-t.vercel.app/bayo-search-consultant/"
-                className=""
-              >
-                Founder & Consultant
-              </a>
-            </div>
-            <a
-              href="https://h-t.vercel.app/education/"
-              className="abcd_my_head_color abcd_responsive_header_font"
-            >
-              Education
-            </a>
-            <div className="abcd_collapsible">
-              <a
-                href="https://h-t.vercel.app/services/"
-                className="abcd_my_head_color abcd_responsive_header_font"
-              >
-                Services{" "}
-              </a>
-              <FaChevronDown
-                style={{ position: "relative", top: "3px", left: "1px" }}
-              />
-            </div>
-            <div className="abcd_content">
-              <a
-                href="https://h-t.vercel.app/services/web-design/"
-                className=""
-              >
-                web design
-              </a>
-              <a
-                href="https://h-t.vercel.app/services/content-marketing/"
-                className=""
-              >
-                content Marketing
-              </a>
-              <a
-                href="https://h-t.vercel.app/services/search-engine-optimization/"
-                className=""
-              >
-                search engine optimization
-              </a>
-              <a
-                href="https://h-t.vercel.app/services/search-engine-optimization/"
-                className=""
-              >
-                Web Management
-              </a>
-            </div>
-            <button type="button" className="abcd_collapsible">
-              <a
-                href="https://h-t.vercel.app/tram-seo/"
-                className="abcd_my_head_color abcd_responsive_header_font"
-              >
-                Tram Seo Course{" "}
-                <FaChevronDown
-                  style={{ position: "relative", top: "3px", left: "1px" }}
-                />
-              </a>
-            </button>
-            <div className="abcd_content">
-              <div className="abcd_row abcd_justify-center abcd_align-center">
-                <a
-                  href="https://h-t.vercel.app/tram-seo/"
-                  className="abcd_my_head_color abcd_collapse_font"
-                >
-                  standar Package
-                </a>
-                <div
-                  className="abcd_button_free .abcd_button_free"
-                  style={{ width: "110px" }}
-                >
-                  <span className="abcd_free_font abcd_comingset">Free</span>
-                </div>
-              </div>
-              <div className="abcd_row abcd_justify-center abcd_align-center">
-                <a
-                  href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
-                  className="abcd_my_head_color abcd_collapse_font"
-                >
-                  Passion Packages
-                </a>
-                <div className="abcd_button_free abcd_coming2023">
-                  <span className="abcd_free_font abcd_comingset">
-                    Coming 2023
-                  </span>
-                </div>
-              </div>
-              <div className="abcd_row abcd_justify-center abcd_align-center">
-                <a
-                  href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
-                  className="abcd_my_head_color abcd_collapse_font"
-                >
-                  Professional Packages
-                </a>
-                <div className="abcd_button_free abcd_coming2023">
-                  <span className="abcd_free_font abcd_comingset">
-                    Coming 2023
-                  </span>
-                </div>
-              </div>
-              <a
-                href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
-                className="abcd_my_head_color abcd_collapse_font"
-              >
-                About the Course
-              </a>
-              <a
-                href="https://h-t.vercel.app/due-diligence/abcd-stock/#"
-                className="abcd_my_head_color abcd_collapse_font"
-              >
-                About the Founder
-              </a>
-            </div>
-            <a
-              href="https://h-t.vercel.app/news/"
-              className="abcd_my_head_color abcd_responsive_header_font"
-            >
-              Magazine
-            </a>
-            <a
-              href="https://h-t.vercel.app/contact/"
-              className="abcd_my_head_color abcd_responsive_header_font"
-            >
-              Hire us
-            </a>
-
-          </div> */}
 
         </div>
       </header>

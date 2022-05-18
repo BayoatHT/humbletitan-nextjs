@@ -27,7 +27,7 @@ export default function TramSeo() {
 
 
                 {/* hero */}
-                <section className='heading bg-[#e0ecf0]'>
+                <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -227,7 +227,7 @@ export default function TramSeo() {
                                     <button className='green_rounded_btn' >Learn how to be visible on the internet</button>
 
                                 </div>
-                                <div className='md:ml-20 md:w-[50%] ' >
+                                <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
                                     <Image className='rounded-xl p-10' src={weDeliverExpertise} alt="image" />
                                 </div>
                             </div>
@@ -237,7 +237,7 @@ export default function TramSeo() {
 
 
                 {/* Check out sample TRAM SEO lessons below */}
-                <section className='heading bg-[#f9fafb] md:py-20'>
+                <section className='heading bg-[#f9fafb] py-10 md:py-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='flex flex-col items-center mb-20 ' >
@@ -344,20 +344,20 @@ export default function TramSeo() {
                                     <br />
                                     <p className='text-[22px] text-[#59667d] ' >Curabitur ac leo nunc estibul et mauris vel ante finibus maximus nec ut leo. Integer consectetur luctus. Quisque eros quam, aliquet.</p>
                                     <br />
-                                    <div className='md:flex flex-wrap justify-around'>
-                                        <div className=' text-center w-[48%]  '>
+                                    <div className='flex flex-wrap justify-around'>
+                                        <div className=' text-center w-[48%] mb-6 '>
                                             <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>30</p>
                                             <p className='text-[22px] text-[#59667d] ' >Years of experience</p>
                                         </div>
-                                        <div className=' text-center w-[48%]  '>
+                                        <div className=' text-center w-[48%] mb-6 '>
                                             <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>4,054</p>
                                             <p className='text-[22px] text-[#59667d] ' >Connections</p>
                                         </div>
-                                        <div className=' text-center w-[48%]  '>
+                                        <div className=' text-center w-[48%] mb-6 '>
                                             <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>1200</p>
                                             <p className='text-[22px] text-[#59667d] ' >Clients</p>
                                         </div>
-                                        <div className=' text-center w-[48%]  '>
+                                        <div className=' text-center w-[48%] mb-6 '>
                                             <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>89</p>
                                             <p className='text-[22px] text-[#59667d] ' >Countries Served</p>
                                         </div>

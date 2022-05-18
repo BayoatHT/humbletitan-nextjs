@@ -27,7 +27,7 @@ export default function WebPerformanceManagement() {
 
 
                 {/*Web Performance Management*/}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -95,7 +95,7 @@ export default function WebPerformanceManagement() {
 
 
                 {/* Web Management expectations */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -119,7 +119,7 @@ export default function WebPerformanceManagement() {
                         </div>
 
 
-                        <div className='md:flex flex-wrap justify-around my-20 '>
+                        <div className='flex flex-wrap justify-around my-20 '>
                             <div className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
                                 <p className='text-[20px] text-[#59667d]  '>Management Deliverables</p>
                                 <br />
@@ -156,7 +156,7 @@ export default function WebPerformanceManagement() {
 
 
                 {/* Business Impact */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
@@ -181,7 +181,7 @@ export default function WebPerformanceManagement() {
 
                 {/* Our Values. */}
                 <section className='heading md:my-20  '>
-                    <div className=" container w-12/12 bg-[#023A51] shadow-2xl rounded-2xl py-10 mx-auto max-w-screen-xl">
+                    <div className=" container w-12/12 bg-[#023A51] shadow-2xl md:rounded-2xl py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#fff]  md:flex items-center w-10/12 md:w-11/12 '>
                             <div className='md:w-5/10 ' >
                                 <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-bold tracking-[-2px] py-10  ' >Humble Titan Digital. Our Values<span className='text-[#2cbc63]'>.</span></p>
@@ -221,7 +221,7 @@ export default function WebPerformanceManagement() {
 
 
                 {/* Our Commitment */}
-                <section className='heading bg-[#f9fafb] md:py-20'>
+                <section className='heading bg-[#f9fafb] py-10 md:py-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='flex flex-col items-center mb-20 ' >
@@ -286,7 +286,7 @@ export default function WebPerformanceManagement() {
 
 
                 {/* contact us */}
-                <section className='heading md:my-20'>
+                <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 flex justify-center md:w-11/12  '>
                             <div className='text-[#023A51] text-center w-[100%] md:w-[70%]  ' >
@@ -393,14 +393,14 @@ export default function WebPerformanceManagement() {
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12'>
-                            <div className='md:flex flex-wrap items-center justify-between '>
-                                <p className='text-[26px] md:text-[36px] text-[#023A51] font-bold tracking-[-1px] ' >Other Humble Titan Digital services<span className='text-[#2cbc63]'>.</span></p>
-                                <button className='green_rounded_btn_oulined'>View all services</button>
+                            <div className='flex flex-wrap items-center justify-around md:justify-between '>
+                                <p className='text-[26px] md:text-[36px] text-[#023A51] mb-10 font-bold tracking-[-1px] ' >Other Humble Titan Digital services<span className='text-[#2cbc63]'>.</span></p>
+                                <button className='green_rounded_btn_outlined'>View all services</button>
                             </div>
 
 
                             <div className='md:flex flex-wrap justify-around my-20'>
-                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] '>
+                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] mb-10 '>
                                     <Image className='rounded-xl' src={otherSeoService} alt="image" />
                                     <p className='text-[24px] tracking-[-0.5px] font-bold  '>Search Engine Optimization</p>
                                     <br />
@@ -408,7 +408,7 @@ export default function WebPerformanceManagement() {
                                     <br />
                                     <button className='text-[20px] font-bold hover:text-[#2cbc63] transition duration-300 '>Read more</button>
                                 </div>
-                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] '>
+                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] mb-10 '>
                                     <Image className='rounded-xl' src={otherContentMarketingService} alt="image" />
                                     <p className='text-[24px] tracking-[-0.5px] font-bold  '>Content Marketing</p>
                                     <br />
@@ -416,7 +416,7 @@ export default function WebPerformanceManagement() {
                                     <br />
                                     <button className='text-[20px] font-bold hover:text-[#2cbc63] transition duration-300 '>Read more</button>
                                 </div>
-                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] '>
+                                <div className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] mb-10 '>
                                     <Image className='rounded-xl' src={otherWebDesignService} alt="image" />
                                     <p className='text-[24px] tracking-[-0.5px] font-bold  '>Web Design</p>
                                     <br />
