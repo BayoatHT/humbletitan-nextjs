@@ -2748,7 +2748,7 @@ input {
 }
 
 @media (min-width: 768px) {
-    .green_rounded_btn_oulined {
+    .green_rounded_btn_outlined {
         border-radius: 50px;
         padding: 13px 30px;
         border: 1px solid #2cbc63;
@@ -2758,7 +2758,7 @@ input {
         transition: all .5s;
     }
 
-    .green_rounded_btn_oulined:hover {
+    .green_rounded_btn_outlined:hover {
         color: #fff;
         font-size: 18px;
         background-color: #2cbc63;

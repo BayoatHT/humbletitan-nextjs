@@ -327,7 +327,7 @@ export default function TramSeo() {
                             </div>
                             <div className='flex justify-center'>
 
-                                <button className='green_rounded_btn_oulined mt-10'>View All TRAM Lessons</button>
+                                <button className='green_rounded_btn_outlined mt-10'>View All TRAM Lessons</button>
                             </div>
                         </div>
                     </div>

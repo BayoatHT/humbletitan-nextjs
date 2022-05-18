@@ -76,7 +76,7 @@ export default function TechnicalCourse() {
                             <div className='flex justify-center mb-10'>
                                 <p className='text-[40px] text-center md:text-[50px] font-bold leading-[49px] md:leading-[59px] text-[#2cbc63] ' >TRAM SEO - Technical <br /> <span className='text-[#023A51] ' >Table of Contents</span> <span className='text-[#2cbc63]'>.</span></p>
                             </div>
-                            <div className='md:flex flex-wrap mx-auto justify-around' >
+                            <div className='flex flex-wrap mx-auto justify-around' >
                                 <a href='#chapter1' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
                                     <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 1</p>
                                     <p className='text-[#023A51] text-[34px] font-bold  '>Domains</p>
@@ -132,7 +132,7 @@ export default function TechnicalCourse() {
                             </div>
 
                             <p className='text-[24px] font-bold text-[#2cbc63] mb-4 ' >The Complete Method</p>
-                            <div className='md:flex flex-wrap mx-auto justify-around' >
+                            <div className='flex flex-wrap mx-auto justify-around' >
                                 <a href='#chapter1' className='text-[#023A51] mb-4 bg-[#e0ecf0] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
                                     <p className='text-[#E0C600] text-[24px] font-bold  '>Part 1</p>
                                     <p className='text-[#023A51] text-[34px] font-bold  '><span className='text-[#2cbc63]'>T</span>echnical SEO</p>
@@ -717,7 +717,7 @@ export default function TechnicalCourse() {
                             </div>
 
                             <div className='md:flex flex-wrap justify-around'>
-                                <div className='flex group w-[100%] md:w-[46%] mb-12'>
+                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
                                     <Image className='rounded-lg' src={otherwebdesignservice} alt="image" />
                                     <div className='ml-6'>
                                         <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Web Design</p>
@@ -725,7 +725,7 @@ export default function TechnicalCourse() {
                                         <p className='text-[22px] text-[#59667d] '>We will build a website that reflects your business objectives.</p>
                                     </div>
                                 </div>
-                                <div className='flex group w-[100%] md:w-[46%] mb-12'>
+                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
                                     <Image className='rounded-lg' src={othercontentmarketingservice} alt="image" />
                                     <div className='ml-6'>
                                         <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Content Marketing</p>
@@ -733,7 +733,7 @@ export default function TechnicalCourse() {
                                         <p className='text-[22px] text-[#59667d] '>Outdo your competitors. Give users the content they need.</p>
                                     </div>
                                 </div>
-                                <div className='flex group w-[100%] md:w-[46%] mb-12'>
+                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
                                     <Image className='rounded-lg' src={otherseoservice} alt="image" />
                                     <div className='ml-6'>
                                         <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Search Engine Optimization</p>
@@ -741,7 +741,7 @@ export default function TechnicalCourse() {
                                         <p className='text-[22px] text-[#59667d] '>Improve organic visibility. Reach more users online.</p>
                                     </div>
                                 </div>
-                                <div className='flex group w-[100%] md:w-[46%] mb-12'>
+                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
                                     <Image className='rounded-lg' src={otherwebmanagementservice} alt="image" />
                                     <div className='ml-6'>
                                         <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Website Management</p>
@@ -752,7 +752,7 @@ export default function TechnicalCourse() {
                             </div>
 
                             <div className='flex justify-center'>
-                                <button className='green_rounded_btn_oulined'> View All Services</button>
+                                <button className='green_rounded_btn_outlined'> View All Services</button>
                             </div>
                         </div>
                     </div>
