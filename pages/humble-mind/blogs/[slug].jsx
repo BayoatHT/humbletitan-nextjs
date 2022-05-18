@@ -16,15 +16,15 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import GetAQuote from '../../../components/GetAQuote';
 
 export default function Blog({ data }) {
-    let blog = data.data[0].attributes
+    let blog = data.data[0]?.attributes
     console.log(blog)
-    const blogImage = blog.blogImage.data.attributes
+    const blogImage = blog?.blogImage?.data?.attributes
+    const blogImageUrl = blogImage && `https://humble-titan-strapi.herokuapp.com${blogImage?.url}`
     console.log(blogImage)
-    const blogImageUrl = `https://humble-titan-strapi.herokuapp.com${blogImage.url}`
     return (
         <>
             <Head>
-                <title>{blog.title} - Humble Titan</title>
+                <title>{blog?.title} - Humble Titan</title>
             </Head>
             <Layout>
                 {/* Hero */}
@@ -32,12 +32,12 @@ export default function Blog({ data }) {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-8/12 '>
                             <div >
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[59px] md:leading-[69px] ' >{blog.title}</h1>
-                                <p className='text-[26px] leading-[36px] text-[#023A51] py-5 '>{blog.description} </p>
+                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[59px] md:leading-[69px] ' >{blog?.title}</h1>
+                                <p className='text-[26px] leading-[36px] text-[#023A51] py-5 '>{blog?.description} </p>
                                 <div className='flex justify-between py-6 text-[#023A51]'>
                                     <div className='flex'>
                                         {
-                                            blog.tags.data?.map((item) => {
+                                            blog?.tags?.data?.map((item) => {
                                                 return (
                                                     <p className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer' key={item.id} >{item.attributes.name}</p>
                                                 )
@@ -45,7 +45,7 @@ export default function Blog({ data }) {
                                         }
 
                                     </div>
-                                    <p>{new Date(blog.createdAt).toDateString()}</p>
+                                    <p>{new Date(blog?.createdAt).toDateString()}</p>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,11 @@ export default function Blog({ data }) {
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='flex justify-center'>
                                 <div className='w-[80%]'>
-                                    <Image className='rounded-[20px] ' src={blogImageUrl} layout="responsive" height={blogImage.height} width={blogImage.width} alt="Blog Image" />
+                                    {
+                                        blogImageUrl && (
+                                            <Image className='rounded-[20px] ' src={blogImageUrl} layout="responsive" height={blogImage?.height} width={blogImage?.width} alt="Blog Image" />
+                                        )
+                                    }
 
                                 </div>
 
@@ -74,7 +78,7 @@ export default function Blog({ data }) {
                                         ul: ({ node, ...props }) => <ul className={styles.ul} {...props} />,
                                         ol: ({ node, ...props }) => <ol className={styles.ol} {...props} />,
                                         li: ({ node, ...props }) => <li className={styles.li} {...props} />,
-                                    }} >{blog.body}</ReactMarkdown>
+                                    }} >{blog?.body}</ReactMarkdown>
 
 
                                 </div>
