@@ -9,7 +9,6 @@ import ElectedDirectory from "../../components/ElectedDirectory";
 import GetPolls from "../../components/GetPolls";
 import BrowseByState from "../../components/BrowseByState";
 import axios from "axios";
-import Heading from "../../components/Heading";
 
 export default function index({ majorElections }) {
   return (
@@ -19,7 +18,7 @@ export default function index({ majorElections }) {
       </Head>
       <Layout >
         {/* Hero */}
-        <section className='heading md:py-20 bg-[#e0ecf0]'>
+        <section className='heading py-10 md:py-20 bg-[#e0ecf0]'>
           <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
             <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
               <div className='md:w-7/12' >

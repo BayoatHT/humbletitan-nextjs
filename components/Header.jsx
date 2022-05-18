@@ -119,7 +119,7 @@ const Header = () => {
                 <ul className="abcd_row mr-auto_abcd ul_abcd abcd_align-center">
                   <li>
                     <a
-                      href="https://h-t.vercel.app/offices/"
+                      href=" /offices/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       Offices
@@ -127,7 +127,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://h-t.vercel.app/faqs/"
+                      href=" /faqs/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       FAQS
@@ -135,7 +135,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu flex abcd_relative">
                     <a
-                      href="https://h-t.vercel.app/about/"
+                      href=" /about/"
                       className="a_abcd text-[#023A51] text-[12px]"
                     >
                       About Us
@@ -159,7 +159,7 @@ const Header = () => {
                         style={{ padding: "12px 20px" }}
                       >
                         <a
-                          href="https://h-t.vercel.app/the-team/"
+                          href=" /the-team/"
                           className="a_abcd"
                         >
                           THE TEAM
@@ -218,14 +218,14 @@ const Header = () => {
                 </div>
                 <ul className="abcd_row abcd_justify-between abcd_nav abcd_align-center ul_abcd">
                   <li>
-                    <a href="https://h-t.vercel.app/" className="a_abcd text-[#023A51] text-[18px]">
+                    <a href=" /" className="a_abcd text-[#023A51] text-[18px]">
                       {" "}
                       Home
                     </a>
                   </li>
                   <li className="abcd_mainmenu abcd_relative">
                     <a
-                      href="https://h-t.vercel.app/politics/"
+                      href=" /politics/"
                       className=" a_abcd text-[#023A51] text-[18px]"
                     >
                       Politics{" "}
@@ -240,7 +240,7 @@ const Header = () => {
                     <ul className="abcd_submenu ul_abcd">
                       <li className="abcd_menu-politics">
                         <a
-                          href="https://h-t.vercel.app/due-diligence/"
+                          href=" /due-diligence/"
                           className="a_abcd"
                         >
                           {" "}
@@ -249,7 +249,7 @@ const Header = () => {
                       </li>
                       <li className="abcd_menu-politics">
                         <a
-                          href="https://h-t.vercel.app/bayo-search-consultant/"
+                          href=" /bayo-search-consultant/"
                           className="a_abcd"
                         >
                           {" "}
@@ -258,7 +258,7 @@ const Header = () => {
                       </li>
                       <li className="abcd_menu-politics">
                         <a
-                          href="https://h-t.vercel.app/activism/"
+                          href=" /activism/"
                           className="a_abcd"
                         >
                           {" "}
@@ -269,7 +269,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://h-t.vercel.app/education/"
+                      href=" /education/"
                       className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Education
@@ -277,7 +277,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href="https://h-t.vercel.app/services/"
+                      href=" /services/"
                       className="a_abcd text-[#023A51] text-[18px]"
                     >
                       Services{" "}
@@ -294,7 +294,7 @@ const Header = () => {
                         <div className="abcd_menu_font">
                           {" "}
                           <a
-                            href="https://h-t.vercel.app/services/web-design/"
+                            href=" /services/web-design/"
                             className="a_abcd"
                           >
                             {" "}
@@ -307,7 +307,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://h-t.vercel.app/services/content-marketing/"
+                            href=" /services/content-marketing/"
                             className="a_abcd"
                           >
                             {" "}
@@ -323,7 +323,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://h-t.vercel.app/services/search-engine-optimization/"
+                            href=" /services/search-engine-optimization/"
                             className="a_abcd"
                           >
                             {" "}
@@ -336,7 +336,7 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href="https://h-t.vercel.app/services/web-performance-management/"
+                            href=" /services/web-performance-management/"
                             className="a_abcd"
                           >
                             {" "}
@@ -353,7 +353,7 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href="https://h-t.vercel.app/tram-seo/"
+                      href=" /tram-seo/"
                       className="a_abcd text-[#023A51] "
                     >
                       <strong>TRAM SEO Course</strong>{" "}
@@ -427,7 +427,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://h-t.vercel.app/tram-seo/"
+                              href=" /tram-seo/"
                               className="a_abcd"
                             >
                               About the course
@@ -438,7 +438,7 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href="https://h-t.vercel.app/bayo-search-consultant/"
+                              href=" /bayo-search-consultant/"
                               className="a_abcd"
                             >
                               About the Founder
@@ -457,7 +457,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://h-t.vercel.app/tram-seo/technical-course/"
+                            href=" /tram-seo/technical-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -470,7 +470,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://h-t.vercel.app/tram-seo/authority-course/"
+                            href=" /tram-seo/authority-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -488,7 +488,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://h-t.vercel.app/tram-seo/ranking-course/"
+                            href=" /tram-seo/ranking-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -501,7 +501,7 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href="https://h-t.vercel.app/tram-seo/management-course/"
+                            href=" /tram-seo/management-course/"
                             className="a_abcd"
                           >
                             {" "}
@@ -517,7 +517,7 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href="https://h-t.vercel.app/humble-mind/"
+                      href=" /humble-mind/"
                       className="a_abcd text-[#023A51] text-[18px] "
                     >
                       Magazine
@@ -525,7 +525,7 @@ const Header = () => {
                   </li>
                   <li className="btn btn-primary">
                     <a
-                      href="https://h-t.vercel.app/contact/"
+                      href=" /contact/"
                       className="a_abcd text-[#fff] text-center bg-[#2cbc63] sm:w-[100px] py-[0px] px-[20px] rounded-3xl text-[18px]"
                     >
                       Hire Us
@@ -552,13 +552,13 @@ const Header = () => {
           </div>
 
           <div className={navListClass}>
-            <a href="https://h-t.vercel.app/" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
               Home
             </a>
 
             {/* dropdown */}
             <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
-              <a href="https://h-t.vercel.app/politics" >
+              <a href=" /politics" >
                 Politics
               </a>
               <div
@@ -571,25 +571,25 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${politicsStyles} `}>
-              <a href="https://h-t.vercel.app/due-diligence/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /due-diligence/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 ABCD Stock
               </a>
-              <a href="https://h-t.vercel.app/bayo-search-consultant/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /bayo-search-consultant/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Founder & Consultant
               </a>
-              <a href="https://h-t.vercel.app/activism" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /activism" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Activism
               </a>
             </div>
             {/* Dropdown contents ends */}
 
-            <a href="https://h-t.vercel.app/education" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /education" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
               Education
             </a>
 
             {/* dropdown */}
             <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
-              <a href="https://h-t.vercel.app/services" >
+              <a href=" /services" >
                 Services
               </a>
               <div
@@ -603,16 +603,16 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${servicesStyles} `}>
-              <a href="https://h-t.vercel.app/services/web-design/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/web-design/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Web Design
               </a>
-              <a href="https://h-t.vercel.app/services/content-marketing/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/content-marketing/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Content Marketing
               </a>
-              <a href="https://h-t.vercel.app/search-engine-optimization/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /search-engine-optimization/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Search Engine Optimization
               </a>
-              <a href="https://h-t.vercel.app/web-performance-management" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /web-performance-management" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Web Management
               </a>
             </div>
@@ -621,7 +621,7 @@ const Header = () => {
 
             {/* dropdown */}
             <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
-              <a href="https://h-t.vercel.app/tram-seo/" >
+              <a href=" /tram-seo/" >
                 Tram SEO Course
               </a>
               <div
@@ -644,18 +644,18 @@ const Header = () => {
               <a href="#" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 professional package
               </a>
-              <a href="https://h-t.vercel.app/tram-seo" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /tram-seo" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 About the course
               </a>
-              <a href="https://h-t.vercel.app/bayo-search-consultant/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /bayo-search-consultant/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 About the founder
               </a>
             </div>
             {/* Dropdown contents ends */}
-            <a href="https://h-t.vercel.app/humble-mind" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /humble-mind" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
               magazine
             </a>
-            <a href="https://h-t.vercel.app/contact" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /contact" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
               Hire Us
             </a>
 

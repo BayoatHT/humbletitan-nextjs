@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
@@ -12,11 +12,20 @@ import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x42
 import GetAQuote from '../../components/GetAQuote';
 import ReactPaginate from 'react-paginate';
 
-export default function Magazine({ data }) {
+export default function Magazine({ data, tagsData }) {
     const blogs = data.data
     const pageCount = data.meta.pagination?.pageCount
-    console.log(pageCount)
+    const tags = tagsData?.data
     const router = useRouter()
+
+    const [selectedTag, setSelectedtag] = useState("")
+    const handleBrowse = () => {
+        if (selectedTag !== "") {
+            router.push(`/humble-mind/${selectedTag}`)
+        } else {
+            return null
+        }
+    }
     return (
         <>
             <Head>
@@ -26,9 +35,28 @@ export default function Magazine({ data }) {
                 {/* Hero */}
                 <section className='heading py-20 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
-                        <div className='mx-auto w-10/12 md:w-11/12 '>
-                            <div >
-                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >Magazine</h1>
+                        <div className='mx-auto w-10/12 text-center md:w-11/12 '>
+                            <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >Magazine</h1>
+                            <div className='flex items-center justify-center'>
+
+                                <div className=' mt-4 bg-[#fff] p-2 rounded max-w-max'>
+                                    <select className='w-[180px] font-bold text-center text-[#023A51] outline-0 '
+                                        value={selectedTag}
+                                        onChange={(e) => setSelectedtag(e.target.value)}
+                                    >
+                                        <option value="">Browse categories</option>
+                                        {
+                                            tags?.map((item) => {
+                                                return (
+                                                    <option key={item.id} value={item.attributes?.name}>{item.attributes?.name}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div onClick={() => handleBrowse()} className=' mt-4 ml-4 bg-[#2cbc63] cursor-pointer p-2 rounded max-w-max'>
+                                    <button className='text-[#fff] font-semibold ' >Browse</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -58,7 +86,7 @@ export default function Magazine({ data }) {
 
                                                         </div>
                                                         <p className='text-[30px] text-center font-semibold md:text-[40px] text-[#023A51] pt-3 leading-[40px] group-hover:text-[#2cbc63] ease-in duration-300 ' >{blog.attributes.title}</p>
-                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tags.data[0]?.attributes.name}</p>
+                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tag.data?.attributes.name}</p>
                                                     </a>
                                                 </Link>
                                             )
@@ -175,10 +203,24 @@ export default function Magazine({ data }) {
 
 export async function getServerSideProps(ctx) {
     const pageNumber = ctx.query.page > 0 ? ctx.query.page : 1
-    const { data } = await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}`)
+    var data;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}`)
+        .then((result) => {
+            data = result.data
+        }).catch((error) => {
+            console.log(error)
+        })
+    var tagsData;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/tags?populate=*`)
+        .then(({ data }) => {
+            tagsData = data
+        }).catch((error) => {
+            console.log(error)
+        })
     return {
         props: {
-            data
+            data,
+            tagsData
         },
     };
 }
