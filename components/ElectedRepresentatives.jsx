@@ -18,7 +18,6 @@ export default function ElectedRepresentatives({ officials, address }) {
   const array = officials.map((item) => {
     return item.office.levels[0]
   })
-  console.log(officials.length);
   let uniq = a => [...new Set(a)];
   const filtered = uniq(array);
 
@@ -109,18 +108,20 @@ export default function ElectedRepresentatives({ officials, address }) {
                 </>
                 :
 
-                (<h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">Oops; Not Available </h6>)
+                (<h6 className="font-bold text-[23px] lg:text-[28px] leading-[47px]  my-4 text-[#023a51]">Oops; Not Available. <br /> Please, Make sure to Enter a valid Address. </h6>)
               }
             </div>
           </div>
         </div>
       </section>
+
+
       <section className="mx-auto ">
         <div className="container w-10/12 mx-auto max-w-screen-xl">
           <div className="flex flex-wrap mb-10 m-auto">
             <div className="container w-12/12 mx-auto max-w-screen-xl rounded-lg">
               <div className="flex flex-wrap mx-2 mb-10 m-auto justify-start">
-                {
+                {officials.length !== 0 &&
                   filter.filterName === "all" &&
                   officials?.map((item, index) => {
                     const {
@@ -310,7 +311,9 @@ export default function ElectedRepresentatives({ officials, address }) {
                     );
                   })
                 }
-                {
+
+
+                {officials.length !== 0 &&
                   filter.filterName !== "all" &&
                   officials
                     ?.filter(

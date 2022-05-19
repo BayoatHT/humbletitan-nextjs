@@ -20,7 +20,6 @@ export async function getServerSideProps(context) {
     query: { index },
   } = context;
   const address = index;
-  console.log("address", address);
   var stateName = "";
   var electionDates = [];
   await axios
@@ -181,6 +180,8 @@ export async function getServerSideProps(context) {
       stateDetails = data?.state
       pollingLocations = data.pollingLocations ? data.pollingLocations : []
       contests = data?.contests
+    }).catch((error) => {
+      console.log(error)
     })
 
   return {

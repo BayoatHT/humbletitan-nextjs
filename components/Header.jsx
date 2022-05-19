@@ -136,7 +136,23 @@ const Header = () => {
                       FAQS
                     </a>
                   </li>
-                  <li className={`abcd_mainmenu flex abcd_relative ${router.pathname == '/about' ? 'rounded bg-[#fff] p-2 ' : router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''}`}>
+                  <li className={`${router.pathname == '/about' ? 'rounded bg-[#fff]' : ''} `}>
+                    <a
+                      href=" /about"
+                      className="a_abcd font-semibold text-[#023A51] text-[12px]"
+                    >
+                      About us
+                    </a>
+                  </li>
+                  <li className={`${router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''} `}>
+                    <a
+                      href=" /the-team"
+                      className="a_abcd font-semibold text-[#023A51] text-[12px]"
+                    >
+                      The Team
+                    </a>
+                  </li>
+                  {/* <li className={`abcd_mainmenu flex abcd_relative ${router.pathname == '/about' ? 'rounded bg-[#fff] p-2 ' : router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''}`}>
                     <a
                       href=" /about"
                       className="a_abcd text-[#023A51] font-semibold text-[12px]"
@@ -171,6 +187,14 @@ const Header = () => {
                     </ul>
 
                   </li>
+                  <li className={`abcd_mainmenu flex abcd_relative ${router.pathname == '/the-team' ? 'rounded bg-[#fff] p-2 ' : router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''}`}>
+                    <a
+                      href=" /the-team"
+                      className="a_abcd text-[#023A51] font-semibold text-[12px]"
+                    >
+                      The team
+                    </a>
+                  </li> */}
                 </ul>
                 <div className="abcd_row abcd_align-center">
                   <div className="header_search_input_wrapper_abcd">

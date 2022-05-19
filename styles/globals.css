@@ -863,9 +863,13 @@ body {
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    margin-top: 25px;
+    margin-top: 10px;
     -webkit-animation: fadeOut 0.4s;
     animation: fadeOut 0.4s;
+}
+
+.abcd_submenu:first-child {
+    margin-top: 25px;
 }
 
 @-webkit-keyframes fadeOut {
@@ -1094,8 +1098,7 @@ input {
 }
 
 .nav-active {
-    height: 100vh;
-    transition: 0.4s;
+    transition: all 0.4s;
     display: flex;
     flex-direction: column;
     justify-content: center;

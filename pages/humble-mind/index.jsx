@@ -16,6 +16,7 @@ export default function Magazine({ data, tagsData }) {
     const blogs = data.data
     const pageCount = data.meta.pagination?.pageCount
     const tags = tagsData?.data
+    console.log(tagsData)
     const router = useRouter()
 
     const [selectedTag, setSelectedtag] = useState("")

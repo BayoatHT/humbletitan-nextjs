@@ -13,10 +13,9 @@ import { TiSocialYoutubeCircular } from "react-icons/ti";
 import Link from 'next/link'
 export default function ElectionDate({ data, stateName, pollingLocations, stateDetails, contests }) {
   const { state, dispatch } = useContext(Store);
-  const [stateInfo, setStateInfo] = useState(stateDetails)
   const [contestsDetails, setContestsDetails] = useState(contests);
   const [locationInfo, setLocationInfo] = useState(pollingLocations)
-  const { electionAdministrationBody: { absenteeVotingInfoUrl, ballotInfoUrl, correspondenceAddress, electionInfoUrl, electionRegistrationConfirmationUrl, electionRegistrationUrl, votingLocationFinderUrl } } = stateInfo[0]
+  // const { absenteeVotingInfoUrl, ballotInfoUrl, correspondenceAddress, electionInfoUrl, electionRegistrationConfirmationUrl, electionRegistrationUrl, votingLocationFinderUrl } = stateDetails[0]?.electionAdministrationBody
 
   const dateToday = new Date().getTime()
 
@@ -39,6 +38,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
                 </h4>
               ) : (
                 <h4 className="text-[25px] px-[15px] sm:text-[35px] text-[#023a51] text-justify">
+                  Please Make Sure to Enter a correct address. <br />
                   We provide data the nearer we are to an election. The next chance to
                   vote in <span className="font-bold"> {stateName} </span> won&apos;t
                   be here for a bit. In the meantime, prepare with our guide on
@@ -79,6 +79,7 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
               </div>
             </div>
           </div>
+          {/* election location Information */}
           {
             locationInfo &&
             <div className="mx-auto w-12/12 lg:w-6/12 py-4 pt-12 md:border-left">
@@ -120,6 +121,8 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
         </div>
 
       </section>
+
+      {/* Election Contests */}
       <section className=" bg-[#f7f7f7]">
         <div className="container mx-auto py-4 pt-16 max-w-screen-xl" >
           <div className="mx-auto flex flex-col justify-center w-11/12 py-10">
@@ -287,69 +290,72 @@ export default function ElectionDate({ data, stateName, pollingLocations, stateD
         </div>
 
       </section>
+
+
+      {/* State Information Links */}
       <section className=" bg-[#f7f7f7]  ">
         <div className="container mx-auto py-4 pt-16 flex flex-wrap max-w-screen-xl" >
           <div className="mx-auto flex flex-col justify-center w-12/12 lg:w-6/12  py-10 bg-[#f7f7f7]">
             <div className=" p-[20px] pb-[10px] bg-[#efeded] text-[#023a51] rounded-lg">
               {
-                stateInfo.length !== 0 &&
+                stateDetails.length !== 0 &&
                 (
                   <div >
                     <h4 className=" sm:text-[35px] font-bold text-[35px] md:text-[2rem] mb-5 text-center text-[#023a51] ">
                       State Informations
                     </h4>
                     {
-                      correspondenceAddress &&
-                      <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} correspondence address: <br /> <span className="mt-[10]"> {correspondenceAddress?.line1} {correspondenceAddress?.city} {correspondenceAddress?.state} {correspondenceAddress?.zip}</span></h3>
+                      stateDetails[0]?.electionAdministrationBody?.correspondenceAddress &&
+                      <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} correspondence address: <br /> <span className="mt-[10]"> {stateDetails[0]?.electionAdministrationBody?.correspondenceAddress?.line1} {stateDetails[0]?.electionAdministrationBody?.correspondenceAddress?.city} {stateDetails[0]?.electionAdministrationBody?.correspondenceAddress?.state} {stateDetails[0]?.electionAdministrationBody?.correspondenceAddress?.zip}</span></h3>
 
                     }
                     {
-                      stateInfo[0].local_jurisdiction?.name &&
+                      stateDetails[0].local_jurisdiction?.name &&
                       <>
-                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction: <br /> <span className="mt-[10]"> {stateInfo[0].local_jurisdiction.name} </span></h3>
+                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction: <br /> <span className="mt-[10]"> {stateDetails[0].local_jurisdiction.name} </span></h3>
 
                       </>
                     }
-                    {ballotInfoUrl &&
-                      <Link href={ballotInfoUrl} passHref >
+                    {stateDetails[0]?.electionAdministrationBody?.ballotInfoUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.ballotInfoUrl} passHref >
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "> <GoLinkExternal className='mr-2' />Track your {stateName} Ballot</a>
                       </Link>
                     }
                     {
-                      votingLocationFinderUrl &&
-                      <Link href={votingLocationFinderUrl} passHref>
+                      stateDetails[0]?.electionAdministrationBody?.votingLocationFinderUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.votingLocationFinderUrl} passHref>
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "><GoLinkExternal className='mr-2' /> Find Your voting location</a>
                       </Link>
                     }
-                    {electionRegistrationUrl &&
-                      <Link href={electionRegistrationUrl} passHref>
+                    {stateDetails[0]?.electionAdministrationBody?.electionRegistrationUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.electionRegistrationUrl} passHref>
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "> <GoLinkExternal className='mr-2' /> Check Your Registration</a>
                       </Link>
                     }
                     {
-                      absenteeVotingInfoUrl &&
-                      <Link href={absenteeVotingInfoUrl} passHref>
+                      stateDetails[0]?.electionAdministrationBody?.absenteeVotingInfoUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.absenteeVotingInfoUrl} passHref>
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "> <GoLinkExternal className='mr-2' /> Absentee Voting Information</a>
                       </Link>
                     }
                     {
-                      electionInfoUrl &&
-                      <Link href={electionInfoUrl} passHref>
+                      stateDetails[0]?.electionAdministrationBody?.electionInfoUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.electionInfoUrl} passHref>
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "> <GoLinkExternal className='mr-2' />Election Information</a>
                       </Link>
                     }
                     {
-                      electionRegistrationConfirmationUrl &&
-                      <Link href={electionRegistrationConfirmationUrl} passHref>
+                      stateDetails[0]?.electionAdministrationBody?.electionRegistrationConfirmationUrl &&
+                      <Link href={stateDetails[0]?.electionAdministrationBody?.electionRegistrationConfirmationUrl} passHref>
                         <a className="text-[14px] block sm:text-[20px] flex items-center mb-[20px] font-bold "><GoLinkExternal className='mr-2' /> Election Registration Confirmation </a>
                       </Link>
                     }
 
                     {
-                      stateInfo[0].local_jurisdiction?.electionAdministrationBody?.electionOfficials &&
+                      stateDetails[0].local_jurisdiction?.electionAdministrationBody?.electionOfficials &&
                       <>
-                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction office phone: <br /> <span className="mt-[10] flex items-center"> <BsFillPhoneFill className="mr-2" /> {stateInfo[0].local_jurisdiction.electionAdministrationBody.electionOfficials[0].officePhoneNumber} </span></h3>
-                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction office email: <br /> <span className="mt-[10] flex items-center"> <AiTwotoneMail className="mr-2" /> {stateInfo[0].local_jurisdiction.electionAdministrationBody.electionOfficials[0].emailAddress} </span></h3>
+                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction office phone: <br /> <span className="mt-[10] flex items-center"> <BsFillPhoneFill className="mr-2" /> {stateDetails[0].local_jurisdiction.electionAdministrationBody.electionOfficials[0].officePhoneNumber} </span></h3>
+                        <h3 className="text-[14px] block sm:text-[20px] mb-[20px] font-bold" >{stateName} Local jurisdiction office email: <br /> <span className="mt-[10] flex items-center"> <AiTwotoneMail className="mr-2" /> {stateDetails[0].local_jurisdiction.electionAdministrationBody.electionOfficials[0].emailAddress} </span></h3>
                       </>
                     }
                   </div>

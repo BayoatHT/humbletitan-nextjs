@@ -21,7 +21,8 @@ export default function WhatElseWeOffer({ stateName }) {
               </h4>
             </div>
           </div>
-          <Link href={`/politics/elected-officials/${stateName}`} passHref>
+
+          <Link href={stateName ? `/politics/elected-officials/${stateName}` : '#'} passHref>
             <a className="container w-12/12 sm:w-[45%] lg:w-[31%] mx-auto  max-w-screen-xl rounded-lg bg-[#fff] mt-8">
               <div className="img_container">
                 <Image

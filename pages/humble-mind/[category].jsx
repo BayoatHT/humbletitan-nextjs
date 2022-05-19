@@ -119,7 +119,7 @@ export default function Category({ category, data }) {
 export async function getServerSideProps(ctx) {
     const { query: { category } } = ctx
     var data;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*`)
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&_limit=-1`)
         .then((result) => {
             data = result.data.data.filter((item) => item.attributes.tag.data?.attributes.name === category)
         }).catch((error) => {

@@ -310,7 +310,7 @@ export default function BrowseByState() {
                           key={index}
                           onClick={() => {
                             dispatch({ type: "SET_COUNTY", payload: county.name })
-                            router.push(`/election-center/${county.name}`)
+                            router.push(`/politics/election-center/${county.name}`)
                           }
                           }
                           className="mt-10 cursor-pointer font-bold-2 text-[#3b3a3a] text-[1rem] style-heading transition duration-150 ease-out w-[45%] md:w-[33.3%] lg:w-[20%] "

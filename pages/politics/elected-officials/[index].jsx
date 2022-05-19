@@ -15,7 +15,6 @@ export async function getServerSideProps(context) {
         query: { index },
     } = context;
     var address = index;
-    console.log(address);
     var officials = [];
     var offices = [];
     var formedOfficials = [];
