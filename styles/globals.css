@@ -1098,10 +1098,10 @@ input {
 }
 
 .nav-active {
+    height: 100vh;
     transition: all 0.4s;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .showDropdown {
