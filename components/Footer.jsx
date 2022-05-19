@@ -24,19 +24,19 @@ const Footer = () => {
                         <div className="abcd_col-2 blue-color_abcd">
                             <ul className="footer_list_abcd ul_abcd">
                                 <li className="mb-1_abcd li_abcd"><strong>Overview</strong></li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/services/' className='blue-color_abcd text_deco_abcd'>Services</a> </li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/due-diligence/' className='blue-color_abcd text_deco_abcd'> Due Diligence Reports</a></li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/politics/' className='blue-color_abcd text_deco_abcd'>Politics</a> </li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/education/' className='blue-color_abcd text_deco_abcd'>Education</a> </li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/news/' className='blue-color_abcd text_deco_abcd'>Magazine</a> </li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/about/' className='blue-color_abcd text_deco_abcd'>Who we are</a> </li>
+                                <li className="li_abcd"> <a href=' /services/' className='blue-color_abcd text_deco_abcd'>Services</a> </li>
+                                <li className="li_abcd"> <a href=' /due-diligence/' className='blue-color_abcd text_deco_abcd'> Due Diligence Reports</a></li>
+                                <li className="li_abcd"> <a href=' /politics/' className='blue-color_abcd text_deco_abcd'>Politics</a> </li>
+                                <li className="li_abcd"> <a href=' /education/' className='blue-color_abcd text_deco_abcd'>Education</a> </li>
+                                <li className="li_abcd"> <a href=' /humble-mind/' className='blue-color_abcd text_deco_abcd'>Magazine</a> </li>
+                                <li className="li_abcd"> <a href=' /about/' className='blue-color_abcd text_deco_abcd'>Who we are</a> </li>
                             </ul>
                         </div>
-                        <div className="abcd_col-2 blue-color_abcd">
+                        <div className="abcd_col-2 blue-color_abcd mr-[100px] sm:mr-auto ">
                             <ul className="footer_list_abcd footer_list2_abcd ul_abcd">
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/offices/' className='blue-color_abcd text_deco_abcd'>Offices</a> </li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/tram-seo/' className='blue-color_abcd text_deco_abcd'> TRAM SEO Course</a></li>
-                                <li className="li_abcd"> <a href='https://www.humbletitan.com/faqs/' className='blue-color_abcd text_deco_abcd'>FAQs</a> </li>
+                                <li className="li_abcd"> <a href=' /offices/' className='blue-color_abcd text_deco_abcd'>Offices</a> </li>
+                                <li className="li_abcd"> <a href=' /tram-seo/' className='blue-color_abcd text_deco_abcd'> TRAM SEO Course</a></li>
+                                <li className="li_abcd"> <a href=' /faqs/' className='blue-color_abcd text_deco_abcd'>FAQs</a> </li>
                             </ul>
                         </div>
                         <div className="abcd_col-4 full-width_abcd footer_last_col_abcd ">
@@ -66,7 +66,7 @@ const Footer = () => {
                             <FaYoutube />
                         </div>
                         <div className="abcd_col-4 txt-center_abcd mt-15_abcd full-width_abcd">
-                            <span onClick={() => backToTop()} className="text-[18px] " >Back to top</span>
+                            <span onClick={() => backToTop()} className="text-[16px] font-semibold cursor-pointer hover:text-[18px] transition-all duration-150 " >Back to top</span>
                         </div>
                     </div>
                 </div>

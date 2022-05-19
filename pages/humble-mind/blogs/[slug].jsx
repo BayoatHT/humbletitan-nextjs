@@ -61,7 +61,7 @@ export default function Blog({ data }) {
                                 <div className='w-[80%]'>
                                     {
                                         blogImageUrl && (
-                                            <Image className='rounded-[20px] ' src={blogImageUrl} layout="responsive" height={blogImage?.height} width={blogImage?.width} alt="Blog Image" />
+                                            <Image className='rounded-[20px] ' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="Blog Image" />
                                         )
                                     }
 

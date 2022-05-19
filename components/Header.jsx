@@ -24,8 +24,10 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from 'next/router'
 
 const Header = () => {
+  const router = useRouter()
   const [togglerClasses, setTogglerClasses] = useState([])
   const [navListClass, setNavListClass] = useState(['nav-inactive'])
 
@@ -117,26 +119,27 @@ const Header = () => {
             <div className="abcd_col-10  mbl-display_abcd">
               <div className="header__firstrow_abcd abcd_row p-1_abcd ">
                 <ul className="abcd_row mr-auto_abcd ul_abcd abcd_align-center">
-                  <li>
+                  <li className={`${router.pathname == '/products' ? 'rounded bg-[#fff]' : ''} `} >
                     <a
-                      href=" /offices/"
-                      className="a_abcd text-[#023A51] text-[12px]"
+
+                      href=" /products"
+                      className={`a_abcd text-[#023A51] font-semibold text-[12px]  `}
                     >
-                      Offices
+                      Products
                     </a>
                   </li>
-                  <li>
+                  <li className={`${router.pathname == '/faqs' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
-                      href=" /faqs/"
-                      className="a_abcd text-[#023A51] text-[12px]"
+                      href=" /faqs"
+                      className="a_abcd font-semibold text-[#023A51] text-[12px]"
                     >
                       FAQS
                     </a>
                   </li>
-                  <li className="abcd_mainmenu flex abcd_relative">
+                  <li className={`abcd_mainmenu flex abcd_relative ${router.pathname == '/about' ? 'rounded bg-[#fff] p-2 ' : router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''}`}>
                     <a
-                      href=" /about/"
-                      className="a_abcd text-[#023A51] text-[12px]"
+                      href=" /about"
+                      className="a_abcd text-[#023A51] font-semibold text-[12px]"
                     >
                       About Us
                     </a>
@@ -159,7 +162,7 @@ const Header = () => {
                         style={{ padding: "12px 20px" }}
                       >
                         <a
-                          href=" /the-team/"
+                          href=" /the-team"
                           className="a_abcd"
                         >
                           THE TEAM
@@ -218,15 +221,15 @@ const Header = () => {
                 </div>
                 <ul className="abcd_row abcd_justify-between abcd_nav abcd_align-center ul_abcd">
                   <li>
-                    <a href=" /" className="a_abcd text-[#023A51] text-[18px]">
-                      {" "}
+                    <a href=" /" className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/" ? "active" : ""}`} >
+
                       Home
                     </a>
                   </li>
                   <li className="abcd_mainmenu abcd_relative">
                     <a
-                      href=" /politics/"
-                      className=" a_abcd text-[#023A51] text-[18px]"
+                      href=" /politics"
+                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname.includes('/politics') ? "active" : router.pathname == "/due-diligence" ? "active" : router.pathname == "/bayo-search-consultant" ? "active" : router.pathname == "/activism" ? "active" : ""}`}
                     >
                       Politics{" "}
                       <FaChevronDown
@@ -240,8 +243,8 @@ const Header = () => {
                     <ul className="abcd_submenu ul_abcd">
                       <li className="abcd_menu-politics">
                         <a
-                          href=" /due-diligence/"
-                          className="a_abcd"
+                          href=" /due-diligence"
+                          className={`a_abcd ${router.pathname == "/due-diligence" ? "active" : ""}`}
                         >
                           {" "}
                           ABCD Stock
@@ -249,8 +252,8 @@ const Header = () => {
                       </li>
                       <li className="abcd_menu-politics">
                         <a
-                          href=" /bayo-search-consultant/"
-                          className="a_abcd"
+                          href=" /bayo-search-consultant"
+                          className={`a_abcd ${router.pathname == "/bayo-search-consultant" ? "active" : ""}`}
                         >
                           {" "}
                           Founder & Consultant
@@ -258,8 +261,8 @@ const Header = () => {
                       </li>
                       <li className="abcd_menu-politics">
                         <a
-                          href=" /activism/"
-                          className="a_abcd"
+                          href=" /activism"
+                          className={`a_abcd ${router.pathname == "/activism" ? "active" : ""}`}
                         >
                           {" "}
                           Activism
@@ -269,16 +272,16 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href=" /education/"
-                      className="a_abcd text-[#023A51] text-[18px]"
+                      href=" /education"
+                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/education" ? "active" : ""}`}
                     >
                       Education
                     </a>
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href=" /services/"
-                      className="a_abcd text-[#023A51] text-[18px]"
+                      href=" /services"
+                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/services" ? "active" : router.pathname == "/services/web-design" ? "active" : router.pathname == "/services/content-marketing" ? "active" : router.pathname == "/services/search-engine-optimization" ? "active" : router.pathname == "/services/web-performance-management" ? "active" : ""}`}
                     >
                       Services{" "}
                       <FaChevronDown
@@ -294,8 +297,8 @@ const Header = () => {
                         <div className="abcd_menu_font">
                           {" "}
                           <a
-                            href=" /services/web-design/"
-                            className="a_abcd"
+                            href=" /services/web-design"
+                            className={`a_abcd ${router.pathname == "/services/web-design" ? "active" : ""}`}
                           >
                             {" "}
                             Web Design
@@ -307,8 +310,8 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href=" /services/content-marketing/"
-                            className="a_abcd"
+                            href=" /services/content-marketing"
+                            className={`a_abcd ${router.pathname == "/services/content-marketing" ? "active" : ""}`}
                           >
                             {" "}
                             Content Marketing
@@ -323,8 +326,9 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href=" /services/search-engine-optimization/"
-                            className="a_abcd"
+                            href=" /services/search-engine-optimization"
+                            className={`a_abcd ${router.pathname == "/services/search-engine-optimization" ? "active" : ""}`}
+
                           >
                             {" "}
                             SEO Optimization
@@ -336,8 +340,9 @@ const Header = () => {
                       <li className="abcd_servicemenu_li">
                         <div className="abcd_menu_font">
                           <a
-                            href=" /services/web-performance-management/"
-                            className="a_abcd"
+                            href=" /services/web-performance-management"
+                            className={`a_abcd ${router.pathname == "/services/web-performance-management" ? "active" : ""}`}
+
                           >
                             {" "}
                             Managment Services
@@ -353,8 +358,8 @@ const Header = () => {
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href=" /tram-seo/"
-                      className="a_abcd text-[#023A51] "
+                      href=" /tram-seo"
+                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/tram-seo" ? "active" : router.pathname == "/tram-seo/technical-course" ? "active" : router.pathname == "/tram-seo/authority-course" ? "active" : router.pathname == "/tram-seo/ranking-course" ? "active" : router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
                     >
                       <strong>TRAM SEO Course</strong>{" "}
                       <span className="newbadge_abcd text-[16px] ">New</span>{" "}
@@ -427,8 +432,8 @@ const Header = () => {
                         <div className="abcd_row abcd_justify-between abcd_align-center">
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
-                              href=" /tram-seo/"
-                              className="a_abcd"
+                              href=" /tram-seo"
+                              className={`a_abcd ${router.pathname == "/" ? "active" : ""}`}
                             >
                               About the course
                             </a>
@@ -439,7 +444,7 @@ const Header = () => {
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
                               href=" /bayo-search-consultant/"
-                              className="a_abcd"
+                              className={`a_abcd ${router.pathname == "/" ? "active" : ""}`}
                             >
                               About the Founder
                             </a>
@@ -457,8 +462,8 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href=" /tram-seo/technical-course/"
-                            className="a_abcd"
+                            href=" /tram-seo/technical-course"
+                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/technical-course" ? "active" : ""}`}
                           >
                             {" "}
                             Technical SEO
@@ -470,8 +475,8 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href=" /tram-seo/authority-course/"
-                            className="a_abcd"
+                            href=" /tram-seo/authority-course"
+                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/authority-course" ? "active" : ""}`}
                           >
                             {" "}
                             Authority SEO
@@ -488,8 +493,8 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href=" /tram-seo/ranking-course/"
-                            className="a_abcd"
+                            href=" /tram-seo/ranking-course"
+                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/ranking-course" ? "active" : ""}`}
                           >
                             {" "}
                             Ranking SEO
@@ -501,8 +506,8 @@ const Header = () => {
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
                           <a
-                            href=" /tram-seo/management-course/"
-                            className="a_abcd"
+                            href=" /tram-seo/management-course"
+                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
                           >
                             {" "}
                             Monitoring SEO
@@ -517,19 +522,19 @@ const Header = () => {
                   </li>
                   <li>
                     <a
-                      href=" /humble-mind/"
-                      className="a_abcd text-[#023A51] text-[18px] "
+                      href=" /humble-mind"
+                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname.includes("/humble-mind") ? "active" : ""} `}
                     >
                       Magazine
                     </a>
                   </li>
                   <li className="btn btn-primary">
-                    <a
-                      href=" /contact/"
-                      className="a_abcd text-[#fff] text-center bg-[#2cbc63] sm:w-[100px] py-[0px] px-[20px] rounded-3xl text-[18px]"
+                    <button
+                      onClick={() => router.push("/contact")}
+                      className="green_rounded_btn"
                     >
                       Hire Us
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -552,12 +557,12 @@ const Header = () => {
           </div>
 
           <div className={navListClass}>
-            <a href=" /" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               Home
             </a>
 
             {/* dropdown */}
-            <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <div className={`relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/politics') ? "active" : router.pathname == "/due-diligence" ? "active" : router.pathname == "/bayo-search-consultant" ? "active" : router.pathname == "/activism" ? "active" : ""} `}>
               <a href=" /politics" >
                 Politics
               </a>
@@ -571,24 +576,24 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${politicsStyles} `}>
-              <a href=" /due-diligence/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /due-diligence" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/due-diligence' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
                 ABCD Stock
               </a>
-              <a href=" /bayo-search-consultant/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /bayo-search-consultant" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/bayo-search-consultant' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Founder & Consultant
               </a>
-              <a href=" /activism" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /activism" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/activism' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Activism
               </a>
             </div>
             {/* Dropdown contents ends */}
 
-            <a href=" /education" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /education" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/education' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               Education
             </a>
 
             {/* dropdown */}
-            <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <div className={`relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/services') ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
               <a href=" /services" >
                 Services
               </a>
@@ -603,16 +608,16 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${servicesStyles} `}>
-              <a href=" /services/web-design/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/web-design" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/web-design' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
                 Web Design
               </a>
-              <a href=" /services/content-marketing/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/content-marketing" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/content-marketing' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Content Marketing
               </a>
-              <a href=" /search-engine-optimization/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/search-engine-optimization" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/search-engine-optimization' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Search Engine Optimization
               </a>
-              <a href=" /web-performance-management" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /services/web-performance-management" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/web-performance-management' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Web Management
               </a>
             </div>
@@ -620,8 +625,8 @@ const Header = () => {
 
 
             {/* dropdown */}
-            <div className="relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
-              <a href=" /tram-seo/" >
+            <div className={`relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/tram-seo') ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
+              <a href=" /tram-seo" >
                 Tram SEO Course
               </a>
               <div
@@ -652,10 +657,10 @@ const Header = () => {
               </a>
             </div>
             {/* Dropdown contents ends */}
-            <a href=" /humble-mind" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /humble-mind" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/humble-mind') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               magazine
             </a>
-            <a href=" /contact" className="w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ">
+            <a href=" /contact" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/contact' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               Hire Us
             </a>
 

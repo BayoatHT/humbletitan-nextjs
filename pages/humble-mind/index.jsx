@@ -80,7 +80,7 @@ export default function Magazine({ data, tagsData }) {
                                                         <div className="w-[100%] ">
                                                             {
                                                                 blogImageUrl && (
-                                                                    <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height} width={blogImage?.width} alt="" />
+                                                                    <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
                                                                 )
                                                             }
 

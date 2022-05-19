@@ -26,10 +26,10 @@ export default function Activism() {
             </Head>
             <Layout>
                 {/* Hero */}
-                <section className='heading md:py-10 bg-[#e0ecf0]'>
+                <section className='heading py-10 md:py-20 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='w-7/12' >
+                            <div className='md:w-7/12' >
                                 <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Activism</p>
                                 <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Shinning a light on some of the world&apos;s darkest issues<span className='text-[#2cbc63]'>.</span></h1>
                                 <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>We do our work to help make the world a more compassionate and sustainable place. Let&apos;s get involved.</p>
@@ -52,7 +52,7 @@ export default function Activism() {
                                 <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                             </div>
 
-                            <div className='md:flex flex-wrap text-[#023A51] justify-around' >
+                            <div className='flex flex-wrap text-[#023A51] justify-around' >
                                 <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Activism</p>
                                     <p className='text-[20px] py-3' >A theory or practice emphasizing direct, forceful action, particularly in favor of or in opposition to one side of a controversial subject.</p>
