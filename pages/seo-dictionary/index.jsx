@@ -12,14 +12,12 @@ import { FaFacebookF } from 'react-icons/fa'
 import { TiSocialTwitter, TiSocialInstagram } from 'react-icons/ti'
 
 
-import Brands from '../../components/Brands'
 import Accordion from '../../components/accordion-dictionary/Accordion';
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 import DiscoverMore from '../../components/DiscoverMore';
 import GetAQuote from '../../components/GetAQuote';
 
 // Images
-import exceptionalResources from '../../assets/imgs/exceptional-resources-400x868.png'
 import humblePoliticians from '../../assets/imgs/humble-politicians-400x174.jpg'
 import humblePoliticalCampaigns from '../../assets/imgs/humble-political-campaigns-400x174.jpg'
 import humbleNgos from '../../assets/imgs/humble-ngos-400x174.jpg'
@@ -130,9 +128,9 @@ export default function SeoDictionary() {
                                     <div className='my-10'>
                                         <Accordion title="Above the Fold" content="Content that is visible on the screen of a user before scrolling. <br/>  To ensure that content in this area is kept relevant, Google introduced an algorithm update to penalize sites with too many ads that appear above the fold." />
                                         <Accordion title="Accelerated Mobile Pages (AMP)" content="An open source HTML framework developed by the AMP Open Source Project. It was originally created by Google as a competitor to Facebook Instant Articles and Apple News. AMP is optimized for mobile web browsing and intended to help web pages load faster." />
-                                        <Accordion title="Ad Groups" content="An ad group contains one or more ads that share similar targets. <br/><br/>
+                                        <Accordion title="Ad Groups" content="An ad group contains one or more ads that share similar targets. <p>
                                         Each of your campaigns is made up of one or more ad groups. Use ad groups to organize your ads by a common theme. For example, try separating ad groups into the different product or service types you offer. <br/><br/>
-                                        <a href='https://support.google.com/google-ads/answer/6298'  >Learn more about ad groups
+                                        <a href='https://support.google.com/google-ads/answer/6298'>Learn more about ad groups </a></p>
                                         " />
                                         <Accordion title="AJAX" content="From the perspective of web users, they don’t have to reload a page to receive new information. Data is served dynamically and can also be sent to a server without leaving a page." />
                                         <Accordion title="Algorithm" content="A process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer. In the cases of search engines, these complex computer programs are to retrieve data, process and deliver the most relevant search results for a query. <br/><br/>
