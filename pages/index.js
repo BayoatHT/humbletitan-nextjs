@@ -81,7 +81,7 @@ export default function Home() {
                                     <p className='text-[20px] extralight text-[#023A51] ' >Hey, there! We are a digital marketing agency. </p>
                                 </div>
 
-                                <p className='text-[50px] md:text-[60px] text-[#023A51] py-10 ' style={{ lineHeight: '69px', letterSpacing: '-2px' }} >We boost online <br /> performance with <br /> our digital products <br /> & services <span className='text[#2cbc63]'>.</span></p>
+                                <p className='text-[50px] md:text-[60px] text-[#023A51] py-10 leading-[59px] md:leading-[69px] tracking-[2px] ' >We boost online <br /> performance with <br /> our digital products <br /> & services <span className='text[#2cbc63]'>.</span></p>
 
                                 <div className=' md:flex justify-between items-center '>
                                     <p className='text-[22px] extralight text-[#023A51] ' >Discover how much more <br /> you could be <br /> achieving online</p>

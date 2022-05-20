@@ -1026,7 +1026,7 @@ export default function SeoDictionary() {
 
 
                 {/* On the cutting edge. */}
-                <section className='heading my-10 bg-[#f9fafb] md:my-20'>
+                <section className='heading py-10 my-10 bg-[#f9fafb] md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='md:flex mx-auto items-center justify-around' >
