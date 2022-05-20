@@ -18,7 +18,7 @@ import RilwanHumbleProfile from '../../assets/imgs/Rilwan-Humble-Profile-600x690
 import HafizHumbleProfile from '../../assets/imgs/Hafiz-Humble-Profile-600x690.jpg'
 import exceptionalResources from '../../assets/imgs/exceptional-resources-400x868.png'
 
-export default function team() {
+export default function TheTeam() {
     return (
         <>
             <Head>
@@ -29,7 +29,7 @@ export default function team() {
                 <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='md:w-7/12' >
+                            <div className='md:w-8/12' >
                                 <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Humble Team</p>
                                 <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Delivering effective solutions is our family business<span className='text-[#2cbc63]'>.</span></h1>
                                 <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>We&apos;re three brothers, committed to helping others achieve their goals. While you are here we&apos;d like to help you make better-informed business and political decisions.</p>
