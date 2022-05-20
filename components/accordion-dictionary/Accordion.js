@@ -20,7 +20,7 @@ function Accordion(props) {
                 className={`accordion ${active ? "accordionActive" : ""} `}
                 onClick={toggleAccordion}
             >
-                <span>{active ? <FaMinus className='translate-y-2 text-[18px] mr-[12px]' color='#023A51' /> : <FaPlus className='translate-y-2 text-[18px] mr-[12px]' color='#023A51' />}</span>
+                <span>{active ? <FaMinus className='translate-y-2 text-[30px] mr-[12px]' color='#023A51' /> : <FaPlus className='translate-y-2 text-[30px] mr-[12px]' color='#023A51' />}</span>
                 <p className="text-[30px] font-bold flex py-4 ">{props.title}</p>
             </div>
             <div
