@@ -275,7 +275,7 @@ export default function Home() {
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:pl-20  ' >
                                     <p className='text-[20px] my-10 ' >The Humble Trader</p>
-                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Analyze the <br /> performance of <br /> companies on the <br /> US Stock <br /> Exchange</p>
+                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Analyze the performance of companies on the US Stock Exchange</p>
                                     <p className='text-[22px] my-10 ' >Do your due diligence. Feel like an expert in a matter <br /> of seconds. You won’t believe how easy <br /> we’ve made it is to discern a good company from a <br /> bad one.</p>
                                     <button className='green_rounded_btn' >List of publicly traded companies</button>
                                 </div>
