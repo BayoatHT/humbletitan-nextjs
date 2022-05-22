@@ -2,40 +2,37 @@ import React, { useState } from 'react'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
 import Head from 'next/head'
-import UnemploymentTrap from '../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
 import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
 import TradeSurplus from '../../assets/imgs/Trade-Surplus-min-400x282.jpg'
 import TradeDeficit from '../../assets/imgs/Trade-Deficit-min-400x282.jpg'
 import SupplySide from '../../assets/imgs/Supply-side-policies-min-400x282.jpg'
 import SupplyMin from '../../assets/imgs/Supply-min-400x282.jpg'
 import axios from 'axios'
-import { newsByCategories } from '../../utils/newsByCategories';
+import Link from 'next/link'
+import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import { FaSearch } from 'react-icons/fa'
 
 
-export default function Category({ category, data }) {
-    console.log(data)
-    const categories = ['economics', 'tram-seo', 'business-dictionary']
+export default function Category({ category, blogs }) {
     const [search, setSearch] = useState('')
     const [filterdCategories, setFilterdCategories] = useState([])
 
     const handleFilter = (e) => {
         setSearch(e)
-        setFilterdCategories(categories?.filter((item) => item.includes(search)))
+        setFilterdCategories(filterdCategories?.filter((item) => item.includes(search)))
     }
 
     return (
         <>
             <Head>
-                <title> Humble-Titan </title>
+                <title> {category} - Humble-Titan </title>
             </Head>
             <Layout >
 
                 <section className='heading'>
                     <div className=" container mx-auto md:flex justify-around flex-wrap max-w-screen-xl">
                         <div className='px-4' >
-                            <h1 className='text-[50px] md:text-[60px] text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{category}</h1>
-
+                            <h1 className='text-[50px] md:text-[60px] font-semibold text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{category}</h1>
                         </div>
                         <div className='flex justify-center mt-6 md:mt-10' >
                             <div className='flex relative text-[22px] rounded' >
@@ -52,11 +49,34 @@ export default function Category({ category, data }) {
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className=' md:flex flex-wrap justify-around '>
                                 <div className='md:flex flex-wrap justify-around'>
-                                    <div className='bg-[#fff] cursor-pointer transition p-2 text-center flex flex-col items-center rounded mb-2 md:w-[33%] ' >
-                                        <Image className='rounded' src={UnemploymentTrap} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Unemployment Trap</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >March 11, 2022 | economics </p>
-                                    </div>
+                                    {
+                                        blogs?.map((blog) => {
+                                            const post = blog?.attributes
+                                            const blogImage = post.blogImage?.data?.attributes
+                                            const blogImageUrl = blogImage && blogImage?.url
+                                            return (
+                                                <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
+                                                    <Link href={`/humble-mind/blogs/${post?.slug}`} passHref >
+                                                        <a className="w-[100%] ">
+                                                            <div >
+                                                                {
+                                                                    blogImageUrl ? (
+                                                                        <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
+                                                                    ) : (
+                                                                        <Image className='rounded' src={defaultBlogImage} layout="responsive" height={'80%'} width={'100%'} alt="" />
+
+                                                                    )
+                                                                }
+                                                            </div>
+                                                        </a>
+                                                    </Link>
+                                                    <Link href={`/humble-mind/blogs/${post?.slug}`} passHref>
+                                                        <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
+                                                    <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                     <div className='bg-[#fff] cursor-pointer transition p-2  text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
                                         <Image className='rounded' src={UndergroundEconomy} alt="image" />
                                         <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Underground Economy</p>
@@ -118,10 +138,14 @@ export default function Category({ category, data }) {
 
 export async function getServerSideProps(ctx) {
     const { query: { category } } = ctx
-    var data;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&_limit=-1`)
-        .then((result) => {
-            data = result.data.data.filter((item) => item.attributes.tag.data?.attributes.name === category)
+    var blogs;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&sort[0]=publishedAt%3Adesc`)
+        .then(({ data }) => {
+            if (category === "Uncategorized") {
+                blogs = data.data.filter((item) => item.attributes.category.data == null)
+            } else {
+                blogs = data.data.filter((item) => item.attributes.category.data?.attributes.name === category)
+            }
         }).catch((error) => {
             console.log(error)
         })
@@ -130,7 +154,7 @@ export async function getServerSideProps(ctx) {
 
     return {
         props: {
-            data,
+            blogs,
             category,
         },
     };

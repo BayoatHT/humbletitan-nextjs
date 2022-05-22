@@ -5,6 +5,8 @@ import Image from 'next/image'
 import styles from './blog.module.css'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link'
+
 
 import UnemploymentTrap from '../../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
 import UndergroundEconomy from '../../../assets/imgs/Underground-Economy-min-600x423.jpg'
@@ -17,10 +19,8 @@ import GetAQuote from '../../../components/GetAQuote';
 
 export default function Blog({ data }) {
     let blog = data.data[0]?.attributes
-    console.log(blog)
     const blogImage = blog?.blogImage?.data?.attributes
-    const blogImageUrl = blogImage && `https://humble-titan-strapi.herokuapp.com${blogImage?.url}`
-    console.log(blogImage)
+    const blogImageUrl = blogImage && blogImage?.url
     return (
         <>
             <Head>
@@ -37,15 +37,13 @@ export default function Blog({ data }) {
                                 <div className='flex justify-between py-6 text-[#023A51]'>
                                     <div className='flex'>
                                         {
-                                            blog?.tags?.data?.map((item) => {
-                                                return (
-                                                    <p className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer' key={item.id} >{item.attributes.name}</p>
-                                                )
-                                            })
+                                            blog?.category?.data && (
+                                                <Link href={`/humble-mind/${blog?.category?.data.attributes.name ? blog?.category?.data.attributes.name : 'Uncategorized'}`}  ><a className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer'> {blog?.category?.data.attributes.name ? blog?.category?.data.attributes.name : 'Uncategorized'}</a></Link>
+                                            )
                                         }
 
                                     </div>
-                                    <p>{new Date(blog?.createdAt).toDateString()}</p>
+                                    <p className='font-bold'>{new Date(blog?.createdAt).toDateString()}</p>
                                 </div>
                             </div>
                         </div>

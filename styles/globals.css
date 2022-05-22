@@ -27,15 +27,6 @@ body {
     font-family: 'Manrope';
 }
 
-a {
-    color: #023a51 !important;
-    transition: .4s;
-}
-
-a:hover {
-    color: #2cbc63 !important
-}
-
 .blue-color_abcd {
     color: #023a51;
 }

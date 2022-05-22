@@ -1,0 +1,8 @@
+.a{
+    color: #023a51 !important;
+    transition: .4s;
+}
+
+.a:hover {
+    color: #2cbc63 !important
+}

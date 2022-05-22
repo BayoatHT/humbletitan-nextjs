@@ -8,15 +8,14 @@ import { useRouter } from 'next/router';
 
 import UnemploymentTrap from '../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
 import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
-
+import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import GetAQuote from '../../components/GetAQuote';
 import ReactPaginate from 'react-paginate';
 
-export default function Magazine({ data, tagsData }) {
+export default function Magazine({ data, categories }) {
     const blogs = data.data
     const pageCount = data.meta.pagination?.pageCount
-    const tags = tagsData?.data
-    console.log(tagsData)
+    const categoriesData = categories?.data
     const router = useRouter()
 
     const [selectedTag, setSelectedtag] = useState("")
@@ -33,6 +32,7 @@ export default function Magazine({ data, tagsData }) {
                 <title>Magazine - Humble Titan</title>
             </Head>
             <Layout>
+
                 {/* Hero */}
                 <section className='heading py-20 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
@@ -45,9 +45,10 @@ export default function Magazine({ data, tagsData }) {
                                         value={selectedTag}
                                         onChange={(e) => setSelectedtag(e.target.value)}
                                     >
-                                        <option value="">Browse categories</option>
+                                        <option disabled selected value="">Browse categories</option>
+                                        <option value="Uncategorized">Uncategorized</option>
                                         {
-                                            tags?.map((item) => {
+                                            categoriesData?.map((item) => {
                                                 return (
                                                     <option key={item.id} value={item.attributes?.name}>{item.attributes?.name}</option>
                                                 )
@@ -68,47 +69,77 @@ export default function Magazine({ data, tagsData }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className=' md:flex flex-wrap justify-around '>
-                                <div className='md:flex flex-wrap justify-around'>
-                                    {
-                                        blogs?.map((blog) => {
-                                            const post = blog?.attributes
-                                            const blogImage = post.blogImage?.data?.attributes
-                                            const blogImageUrl = blogImage && `https://humble-titan-strapi.herokuapp.com${blogImage?.url}`
-                                            return (
-                                                <Link key={blog?.id} href={`/humble-mind/blogs/${post?.slug}`} passHref  >
-                                                    <a className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center group rounded mb-2 md:w-[48%] '>
-                                                        <div className="w-[100%] ">
+                            <div className='md:flex flex-wrap justify-around'>
+                                {
+                                    blogs?.map((blog) => {
+                                        const post = blog?.attributes
+                                        const blogImage = post.blogImage?.data?.attributes
+                                        const blogImageUrl = blogImage && blogImage?.url
+                                        return (
+                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
+                                                <Link href={`/humble-mind/blogs/${post?.slug}`} passHref >
+                                                    <a className="w-[100%] ">
+                                                        <div className='w-[100%] h-[100%]' >
                                                             {
-                                                                blogImageUrl && (
+                                                                blogImageUrl ? (
                                                                     <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
+                                                                ) : (
+                                                                    <Image className='rounded' src={defaultBlogImage} layout="responsive" alt="" />
+
                                                                 )
                                                             }
-
                                                         </div>
-                                                        <p className='text-[30px] text-center font-semibold md:text-[40px] text-[#023A51] pt-3 leading-[40px] group-hover:text-[#2cbc63] ease-in duration-300 ' >{blog.attributes.title}</p>
-                                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >{new Date(post.publishedAt).toDateString()} | {post.tag.data?.attributes.name}</p>
                                                     </a>
                                                 </Link>
-                                            )
-                                        })
-                                    }
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
+                                                <Link href={`/humble-mind/blogs/${post?.slug}`} passHref>
+                                                    <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
+                                                <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                            </div>
+                                        )
+                                    })
+                                }
 
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
+
+
+                {/* pagination */}
+                <section className='heading md:my-20 '>
+                    <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
+                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
+                            <div className=' md:flex flex-wrap justify-around '>
+
+
+                                {/* pagination */}
+                                <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
+
+                                    <ReactPaginate
+                                        onPageChange={(n) => router.push(`http://localhost:3000/humble-mind?page=${n.selected + 1}`)}
+                                        pageCount={pageCount}
+                                        marginPagesDisplayed={3}
+                                        previousLabel="< Previous"
+                                        nextLabel="Next >"
+                                        pageRangeDisplayed={3}
+                                        containerClassName="flex flex-wrap justify-between"
+                                        pageClassName='flex items-center mx-2 justify-center p-2 w-[30px] h-[30px] border'
+                                        breakClassName='flex items-center mx-2 justify-center p-2 text-[20px] w-[30px] h-[30px] border'
+                                        activeClassName='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] hover:text-[#023A51] border-[#2cbc63] bg-[#2cbc63] '
+
+                                    />
+                                    {/* <p className='text-[12px] flex cursor-pointer items-center mr-2' ><BsChevronLeft /> Previuos  </p>
+                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border' >1</span>
+                                        <span className='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63] ' >2</span>
+                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border  ' >3</span>
+                                        <p className='text-[12px] flex cursor-pointer items-center mr-2' >Next <BsChevronRight /> </p> */}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
 
                 {/* Newsletter */}
@@ -132,67 +163,8 @@ export default function Magazine({ data, tagsData }) {
                 </section>
 
 
-                {/* Magazines */}
-                <section className='heading md:my-20 '>
-                    <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className=' md:flex flex-wrap justify-around '>
-                                <div className='md:flex flex-wrap justify-around'>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <Image className='rounded' src={UnemploymentTrap} alt="image" />
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <Image className='rounded' src={UndergroundEconomy} alt="image" />
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                </div>
 
-                                {/* pagination */}
-                                <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
 
-                                    <ReactPaginate
-                                        onPageChange={(n) => router.push(`http://localhost:3000/humble-mind?page=${n.selected + 1}`)}
-                                        pageCount={25}
-                                        marginPagesDisplayed={3}
-                                        previousLabel="< Previous"
-                                        nextLabel="Next >"
-                                        pageRangeDisplayed={3}
-                                        containerClassName="flex"
-                                        pageClassName='flex cursor-pointer items-center mx-2 justify-center p-2 w-[30px] h-[30px] border'
-                                        breakClassName='flex cursor-pointer items-center mx-2 justify-center p-2 text-[20px] w-[30px] h-[30px] border'
-                                        activeClassName='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63]'
-
-                                    />
-                                    {/* <p className='text-[12px] flex cursor-pointer items-center mr-2' ><BsChevronLeft /> Previuos  </p>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border' >1</span>
-                                        <span className='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63] ' >2</span>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border  ' >3</span>
-                                        <p className='text-[12px] flex cursor-pointer items-center mr-2' >Next <BsChevronRight /> </p> */}
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
 
                 {/* Get a Quote */}
@@ -205,23 +177,23 @@ export default function Magazine({ data, tagsData }) {
 export async function getServerSideProps(ctx) {
     const pageNumber = ctx.query.page > 0 ? ctx.query.page : 1
     var data;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}`)
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`)
         .then((result) => {
             data = result.data
         }).catch((error) => {
             console.log(error)
         })
-    var tagsData;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/tags?populate=*`)
+    var categories;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?populate=*`)
         .then(({ data }) => {
-            tagsData = data
+            categories = data
         }).catch((error) => {
             console.log(error)
         })
     return {
         props: {
             data,
-            tagsData
+            categories
         },
     };
 }

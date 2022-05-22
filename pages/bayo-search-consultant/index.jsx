@@ -497,7 +497,7 @@ export default function Bayo_search_consultant() {
                                         </div>
                                     </div>
                                     <div className=' pt-12 md:px-12 '>
-                                        <div className=' rounded shadow-xl bg-[#fff] p-10 rounded text-[#023A51] ' >
+                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
                                             <p className='text-[24px] font-bold text-center'>The Story</p>
                                             <br />
                                             <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
@@ -629,7 +629,7 @@ export default function Bayo_search_consultant() {
                                             <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >Chapter 4, The Road Back</p>
                                             <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >Working at top agencies trains you to be agile, creative, and immediately effective.</p>
                                         </div>
-                                        <div className=' rounded shadow-xl bg-[#fff] p-10 rounded text-[#023A51] ' >
+                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
                                             <p className='text-[24px] font-bold text-center'>The Story</p>
                                             <br />
                                             <p className='text-[22px] leading-[39px] text-[#59667d] '>You’ll soon discover I left the United States and moved to Spain in the year 2015. Two years later, I’d leave the Iberian peninsula. Three years after leaving, I’d return to Spain (in the year 2020). Each move meant a step up in my career.  </p>
@@ -793,7 +793,7 @@ export default function Bayo_search_consultant() {
                                             <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >Chapter 3, The Ordeal</p>
                                             <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >I sought to build a data-backed system that helps marketers get ahead of human thinking.</p>
                                         </div>
-                                        <div className=' rounded shadow-xl bg-[#fff] p-10 rounded text-[#023A51] ' >
+                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
                                             <p className='text-[24px] font-bold text-center'>The Story</p>
                                             <br />
                                             <p className='text-[22px] leading-[39px] text-[#59667d] '>I had all these ideas and projects that I’d been developing for years. They revolved around topics I am passionate about, politics, education, social reform, and art. But I was tired of scratching the surface and barely making an impact. I wanted to understand how to get more involved in a powerful and impactful way.   </p>
@@ -964,7 +964,7 @@ export default function Bayo_search_consultant() {
                                             <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >Chapter 2, Crossing the First Threshold</p>
                                             <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >No friends, no job, no real plan. No problem.</p>
                                         </div>
-                                        <div className=' rounded shadow-xl bg-[#fff] p-10 rounded text-[#023A51] ' >
+                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
                                             <p className='text-[24px] font-bold text-center'>The Story</p>
                                             <br />
                                             <p className='text-[22px] leading-[39px] text-[#59667d] '>I entered this phase of my life with incredible enthusiasm and unguided intentions. I was a bull in a china shop, but a bull regardless. </p>
@@ -1131,7 +1131,7 @@ export default function Bayo_search_consultant() {
                                             <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >Chapter 1, The Call to Adventure</p>
                                             <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >I was essentially getting paid to daydream about the internet.</p>
                                         </div>
-                                        <div className=' rounded shadow-xl bg-[#fff] p-10 rounded text-[#023A51] ' >
+                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
                                             <p className='text-[24px] font-bold text-center'>The Story</p>
                                             <br />
                                             <p className='text-[22px] leading-[39px] text-[#59667d] '>I started with nothing but an education and a family who continue to love me. And for as long as I can remember, I’ve been attracted to the responsibility of management. My older cousin said to me once, “your friends would come over and just wait in the living room, waiting for you to tell them what to do.” She mockingly calls me “Mr. Manager” whenever we have a family chat, on account of me playing mediator and director of our conversations. Seems to be my tendency. </p>
