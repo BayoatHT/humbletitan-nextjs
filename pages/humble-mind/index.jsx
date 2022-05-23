@@ -5,22 +5,26 @@ import Image from 'next/image'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import { Oval } from 'react-loading-icons'
+import ReactPaginate from 'react-paginate';
 
 import UnemploymentTrap from '../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
 import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
 import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import GetAQuote from '../../components/GetAQuote';
-import ReactPaginate from 'react-paginate';
 
 export default function Magazine({ data, categories }) {
+    const [browseText, setBrowseText] = useState(<button className='text-[#fff] font-semibold' >Browse</button>)
     const blogs = data.data
     const pageCount = data.meta.pagination?.pageCount
+
     const categoriesData = categories?.data
     const router = useRouter()
 
     const [selectedTag, setSelectedtag] = useState("")
     const handleBrowse = () => {
         if (selectedTag !== "") {
+            setBrowseText(<Oval className='p-2' />)
             router.push(`/humble-mind/${selectedTag}`)
         } else {
             return null
@@ -46,18 +50,18 @@ export default function Magazine({ data, categories }) {
                                         onChange={(e) => setSelectedtag(e.target.value)}
                                     >
                                         <option disabled selected value="">Browse categories</option>
-                                        <option value="Uncategorized">Uncategorized</option>
+                                        <option value="uncategorized">Uncategorized</option>
                                         {
                                             categoriesData?.map((item) => {
                                                 return (
-                                                    <option key={item.id} value={item.attributes?.name}>{item.attributes?.name}</option>
+                                                    <option key={item.id} value={item.attributes?.slug}>{item.attributes?.name}</option>
                                                 )
                                             })
                                         }
                                     </select>
                                 </div>
-                                <div onClick={() => handleBrowse()} className=' mt-4 ml-4 bg-[#2cbc63] cursor-pointer p-2 rounded max-w-max'>
-                                    <button className='text-[#fff] font-semibold ' >Browse</button>
+                                <div onClick={() => handleBrowse()} className=' mt-4 ml-4 flex justify-center items-center bg-[#2cbc63] w-[100px] h-[40px] cursor-pointer p-2 rounded max-w-max'>
+                                    {browseText}
                                 </div>
                             </div>
                         </div>
@@ -77,7 +81,7 @@ export default function Magazine({ data, categories }) {
                                         const blogImageUrl = blogImage && blogImage?.url
                                         return (
                                             <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
-                                                <Link href={`/humble-mind/blogs/${post?.slug}`} passHref >
+                                                <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                     <a className="w-[100%] ">
                                                         <div className='w-[100%] h-[100%]' >
                                                             {
@@ -91,9 +95,9 @@ export default function Magazine({ data, categories }) {
                                                         </div>
                                                     </a>
                                                 </Link>
-                                                <Link href={`/humble-mind/blogs/${post?.slug}`} passHref>
+                                                <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref>
                                                     <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
-                                                <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                                <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
                                             </div>
                                         )
                                     })
@@ -115,20 +119,22 @@ export default function Magazine({ data, categories }) {
 
                                 {/* pagination */}
                                 <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
+                                    {pageCount < 2 === false && (
+                                        <ReactPaginate
+                                            onPageChange={(n) => router.push(`http://localhost:3000/humble-mind?page=${n.selected + 1}`)}
+                                            pageCount={pageCount}
+                                            marginPagesDisplayed={3}
+                                            previousLabel="< Previous"
+                                            nextLabel="Next >"
+                                            pageRangeDisplayed={3}
+                                            containerClassName="flex flex-wrap justify-between"
+                                            pageClassName='flex items-center mx-2 justify-center p-2 w-[30px] h-[30px] border'
+                                            breakClassName='flex items-center mx-2 justify-center p-2 text-[20px] w-[30px] h-[30px] border'
+                                            activeClassName='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] hover:text-[#023A51] border-[#2cbc63] bg-[#2cbc63] '
 
-                                    <ReactPaginate
-                                        onPageChange={(n) => router.push(`http://localhost:3000/humble-mind?page=${n.selected + 1}`)}
-                                        pageCount={pageCount}
-                                        marginPagesDisplayed={3}
-                                        previousLabel="< Previous"
-                                        nextLabel="Next >"
-                                        pageRangeDisplayed={3}
-                                        containerClassName="flex flex-wrap justify-between"
-                                        pageClassName='flex items-center mx-2 justify-center p-2 w-[30px] h-[30px] border'
-                                        breakClassName='flex items-center mx-2 justify-center p-2 text-[20px] w-[30px] h-[30px] border'
-                                        activeClassName='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] hover:text-[#023A51] border-[#2cbc63] bg-[#2cbc63] '
+                                        />
+                                    )}
 
-                                    />
                                     {/* <p className='text-[12px] flex cursor-pointer items-center mr-2' ><BsChevronLeft /> Previuos  </p>
                                         <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border' >1</span>
                                         <span className='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63] ' >2</span>

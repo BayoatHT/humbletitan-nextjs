@@ -119,7 +119,7 @@ const Header = () => {
             <div className="abcd_col-10  mbl-display_abcd">
               <div className="header__firstrow_abcd abcd_row p-1_abcd ">
                 <ul className="abcd_row mr-auto_abcd ul_abcd abcd_align-center">
-                  <li className={`${router.pathname == '/products' ? 'rounded bg-[#fff]' : ''} `} >
+                  <li className={` hover:bg-[#fff] rounded ${router.pathname == '/products' ? 'rounded bg-[#fff]' : ''} `} >
                     <a
 
                       href=" /products"
@@ -128,7 +128,7 @@ const Header = () => {
                       Products
                     </a>
                   </li>
-                  <li className={`${router.pathname == '/faqs' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/faqs' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /faqs"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"
@@ -136,7 +136,7 @@ const Header = () => {
                       FAQS
                     </a>
                   </li>
-                  <li className={`${router.pathname == '/about' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/about' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /about"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"
@@ -144,7 +144,7 @@ const Header = () => {
                       About us
                     </a>
                   </li>
-                  <li className={`${router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /the-team"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"

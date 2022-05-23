@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import Layout from "../../../components/Layout";
+import Layout from "../../../../components/Layout";
 import Image from 'next/image'
 import styles from './blog.module.css'
 import axios from 'axios'
@@ -8,14 +8,14 @@ import ReactMarkdown from 'react-markdown';
 import Link from 'next/link'
 
 
-import UnemploymentTrap from '../../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
-import UndergroundEconomy from '../../../assets/imgs/Underground-Economy-min-600x423.jpg'
-import htdigitalmarketingsidebar from '../../../assets/imgs/ht-digital-marketing-sidebar.png'
-import hthumbletradersidebar from '../../../assets/imgs/ht-humble-trader-sidebar.png'
-import hthumblevotersidebar from '../../../assets/imgs/ht-humble-voter-sidebar.png'
+import UnemploymentTrap from '../../../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
+import UndergroundEconomy from '../../../../assets/imgs/Underground-Economy-min-600x423.jpg'
+import htdigitalmarketingsidebar from '../../../../assets/imgs/ht-digital-marketing-sidebar.png'
+import hthumbletradersidebar from '../../../../assets/imgs/ht-humble-trader-sidebar.png'
+import hthumblevotersidebar from '../../../../assets/imgs/ht-humble-voter-sidebar.png'
 
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
-import GetAQuote from '../../../components/GetAQuote';
+import GetAQuote from '../../../../components/GetAQuote';
 
 export default function Blog({ data }) {
     let blog = data.data[0]?.attributes
@@ -36,11 +36,9 @@ export default function Blog({ data }) {
                                 <p className='text-[26px] leading-[36px] text-[#023A51] py-5 '>{blog?.description} </p>
                                 <div className='flex justify-between py-6 text-[#023A51]'>
                                     <div className='flex'>
-                                        {
-                                            blog?.category?.data && (
-                                                <Link href={`/humble-mind/${blog?.category?.data.attributes.name ? blog?.category?.data.attributes.name : 'Uncategorized'}`}  ><a className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer'> {blog?.category?.data.attributes.name ? blog?.category?.data.attributes.name : 'Uncategorized'}</a></Link>
-                                            )
-                                        }
+
+                                        <Link href={`/humble-mind/${blog?.category?.data?.attributes?.name ? blog.category.data.attributes.name : 'Uncategorized'}`}  ><a className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer'> {blog?.category?.data?.attributes?.name ? blog.category.data.attributes.name : 'Uncategorized'}</a></Link>
+
 
                                     </div>
                                     <p className='font-bold'>{new Date(blog?.createdAt).toDateString()}</p>

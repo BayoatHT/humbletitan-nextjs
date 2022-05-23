@@ -1,38 +1,59 @@
 import React, { useState } from 'react'
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import Image from 'next/image'
 import Head from 'next/head'
-import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
-import TradeSurplus from '../../assets/imgs/Trade-Surplus-min-400x282.jpg'
-import TradeDeficit from '../../assets/imgs/Trade-Deficit-min-400x282.jpg'
-import SupplySide from '../../assets/imgs/Supply-side-policies-min-400x282.jpg'
-import SupplyMin from '../../assets/imgs/Supply-min-400x282.jpg'
 import axios from 'axios'
 import Link from 'next/link'
-import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
+
 import { FaSearch } from 'react-icons/fa'
+import UndergroundEconomy from '../../../assets/imgs/Underground-Economy-min-600x423.jpg'
+import TradeSurplus from '../../../assets/imgs/Trade-Surplus-min-400x282.jpg'
+import TradeDeficit from '../../../assets/imgs/Trade-Deficit-min-400x282.jpg'
+import SupplySide from '../../../assets/imgs/Supply-side-policies-min-400x282.jpg'
+import SupplyMin from '../../../assets/imgs/Supply-min-400x282.jpg'
+import defaultBlogImage from '../../../assets/imgs/Blog-Post-header.jpg'
 
 
 export default function Category({ category, blogs }) {
     const [search, setSearch] = useState('')
     const [filterdCategories, setFilterdCategories] = useState([])
-
+    const [page, setPage] = useState(1)
     const handleFilter = (e) => {
         setSearch(e)
         setFilterdCategories(filterdCategories?.filter((item) => item.includes(search)))
     }
 
+    const loadMorePosts = async (e) => {
+        e.preventDefault()
+        setPage(page + 1)
+        if (category == "uncategorized") {
+            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$ne]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
+                .then(({ data }) => {
+                    console.log(data)
+                }).catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
+                .then(({ data }) => {
+                    console.log(data)
+                }).catch((error) => {
+                    console.log(error)
+                })
+        }
+    }
+
     return (
         <>
             <Head>
-                <title> {category} - Humble-Titan </title>
+                <title> {blogs[0]?.attributes.category.data?.attributes.name ? blogs[0]?.attributes.category.data?.attributes.name : category === 'uncategorized' ? 'Uncategorized' : category.replaceAll('-', ' ').charAt(0).toUpperCase() + category.replaceAll('-', ' ').slice(1)} - Humble-Titan </title>
             </Head>
             <Layout >
 
                 <section className='heading'>
                     <div className=" container mx-auto md:flex justify-around flex-wrap max-w-screen-xl">
                         <div className='px-4' >
-                            <h1 className='text-[50px] md:text-[60px] font-semibold text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{category}</h1>
+                            <h1 className='text-[50px] md:text-[60px] font-semibold text-[#023A51] pt-3 md:pt-10 leading-[69px] ' >{blogs[0]?.attributes.category.data?.attributes.name ? blogs[0]?.attributes.category.data?.attributes.name : category === 'uncategorized' ? 'Uncategorized' : category.replaceAll('-', ' ').charAt(0).toUpperCase() + category.replaceAll('-', ' ').slice(1)}</h1>
                         </div>
                         <div className='flex justify-center mt-6 md:mt-10' >
                             <div className='flex relative text-[22px] rounded' >
@@ -56,7 +77,7 @@ export default function Category({ category, blogs }) {
                                             const blogImageUrl = blogImage && blogImage?.url
                                             return (
                                                 <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
-                                                    <Link href={`/humble-mind/blogs/${post?.slug}`} passHref >
+                                                    <Link href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                         <a className="w-[100%] ">
                                                             <div >
                                                                 {
@@ -72,7 +93,7 @@ export default function Category({ category, blogs }) {
                                                     </Link>
                                                     <Link href={`/humble-mind/blogs/${post?.slug}`} passHref>
                                                         <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
-                                                    <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                                    <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
                                                 </div>
                                             )
                                         })
@@ -110,7 +131,7 @@ export default function Category({ category, blogs }) {
                             {/* Load more button */}
 
                             <div className='bg-[#f6f7f8] w-[100%] rounded cursor-pointer hover:bg-[#e7ecf0] group transition duration-150 '>
-                                <p className='uppercase text-[#023A51] py-2 text-center text-[24px] group-hover:text-[25px] ' >Load More Posts</p>
+                                <p className='uppercase text-[#023A51] py-2 text-center text-[24px] group-hover:text-[25px] ' onClick={() => loadMorePosts(e)} >Load More Posts</p>
                             </div>
                         </div>
                     </div>
@@ -141,10 +162,10 @@ export async function getServerSideProps(ctx) {
     var blogs;
     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&sort[0]=publishedAt%3Adesc`)
         .then(({ data }) => {
-            if (category === "Uncategorized") {
+            if (category === "uncategorized") {
                 blogs = data.data.filter((item) => item.attributes.category.data == null)
             } else {
-                blogs = data.data.filter((item) => item.attributes.category.data?.attributes.name === category)
+                blogs = data.data.filter((item) => item.attributes.category.data?.attributes.slug === category)
             }
         }).catch((error) => {
             console.log(error)
