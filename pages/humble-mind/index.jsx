@@ -44,7 +44,7 @@ export default function Magazine({ data, categories }) {
                             <div className='flex items-center justify-center'>
 
                                 <div className=' mt-4 bg-[#fff] p-2 rounded max-w-max'>
-                                    <select className='w-[180px] font-bold text-center text-[#023A51] outline-0 '
+                                    <select className='w-[180px] bg-[#fff] font-bold text-center text-[#023A51] outline-0 '
                                         value={selectedTag}
                                         onChange={(e) => setSelectedtag(e.target.value)}
                                     >
