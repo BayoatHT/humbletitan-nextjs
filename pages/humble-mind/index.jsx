@@ -8,8 +8,7 @@ import { useRouter } from 'next/router';
 import { Oval } from 'react-loading-icons'
 import ReactPaginate from 'react-paginate';
 
-import UnemploymentTrap from '../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
-import UndergroundEconomy from '../../assets/imgs/Underground-Economy-min-600x423.jpg'
+
 import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import GetAQuote from '../../components/GetAQuote';
 
@@ -49,7 +48,7 @@ export default function Magazine({ data, categories }) {
                                         value={selectedTag}
                                         onChange={(e) => setSelectedtag(e.target.value)}
                                     >
-                                        <option disabled selected value="">Browse categories</option>
+                                        <option disabled value="">Browse categories</option>
                                         <option value="uncategorized">Uncategorized</option>
                                         {
                                             categoriesData?.map((item) => {

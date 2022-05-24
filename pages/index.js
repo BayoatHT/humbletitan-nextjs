@@ -48,7 +48,7 @@ export default function Home() {
                             <div className='  '>
                                 <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >Products and services that empower you to <br /> make better decisions.</h2>
-                                <Green_rounded_btn onClick={() => router.push("/humble-mind")} >Stock Due Diligence Reports</Green_rounded_btn>
+                                <Green_rounded_btn onClick={() => router.push("/due-diligence")} >Stock Due Diligence Reports</Green_rounded_btn>
                             </div>
                             <div className='mt-10 md:mt-0' >
                                 <Image src={heroImg} alt="image" />

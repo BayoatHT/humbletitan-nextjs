@@ -6,41 +6,54 @@ import axios from 'axios'
 import Link from 'next/link'
 
 import { FaSearch } from 'react-icons/fa'
-import UndergroundEconomy from '../../../assets/imgs/Underground-Economy-min-600x423.jpg'
-import TradeSurplus from '../../../assets/imgs/Trade-Surplus-min-400x282.jpg'
-import TradeDeficit from '../../../assets/imgs/Trade-Deficit-min-400x282.jpg'
-import SupplySide from '../../../assets/imgs/Supply-side-policies-min-400x282.jpg'
-import SupplyMin from '../../../assets/imgs/Supply-min-400x282.jpg'
+
 import defaultBlogImage from '../../../assets/imgs/Blog-Post-header.jpg'
 
 
 export default function Category({ category, blogs }) {
     const [search, setSearch] = useState('')
     const [filterdCategories, setFilterdCategories] = useState([])
+    const blogsLength = blogs.length / 6
     const [page, setPage] = useState(1)
+    const [blogsLoaded, setBlogsLoaded] = useState(blogs.slice(0, 6))
+    console.log(blogs.length)
+    console.log(blogsLoaded)
+    const [loading, setLoading] = useState(false)
+
     const handleFilter = (e) => {
         setSearch(e)
         setFilterdCategories(filterdCategories?.filter((item) => item.includes(search)))
     }
 
-    const loadMorePosts = async (e) => {
-        e.preventDefault()
+    const loadMorePosts = async () => {
         setPage(page + 1)
-        if (category == "uncategorized") {
-            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$ne]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
-                .then(({ data }) => {
-                    console.log(data)
-                }).catch((error) => {
-                    console.log(error)
-                })
-        } else {
-            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
-                .then(({ data }) => {
-                    console.log(data)
-                }).catch((error) => {
-                    console.log(error)
-                })
-        }
+        console.log(page)
+        setLoading(true)
+        setTimeout(() => {
+            setBlogsLoaded([...blogsLoaded, ...blogs.slice(blogsLoaded.length, blogsLoaded.length + 6)])
+            setLoading(false)
+        }, 400)
+        // if (category === "uncategorized") {
+        //     await axios.get("https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=1000")
+        //         .then(({ data }) => {
+        //             console.log(data)
+        //             if (category === "uncategorized") {
+        //                 setLoaded(data.data.filter((item) => item.attributes.category.data == null))
+        //                 console.log(loaded)
+        //             } else {
+        //                 blogs = data.data.filter((item) => item.attributes.category.data?.attributes.slug === category)
+        //             }
+        //         }).catch((error) => {
+        //             console.log(error)
+        //         })
+        // } else {
+        //     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
+        //         .then(({ data }) => {
+        //             console.log(data)
+        //         }).catch((error) => {
+        //             console.log(error)
+        //         })
+        // }
     }
 
     return (
@@ -71,20 +84,20 @@ export default function Category({ category, blogs }) {
                             <div className=' md:flex flex-wrap justify-around '>
                                 <div className='md:flex flex-wrap justify-around'>
                                     {
-                                        blogs?.map((blog) => {
+                                        blogsLoaded?.map((blog) => {
                                             const post = blog?.attributes
-                                            const blogImage = post.blogImage?.data?.attributes
+                                            const blogImage = post?.blogImage?.data?.attributes
                                             const blogImageUrl = blogImage && blogImage?.url
                                             return (
                                                 <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
-                                                    <Link href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'uncategorized'}/blogs/${post?.slug}`} passHref >
+                                                    <Link href={`/humble-mind/${post?.category.data?.attributes.name ? post.category.data?.attributes.name : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                         <a className="w-[100%] ">
                                                             <div >
                                                                 {
                                                                     blogImageUrl ? (
                                                                         <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
                                                                     ) : (
-                                                                        <Image className='rounded' src={defaultBlogImage} layout="responsive" height={'80%'} width={'100%'} alt="" />
+                                                                        <Image className='rounded' src={defaultBlogImage} layout="responsive" alt="" />
 
                                                                     )
                                                                 }
@@ -92,47 +105,30 @@ export default function Category({ category, blogs }) {
                                                         </a>
                                                     </Link>
                                                     <Link href={`/humble-mind/blogs/${post?.slug}`} passHref>
-                                                        <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
-                                                    <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.name ? post.category.data?.attributes.name : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                                        <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes?.title}</a></Link>
+                                                    <p className='text-[16px] mt-4 ' >{new Date(post?.publishedAt).toDateString()} </p>
                                                 </div>
                                             )
                                         })
                                     }
-                                    <div className='bg-[#fff] cursor-pointer transition p-2  text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
-                                        <Image className='rounded' src={UndergroundEconomy} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Underground Economy</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >March 11, 2022 | economics</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-2 text-center flex flex-col items-center rounded mb-2 md:w-[33%] ' >
-                                        <Image className='rounded' src={TradeSurplus} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Trade Surplus</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-2  text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
-                                        <Image className='rounded' src={TradeDeficit} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Trade Deficit</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-2 text-center flex flex-col items-center rounded mb-2 md:w-[33%] ' >
+                                    {
+                                        loading && (
+                                            <p>Loading...</p>
+                                        )
+                                    }
 
-                                        <Image className='rounded' src={SupplySide} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Supply-Side Policies</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-2  text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
-
-                                        <Image className='rounded' src={SupplyMin} alt="image" />
-                                        <p className='text-[24px] text-center md:text-[30px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Supply</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
                                 </div>
                             </div>
 
                             {/* Load more button */}
+                            {
+                                blogsLength > page && (
+                                    <div className='bg-[#f6f7f8] w-[100%] rounded cursor-pointer hover:bg-[#e7ecf0] group transition duration-150 '>
+                                        <a onClick={() => loadMorePosts()} ><p className='uppercase text-[#023A51] py-2 text-center text-[24px] group-hover:text-[25px] '>Load More Posts</p></a>
+                                    </div>
+                                )
+                            }
 
-                            <div className='bg-[#f6f7f8] w-[100%] rounded cursor-pointer hover:bg-[#e7ecf0] group transition duration-150 '>
-                                <p className='uppercase text-[#023A51] py-2 text-center text-[24px] group-hover:text-[25px] ' onClick={() => loadMorePosts(e)} >Load More Posts</p>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -160,7 +156,7 @@ export default function Category({ category, blogs }) {
 export async function getServerSideProps(ctx) {
     const { query: { category } } = ctx
     var blogs;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&sort[0]=publishedAt%3Adesc`)
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&sort[0]=publishedAt%3Adesc&pagination[pageSize]=1000`)
         .then(({ data }) => {
             if (category === "uncategorized") {
                 blogs = data.data.filter((item) => item.attributes.category.data == null)
