@@ -120,7 +120,7 @@ export default function Magazine({ data, categories }) {
                                 <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
                                     {pageCount < 2 === false && (
                                         <ReactPaginate
-                                            onPageChange={(n) => router.push(`http://localhost:3000/humble-mind?page=${n.selected + 1}`)}
+                                            onPageChange={(n) => router.push(`/humble-mind?page=${n.selected + 1}`)}
                                             pageCount={pageCount}
                                             marginPagesDisplayed={3}
                                             previousLabel="< Previous"
