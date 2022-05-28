@@ -57,7 +57,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* middle */}
+                {/* We boost */}
 
                 <section className='heading my-20  '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
