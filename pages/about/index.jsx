@@ -2,60 +2,62 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
-import aboutAgency1 from '../../assets/imgs/about-agency-1.jpg'
-import aboutAgency2 from '../../assets/imgs/about-agency-2.jpg'
-import aboutAgency3 from '../../assets/imgs/about-agency-3.jpg'
-import aboutWhoWeAre from '../../assets/imgs/about-who-we-are.jpg'
-import abstract from '../../assets/imgs/abstract.png'
-import cglobal from '../../assets/imgs/cglobal.png'
-import digitalbox from '../../assets/imgs/digitalbox.png'
-import hemisferio from '../../assets/imgs/hemisferio.png'
-import spaces from '../../assets/imgs/spaces.png'
-import next from '../../assets/imgs/next.png'
-import empoweringYou from '../../assets/imgs/empowering-you.jpg'
 import team1 from '../../assets/imgs/team-1.jpg'
 import team2 from '../../assets/imgs/team-2.jpg'
 import team3 from '../../assets/imgs/team-3.jpg'
 import team4 from '../../assets/imgs/team-4.jpg'
 import team5 from '../../assets/imgs/team-5.jpg'
 import team6 from '../../assets/imgs/team-6.jpg'
-
-
-
 import { TiSocialTwitter } from "react-icons/ti";
 import { IoLogoInstagram } from "react-icons/io";
 import { AiOutlineMail } from "react-icons/ai";
-import { FaLinkedinIn, FaPhoneSquareAlt } from "react-icons/fa";
-import { GiClockwork, GiNetworkBars } from 'react-icons/gi'
-import { VscWorkspaceTrusted } from 'react-icons/vsc'
-import { CgWorkAlt } from 'react-icons/cg'
-import GetAQuote from '../../components/GetAQuote';
+import { FaLinkedinIn } from "react-icons/fa";
+import * as Fontawesome from 'react-icons/fa'
+import GetAQuoteCopy from '../../components/GetAQuoteCopy';
 import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn_outlined';
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown';
+import { useRouter } from 'next/router'
 
 
-export default function About() {
+export default function About({ contents }) {
+    const { header, hero, ht_digital_services, meetTheTeam_section, ourOffices, ourValue_section, overview, section_with_image, section_with_image_left, trustedByCompanies } = contents.data.attributes
+    console.log(section_with_image_left.actionButton.href)
+    const router = useRouter()
     return (
         <>
             <Head>
-                <title>About Us - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
+
                 {/* Hero */}
                 <section className='heading  bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] '>
-                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 md:pt-10 mb-10   leading-[69px] ' >About Us</h1>
-                                <div className='md:flex items-center md:mt-20 justify-around mb-20 ' >
-                                    <div>
+                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 md:pt-10 mb-10   leading-[69px] ' >{hero.heading}</h1>
+                                <div className='flex flex-col md:flex-row items-center md:mt-20 justify-around mb-20 pb-10 ' >
+                                    {
+                                        hero.heroImage.data.map((item, index) => {
+                                            console.log(index);
+                                            return (
+                                                <div key={index} className={` md:mx-3  ${index == 1 ? "order-2" : ""}`} >
+                                                    <img className='rounded-xl' src={item.attributes.url} alt={item.attributes.name} width={item.attributes.width} height={item.attributes.height} />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* <div>
                                         <Image className='rounded-xl' src={aboutAgency2} alt="image" />
                                     </div>
-                                    <div className='mx-6'>
+                                    <div className='md:mx-6 hidden md:block '>
                                         <Image className='rounded-xl' src={aboutAgency1} alt="image" />
                                     </div>
-                                    <div>
+                                    <div className='hidden md:block'>
                                         <Image className='rounded-xl' src={aboutAgency3} alt="image" />
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>
@@ -69,8 +71,19 @@ export default function About() {
                 <section className='heading my-10 md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='pt-[40px] md:w-8/12 text-[#023A51] '>
-                                <h2 className=' text-[45px] md:text-[55px] text- pt-3 md:pt-10   leading-[69px] tracking-[-2px] ' >Overview<span className='text-[#2cbc63]'>.</span> </h2>
+                            <div className=' md:w-8/12 text-[#023A51] '>
+                                <ReactMarkdown components={{
+                                    h1: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10   leading-[69px] tracking-[-2px] " {...props} />,
+                                    h2: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10   leading-[69px] tracking-[-2px] " {...props} />,
+                                    h3: ({ node, ...props }) => <h3 className="text-[25px] md:text-[35px] pt-3 md:pt-10   md:leading-[50px]" {...props} />,
+                                    p: ({ node, ...props }) => <p className="text-[22px] my-4" {...props} />,
+                                    a: ({ node, ...props }) => <a className="text-[22px] text-[#2cbc63] hover:text-underline " {...props} />,
+                                }} >
+                                    {overview}
+                                </ReactMarkdown>
+
+
+                                {/* <h2 className=' text-[45px] md:text-[55px] text- pt-3 md:pt-10   leading-[69px] tracking-[-2px] ' >Overview<span className='text-[#2cbc63]'>.</span> </h2>
                                 <p className='text-[22px] mt-4 '>We’re all affected by business and politics, two critical areas where many look to make the best possible decisions. Still, despite our best efforts, absorbing the noise and making sense of what matters poses a challenge. In response we’ve built Humble Titan as a problem solving three-tiered platform:</p>
                                 <br />
 
@@ -99,7 +112,7 @@ export default function About() {
                                 <br />
                                 <p className='text-[22px] mt-4 ' >He contests that the best of s9ociety’s solutions were once dismissed as projects of dreamers. He reflects often on all of those dreams that could have been if only the dreamer could envision a way to success. Bayo accepts that no one can help everyone, but Humble Titan will strive to do its part.</p>
                                 <br />
-                                <p className='text-[22px] mt-4 ' >We welcome the entrepreneur who believes a website will advance their ambitions. We eagerly await those with products, services, or concepts that have a space online. We’d love to work with you.</p>
+                                <p className='text-[22px] mt-4 ' >We welcome the entrepreneur who believes a website will advance their ambitions. We eagerly await those with products, services, or concepts that have a space online. We’d love to work with you.</p> */}
 
 
                             </div>
@@ -113,21 +126,27 @@ export default function About() {
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='md:flex items-center mx-auto justify-between' >
-                                <div className='md:mr-20' >
-                                    <Image className='rounded-xl p-10' src={aboutWhoWeAre} alt="image" />
+                            <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
+                                <div className='md:ml-20 order-2 md:order-1 my-10' >
+                                    <img className='rounded-xl' src={section_with_image.image.data[0].attributes.url} alt={section_with_image.image.data[0].attributes.name} />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:pl-20  ' >
-                                    <p className='text-[26px] font-medium my-10 text-[#2cbc63] ' >Our Mission</p>
-                                    <h2 className=' text-[45px] md:text-[55px] leading-[50px] md:leading-[60px] tracking-[-2px] '>We maximize <br /> your business <br /> and political <br /> potential<span className='text-[#2cbc63]'>.</span></h2>
-                                    <br />
-                                    <p className='text-[20px] ' >We are all betting real money, you shouldn’t have to work to wall street to know a risky stock from a safe one.</p>
+                                    <p className='text-[26px] font-bold font-bold my-10 text-[#2cbc63] ' >{section_with_image.lable.name}</p>
+                                    <h2 className=' text-[45px] md:text-[55px] font-medium leading-[50px] md:leading-[60px] tracking-[-2px] '>{section_with_image.heading}</h2>
+                                    <ReactMarkdown
+                                        components={{
+                                            p: ({ node, ...props }) => <p className="text-[22px] my-4" {...props} />,
+                                        }}
+                                    >
+                                        {section_with_image.description}
+                                    </ReactMarkdown>
+                                    {/* <p className='text-[20px] ' >We are all betting real money, you shouldn’t have to work to wall street to know a risky stock from a safe one.</p>
                                     <br />
                                     <p className='text-[20px] ' >We are all equal, you shouldn’t need access to the best business schools to get your ideas in front of the world.</p>
                                     <br />
                                     <p className='text-[20px] '> It is our goal to obliterate all barriers to the success of people and businesses. If you are willing to invest the time to grow, we’d love to provide you a place where you can do just that.</p>
                                     <br />
-                                    <p className='text-[20px] ' >We are all betting real money, you shouldn’t have to work to wall street to know a risky stock from a safe one.</p>
+                                    <p className='text-[20px] ' >We are all betting real money, you shouldn’t have to work to wall street to know a risky stock from a safe one.</p> */}
 
                                 </div>
                             </div>
@@ -137,16 +156,23 @@ export default function About() {
 
 
 
-                {/* Brands */}
+                {/* Trusted By Companies */}
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-center w-10/12 md:w-11/12 text-[#023A51] '>
-                            <p className=' text-[26px] md:text-[24px]  py-4 block font-semibold text-center ' >Trusted by the world’s fastest growing companies: </p>
+                            <p className=' text-[26px] md:text-[24px]  py-4 block font-semibold text-center ' >{trustedByCompanies.title}</p>
                             <div className='md:flex justify-around pb-10 md:py-10 ' >
-                                <div>
-                                    <Image src={abstract} alt="image" />
-                                </div>
-                                <div >
+                                {
+                                    trustedByCompanies.companyLogos.data.map((item, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <img src={item.attributes.url} alt="image" />
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                                {/* <div >
                                     <Image src={cglobal} alt="image" />
                                 </div>
                                 <div >
@@ -160,7 +186,7 @@ export default function About() {
                                 </div>
                                 <div >
                                     <Image src={spaces} alt="image" />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -174,34 +200,26 @@ export default function About() {
                     <div className=" container w-12/12 bg-[#e0ecf0] py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51]  md:flex items-center w-10/12 md:w-11/12 '>
                             <div className='md:w-5/10 ' >
-                                <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ' >Our Values<span className='text-[#2cbc63]'>.</span></p>
+                                <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ' >{ourValue_section.heading}</p>
 
-                                <p className='text-[20px] pr-10 '  >We believe lasting success is founded on a set of principles clients can always count on. As a family business, we are eager to welcome you as one of our own.</p>
+                                <p className='text-[20px] pr-10 '  >{ourValue_section.description}</p>
                             </div>
-                            <div className='pt-[40px] md:flex flex-wrap justify-around md:w-5/10 '>
-                                <div className='md:flex justify-around'>
-                                    <div className='bg-[#fff] p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <GiClockwork className='text-[26px] text-[#2cbc63] ' />
-                                        <p className='text-[24px] text-[#2cbc63] ' >Creativity</p>
-                                        <p className='text-[18px]  ' >We embrace the opportunity to solve your challenge.</p>
-                                    </div>
-                                    <div className='bg-[#fff] p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <GiNetworkBars className='text-[26px] text-[#2cbc63] ' />
-                                        <p className='text-[24px] text-[#2cbc63] ' >Passion</p>
-                                        <p className='text-[18px]' >Your success means as much to us as it does to you.</p>
-                                    </div>
-                                </div>
-                                <div className='md:flex justify-around'>
-                                    <div className='bg-[#fff] p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <VscWorkspaceTrusted className='text-[26px] text-[#2cbc63] ' />
-                                        <p className='text-[24px] text-[#2cbc63] ' >Professionalism</p>
-                                        <p className='text-[18px]' >Respect and Integrity are among our fundamentals.</p>
-                                    </div>
-                                    <div className='bg-[#fff] p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <CgWorkAlt className='text-[26px] text-[#2cbc63] ' />
-                                        <p className='text-[24px] text-[#2cbc63] ' >Value-centricity</p>
-                                        <p className='text-[18px]' >We cut out the fluff and focus on providing a service that makes a difference.</p>
-                                    </div>
+                            <div className='pt-[40px] md:flex  justify-around md:w-5/10 '>
+                                <div className='md:flex flex-wrap justify-around '>
+                                    {
+                                        ourValue_section.value_cards.map((item, index) => {
+                                            return (
+                                                <div key={index} className='bg-[#fff] p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
+                                                    <div className='text-[26px] text-[#2cbc63]' >
+                                                        {React.createElement(Fontawesome[item.iconClassName])}
+                                                    </div>
+                                                    <p className='text-[24px] text-[#2cbc63] ' >{item.title}</p>
+                                                    <p className='text-[18px]  ' >{item.description}</p>
+                                                </div>
+                                            )
+
+                                        })
+                                    }
                                 </div>
 
                             </div>
@@ -213,8 +231,25 @@ export default function About() {
                 {/* Meet the Team. */}
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <h1 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >Meet the Team<span className='text-[#2cbc63]' >.</span></h1>
+                        <h1 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >{meetTheTeam_section.heading}</h1>
                         <div className='flex flex-wrap text-[#023A51] justify-around' >
+                            {/* {
+                                meetTheTeam_section.person.map((item, index) => {
+                                    return (
+                                        <div key={index} className=' rounded-xl w-[90%] sm:w-[30%] mb-10 ' >
+                                            <Image className='rounded-xl' src={team1} alt="image" />
+                                            <p className='text-[30px] '>Richard Park</p>
+                                            <p className='text-[20px] ' >Director</p>
+                                            <div className=' flex items-center mt-4 '>
+                                                <TiSocialTwitter className='text-[24px] mr-4 ' />
+                                                <IoLogoInstagram className='text-[24px] mr-4 ' />
+                                                <FaLinkedinIn className='text-[24px] mr-4 ' />
+                                                <AiOutlineMail className='text-[24px] mr-4 ' />
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            } */}
                             <div className=' rounded-xl w-[90%] sm:w-[30%] mb-10 ' >
                                 <Image className='rounded-xl' src={team1} alt="image" />
                                 <p className='text-[30px] '>Richard Park</p>
@@ -292,15 +327,22 @@ export default function About() {
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='md:flex items-center mx-auto justify-between' >
-                                <div className='md:mr-20' >
-                                    <Image className='rounded-xl p-10' src={empoweringYou} alt="image" />
+                            <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
+                                <div className='md:mr-20 order-2 md:order-1 mt-10' >
+                                    <img className='rounded-xl' src={section_with_image_left.image.data[0].attributes.url} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:pl-20  ' >
-                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >Careers</p>
-                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Want to be a <br /> part of our team<span className='text-[#2cbc63]'>?</span></p>
-                                    <p className='text-[20px] my-10 ' >Vestibulum ante ipsum primis faucibus orci luctus et ultrices posuere.</p>
-                                    <Green_rounded_btn_outlined>See Openings</Green_rounded_btn_outlined>
+                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >{section_with_image_left.lable.name}</p>
+                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{section_with_image_left.heading}</p>
+                                    <p className='text-[20px] my-10 ' >{section_with_image_left.description}</p>
+                                    {
+                                        section_with_image_left.actionButton.style == "green-outlined" ? (
+                                            <Green_rounded_btn_outlined href={section_with_image_left.actionButton.href} >{section_with_image_left.actionButton.label}</Green_rounded_btn_outlined>
+
+                                        ) : (
+                                            <Green_rounded_btn>{section_with_image_left.actionButton.label}</Green_rounded_btn>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -311,7 +353,7 @@ export default function About() {
                 {/* Our Offices */}
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <p className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] md:py-20 pt-[80px] text-[#023A51] ' >Our Offices <span className='text-[#2cbc63]' >.</span></p>
+                        <p className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] md:py-20 pt-[80px] text-[#023A51] ' >{ourOffices.heading}</p>
                         <div className='flex flex-wrap text-[#023A51] justify-around my-10' >
                             <div className=' rounded-xl mb-6 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
                                 <p>Address</p>
@@ -325,38 +367,67 @@ export default function About() {
                         </div>
 
                         <div className=' text-[#023A51] ' >
-                            <div className='md:flex justify-around' >
-                                <div className=' rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
+                            <div className='flex flex-wrap md:flex-row justify-around' >
+                                {
+                                    ourOffices.office.map((item, index) => {
+                                        return (
+                                            <div key={index} className=' rounded-xl mb-6 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
+                                                <p className='text-[26px] '>{item.title}</p>
+                                                <p className='text-[20px]'>{item.address}</p>
+                                                <br />
+                                                <p className='text-[20px] text-[#2cbc63] '>Contact us</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' rounded-xl mb-6 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
                                     <p className='text-[26px] '>Melville, NY</p>
                                     <p className='text-[20px]'>12345 North Main Street, New York, NY 555555</p>
                                     <br />
                                     <p className='text-[20px] text-[#2cbc63] '>Contact us</p>
                                 </div>
-                                <div className=' rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
+                                <div className=' rounded-xl mb-6 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
                                     <p className='text-[26px] '>San Francisco, CA</p>
                                     <p className='text-[20px]'>12345 North Main Street, New York, NY 555555</p>
                                     <br />
                                     <p className='text-[20px] text-[#2cbc63] '>Contact us</p>
                                 </div>
-                                <div className=' rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
+                                <div className=' rounded-xl mb-6 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
                                     <p className='text-[26px] '>Tampa, FL</p>
                                     <p className='text-[20px]'>12345 North Main Street, New York, NY 555555</p>
                                     <br />
                                     <p className='text-[20px] text-[#2cbc63] '>Contact us</p>
-                                </div>
+                                </div> */}
                             </div>
 
                             <br />
                             <div className='text-center' >
-                                <Green_rounded_btn_outlined >View All Offices</Green_rounded_btn_outlined>
+                                <Green_rounded_btn_outlined href={ourOffices.action_button[0].href} >{ourOffices.action_button[0].label}</Green_rounded_btn_outlined>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Get a Quote */}
-                <GetAQuote />
+                <GetAQuoteCopy data={ht_digital_services} />
             </Layout>
         </>
     )
 }
+
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/about`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+}   
