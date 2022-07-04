@@ -259,7 +259,7 @@ export default function BrowseByState() {
       <section className="mx-auto py-4 pt-16">
         <div className="container w-10/12 mx-auto max-w-screen-xl ">
           <div className="flex flex-wrap mx-4 mb-10 m-auto ">
-            <h2 className="font-bold text-[35px] md:text-[3rem] leading-[47px] leading-[47px] mb-8 text-[#023a51]">
+            <h2 className="font-bold text-[40px] md:text-[3rem] leading-[47px] leading-[47px] mb-8 text-[#023a51]">
               Discover elected representatives in each state
             </h2>
 

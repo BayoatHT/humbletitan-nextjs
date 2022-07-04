@@ -2,27 +2,24 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
-import { FaPlus, FaMinus } from 'react-icons/fa';
-import { GiClockwork, GiNetworkBars } from 'react-icons/gi'
-import { VscWorkspaceTrusted } from 'react-icons/vsc'
-import { CgWorkAlt } from 'react-icons/cg'
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
+import * as Fontawesome from 'react-icons/fa'
 
 
-import Brands from '../../components/Brands'
 
-
-import BayoHumbleProfile from '../../assets/imgs/Bayo-Humble-Profile-600x690.jpg'
-import RilwanHumbleProfile from '../../assets/imgs/Rilwan-Humble-Profile-600x690.jpg'
-import HafizHumbleProfile from '../../assets/imgs/Hafiz-Humble-Profile-600x690.jpg'
 import exceptionalResources from '../../assets/imgs/exceptional-resources-400x868.png'
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
-export default function TheTeam() {
+export default function TheTeam({ contents }) {
+    console.log(contents)
+    const { hero, header, bayo_mba, exceptional_resources, great_benifits, hafiz, rilwan, tellUs_section, trustedBy } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>The Team - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
@@ -30,9 +27,9 @@ export default function TheTeam() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='md:w-8/12' >
-                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Humble Team</p>
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Delivering effective solutions is our family business<span className='text-[#2cbc63]'>.</span></h1>
-                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>We&apos;re three brothers, committed to helping others achieve their goals. While you are here we&apos;d like to help you make better-informed business and political decisions.</p>
+                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>{hero.label.name}</p>
+                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >{hero.heading}</h1>
+                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>{hero.description}</p>
                             </div>
                         </div>
                     </div>
@@ -44,19 +41,31 @@ export default function TheTeam() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='md:flex items-center justify-around'>
+                            <div className='flex flex-col md:flex-row items-center justify-around'>
                                 <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Bayo Adesina, MBA<span className='text-[#2cbc63]'>.</span></h2>
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Founder<span className='text-[#2cbc63]'>.</span></h2>
-                                    <p className='text-[22px] font-light flex py-4' >I’ve always had an obsession with making the world a better place. Drove me mad till I figured exactly how to focus that energy. Just grateful I get to embark on this mission with my brothers.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Establish a strong presence online </p>
+                                    <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{bayo_mba.heading}</h2>
+                                    <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{bayo_mba.heading2}</h3>
+                                    <p className='text-[22px] font-light flex py-4' >{bayo_mba.description}</p>
+                                    {
+                                        bayo_mba.abilities.map((item) => {
+                                            return (
+                                                <div key={item.id} className="flex " >
+                                                    <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
+                                                        {React.createElement(Fontawesome[item.iconClass])}
+                                                    </div>
+                                                    <p className='text-[22px] flex py-4 ml-[12px] ' >{item.text}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Establish a strong presence online </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Reach more people than ever before </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p>
+                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p> */}
                                 </div>
                                 <div className=' md:p-10 mb-2 md:w-[48%] '>
                                     <div className='rounded-xl bg-[#fff] p-6  '>
-                                        <Image className='rounded-xl' src={BayoHumbleProfile} alt="image" />
+                                        <img className='rounded-xl' src={bayo_mba.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
                             </div>
@@ -70,20 +79,32 @@ export default function TheTeam() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='md:flex items-center justify-around'>
-                                <div className=' md:p-10 mb-2 md:w-[48%] '>
+                            <div className='flex flex-col md:flex-row items-center justify-around'>
+                                <div className=' md:p-10 mb-2 md:w-[48%] order-2 md:order-none '>
                                     <div className='rounded-xl bg-[#fff] p-6  '>
-                                        <Image className='rounded-xl' src={RilwanHumbleProfile} alt="image" />
+                                        <img className='rounded-xl' src={rilwan.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
                                 <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Rilwan Adesina<span className='text-[#2cbc63]'>.</span></h2>
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Lead Developer<span className='text-[#2cbc63]'>.</span></h2>
-                                    <p className='text-[22px] font-light flex py-4' >He is incredibly passionate about all things coding. Since the age of 7, it’s been his goal to be a full-stack developer. Proud to say at the age of 17 Rilwan is responsible for building and maintaining this platform.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aliquam pharetra nulla consequat dolor faucibus tempus.</p>
+                                    <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{rilwan.heading}</h2>
+                                    <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{rilwan.heading2}</h3>
+                                    <p className='text-[22px] font-light flex py-4' >{rilwan.description}</p>
+                                    {
+                                        rilwan.abilities.map((item) => {
+                                            return (
+                                                <div key={item.id} className="flex " >
+                                                    <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
+                                                        {React.createElement(Fontawesome[item.iconClass])}
+                                                    </div>
+                                                    <p className='text-[22px] flex py-4 ml-[12px] ' >{item.text}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aliquam pharetra nulla consequat dolor faucibus tempus.</p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Morbi pulvinar mi ac ante fringilla, nec dapibus libero blandit. </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Vestibulum et nulla ut eros consequat mollis vel in magna.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aenean vehicula elit massa, vitae facilisis ligula egestas vitae. </p>
+                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aenean vehicula elit massa, vitae facilisis ligula egestas vitae. </p> */}
                                 </div>
                             </div>
                         </div>
@@ -98,17 +119,25 @@ export default function TheTeam() {
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='md:flex items-center justify-around'>
                                 <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Hafiz Adesina<span className='text-[#2cbc63]'>.</span></h2>
-                                    <h2 className='text-[26px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Growth Strategist<span className='text-[#2cbc63]'>.</span></h2>
-                                    <p className='text-[22px] font-light flex py-4' >He is the corporate ideal: endlessly creative, inquisitive, level-headed, charming, and intelligent. Hafiz has always had a knack for strategically directing the attention of people, now he is shaping to be a force in the business world. He manages our success.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aliquam pharetra nulla consequat dolor faucibus tempus.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Morbi pulvinar mi ac ante fringilla, nec dapibus libero blandit. </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Vestibulum et nulla ut eros consequat mollis vel in magna.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Aenean vehicula elit massa, vitae facilisis ligula egestas vitae. </p>
+                                    <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{hafiz.heading}</h2>
+                                    <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{hafiz.heading2}</h3>
+                                    <p className='text-[22px] font-light flex py-4' >{hafiz.description}</p>
+                                    {
+                                        hafiz.abilities.map((item) => {
+                                            return (
+                                                <div key={item.id} className="flex " >
+                                                    <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
+                                                        {React.createElement(Fontawesome[item.iconClass])}
+                                                    </div>
+                                                    <p className='text-[22px] flex py-4 ml-[12px] ' >{item.text}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                                 <div className=' md:p-10 mb-2 md:w-[48%] '>
                                     <div className='rounded-xl bg-[#fff] p-6  '>
-                                        <Image className='rounded-xl' src={HafizHumbleProfile} alt="image" />
+                                        <img className='rounded-xl' src={hafiz.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +146,24 @@ export default function TheTeam() {
                 </section>
 
                 {/* Brands */}
-                <Brands />
+                <section className='heading md:my-20'>
+                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
+                        <div className='mx-auto text-center w-10/12 md:w-11/12 text-[#023A51] '>
+                            <p className=' text-[26px] md:text-[24px]  py-4 block font-bold text-center ' >{trustedBy.title}</p>
+                            <div className='flex flex-wrap md:flex-row items-center justify-around pb-10 md:py-10 ' >
+                                {
+                                    trustedBy.companyLogos.data.map((item) => {
+                                        return (
+                                            <div key={item.id} className="mb-2">
+                                                <img className='rounded-xl' src={item.attributes.url} alt="image" />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
 
 
@@ -132,39 +178,27 @@ export default function TheTeam() {
                                     </div>
                                 </div>
                                 <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[58%] ' >
+                                    <p className=' text-[26px] md:text-[24px]  py-4 block font-bold text-center ' >{exceptional_resources.heading}</p>
                                     <div className='md:flex justify-around'>
-                                        <div className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] ' >
-                                            <GiClockwork className='text-[26px] text-[#2cbc63] ' />
-                                            <p className='text-[24px] text-[#2cbc63] ' >Savings Excel</p>
-                                            <p className='text-[18px]' >Curabitur ac leo nunc estibul et mauris vel ante finibus.</p>
-                                        </div>
-                                        <div className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] '>
-                                            <GiNetworkBars className='text-[26px] text-[#2cbc63] ' />
-                                            <p className='text-[24px] text-[#2cbc63] ' >Tax Calculator</p>
-                                            <p className='text-[18px]' >Curabitur ac leo nunc estibul et mauris vel ante finibus.</p>
-                                        </div>
-                                    </div>
-                                    <div className='md:flex justify-around'>
-                                        <div className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] '>
-                                            <VscWorkspaceTrusted className='text-[26px] text-[#2cbc63] ' />
-                                            <p className='text-[24px] text-[#2cbc63] ' >Checkbook Balancer</p>
-                                            <p className='text-[18px]' >Curabitur ac leo nunc estibul et mauris vel ante finibus.</p>
-                                        </div>
-                                        <div className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] '>
-                                            <CgWorkAlt className='text-[26px] text-[#2cbc63] ' />
-                                            <p className='text-[24px] text-[#2cbc63] ' >VAT Calculator</p>
-                                            <p className='text-[18px]' >Curabitur ac leo nunc estibul et mauris vel ante finibus.</p>
-                                        </div>
-                                    </div>
-                                    <div className='md:flex justify-around'>
-                                        <div className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] '>
-                                            <VscWorkspaceTrusted className='text-[26px] text-[#2cbc63] ' />
-                                            <p className='text-[24px] text-[#2cbc63] ' >Retirement Planner</p>
-                                            <p className='text-[18px]' >Curabitur ac leo nunc estibul et mauris vel ante finibus.</p>
-                                        </div>
+                                        {
+                                            exceptional_resources.value_cards.map((item) => {
+                                                return (
+                                                    <div key={item.id} className='bg-[#fff] p-10 rounded mb-2 md:w-[48%] ' >
+                                                        <div className=' text-[26px] text-[#2cbc63] '>
+                                                            {React.createElement(Fontawesome[item.iconClassName])}
+                                                        </div>
+                                                        <p className='text-[24px] text-[#2cbc63] ' >{item.title}</p>
+                                                        <p className='text-[18px]' >{item.description}</p>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+
                                         <div className='bg-[#f9fafb] flex flex-col justify-between p-10 rounded mb-2 md:w-[48%] '>
                                             <p className='text-[20px] font-bold ' >More Free Accounting Tools for Your Business</p>
-                                            <button className='green_rounded_btn' >View all tools</button>
+                                            <div className='mt-5'>
+                                                <Green_rounded_btn href="/products" >View all tools</Green_rounded_btn>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -178,27 +212,46 @@ export default function TheTeam() {
                 <section className='heading md:my-20 bg-[#f9fafb] '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <h2 className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Great benefits from Humble Titan<span className='text-[#2cbc63]'>.</span></h2>
-                            <p className='text-[22px] text-center font-light flex py-4'>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit.</p>
-                            <div className='md:flex items-center bg-[#fff] justify-between'>
+                            <h2 className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{great_benifits.heading}</h2>
+                            <p className='text-[22px] text-center font-light flex py-4'>{great_benifits.description}</p>
+                            <div className='md:flex items-center mb-2 bg-[#fff] justify-between'>
                                 <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[48%] ' >
-                                    <p className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Humble Titan Acountant<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{great_benifits.benefits[0].title}</p>
                                     <br />
                                     <hr />
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#2cbc63' /> Aliquam pharetra nulla consequat dolor faucibus tempus.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#2cbc63' /> Morbi pulvinar mi ac ante fringilla, nec dapibus libero blandit. </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#2cbc63' /> Vestibulum et nulla ut eros consequat mollis vel in magna.</p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#2cbc63' /> Aenean vehicula elit massa, vitae facilisis ligula egestas vitae. </p>
+                                    {
+                                        great_benifits.benefits[0].benefit.map((item) => {
+                                            return (
+                                                <div key={item.id} className="flex " >
+                                                    <div className=' text-[#2cbc63] text-[22px] translate-y-[22px] '>
+                                                        {React.createElement(Fontawesome[item.iconClass ? item.iconClass : 'FaPlus'])}
+                                                    </div>
+                                                    <p className='text-[22px] flex py-4 ml-3 ' >{item.text}</p>
+                                                </div>
+
+                                            )
+                                        })
+                                    }
                                 </div>
                                 <div className=' md:p-10 mb-2 bg-[#fff] md:w-[48%] '>
                                     <div className='rounded-xl bg-[#fff] p-6  '>
-                                        <p className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >Other Accountancy Agencies</p>
+                                        <p className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{great_benifits.benefits[1].title}</p>
                                         <br />
                                         <hr />
-                                        <p className='text-[22px] font-light flex py-4 ' ><FaMinus className='translate-y-2  mr-[12px]' color='#f86011' /> Aliquam pharetra nulla consequat dolor faucibus tempus.</p>
-                                        <p className='text-[22px] font-light flex py-4 ' ><FaMinus className='translate-y-2  mr-[12px]' color='#f86011' /> Morbi pulvinar mi ac ante fringilla, nec dapibus libero blandit. </p>
-                                        <p className='text-[22px] font-light flex py-4 ' ><FaMinus className='translate-y-2  mr-[12px]' color='#f86011' /> Vestibulum et nulla ut eros consequat mollis vel in magna.</p>
-                                        <p className='text-[22px] font-light flex py-4 ' ><FaMinus className='translate-y-2  mr-[12px]' color='#f86011' /> Aenean vehicula elit massa, vitae facilisis ligula egestas vitae. </p>
+                                        {
+                                            great_benifits.benefits[1].benefit.map((item) => {
+                                                return (
+                                                    <div key={item.id} className="flex " >
+                                                        <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
+                                                            {React.createElement(Fontawesome[item.iconClass ? item.iconClass : 'FaMinus'])}
+                                                        </div>
+                                                        <p className='text-[22px] flex py-4 ml-3 ' >{item.text}</p>
+                                                    </div>
+
+                                                )
+                                            })
+                                        }
+
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +267,27 @@ export default function TheTeam() {
                         <div className='mx-auto flex w-10/12 md:w-11/12 bg-[#023A51] rounded-xl '>
                             <div className='mx-auto justify-between flex flex-wrap w-10/12 md:w-11/12  bg-[#023A51] '>
                                 <div className='text-[#fff] py-20 ' >
-                                    <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >Tell us how we <br /> can help<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{tellUs_section.text}</p>
+                                    {
+                                        tellUs_section.info.map((item) => {
+                                            return (
+                                                <div key={item.id} className='py-6' >
+                                                    <div className='flex items-center' >
+                                                        <div className='mr-4 text-[26px] text-[#fff]' >
+                                                            {React.createElement(Fontawesome[item.iconClass])}
+                                                        </div>
+                                                        <h2 className='text-[30px] py-4 ' >{item.name}</h2>
+                                                    </div>
+                                                    <ReactMarkdown components={{
+                                                        p: ({ node, ...props }) => <p className="mr-4 text-[26px] " {...props} />,
+                                                        a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] hover:text-underline " {...props} />,
+                                                    }} >
+                                                        {item.details}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                     <div className='py-6' >
                                         <div className='flex items-center' >
                                             <FaBuilding className='mr-4 text-[26px] ' />
@@ -244,6 +317,7 @@ export default function TheTeam() {
                                         <p className='text-[22px] extralight py-2 '>Monday - Friday: 9am - 5pm</p>
                                     </div>
                                 </div>
+
                                 <div className=' py-6 md:py-20' >
                                     <div className=' bg-[#fff] rounded-xl p-4 md:p-10 '>
                                         <div className='md:flex justify-between py-4' >
@@ -297,4 +371,20 @@ export default function TheTeam() {
             </Layout>
         </>
     )
+}
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/the-team`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
 }

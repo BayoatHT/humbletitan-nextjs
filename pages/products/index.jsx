@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
+import axios from 'axios'
+import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
 import Deliverable1 from '../../assets/imgs/1-Deliverable-Data-Studio.jpg'
 import Deliverable2 from '../../assets/imgs/2-Deliverable-onpage.jpg'
@@ -35,21 +37,24 @@ import ProductLanguageApp from '../../assets/imgs/6-Product-Language-App.jpg'
 
 import { FaChevronDown } from 'react-icons/fa'
 import DiscoverMore from '../../components/DiscoverMore'
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
-export default function Products() {
+export default function Products({ contents }) {
+    console.log(contents)
+    const { header, hero, explore, other_products, products_list, requestAQuote_section } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Products - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
-                <section className='heading md:py-10 bg-[#e0ecf0]'>
+                <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='w-7/12' >
-                                <h1 className=' text-[50px] md:text-[60px] text-center text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Products<span className='text-[#2cbc63]'>.</span></h1>
-                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>We are the agency that&apos;s doing it all. We&apos;re applying our tech skills to create products for people and businesses.</p>
+                            <div className='md:w-7/12' >
+                                <h1 className=' text-[50px] md:text-[60px] text-center text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >{hero.heading}</h1>
+                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>{hero.description}</p>
                             </div>
                         </div>
                     </div>
@@ -65,21 +70,42 @@ export default function Products() {
                             {/* Choose a solution for your brand’s site below: */}
                             <div className='flex justify-center'>
                                 <div className='p-10 bg-[#eefaf3] w-[80%] mt-10 rounded-xl'>
-                                    <p className='text-[24px] text-[#2cbc63] font-bold  '>Choose a solution for your brand’s site below:</p>
+                                    <p className='text-[24px] text-[#2cbc63] font-bold  '>{products_list.heading}</p>
                                 </div>
                             </div>
 
 
-                            <div className='mx-auto text-[#023A51] py-20 md:flex flex-wrap justify-between '>
+                            <div className='mx-auto text-[#023A51] py-20 flex flex-wrap justify-between '>
                                 <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6  ' >
-                                    <p className='text-[30px] text-[#2cbc63] leading-[35px] p-2' >We are elite digital marketing experts.</p>
-                                    <p className='text-[30px] leading-[35px] p-2' >Select the SEO and tech deliverables to improve web performance.</p>
+                                    <p className='text-[30px] text-[#2cbc63] leading-[35px] p-2' >{products_list.heading2}</p>
+                                    <p className='text-[30px] leading-[35px] p-2' >{products_list.description}</p>
                                 </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
+
+                                {
+                                    products_list.product_cards.map((item) => {
+                                        return (
+                                            <div key={item.id} className=' sm:w-[49%] lg:w-[32%] w-[100%] flex flex-col items-center mb-6 border rounded-lg p-5 md:p-10 '>
+                                                <img className='rounded-xl ' src={item.image.data.attributes.url} alt="image" />
+                                                <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >{item.title}</p>
+                                                <p className='text-[20px] text-[#59667d] text-left py-2' >{item.description}</p>
+                                                <div className='mt-5'>
+                                                    <Green_rounded_btn_outlined href={item.link.href} >{item.link.label}</Green_rounded_btn_outlined>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' sm:w-[49%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-4 md:p-10 '>
                                     <Image className='rounded-xl ' src={Deliverable1} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Custom Data Studio Dashboards</p>
+                                    <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Custom Data Studio Dashboards</p>
                                     <p className='text-[20px] text-[#59667d] text-left py-2' >An easy way for anyone to understand business web performance. Automate custom reports to track web KPI.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Track Performance</button>
+                                    <button className='text-[#59667d] font-bold text-[22px] cursor-pointer '>Track Performance</button>
+                                </div>
+                                <div className=' sm:w-[49%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
+                                    <Image className='rounded-xl ' src={Deliverable1} alt="image" />
+                                    <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Custom Data Studio Dashboards</p>
+                                    <p className='text-[20px] text-[#59667d] text-left py-2' >An easy way for anyone to understand business web performance. Automate custom reports to track web KPI.</p>
+                                    <button className='text-[#59667d] font-bold text-[22px] cursor-pointer '>Track Performance</button>
                                 </div>
                                 <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
                                     <Image className='rounded-xl ' src={Deliverable2} alt="image" />
@@ -200,16 +226,11 @@ export default function Products() {
                                     <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Content Planner</p>
                                     <p className='text-[20px] text-[#59667d] text-left py-2' >We deliver a schedule which highlight what, when and how of new page creation. We also point out the type of positions you may expect to claim.</p>
                                     <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Select your content plan</button>
-                                </div>
+                                </div> */}
 
                             </div>
 
                         </div>
-
-
-
-
-
                     </div>
                 </section>
 
@@ -226,17 +247,36 @@ export default function Products() {
                             {/* Keep an eye out for what’s coming: */}
                             <div className='flex justify-center'>
                                 <div className='p-10 bg-[#eefaf3] w-[80%] mt-10 rounded-xl'>
-                                    <p className='text-[24px] text-[#2cbc63] font-bold  '>Keep an eye out for what’s coming:</p>
+                                    <p className='text-[24px] text-[#2cbc63] font-bold  '>{other_products.heading}</p>
                                 </div>
                             </div>
 
 
-                            <div className='mx-auto text-[#023A51] py-20 md:flex flex-wrap justify-between '>
+                            <div className='mx-auto text-[#023A51] py-20 flex flex-wrap justify-between '>
                                 <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6  ' >
-                                    <p className='text-[30px] text-[#2cbc63] leading-[35px] p-2' >We are building cool stuff.</p>
-                                    <p className='text-[30px] leading-[35px] p-2' >We are committed to unleashing the very best of data and tech.</p>
+                                    <p className='text-[30px] text-[#2cbc63] leading-[35px] p-2' >{other_products.heading2}</p>
+                                    <p className='text-[30px] leading-[35px] p-2' >{other_products.description}</p>
                                 </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
+                                {
+                                    other_products.product_cards.map((item) => {
+                                        return (
+                                            <div key={item.id} className=' sm:w-[49%] lg:w-[32%] w-[100%] flex flex-col items-center mb-6 border rounded-lg p-5 md:p-10 '>
+                                                <img className='rounded-xl ' src={item.image.data.attributes.url} alt="image" />
+                                                <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >{item.title}</p>
+                                                <p className='text-[20px] text-[#59667d] text-left py-2' >{item.description}</p>
+                                                {
+                                                    item.link && (
+                                                        <div className='mt-5'>
+                                                            <Green_rounded_btn_outlined href={item.link?.href ? item.link?.href : "#"} >{item.link?.label}</Green_rounded_btn_outlined>
+                                                        </div>
+                                                    )
+                                                }
+
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-5 md:p-10 '>
                                     <Image className='rounded-xl ' src={serviceIconLong} alt="image" />
                                     <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >The TRAM SEO App</p>
                                     <p className='text-[20px] text-[#59667d] text-left py-2' >Our extensive TRAM SEO course adapted to your favorite mobile device</p>
@@ -265,7 +305,7 @@ export default function Products() {
                                     <Image className='rounded-xl ' src={ProductLanguageApp} alt="image" />
                                     <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Language App</p>
                                     <p className='text-[20px] text-[#59667d] text-left py-2' >An ambitious project which aims to teach Spanish to English speakers through an innovative approach.</p>
-                                </div>
+                                </div> */}
 
 
                             </div>
@@ -278,10 +318,12 @@ export default function Products() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-center  w-10/12 md:w-11/12 '>
-                            <p className='text-[40px] font-bold text-[#023A51] md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] md:px-10' >Want to get serious about your business and online strategy<span className='text-[#2cbc63]' >?</span></p>
-                            <p className='text-[26px] text-[#2cbc63] md:text-[35px] mt-4 leading-[35px] md:leading-[44px] tracking-[-2px] md:px-10' >Get in touch. Web Design. Content Marketing. SEO. Website Management. </p>
-                            <button className='green_rounded_btn my-6' >Request a Quote</button>
-                            <p className='text-[16px] text-[#023A51]'> Delighted to help.</p>
+                            <p className='text-[40px] font-bold text-[#023A51] md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] md:px-10' >{requestAQuote_section.mainHeading}</p>
+                            <p className='text-[26px] text-[#2cbc63] md:text-[35px] mt-4 leading-[35px] md:leading-[44px] tracking-[-2px] md:px-10' >{requestAQuote_section.heading2}</p>
+                            <div className='my-6'>
+                                <Green_rounded_btn href={requestAQuote_section.actionButton.href ? requestAQuote_section.actionButton.href : ""} >{requestAQuote_section.actionButton.label}</Green_rounded_btn>
+                            </div>
+                            <p className='text-[16px] text-[#023A51]'>{requestAQuote_section.textbellow}</p>
                         </div>
                     </div>
                 </section>
@@ -291,4 +333,21 @@ export default function Products() {
             </Layout>
         </>
     )
+}
+
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/products-page`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
 }

@@ -4,7 +4,10 @@ import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Accordion from "../../components/accordion/Accordion"
 import Typewriter from "typewriter-effect";
+import ReactMarkdown from 'react-markdown';
+import Link from 'next/link'
 
+import * as Fontawesome from 'react-icons/fa'
 import { FaPlus, FaNewspaper, FaPhoneVolume, FaCashRegister, FaChevronDown } from 'react-icons/fa'
 import { IoMdCheckmarkCircle, IoMdSearch, } from 'react-icons/io'
 import { IoDesktopSharp } from 'react-icons/io5'
@@ -35,23 +38,26 @@ import MyJourneyChapter3 from '../../assets/imgs/My-journey-Chapter-3.jpg'
 import MyJourneyChapter2 from '../../assets/imgs/My-journey-Chapter-2.jpg'
 import MyJourneyChapter1 from '../../assets/imgs/My-journey-Chapter-1.jpg'
 import ByBayo from '../../assets/imgs/By-Bayo-200x121.png'
+import axios from 'axios'
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
 
 
-export default function Bayo_search_consultant() {
+export default function Bayo_search_consultant({ contents }) {
+    const { discover_my_story_text, header, hero, myIntro_section, feedback, my_quote, what_I_offer_section, what_you_get, who_I_am, Iam_trustedBy_section, Im_Impressed_by, chapters, iconClassName, organizations_I_work_with, questions_to_ask, } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Founder & Consultant - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
-                <section className='heading pb-20 bg-[#e0ecf0]'>
+                <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='md:w-[60%]' >
-                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >Founder & Consultant<span className='text-[#2cbc63]'>.</span></h1>
-                                <p className=' text-[24px] text-center md:text-[26px] text-[#023A51] pt-3 leading-[36px] ' >Discover my services. Learn about my journey. Hope we get a chance to connect.</p>
+                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >{hero.heading}</h1>
+                                <p className=' text-[24px] text-center md:text-[26px] text-[#023A51] pt-3 leading-[36px] ' >{hero.description}</p>
                             </div>
                         </div>
                     </div>
@@ -60,9 +66,8 @@ export default function Bayo_search_consultant() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 '>
                             <div className='' >
-                                <p className=' text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >I’m Bayo, MBA</p>
-                                <p className=' text-[50px] md:text-[70px] font-semibold pt-3 leading-[59px] md:leading-[79px] tracking-[-2px] ' >The Founder of Humble Titan </p>
-                                <p className=' text-[50px] md:text-[70px] font-semibold pt-3 leading-[59px] md:leading-[79px] tracking-[-2px] ' >Your Growth Marketing Consultant</p>
+                                <p className=' text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >{myIntro_section.heading}</p>
+                                <p className=' text-[50px] md:text-[70px] font-semibold pt-3 leading-[59px] md:leading-[79px] tracking-[-2px] ' >{myIntro_section.heading2}</p>
                             </div>
                         </div>
                     </div>
@@ -74,21 +79,37 @@ export default function Bayo_search_consultant() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:mr-20 ' >
-                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>I ensure organizations succeed online</p>
-                                    <p className='text-[30px] my-10 ' >Get in touch to contract my <br /> services. Explore below to <br /> learn why you can trust me to deliver.</p>
-                                    <button className='green_rounded_btn mb-10 ' >Get a Consultation</button>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Establish a strong presence online </p>
+                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{myIntro_section.titleBig}</p>
+                                    <p className='text-[30px] my-10 ' >{myIntro_section.description}</p>
+                                    <Green_rounded_btn href={myIntro_section.actionButton.href} >{myIntro_section.actionButton.label}</Green_rounded_btn>
+                                    <div className='my-10 md:my-0 '>
+                                        {
+                                            myIntro_section.abilities?.map((item) => {
+                                                return (
+                                                    <div key={item.id} className="flex " >
+                                                        <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
+                                                            {React.createElement(Fontawesome[item.iconClass])}
+                                                        </div>
+                                                        <p className='text-[22px] font-light flex py-4 ml-[12px] ' >{item.text}</p>
+                                                    </div>
+
+
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  ' color='#f86011' /> Establish a strong presence online </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Reach more people than ever before </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p>
+                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p> */}
                                 </div>
                                 <div className=' w-[100%] h-[100%]' >
-                                    <div className=' relative ' style={{ backgroundImage: `url(${BayoFounderPhoto.src})`, width: '100%', height: '100%', backgroundPosition: "center top", backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+                                    <div className=' relative ' style={{ backgroundImage: `url(${myIntro_section.image.data.attributes.url})`, width: '100%', height: '100%', backgroundPosition: "center top", backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
 
                                         <div className='absolute bottom-0 left-0 text-[#023a51] w-[80%] p-6 bg-[#fff] shadow-xl '>
-                                            <Image className='' width={150} height={25} src={HTStandardLogo} alt="image" />
-                                            <p className='text-[20px] font-light '> I’ve come a long way, with much further to go. I’d love to take you with me.</p>
-                                            <p className='text-[20px] py-3' ><span className='font-bold' >Bayo Adesina</span> Founder</p>
+                                            <img className='' width={150} height={25} src={myIntro_section.my_quote.logo.data.attributes.url} alt="image" />
+                                            <p className='text-[20px] font-light '>{myIntro_section.my_quote.text}</p>
+                                            <p className='text-[22px] py-3 font-bold' >{myIntro_section.my_quote.name}<span className='text-[#59667d] font-normal text-[20px] block ' >{myIntro_section.my_quote.roll}</span></p>
                                         </div>
 
                                     </div>
@@ -102,18 +123,18 @@ export default function Bayo_search_consultant() {
                 <section className='heading mt-[1100px] md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <p className=' text-[60px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[122px] tracking-[-3px] ' >What I offer</p>
+                            <p className=' text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[122px] tracking-[-3px] ' >{what_I_offer_section.title}</p>
                             <div className='md:flex justify-around mt-4'>
                                 <div className='bg-[#00989e] relative cursor-pointer transition p-10 text-center items-center rounded mb-6 md:mr-4 '  >
                                     <span className='absolute top-0 left-0 border z-0 ' style={{ backgroundImage: `url(${boxbgsvg.src})`, width: '100%', height: '100%', backgroundPosition: 'bottom left', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>
                                     <p className='text-[#fff] text-[26px] md:text-[40px] font-semibold' ><span className='mr-4'>1.</span>
-                                        A restructure of your internal team for digital success
+                                        {what_I_offer_section.my_offers[0].title}
                                     </p>
 
                                 </div>
                                 <div className='bg-[#00989e] cursor-pointer transition p-10 text-center items-center rounded mb-6 md:ml-4 '>
                                     <p className='text-[#fff] text-[26px] md:text-[40px] font-semibold ' ><span className='mr-4'>2.</span>
-                                        Agency Support. An external team to cover your needs.
+                                        {what_I_offer_section.my_offers[1].title}
 
                                     </p>
 
@@ -122,13 +143,13 @@ export default function Bayo_search_consultant() {
                             <div className='md:flex justify-around mt-4'>
                                 <div className=' transition p-4 md:p-10 md:text-center items-center rounded md:mr-4 '  >
                                     <p className='text-[#59667d] text-[30px]' >
-                                        A contract that allows me to assess the needs of your team. I’ll highlight strengths, pinpoint weaknesses, hire, train and design a roadmap for your company to begin owning its digital potential.
+                                        {what_I_offer_section.my_offers[0].description}
                                     </p>
 
                                 </div>
                                 <div className=' transition p-4 md:p-10 md:text-center items-center rounded md:ml-4 '>
                                     <p className='text-[#59667d] text-[30px] ' >
-                                        We do the internet, you do you. Extend the capacity of your team, tap into all our resources and skills for as long as you need them. Simply set your goals and leave us to get results.
+                                        {what_I_offer_section.my_offers[1].description}
                                     </p>
 
                                 </div>
@@ -143,9 +164,22 @@ export default function Bayo_search_consultant() {
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12' >
-                            <p className='text-[55px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[64px] md:leading-[122px] tracking-[-3px] ' >What you get</p>
+                            <p className='text-[55px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[64px] md:leading-[122px] tracking-[-3px] ' >{what_you_get.heading}</p>
                             <div className='flex mx-auto flex-wrap justify-around text-[#023A51] mt-10' >
-                                <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
+                                {
+                                    what_you_get.features.map((item) => {
+                                        return (
+                                            <div key={item.id} className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
+                                                <div className=' w-[100%] flex justify-center mb-2 '>
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                </div>
+                                                <p className='text-[20px] font-semibold '>{item.title}</p>
+                                                <p className='text-[20px] py-3' >{item.description}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
                                     <Image className='rounded-xl' src={humbleBrandVisibility} alt="image" />
                                     <p className='text-[20px] '>Increased brand visibility</p>
                                     <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
@@ -164,7 +198,7 @@ export default function Bayo_search_consultant() {
                                     <Image className='rounded-xl' src={humbleManagement} alt="image" />
                                     <p className='text-[20px]' >Monthly management & reporting</p>
                                     <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -173,50 +207,63 @@ export default function Bayo_search_consultant() {
                 {/* Who I am */}
                 <section className='heading md:my-20'>
                     <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
-                        <h1 className='text-[60px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >Who I am</h1>
-                        <div className='mx-auto text-[#fff] bg-[#053366] bg-[#023A51] p-10 md:p-20 py-10 mt-10 rounded-xl '>
-                            <p className=' text-[30px] md:text-[45px] text-center font-bold leading-[39px] md:leading-[54px] tracking-[-2px] mb-4 '>An Elite Growth & Digital Marketing Consultant</p>
-                            <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4  '>I design online strategy for</p>
-                            <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4 '>
-                                <Typewriter
-                                    options={{
-                                        autoStart: true,
-                                        loop: true
-                                    }}
-                                    onInit={(typewriter) => {
+                        <h2 className='text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >{who_I_am.heading}</h2>
+                        <div className='mx-auto text-[#fff] bg-[#053366] p-10 md:p-20 py-10 mt-10 rounded-xl '>
+                            <p className=' text-[30px] md:text-[45px] text-center font-bold leading-[39px] md:leading-[54px] tracking-[-2px] mb-4 '>{who_I_am.title}</p>
+                            <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4  '>{who_I_am.title2}</p>
+                            <div>
+                                <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4 '>
+                                    <Typewriter
+                                        options={{
+                                            autoStart: true,
+                                            loop: true
+                                        }}
+                                        onInit={(typewriter) => {
 
-                                        typewriter
-                                            .typeString("NGOs")
-                                            .pauseFor(1000)
-                                            .deleteAll()
-                                            .typeString("Universities")
-                                            .pauseFor(1000)
-                                            .deleteAll()
-                                            .typeString("Large Enterprises")
-                                            .pauseFor(1000)
-                                            .deleteAll()
-                                            .typeString("Politicians")
-                                            .pauseFor(1000)
-                                            .deleteAll()
-                                            .typeString("Political Campaigns")
-                                            .pauseFor(1000)
-                                            .deleteAll()
-                                            .typeString("Charities")
-                                            .pauseFor(1000)
-                                            .start();
-                                    }}
-                                />
-                            </p>
+                                            typewriter
+                                                .typeString(who_I_am.typeWriterText[0].text)
+                                                .pauseFor(1000)
+                                                .deleteAll()
+                                                .typeString(who_I_am.typeWriterText[1].text)
+                                                .pauseFor(1000)
+                                                .deleteAll()
+                                                .typeString(who_I_am.typeWriterText[2].text)
+                                                .pauseFor(1000)
+                                                .deleteAll()
+                                                .typeString(who_I_am.typeWriterText[3].text)
+                                                .pauseFor(1000)
+                                                .deleteAll()
+                                                .typeString(who_I_am.typeWriterText[4].text)
+                                                .pauseFor(1000)
+                                                .deleteAll()
+                                                .typeString(who_I_am.typeWriterText[5].text)
+                                                .pauseFor(1000)
+                                                .start();
+                                        }}
+                                    />
+                                </p>
+                            </div>
 
                             <br />
-                            <p></p>
-                            <p className=' text-[26px] py-2 font-light '>My name is Bayo Adesina, the founder of Humble Titan and creator of the SEO TRAM method. </p>
+                            <div>
+                                <ReactMarkdown className=''
+                                    components={{
+                                        p: ({ node, ...props }) => <p className=' text-[24px] md:text-[26px] mb-10' {...props} />
+                                    }}
+                                >{who_I_am.details}
+                                </ReactMarkdown>
+
+                            </div>
+                            {/* <p></p>
+                            <p className=' text-[26px] py-2 font-light'>My name is Bayo Adesina, the founder of Humble Titan and creator of the SEO TRAM method. </p>
                             <br />
                             <p className=' text-[26px] py-2 font-light '>This means, on one hand, I’m responsible for helping people understand business, economics, and the stock market. While, on the other hand, I created and gave away the highest level of organic search education online.</p>
                             <br />
-                            <p className=' text-[26px] py-2 font-light '>What this means for you is access to a talent that’s able to guarantee a drastic improvement in your digital footprint. Plus, I ensure your strategy is competitive with the best in your industry.</p>
+                            <p className=' text-[26px] py-2 font-light '>What this means for you is access to a talent that’s able to guarantee a drastic improvement in your digital footprint. Plus, I ensure your strategy is competitive with the best in your industry.</p> */}
+
+
                             <div className='text-center mt-10'>
-                                <button className='green_rounded_btn '>Get a Consultation</button>
+                                <Green_rounded_btn href={who_I_am.actionButton.href}>{who_I_am.actionButton.label}</Green_rounded_btn>
 
                             </div>
                         </div>
@@ -227,71 +274,35 @@ export default function Bayo_search_consultant() {
                 {/* I’m trusted by the world’s largest businesses to: */}
                 <section className='heading my-10 md:my-20'>
                     <div className=" container flex justify-center w-12/12 mx-auto max-w-screen-xl">
-                        <div className='w-[60%] text-[#023A51] '>
-                            <p className='text-[26px] md:text-[45px] text-center font-light leading-[35px] md:leading-[56px]  ' >I’m trusted by the world’s largest businesses to:</p>
+                        <div className='w-[70%] text-[#023A51] '>
+                            <p className='text-[26px] md:text-[45px] text-center font-semibold leading-[35px] md:leading-[56px]  ' >{Iam_trustedBy_section.heading}</p>
                             <br />
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Establish an operational focus on digital marketing </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Translate and communicate strategy to executives and high-level stakeholders </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Identify online opportunities that will drive value orangization KPIs </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Design web strategy to achieve organic search goals </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Pinpoint internal team weaknesses </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Interview and train new talent to support internal teams </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Conduct search situation analysis (Business, Market, and Competitors) </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Customize SEO deliverables </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Design team workflow </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Establish synergy amongst SEO and offline marketing functions</p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Set up or reorganize online operations for efficacy </p>
-                            </div>
-                            <div className='flex py-4 '>
-                                <IoMdCheckmarkCircle className='text-[#2cbc63] text-[45px] mr-4 ' />
-                                <p className='text-[26px]'> Tailor performance reporting for executive teams </p>
-                            </div>
+                            {
+                                Iam_trustedBy_section.my_work.map((item) => {
+                                    return (
+                                        <div key={item.id} className="flex " >
+                                            <div className=' text-[#2cbc63] text-[22px] translate-y-[22px] '>
+                                                {React.createElement(Fontawesome[item.iconClass])}
+                                            </div>
+                                            <p className='text-[22px] flex py-4 ml-[12px] ' >{item.text}</p>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </section>
 
-
+                {/* FeedBack */}
                 <section className='heading my-20 '>
                     <div className=" py-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
                         <div className=' md:w-[50%] w-[100%] px-4 shadow-xl ' >
-                            <Image className='rounded-xl ' src={placeHolderImage} alt="image" />
+                            <img className='rounded-xl ' src={feedback?.image.data.attributes.url} alt="image" />
                         </div>
                         <div className=' p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
-                            <p className='text-[26px] md:text-[35px] leading-[35px] md:leading-[44px] md:font-bold ' >“I was impressed by Bayo’s attention to detail. And I’ll continue to count on him for his commitment. He has taken the time to understand us and delivered year-on-year growth in areas we never existed. ”</p>
-                            <p className='text-[20px] py-3 font-bold' >Andreas Casey </p>
-                            <p>Marketing Consultant Expert</p>
+                            <p className='text-[26px] md:text-[35px] leading-[35px] md:leading-[44px] md:font-bold ' >{feedback.heading}</p>
+                            <p className='text-[20px] pt-3 font-bold' >{feedback.name}</p>
+                            <p>{feedback.roll}</p>
 
                         </div>
                     </div>
@@ -303,115 +314,67 @@ export default function Bayo_search_consultant() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <p className=' text-[60px] md:text-[100px] font-semibold pt-3 leading-[69px] md:leading-[120px] tracking-[-3px] ' >Questions to ask</p>
-                            <div className='md:flex justify-between py-20'>
-                                <div className=' mt-4'>
-                                    <p className='text-[30px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >Traditional Marketing</p>
-                                    <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >Is relying on traditional media getting more expensive and less productive?</p>
+                            <p className=' text-[60px] md:text-[100px] font-bold pt-3 leading-[69px] md:leading-[120px] tracking-[-3px] ' >{questions_to_ask.heading}</p>
+                            <div className='md:flex justify-between  py-20'>
+                                <div className='md:w-[50%] mb-20 '>
+                                    <div className='mt-4 w-[90%] mb-10 '>
+                                        <p className='text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >{questions_to_ask.traditional_marketing_qs.heading}</p>
+                                        <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >{questions_to_ask.traditional_marketing_qs.description}</p>
+
+                                    </div>
+
+                                    <div className=' mb-6  '>
+                                        {
+                                            questions_to_ask.traditional_marketing_qs.questions.map((item) => {
+                                                return (
+                                                    <div key={item.id} className="flex mb-10 " >
+                                                        <div className=' text-[#f86011] text-[60px] '>
+                                                            {React.createElement(Fontawesome[item.iconClassName])}
+                                                        </div>
+                                                        <div className='ml-3'>
+                                                            <p className=' text-[26px] font-semibold  '>{item.title}
+                                                            </p>
+                                                            <br />
+                                                            <p className='text-[22px] ' >{item.details}</p>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+
+                                        }
+                                    </div>
 
                                 </div>
-                                <div className=' mt-4'>
-                                    <p className='text-[30px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >Digital Marketing</p>
-                                    <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >Ready for more? Thinking of taking advantage of data-backed digital marketing?</p>
+
+                                <div className='md:w-[50%]'>
+                                    <div className='mt-4 w-[90%] mb-10 '>
+                                        <p className='text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >{questions_to_ask.digital_marketing_qs.heading}</p>
+                                        <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >{questions_to_ask.digital_marketing_qs.description}</p>
+
+                                    </div>
+
+                                    <div className=' mb-6  '>
+                                        {
+                                            questions_to_ask.digital_marketing_qs.questions.map((item) => {
+                                                return (
+                                                    <div key={item.id} className="flex mb-10 " >
+                                                        <div className=' text-[#f86011] text-[60px] '>
+                                                            {React.createElement(Fontawesome[item.iconClassName])}
+                                                        </div>
+                                                        <div className='ml-3'>
+                                                            <p className=' text-[26px] font-semibold  '>{item.title}
+                                                            </p>
+                                                            <br />
+                                                            <p className='text-[22px] ' >{item.details}</p>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+
+                                        }
+                                    </div>
 
                                 </div>
-                            </div>
-
-
-                        </div>
-                        <div className='mx-auto md:flex flex-wrap text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='flex justify-between md:w-[50%] mb-6  '>
-                                <AiOutlineDesktop className='text-[#f86011] w-[150px] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold  '>Television
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <IoMdSearch className='text-[#f86011] mr-2 w-[150px] text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Organic Search
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] '>Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <GoRadioTower className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Radio
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <BsFillChatDotsFill className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Social Media
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <FaNewspaper className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Mail/Print Media
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <GoMailRead className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Email Newsletters
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <RiAdvertisementFill className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Pay Per Click
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <FaPhoneVolume className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Phone Sales
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <IoDesktopSharp className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>Ecommerce and online stores
-                                    </p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex md:w-[50%] mb-6 '>
-                                <FaCashRegister className='text-[#f86011] mr-2 text-[150px] -translate-y-12 ' />
-                                <div>
-                                    <p className=' text-[26px] font-semibold'>In Store Sales</p>
-                                    <br />
-                                    <p className='text-[22px] ' >Suspendisse posuere condimentum dui, in ullamcorper leo iaculis non. Maeces aliquam accumsan mauris interdum.</p>
-                                </div>
-                            </div>
-                            <div className='flex justify-center w-[100%] '>
-                                <button className='green_rounded_btn my-10'>Get a Consultation</button>
-
                             </div>
                         </div>
                     </div>
@@ -423,10 +386,21 @@ export default function Bayo_search_consultant() {
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
 
-                        <p className='text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ' >Organizations I work with</p>
+                        <p className='text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ' >{organizations_I_work_with.heading}</p>
 
                         <div className='flex flex-wrap text-[#023A51] mt-10 justify-around' >
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                            {
+                                organizations_I_work_with.feature.map((item) => {
+                                    return (
+                                        <div key={item.id} className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                            <p className='text-[35px] '>{item.title}</p>
+                                            <p className='text-[20px] py-3' >{item.description}</p>
+                                            <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                        </div>
+                                    )
+                                })
+                            }
+                            {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                 <p className='text-[35px] '>Politicians</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humblePoliticians} alt="image" />
@@ -455,151 +429,184 @@ export default function Bayo_search_consultant() {
                                 <p className='text-[35px] '>Enterprise Business</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleEnterprises} alt="image" />
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
                 </section>
-                {/* Organizations I work with */}
+
+
+                {/* Discover my story */}
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12'>
-                            <div className='md:flex flex-col text-[#023A51] items-center'>
-                                <p className='text-[30px] md:text-[40px] font-bold '>Discover my story below</p>
-                                <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
+                            <div className='flex flex-col text-[#023A51] items-center'>
+                                <p className=' text-center text-[40px] font-bold '>{discover_my_story_text}</p>
+                                <div className=' text-[#2cbc63] mt-4 text-[70px] '>
+                                    {React.createElement(Fontawesome[iconClassName])}
+                                </div>
+                                {/* <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' /> */}
                             </div>
                         </div>
 
-                        {/* cahpter 5 */}
-                        <div>
-                            <div className='mx-auto w-10/12 md:w-11/12' >
-                                <div >
-                                    <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]' >Chapter 5</p>
-                                    <p className=' text-[50px] md:text-[102px] font-bold leading-[50px] md:leading-[122px] tracking-[-3px] text-[#00989e] ' >As Head of Search</p>
-                                    <p className=' text-[30px] md:text-[40px] font-light leading-[39px] md:leading-[49px] tracking-[-2px] py-8 text-[#59667d] ' >Virginia Beach, USA. 2021</p>
-                                    <div className=" py-10 flex flex-wrap items-center justify-between mx-auto ">
-                                        <div className=' md:w-[50%] w-[100%] px-4 ' >
-                                            <Image className='rounded-xl ' src={bayoInVirginiaBeach} alt="image" />
-                                        </div>
-                                        <div className='text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
-                                            <div>
-                                                <Accordion active="true" title="The Challenge" content="To build something epic from very little." />
-                                                <Accordion
-                                                    title="The Plan"
-                                                    content="Develop sustainable digital systems that bring the best out of organizations."
-                                                />
-                                                <Accordion
-                                                    title="The Attitude"
-                                                    content="I go big or stay home – I’m too curious to stay home. So I’m coming for the world."
-                                                />
+                        {/* cahpters */}
+                        {
+                            chapters.map((item) => {
+                                return (
+
+                                    <div key={item.id}  >
+                                        <div className='mx-auto w-10/12 md:w-11/12' >
+                                            <div >
+                                                <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]' >{item.chapterIntro.chateperNumber}</p>
+                                                <p className=' text-[50px] md:text-[102px] font-bold leading-[50px] md:leading-[122px] tracking-[-3px] text-[#00989e] ' >{item.chapterIntro.heading}</p>
+                                                <p className=' text-[30px] md:text-[40px] font-light leading-[39px] md:leading-[49px] tracking-[-2px] py-8 text-[#59667d] ' >{item.chapterIntro.where}</p>
+                                                <div className=" py-10 flex flex-wrap items-center justify-between mx-auto ">
+                                                    <div className=' md:w-[50%] w-[100%] px-4 ' >
+                                                        <img className='rounded-xl ' src={item.chapterIntro.image.data[0].attributes.url} alt="image" />
+                                                    </div>
+                                                    <div className='text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
+                                                        <div>
+                                                            <Accordion active="true" title={item.chapterIntro.theChallange} content={item.chapterIntro.challangeDetails} />
+                                                            <Accordion
+                                                                title={item.chapterIntro.thePlan}
+                                                                content={item.chapterIntro.planDetails}
+                                                            />
+                                                            <Accordion
+                                                                title={item.chapterIntro.theAttitude}
+                                                                content={item.chapterIntro.attitudeDetails}
+                                                            />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div className=' pt-12 md:px-12 '>
+                                                    <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
+                                                        <p className='text-[24px] font-bold text-center'>The Story</p>
+                                                        <br />
+
+                                                        <ReactMarkdown components={{
+                                                            p: ({ node, ...props }) => <p className='text-[22px] leading-[39px] text-[#59667d]' {...props} />
+                                                        }}>
+                                                            {item.theStory}
+                                                        </ReactMarkdown>
+                                                        {/* <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>My journey has been exciting, intimidating, and fulfilling. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Like most, my plans have changed over different periods of my life. I tend to switch gears after accomplishing what I set out to achieve. Presently, I’m taking on my most challenging mission. I plan to elevate the digital standards of as many organizations and professionals as possible. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>That’s what Humble Titan is all about. That’s why I invented the SEO TRAM method (an educational course). And this is what motivates me to service organizations around the world. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>If you choose to continue reading, you’ll discover why “right now” feels like my time to unleash. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>As for what I do? If you have a big idea and want it to reach people on the internet, I take care of that. I’m dedicated to precisely that. I start with organic reach, then I work your bespoke strategy into paid and social channels.</p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>As for how I support your ambitions? My practice is to set up teams and organizations for digital success. Plus, I design strategies that establish synergy – once we mature your digital scope, we tap into your traditional approach. This is what I’d consider my edge.</p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>It may help to think of me as the internet whisperer, helpful to those who may have made their fortune through traditional marketing. My work is the most impactful when I can address all marketing considerations before your brand ever engages an online user. My ability to translate complex search and digital marketing concepts to high-level stakeholders sets me apart. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>But I’m only useful once I get to know you, your organization, and your goals. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Till you get in touch, I’d like to offer my story.  </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Take a look below. I’ve cataloged my very organic (pun intended) journey.</p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>To spice up your reading a bit, I’ve chronicled my adventures in reverse order. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>We start from all you’ve read above. We continue after this moment of gratitude. </p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m thankful for the trials of each stage of my adventure and for all those I’ve met. To my Family and Cristina, thank you. I hope the story inspires.</p>
+                                                        <br />
+                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>By the end of this period of my life, I’d accumulated 11 years of management experience. Now, I’m enjoying the ride. Continue to chapter 4 to learn what got me here.</p>
+                                                        <br />
+                                                        <br /> */}
+                                                        <div className='flex justify-center mt-10'>
+                                                            <Green_rounded_btn href={item.getInTouch.href} className='orange_roudend_btn '>{item.getInTouch.label}</Green_rounded_btn>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className='py-10 md:py-20'>
+                                                    <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >{item.theReturn.heading}</p>
+                                                    <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >{item.theReturn.description}</p>
+                                                    <div className='md:flex justify-around my-10 '>
+                                                        <div className='p-4 md:p-10 border-2 md:mr-2'>
+                                                            <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >{item.theReturn.reflectionHeading}</p>
+                                                            <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >{item.theReturn.reflectionDetails}</p>
+
+                                                        </div>
+                                                        <div className='p-4 md:p-10 border-2 mt-4 md:mt-0 md:ml-2'>
+                                                            <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >{item.theReturn.lessonsLearnedHeadeing}</p>
+                                                            <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >{item.theReturn.lessonsLearnedDetails}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div className='py-10'>
+                                                    <p className=' text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px]  md:pt-10 text-[#023A51] ' >{item.jumpToChapters.heading}</p>
+                                                    <div className='flex md:flex-row flex-col items-center md:justify-around mt-10'>
+                                                        {
+                                                            item.jumpToChapters.chapterLinks.map((item) => {
+                                                                return (
+                                                                    <div key={item.id} className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                                        <Link passHref href={item.href}>
+                                                                            <a><img className='rounded-xl  ' src={item.imageWithChapterNumber.data.attributes.url} alt="image" /></a>
+                                                                        </Link>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                        {/* <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl  ' src={ToTheTop} alt="image" />
+                                                        </div>
+                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl' src={MyJourneyChapter5} alt="image" />
+                                                        </div>
+                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl' src={MyJourneyChapter4} alt="image" />
+                                                        </div>
+                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl' src={MyJourneyChapter3} alt="image" />
+                                                        </div>
+                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl' src={MyJourneyChapter2} alt="image" />
+                                                        </div>
+                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                                                            <Image className='rounded-xl' src={MyJourneyChapter1} alt="image" />
+                                                        </div> */}
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
-                                    </div>
-                                    <div className=' pt-12 md:px-12 '>
-                                        <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
-                                            <p className='text-[24px] font-bold text-center'>The Story</p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>My journey has been exciting, intimidating, and fulfilling. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>Like most, my plans have changed over different periods of my life. I tend to switch gears after accomplishing what I set out to achieve. Presently, I’m taking on my most challenging mission. I plan to elevate the digital standards of as many organizations and professionals as possible. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>That’s what Humble Titan is all about. That’s why I invented the SEO TRAM method (an educational course). And this is what motivates me to service organizations around the world. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>If you choose to continue reading, you’ll discover why “right now” feels like my time to unleash. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>As for what I do? If you have a big idea and want it to reach people on the internet, I take care of that. I’m dedicated to precisely that. I start with organic reach, then I work your bespoke strategy into paid and social channels.</p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>As for how I support your ambitions? My practice is to set up teams and organizations for digital success. Plus, I design strategies that establish synergy – once we mature your digital scope, we tap into your traditional approach. This is what I’d consider my edge.</p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>It may help to think of me as the internet whisperer, helpful to those who may have made their fortune through traditional marketing. My work is the most impactful when I can address all marketing considerations before your brand ever engages an online user. My ability to translate complex search and digital marketing concepts to high-level stakeholders sets me apart. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>But I’m only useful once I get to know you, your organization, and your goals. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>Till you get in touch, I’d like to offer my story.  </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>Take a look below. I’ve cataloged my very organic (pun intended) journey.</p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>To spice up your reading a bit, I’ve chronicled my adventures in reverse order. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>We start from all you’ve read above. We continue after this moment of gratitude. </p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m thankful for the trials of each stage of my adventure and for all those I’ve met. To my Family and Cristina, thank you. I hope the story inspires.</p>
-                                            <br />
-                                            <p className='text-[22px] leading-[39px] text-[#59667d] '>By the end of this period of my life, I’d accumulated 11 years of management experience. Now, I’m enjoying the ride. Continue to chapter 4 to learn what got me here.</p>
-                                            <br />
-                                            <br />
-                                            <div className='flex justify-center mb-10'>
-                                                <button className='orange_roudend_btn '>Get in touch</button>
+                                        <div className='mx-auto'>
+                                            <div className=' px-10 md:flex justify-between items-center py-10 md:py-20 bg-[#00989e]' style={{ backgroundImage: 'linear-gradient(105deg, #004188 12%,rgba(255,255,255,0) 77%)', backgroundPosition: 'center center', backgroundRepeat: "no-repeat", }} >
+                                                <div>
+                                                    <Image src={ByBayo} alt="image" />
+
+                                                </div>
+                                                <div className='text-[#fff] md:w-[50%] '>
+                                                    <p className='text-[45px] trancking-[-2px] font-poppins font-bold tracking-[-2px] leading-[52px] '>{item.chapterConclusion.text}</p>
+                                                    <p className='text-[22px] pt-10 trancking-[-2px] font-poppins font-semibold '>{item.chapterConclusion.text2}</p>
+
+                                                </div>
+                                                <div className='mt-6'>
+                                                    <Green_rounded_btn href={item.chapterConclusion.actionButton.href} className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 '>{item.chapterConclusion.actionButton.label}</Green_rounded_btn>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='py-10 md:py-20'>
-                                        <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >Chapter 5, The Return</p>
-                                        <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >I lead, teach and solve complex problems online.</p>
-                                        <div className='md:flex justify-around my-10 '>
-                                            <div className='p-4 md:p-10 border-2 md:mr-2'>
-                                                <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >Reflections</p>
-                                                <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >“Life is simple. It’s people that complicate things.” I have continually repeated this quote without realizing, for a long time, I was a part of a problem. You don’t really get to experience all you can be till you learn to take a step back. I enjoy simplifying some of the most complicated challenges in business. But that’s been an extension of learning how to simplify life.</p>
 
-                                            </div>
-                                            <div className='p-4 md:p-10 border-2 mt-4 md:mt-0 md:ml-2'>
-                                                <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >Lessons Learned</p>
-                                                <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >Hard work pays off when it’s not stubborn. Your vision doesn’t need to account for your entire future. It can’t. Let your human experience surprise you. So long as you give your best, adapt and stay honest, your future will be much better than you could have ever planned. Commit to quality output, character, and growth.</p>
 
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div className='py-10'>
-                                        <p className=' text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px]  md:pt-10 text-[#023A51] ' >Jump to another chapter</p>
-                                        <div className='flex md:flex-row flex-col items-center md:justify-around mt-10'>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl  ' src={ToTheTop} alt="image" />
-                                            </div>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl' src={MyJourneyChapter5} alt="image" />
-                                            </div>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl' src={MyJourneyChapter4} alt="image" />
-                                            </div>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl' src={MyJourneyChapter3} alt="image" />
-                                            </div>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl' src={MyJourneyChapter2} alt="image" />
-                                            </div>
-                                            <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                <Image className='rounded-xl' src={MyJourneyChapter1} alt="image" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div className='mx-auto'>
-                                <div className=' px-10 md:flex justify-between items-center py-10 md:py-20 bg-[#00989e]' style={{ backgroundImage: 'linear-gradient(105deg, #004188 12%,rgba(255,255,255,0) 77%)', backgroundPosition: 'center center', backgroundRepeat: "no-repeat", }} >
-                                    <div>
-                                        <Image src={ByBayo} alt="image" />
-
-                                    </div>
-                                    <div className='text-[#fff] md:w-[50%] '>
-                                        <p className='text-[45px] trancking-[-2px] font-poppins font-bold tracking-[-2px] leading-[52px] '>I don’t dump traditional marketing. I extend and amplify with digital opportunities.</p>
-                                        <p className='text-[22px] pt-10 trancking-[-2px] font-poppins font-semibold '>Get in touch with us today and let’s start transforming your business from the ground up.</p>
-
-                                    </div>
-                                    <button className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 mt-4'>Book A Consultation</button>
-                                </div>
-                            </div>
-                        </div>
+                                )
+                            })
+                        }
 
 
 
                         {/* cahpter 4 */}
-                        <div>
+                        {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]' >Chapter 4</p>
@@ -758,12 +765,12 @@ export default function Bayo_search_consultant() {
                                     <button className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 mt-4'>Book A Consultation</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
 
                         {/* cahpter 3 */}
-                        <div>
+                        {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 3</p>
@@ -930,11 +937,11 @@ export default function Bayo_search_consultant() {
                                     <button className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 mt-4'>Book A Consultation</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {/* cahpter 2 */}
-                        <div>
+                        {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 2</p>
@@ -1096,12 +1103,12 @@ export default function Bayo_search_consultant() {
                                     <button className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 mt-4'>Book A Consultation</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
 
                         {/* cahpter 1 */}
-                        <div>
+                        {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 1</p>
@@ -1263,14 +1270,26 @@ export default function Bayo_search_consultant() {
                                     <button className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 mt-4'>Book A Consultation</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
-
-
-
-
             </Layout>
         </>
     )
+}
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
 }

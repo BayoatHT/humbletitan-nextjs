@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
+import axios from 'axios'
+import Link from 'next/link'
 import GetAQuote from '../../components/GetAQuote'
 
 import humblePoliticians from '../../assets/imgs/humble-politicians-400x174.jpg'
@@ -18,23 +20,26 @@ import HumbleVoter from '../../assets/imgs/home-content-Humble-Voter.jpg'
 import TRAMSEO from '../../assets/imgs/home-content-TRAM-SEO.jpg'
 import Humblemind from '../../assets/imgs/home-content-Humble-mind.jpg'
 
-import { FaChevronDown } from 'react-icons/fa';
+import { FaAngleDown } from 'react-icons/fa';
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
+import DiscoverMore from '../../components/DiscoverMore';
 
-export default function Education() {
+export default function Education({ contents }) {
+    const { discover_full_seo_course, discover_ht_magazine, educationalDictionaries, explore, header, hero, ht_digital_services, ht_mind_mag, services_gallery } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Education - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
-                <section className='heading md:py-10 bg-[#e0ecf0]'>
+                <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='md:w-7/12 pb-6' >
-                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Education</p>
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Educational resources for the humble mind<span className='text-[#2cbc63]'>.</span></h1>
-                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>The more you know, the more you can achieve. Here you&apos;ll find carefully curated content intended to empower decision-making.</p>
+                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>{hero.label.name}</p>
+                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >{hero.heading}</h1>
+                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>{hero.description}</p>
                             </div>
                         </div>
                     </div>
@@ -45,13 +50,25 @@ export default function Education() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <p className=' text-[50px] md:text-[60px] text-[#59667d] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >The more you know. The more you can.</p>
-                            <p className=' text-[30px] md:text-[35px] text-[#00989e] font-bold leading-[39px] md:leading-[44px] tracking-[-2px] py-4 ' >“Never doubt that a small group of thoughtful, committed, citizens can change the world. Indeed, it is the only thing that ever has.”</p>
+                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >{educationalDictionaries.heading}</p>
 
 
 
                             <div className='flex flex-wrap text-[#023A51] justify-around ' >
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                {
+                                    educationalDictionaries.feature.map((item) => {
+                                        return (
+                                            <Link key={item.id} href={item.link ? item.link : "#"} passHref >
+                                                <a className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                                    <p className='text-[35px] '>{item.title}</p>
+                                                    <p className='text-[20px] py-3' >{item.description}</p>
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                </a>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Business Dictionary</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humblePoliticians} alt="image" />
@@ -70,16 +87,11 @@ export default function Education() {
                                     <p className='text-[35px] '>Charities</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div>
+                                </div> */}
 
                             </div>
 
                         </div>
-
-
-
-
-
                     </div>
                 </section>
 
@@ -88,19 +100,34 @@ export default function Education() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <div className='md:flex flex-col text-[#023A51] items-center'>
-                                <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>Discover our full SEO course</p>
-                                <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
+                            <div className='flex flex-col text-[#023A51] items-center'>
+                                <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>{discover_full_seo_course.title}</p>
+                                <FaAngleDown className='text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                             </div>
 
                             {/* Learn SEO & Online Success */}
 
 
-                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >Learn SEO & Online Success</p>
+                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >{discover_full_seo_course.features.heading}</p>
 
 
                             <div className='flex flex-wrap text-[#023A51] justify-around' >
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+
+                                {
+                                    discover_full_seo_course.features.feature.map((item) => {
+                                        return (
+                                            <Link key={item.id} href={item.link ? item.link : "#"} passHref >
+                                                <a className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                                    <p className='text-[35px] '>{item.title}</p>
+                                                    <p className='text-[20px] py-3' >{item.description}</p>
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                </a>
+                                            </Link>
+                                        )
+                                    })
+                                }
+
+                                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Technical SEO</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humblePoliticians} alt="image" />
@@ -119,7 +146,7 @@ export default function Education() {
                                     <p className='text-[35px] '>Monitoring SEO</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div>
+                                </div> */}
 
                             </div>
 
@@ -138,26 +165,40 @@ export default function Education() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <div className='md:flex flex-col text-[#023A51] items-center'>
+                            <div className='flex flex-col text-[#023A51] items-center'>
                                 <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>Discover the HT Magazine</p>
-                                <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
+                                <FaAngleDown className='text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                             </div>
 
                             {/* Learn SEO & Online Success */}
                             <div className='flex justify-center'>
                                 <div className='p-10 bg-[#eefaf3] w-[80%] mt-10 rounded-xl'>
                                     <p className='text-[24px] text-[#2cbc63] font-bold  '>Discover what the internet can do for your business or idea.</p>
-                                    <button className='green_rounded_btn mt-4' >Talk to us!</button>
+                                    <div className='mt-10'>
+                                        <Green_rounded_btn href="/contact" className='green_rounded_btn mt-4' >Talk to us!</Green_rounded_btn>
+                                    </div>
                                 </div>
                             </div>
 
 
 
-                            <p className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' > <span className='text-[#2cbc63]'>Our Services.</span> Don’t miss out on what else we can do for you<span className='text-[#2cbc63]'>.</span></p>
+                            <p className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >{services_gallery.heading}</p>
 
 
                             <div className='mx-auto text-[#023A51] py-20 flex flex-wrap justify-between text-center '>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10  ' >
+                                {
+                                    services_gallery.single_service.map((item) => {
+                                        return (
+                                            <div key={item.id} className=' sm:w-[49%] lg:w-[24.5%] w-[100%] mb-10  ' >
+                                                <img className='rounded-lg' src={item.image.data.attributes.url} alt="image" />
+                                                <h2 className='text-[30px] py-2' >{item.title}</h2>
+                                                <p className='text-[18px] text-left  p-4' >{item.details}</p>
+                                                <Green_rounded_btn href={item.href}  >{item.label}</Green_rounded_btn>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10  ' >
                                     <Image src={homeWebAndMobileDesign} alt="image" />
                                     <h1 className='text-[30px] py-2' >Web & Mobile <br /> Design</h1>
                                     <p className='text-[18px] text-left  p-4' >More than design. We transform your vision into an online reality.</p>
@@ -183,15 +224,11 @@ export default function Education() {
                                     <p className='text-[18px] text-left p-4' >Let&apos;s take care of your bsuiness. We will manage the day-to-day operations of your website.</p>
                                     <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Get a web manager</button>
 
-                                </div>
+                                </div> */}
 
                             </div>
 
                         </div>
-
-
-
-
 
                     </div>
                 </section>
@@ -203,10 +240,23 @@ export default function Education() {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >HT Mind Mag</p>
+                            <p className=' text-[50px] md:text-[60px] text-[#00989e] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] py-20 ' >{ht_mind_mag.heading}</p>
 
                             <div className='flex flex-wrap text-[#023A51] justify-around' >
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                {
+                                    ht_mind_mag.feature.map((item) => {
+                                        return (
+                                            <Link key={item.id} href={item.link ? item.link : "#"} passHref >
+                                                <a className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                                    <p className='text-[35px] '>{item.title}</p>
+                                                    <p className='text-[20px] py-3' >{item.description}</p>
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                </a>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Activism</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humblePoliticians} alt="image" />
@@ -225,7 +275,7 @@ export default function Education() {
                                     <p className='text-[35px] '>Humble Mind Mag</p>
                                     <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                     <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div>
+                                </div> */}
 
                             </div>
 
@@ -236,52 +286,10 @@ export default function Education() {
 
 
                 {/* Discover the HT Magazine */}
-                <section className='heading md:my-20 '>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto  w-10/12 md:w-11/12 '>
-                            <div className='md:flex flex-col text-[#023A51] items-center'>
-                                <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>Discover the HT Magazine</p>
-                                <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
-                            </div>
-
-                            <p className='text-[24px] text-[#023A51] py-4 font-bold text-center ' >We built this site to show you what we are capable of. </p>
-                            <p className='text-[24px] text-[#023A51] font-bold text-center '>Explore our offering:</p>
-
-                            <div className='flex justify-around flex-wrap py-10 ' >
-                                <div className='hover:scale-105 transition duration-300 group ' >
-                                    <Image className=' rounded-xl group-hover:drop-shadow-lg cursor-pointer ' src={DigitalServices} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Digital Marketing <br /> Services</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleTrader} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Stocks & Business <br /> Analysis</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={TRAMSEO} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >TRAM SEO <br /> Course</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleVoter} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Politics & Ballot <br /> Information</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={Humblemind} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Educational <br /> Resources</p>
-                                </div>
-                            </div>
-
-                        </div>
+                <DiscoverMore title={discover_ht_magazine.title} />
 
 
-
-
-
-                    </div>
-                </section>
-
-
-                {/* get a qoute */}
-
+                {/* Ht digital Services */}
                 <GetAQuote />
 
 
@@ -289,4 +297,19 @@ export default function Education() {
         </>
 
     )
+}
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/education`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
 }

@@ -34,6 +34,7 @@ export default function Magazine({ data, categories }) {
             <Head>
                 <title>Magazine - Humble Titan</title>
             </Head>
+
             <Layout>
 
                 {/* Hero */}

@@ -1,20 +1,20 @@
 import React from 'react'
 import Image from 'next/image'
-import { FaChevronDown } from 'react-icons/fa'
+import { FaAngleDown } from 'react-icons/fa'
 import DigitalServices from '../assets/imgs/home-content-Humble-Digital-Services.jpg'
 import HumbleTrader from '../assets/imgs/home-content-Humble-Trader.jpg'
 import HumbleVoter from '../assets/imgs/home-content-Humble-Voter.jpg'
 import TRAMSEO from '../assets/imgs/home-content-TRAM-SEO.jpg'
 import Humblemind from '../assets/imgs/home-content-Humble-mind.jpg'
 
-export default function DiscoverMore() {
+export default function DiscoverMore({ title }) {
     return (
         <section className='heading md:my-20 ' >
             <div className=" container w-12/12 mx-auto max-w-screen-xl">
                 <div className='mx-auto  w-10/12 md:w-11/12 '>
-                    <div className='md:flex flex-col text-[#023A51] items-center'>
-                        <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>Discover more </p>
-                        <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
+                    <div className='flex flex-col text-[#023A51] items-center'>
+                        <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>{title ? title : 'Discover more'}</p>
+                        <FaAngleDown className='text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                     </div>
                     <p className='text-[24px] text-[#023A51] py-4 font-bold text-center ' >We built this site to show you what we are capable of. </p>
                     <p className='text-[24px] text-[#023A51] font-bold text-center '>Explore our offering:</p>

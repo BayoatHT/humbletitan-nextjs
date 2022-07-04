@@ -2,21 +2,31 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
+import Link from 'next/link'
+import axios from 'axios';
 
-
-import testimonial from '../../assets/imgs/testimonial-3.jpg'
-import abstract from '../../assets/imgs/abstract.png'
-
-
-import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
-import { SiMinutemailer } from 'react-icons/si'
+import * as Fontawesome from 'react-icons/fa'
 import Brands from '../../components/Brands';
+import ReactMarkdown from 'react-markdown';
 
-export default function Contact() {
+export default function Contact({ contents }) {
+    console.log(contents);
+    const { hero,
+        header,
+        DanaJohnsonFeedback,
+        client_feedback,
+        details,
+        faqs,
+        heading,
+        heading_for_faqs,
+        label,
+        officeInfo,
+        trustedByCompanies
+    } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Contact Us - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
@@ -24,7 +34,7 @@ export default function Contact() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='md:w-7/12 text-center py-10 '  >
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Contact Us</h1>
+                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >{hero.heading}</h1>
                             </div>
                         </div>
                     </div>
@@ -36,7 +46,7 @@ export default function Contact() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex flex-col items-center w-10/12 md:w-11/12 '>
                             <div className='md:w-7/12 text-[#023A51] ' >
-                                <h2 className=' text-[40px] font-semibold ' >Humble Titan</h2>
+                                <h2 className=' text-[40px] font-semibold ' >{label}</h2>
                                 <h2 className=' text-[50px] md:text-[60px] leading-[59px] md:leading-[69px] tracking-[-2px] font-bold ' >We’re the elite digital marketing service</h2>
                             </div>
 
@@ -90,41 +100,33 @@ export default function Contact() {
 
 
                             <div className=' md:w-8/12 ' >
-                                <p className='text-[#023A51] text-[50px] md:text-[60px] font-bold leading-[59px] md:leading-[69px] tracking-[-2px] ' >As opposed to telling you the kind of service you can expect from us. We built this website to show you our passion for marketing, business, and politics.  Now, imagine what we can do for you.
-                                    We’d love to hear from businesses (of all verticals), NGOs, Political Campaigns, Charities, and more. Let’s stun you with excellence.</p>
+                                <p className='text-[#023A51] text-[50px] md:text-[60px] font-bold leading-[59px] md:leading-[69px] tracking-[-2px] ' >{details}</p>
                             </div>
                         </div>
 
 
 
                         <div className='md:flex justify-around text-[#023A51] mt-10 ' >
-                            <div className='p-6 rounded-lg md:w-[30%]  ' >
-                                <div className=' flex flex-col items-center' >
-                                    <FaBuilding className='mr-4 text-[26px] ' />
-                                    <h2 className='text-[26px] text-[#023A51] font-bold py-4 ' >Office</h2>
-                                </div>
-
-                                <p className='text-[22px] text-center extralight py-2 ' >HQ: Virginia Beach, Virginia</p>
-                            </div>
-
-                            <div className='p-6 rounded-lg md:w-[30%] '>
-                                <div className=' flex flex-col items-center'>
-                                    <SiMinutemailer className='mr-4 text-[26px]' />
-                                    <h2 className='text-[26px] text-[#023A51] font-bold py-4 '>Contact</h2>
-                                </div>
-
-                                <p className='text-[22px] text-center extralight py-2 '>support@humbletitan.com</p>
-                                <p className='text-[22px] text-center extralight py-2 '>bayo@humbletitan.com</p>
-                            </div>
-
-                            <div className='p-6 rounded-lg md:w-[30%] '>
-                                <div className=' flex flex-col items-center'>
-                                    <FaHospitalUser className='mr-4 text-[26px]' />
-                                    <h2 className='text-[26px] text-[#023A51] font-bold py-4 ' >Open Hours</h2>
-                                </div>
-
-                                <p className='text-[22px] text-center extralight py-2 '>Monday - Friday: 9am - 5pm</p>
-                            </div>
+                            {
+                                officeInfo.info.map((item) => {
+                                    return (
+                                        <div key={item.id} className='p-6 rounded-lg md:w-[30%]  ' >
+                                            <div className=' flex flex-col items-center' >
+                                                <div className=' mr-4 text-[26px]'>
+                                                    {React.createElement(Fontawesome[item.iconClass ? item.iconClass : 'FaMinus'])}
+                                                </div>
+                                                <h2 className='text-[26px] text-[#023A51] font-bold py-4 ' >{item.name}</h2>
+                                            </div>
+                                            <ReactMarkdown className='text-center' components={{
+                                                p: ({ node, ...props }) => <p className="mr-4 text-[26px] " {...props} />,
+                                                a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] hover:text-underline " {...props} />,
+                                            }} >
+                                                {item.details}
+                                            </ReactMarkdown>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </section>
@@ -136,35 +138,18 @@ export default function Contact() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className=' text-center '  >
-                                <h2 className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] ' >Frequently Asked Questions</h2>
+                                <h2 className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] ' >{heading_for_faqs}</h2>
                                 <div className='flex flex-wrap text-[#023A51] justify-around mt-10 ' >
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Sed lectus purus lobortis eu aliquet?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Morbi augue egestas malesuada?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Vivamus suscipit ut erat quis cursus?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Donec bibendum enim at nunc accumsan sagittis?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Aliquam pharetra nulla consequat dolor faucibus tempus?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-                                    <div className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
-                                        <p className='text-[22px] font-semibold leading-[30px] '>Vivamus suscipit ut erat quis cursu?</p>
-                                        <p className='text-[20px] py-3' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet.</p>
-                                    </div>
-
-
-
+                                    {
+                                        faqs.map((item) => {
+                                            return (
+                                                <div key={item.id} className=' rounded-xl md:p-8 md:p-14 md:w-[45%] w-[90%]  mb-6' >
+                                                    <p className='text-[24px] font-bold leading-[30px] '>{item.question}</p>
+                                                    <p className='text-[22px] py-3' >{item.answer}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -178,16 +163,18 @@ export default function Contact() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[45%] md:pl-20  ' >
-                                    <Image src={abstract} alt="image" />
-                                    <h2 className=' text-[30px] md:text-[40px] leading-[39px] md:leading-[49px] tracking-[-2px] '>Humble Titan has been a great partner to us and I personally cannot be more grateful.</h2>
+                                    <img src={client_feedback.logo.data.attributes.url} alt="image" />
+                                    <h2 className=' text-[30px] md:text-[40px] leading-[39px] md:leading-[49px] tracking-[-2px] '>{client_feedback.heading}</h2>
                                     <br />
-                                    <p className='text-[20px] ' >Morbi bibendum eu velit mattis aliquam. Nulla ac ullamcorper dui, in dictum nibh. Aliquam ac dictum nunc, eget auctor est. Integer auctor imperdiet mauris.</p>
+                                    <p className='text-[20px] ' >{client_feedback.message}</p>
                                     <br />
-                                    <p className='text-[20px] font-bold ' >Laura Park</p>
-                                    <p className='text-[18px] '>Founder - Abstract</p>
+                                    <p className='text-[20px] font-bold ' >{client_feedback.name}</p>
+                                    <p className='text-[18px] '>{client_feedback.roll}</p>
                                 </div>
                                 <div className='md:mr-22 mt-10 md:mt-0 md:w-[45%]' >
-                                    <Image className='rounded-xl p-10' src={testimonial} alt="image" />
+                                    <div className='p-10'>
+                                        <img className='rounded-xl' src={client_feedback.image.data.attributes.url} alt="image" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -200,3 +187,20 @@ export default function Contact() {
         </>
     )
 }
+
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/contact`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+} 

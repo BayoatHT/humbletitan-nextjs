@@ -3,7 +3,10 @@ import Head from 'next/head'
 import Layout from "../../components/Layout";
 import DiscoverMore from '../../components/DiscoverMore'
 import Image from 'next/image'
-import { FaChevronDown } from 'react-icons/fa';
+import Link from 'next/link'
+import { FaAngleDown } from 'react-icons/fa';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown'
 
 import htpageActivism from '../../assets/imgs/ht-page-Activism-400x174.jpg'
 import htpageHumanRights from '../../assets/imgs/ht-page-Human-Rights-400x174.jpg'
@@ -18,11 +21,12 @@ import htpageWasteandRecycling from '../../assets/imgs/ht-page-Waste-and-Recycli
 import htpageEcoTourism from '../../assets/imgs/ht-page-Eco-Tourism-400x174.jpg'
 
 
-export default function Activism() {
+export default function Activism({ contents }) {
+    const { header, hero, DiscoverWorldIssues, Discoverwhyandwhere, details } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Activism - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
                 {/* Hero */}
@@ -30,9 +34,9 @@ export default function Activism() {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className='md:w-7/12' >
-                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>Activism</p>
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >Shinning a light on some of the world&apos;s darkest issues<span className='text-[#2cbc63]'>.</span></h1>
-                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>We do our work to help make the world a more compassionate and sustainable place. Let&apos;s get involved.</p>
+                                <p className='text-[22px] font-bold pb-4 text-[#2cbc63] '>{hero.label.name}</p>
+                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[55px] md:leading-[69px] tracking-[-2px] ' >{hero.heading}</h1>
+                                <p className=' text-[20px] md:text-[26px] text-[#023A51] mt-4'>{hero.description}</p>
                             </div>
                         </div>
                     </div>
@@ -44,16 +48,34 @@ export default function Activism() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto  w-10/12 md:w-11/12 '>
 
-                            <p className=' text-[30px] md:text-[40px] text-[#59667d] font-bold leading-[39px] md:leading-[49px] tracking-[-2px] py-10 ' >The more you know. The more you can<span className='text-[#2cbc63]'>.</span></p>
-                            <p className=' text-[24px] md:text-[30px] text-[#00989e] font-bold leading-[35px] md:leading-[39px] tracking-[-2px] py-10 ' >“Never doubt that a small group of thoughtful, committed, citizens can change the world. Indeed, it is the only thing that ever has.”</p>
+                            <ReactMarkdown components={{
+                                h1: ({ node, ...props }) => <p className='text-[30px] md:text-[40px] text-[#59667d] font-bold leading-[39px] md:leading-[49px] tracking-[-2px] py-10' {...props} />,
+                                h2: ({ node, ...props }) => <p className='text-[30px] md:text-[40px] text-[#00989e] font-bold leading-[39px] md:leading-[49px] tracking-[-2px] py-10' {...props} />
+                            }}>
+                                {details}
+                            </ReactMarkdown>
 
-                            <div className='md:flex flex-col text-[#023A51] items-center mb-10'>
-                                <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>Discover World Issues</p>
-                                <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
+
+                            <div className='flex flex-col text-[#023A51] items-center mb-10'>
+                                <p className='text-[30px] md:text-[40px] font-bold text-[#023A51] '>{DiscoverWorldIssues.title}</p>
+                                <FaAngleDown className='text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' />
                             </div>
 
                             <div className='flex flex-wrap text-[#023A51] justify-around' >
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                {
+                                    DiscoverWorldIssues.features.feature.map((item) => {
+                                        return (
+                                            <Link key={item.id} href={item.link ? item.link : "#"} passHref >
+                                                <a className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+                                                    <p className='text-[35px] '>{item.title}</p>
+                                                    <p className='text-[20px] py-3' >{item.description}</p>
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                </a>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                     <p className='text-[35px] '>Activism</p>
                                     <p className='text-[20px] py-3' >A theory or practice emphasizing direct, forceful action, particularly in favor of or in opposition to one side of a controversial subject.</p>
                                     <Image className='rounded-xl' src={htpageActivism} alt="image" />
@@ -107,7 +129,7 @@ export default function Activism() {
                                     <p className='text-[35px] '>Eco Tourism</p>
                                     <p className='text-[20px] py-3' >Ecotourism is tourism that centers around awareness of the environment and the local community. As eco-tourists, the goal is to visit an area with the well-being of the local people and nature in mind.</p>
                                     <Image className='rounded-xl' src={htpageEcoTourism} alt="image" />
-                                </div>
+                                </div> */}
 
                             </div>
 
@@ -120,8 +142,24 @@ export default function Activism() {
                     </div>
                 </section>
 
-                <DiscoverMore />
+                <DiscoverMore title={Discoverwhyandwhere.title} />
             </Layout>
         </>
     )
+}
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/activism`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
 }

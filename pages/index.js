@@ -25,6 +25,8 @@ import homeContentManagementService from '../assets/imgs/home-content-management
 import homeSeoService from '../assets/imgs/home-seo-service.jpg'
 import homeWebAndMobileDesign from '../assets/imgs/home-web-and-mobile-design.jpg'
 import homeWebManagement from '../assets/imgs/home-web-management.jpg'
+import * as Fontawesome from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown';
 import rocketIcon from '../assets/imgs/rocket-icon.png'
 
 
@@ -32,43 +34,47 @@ import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
 import Green_rounded_btn from '../components/buttons/Green_rounded_btn';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
-export default function Home() {
+export default function Home({ contents }) {
+    console.log(contents)
+    const { Header, Hero, TRAMSearchEngine, WeAreAFullService, beHumbleVoter, explore, last_words, no_matter_who_you_are, ourServices, services_gallery, tellUs_section, theHumbleTrader, weBoostSection } = contents?.data?.attributes
     const router = useRouter()
     return (
         <>
             <Head>
-                <title>Elite Digital Marketing Services | Business & Politics Made Digital</title>
+                <title>{Header.title}</title>
             </Head>
             <Layout >
                 {/* Hero */}
                 <section className='heading py-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
-                        <div className='mx-auto items-center md:flex justify-between flex-wrap w-10/12 md:w-11/12 '>
-                            <div className='  '>
-                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >Business and politics <br /> made digital<span className='text-[#2cbc63]'>.</span> </h1>
-                                <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >Products and services that empower you to <br /> make better decisions.</h2>
-                                <Green_rounded_btn onClick={() => router.push("/due-diligence")} >Stock Due Diligence Reports</Green_rounded_btn>
+                        <div className='mx-auto items-center md:flex justify-between w-10/12 md:w-11/12 '>
+                            <div className='md:w-[50%] '>
+                                <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >{Hero.heading} </h1>
+                                <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >{Hero.description}</h2>
+                                <Green_rounded_btn href={Hero.actionButton.href} >{Hero.actionButton.label}</Green_rounded_btn>
                             </div>
-                            <div className='mt-10 md:mt-0' >
-                                <Image src={heroImg} alt="image" />
+                            <div className='mt-10 md:mt-0 md:h-[50%]' >
+                                <img src={Hero.heroImage.data[0].attributes.url} alt="image" />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* We boost */}
 
+
+                {/* We boost */}
                 <section className='heading my-20  '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex flex-wrap justify-around w-10/12 md:w-11/12 '>
                             <div className='pt-[40px] md:w-[50%] '>
                                 <div className='flex items-center ' >
-                                    <Image className='rounded-xl' src={htgoforit} alt="img" />
+                                    <img className='rounded-xl' src={weBoostSection.images.data[0].attributes.url} alt="img" />
                                     <div className='ml-8'  >
-                                        <Image className='rounded-xl' src={workTogether} alt="img" />
+                                        <img className='rounded-xl' src={weBoostSection.images.data[1].attributes.url} alt="img" />
                                         <div>
-                                            <Image className='rounded-xl block ' src={humbleLogo} alt="img" />
+                                            <img className='rounded-xl block ' src={weBoostSection.images.data[2].attributes.url} alt="img" />
                                         </div>
                                     </div>
 
@@ -76,19 +82,21 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className='mt-10 md:w-[50%] md:pl-10'>
-                                <div className='flex items-center' >
-                                    <Image src={helloicon} alt="img" />
-                                    <p className='text-[20px] extralight text-[#023A51] ' >Hey, there! We are a digital marketing agency. </p>
+                                <div className='md:flex items-center' >
+                                    <img src={weBoostSection.title_with_picture.smallPicture.data.attributes.url} alt="img" />
+                                    <p className='text-[20px] extralight text-[#023A51] ' >{weBoostSection.title_with_picture.title}</p>
                                 </div>
 
-                                <p className='text-[50px] md:text-[60px] text-[#023A51] py-10 leading-[59px] md:leading-[69px] tracking-[2px] ' >We boost online performance with our digital products & services<span className='text-[#2cbc63]'>.</span></p>
+                                <p className='text-[50px] md:text-[60px] text-[#023A51] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{weBoostSection.heading}</p>
 
                                 <div className=' md:flex justify-between items-center '>
-                                    <p className='text-[22px] extralight text-[#023A51] ' >Discover how much more <br /> you could be <br /> achieving online</p>
-                                    <button className='green_rounded_btn my-6  ' >Select a service</button>
+                                    <p className='text-[22px] extralight text-[#023A51] ' >{weBoostSection.description}</p>
+                                    <div className='my-6'>
+                                        <Green_rounded_btn href={weBoostSection.actionButton.href} >{weBoostSection.actionButton.label}</Green_rounded_btn>
+                                    </div>
                                 </div>
 
-                                <a className=' text-[18px]  md:text-[20px] extralight text-[#023A51] py-10  ' href="#">Learn about our founder, Bayo</a>
+                                <a className=' text-[18px] font-semibold md:text-[20px] hover:text-[#2cbc63] extralight text-[#023A51] py-10  ' href={weBoostSection.link?.href}>{weBoostSection.link?.label}</a>
                             </div>
                         </div>
                     </div>
@@ -99,12 +107,22 @@ export default function Home() {
                 <section className=' '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 text-[#023A51] '>
-                            <h1 className=' text-[50px] md:text-[60px] text-center md:text-left font-semibold ' >Explore</h1>
-                            <h2 className='text-[24px] py-4 block font-semibold text-center ' >We built this site to show you what we are capable of. </h2>
-                            <h2 className='text-[24px] block font-semibold text-center '>Explore our offering:</h2>
+                            <h1 className=' text-[50px] md:text-[80px] text-center md:text-left font-bold ' >{explore.headingBig}</h1>
+                            <h2 className='text-[24px] py-4 block font-semibold text-center ' >{explore.heading_1}</h2>
+                            <h2 className='text-[24px] block font-semibold text-center '>{explore.heading_2}</h2>
 
                             <div className='flex justify-around flex-wrap py-10 ' >
-                                <div className='hover:scale-105 transition duration-300 group ' >
+                                {
+                                    explore.Offerings?.map((item, index) => {
+                                        return (
+                                            <div key={index} className=' md:w-[19%] sm:w-[30%] w-[100%] flex flex-col items-center ' >
+                                                <img className=' rounded-xl hover:drop-shadow-lg hover:scale-105 transition duration-300 cursor-pointer ' src={item.image.data.attributes.url} alt="image" />
+                                                <p className='text-[22px] leading-[30px] text-center mb-6 w-[100%]' >{item.description}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className='hover:scale-105 transition duration-300 group ' >
                                     <Image className=' rounded-xl group-hover:drop-shadow-lg cursor-pointer ' src={DigitalServices} alt="image" />
                                     <p className='text-[26px] mb-6 text-center' >Digital Marketing <br /> Services</p>
                                 </div>
@@ -123,7 +141,7 @@ export default function Home() {
                                 <div className='hover:scale-105 transition duration-300 group '>
                                     <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={Humblemind} alt="image" />
                                     <p className='text-[26px] mb-6 text-center' >Educational <br /> Resources</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -134,43 +152,33 @@ export default function Home() {
                 <section className='heading ' >
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12 ' >
-                            <h1 className=' text-[50px] md:text-[60px] text-center md:text-left text-[#023A51] font-semibold py-20' >Our Services</h1>
+                            <h1 className=' text-[50px] md:text-[80px] text-center md:text-left text-[#023A51] font-bold' >{ourServices.headingBig}</h1>
                         </div>
 
-                        <div className=' mx-auto flex flex-wrap  w-12/12 md:w-11/12 text-[#023A51]' style={{ backgroundImage: `url(${HTHomeBanner.src})`, width: '100%', height: '100%', backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}>
+                        <div className=' mx-auto flex justify-center sm:justify-start flex-wrap md:w-11/12 text-[#023A51]' style={{ backgroundImage: `url(${ourServices.BackgroundImage.data.attributes.url})`, width: '100%', height: '100%', backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}>
 
-                            <div className='bg-[#fff] rounded-xl mx-10 md:mx-0 p-10 mt-10 md:ml-10 drop-shadow-md ' >
-                                <p className='text-[40px] md:text-[60px] text-[#023A51] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >
-                                    Market smarter. <br /> Take full <br /> advantage of the <br /> internet
+                            <div className='bg-[#fff] rounded-xl p-10 mt-10 flex flex-col items-center md:ml-10 drop-shadow-md w-[90%] md:w-[40%] ' >
+                                <p className='text-[40px] md:text-[60px] font-bold text-[#023A51] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >
+                                    {ourServices.marketSmarter.heading}
                                 </p>
-                                <p className='text-[20px] ' >Data. Design. Content & a mastery our <br /> your target audience. We do the hard <br /> work, so it&apos;s easy to perform better.</p>
-                                <button className='green_rounded_btn my-5'>Got a challenge? Let us know!</button>
+                                <p className='text-[20px] mb-4 ' >{ourServices.marketSmarter.discription}</p>
+                                <Green_rounded_btn href={ourServices.marketSmarter.actionButton.href}>{ourServices.marketSmarter.actionButton.label}</Green_rounded_btn>
                             </div>
 
                         </div>
 
 
                         <div className='mx-auto text-[#023A51] py-20 flex flex-wrap justify-around text-center w-10/12 md:w-11/12 '>
-                            <div className='text-center sm:w-[50%] lg:w-[25%] w-[100%]' >
-                                <Image src={homeWebAndMobileDesign} alt="image" />
-                                <h1 className='text-[30px] py-2' >Web & Mobile <br /> Design</h1>
-                                <p className='text-[18px]  p-4' >More than design. We transform your vision into an online reality.</p>
-                            </div>
-                            <div className='text-center sm:w-[50%] lg:w-[25%] w-[100%] '>
-                                <Image src={homeSeoService} alt="image" />
-                                <h1 className='text-[30px] py-2' >Search Engine Optimization</h1>
-                                <p className='text-[18px] p-4' >Extend your brand&apos;s organic reach. Attract thousands of new visitors to your website.</p>
-                            </div>
-                            <div className='text-center sm:w-[50%] lg:w-[25%] w-[100%] '>
-                                <Image src={homeContentManagementService} alt="image" />
-                                <h1 className='text-[30px] py-2' >Content <br /> Marketing</h1>
-                                <p className='text-[18px] p-4' >With a focus on engagement, we specialize in brand elevating web content.</p>
-                            </div>
-                            <div className='text-center sm:w-[50%] lg:w-[25%] w-[100%] '>
-                                <Image src={homeWebManagement} alt="image" />
-                                <h1 className='text-[30px] py-2' >Website <br /> Management</h1>
-                                <p className='text-[18px] p-4' >Let&apos;s take care of your bsuiness. We will manage the day-to-day operations of your website.</p>
-                            </div>
+                            {services_gallery.single_service.map((item) => {
+                                return (
+                                    <div key={item.id} className=' sm:w-[50%] lg:w-[25%] w-[100%]' >
+                                        <Image src={item.image.data.attributes.url} width="100%" height="100%" layout="fixed" alt="image" />
+
+                                        <h2 className='text-[32px] py-2' >{item.title}</h2>
+                                        <p className='text-[18px]  p-4' >{item.details}</p>
+                                    </div>
+                                )
+                            })}
 
                         </div>
 
@@ -180,40 +188,34 @@ export default function Home() {
                 {/* contact us */}
                 <section className='heading py-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto flex w-10/12 md:w-11/12 bg-[#023A51] rounded-xl '>
-                            <div className='mx-auto justify-between flex flex-wrap w-10/12 md:w-11/12  bg-[#023A51] '>
-                                <div className='text-[#fff] py-20 ' >
-                                    <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >Tell us how we <br /> can help<span className='text-[#2cbc63]'>.</span></p>
-                                    <div className='py-6' >
-                                        <div className='flex items-center' >
-                                            <FaBuilding className='mr-4 text-[26px] ' />
-                                            <h2 className='text-[30px] py-4 ' >Office</h2>
-                                        </div>
+                        <div className='mx-auto flex w-11/12 '>
+                            <div className='mx-auto px-2 md:px-4 justify-between flex flex-wrap  rounded-xl  bg-[#023A51] '>
+                                <div className='text-[#fff] md:pl-2 py-20 w-[100%] md:w-[50%] ' >
+                                    <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{tellUs_section.text}</p>
 
-                                        <p className='text-[22px] extralight py-2 '>We work remotely to serve clients <br /> all over the world.</p>
-                                        <p className='text-[22px] extralight py-2 ' >HQ: Virginia Beach, Virginia</p>
-                                    </div>
+                                    {
+                                        tellUs_section.info.map((item) => {
+                                            return (
+                                                <div key={item.id} className='py-6' >
+                                                    <div className='flex items-center' >
+                                                        <div className='mr-4 text-[26px] text-[#fff]' >
+                                                            {React.createElement(Fontawesome[item.iconClass])}
+                                                        </div>
+                                                        <h2 className='text-[30px] py-4 ' >{item.name}</h2>
+                                                    </div>
+                                                    <ReactMarkdown components={{
+                                                        p: ({ node, ...props }) => <p className="mr-4 text-[26px] " {...props} />,
+                                                        a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] hover:text-underline " {...props} />,
+                                                    }} >
+                                                        {item.details}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            )
+                                        })
+                                    }
 
-                                    <div className='py-6'>
-                                        <div className='flex items-center'>
-                                            <SiMinutemailer className='mr-4 text-[26px]' />
-                                            <h2 className='text-[30px] py-4 '>Contact</h2>
-                                        </div>
-
-                                        <p className='text-[22px] extralight py-2 '>support@humbletitan.com</p>
-                                        <p className='text-[22px] extralight py-2 '>bayo@humbletitan.com</p>
-                                    </div>
-
-                                    <div className='py-6'>
-                                        <div className='flex items-center'>
-                                            <FaHospitalUser className='mr-4 text-[26px]' />
-                                            <h2 className='text-[30px] py-4 ' >Open Hours</h2>
-                                        </div>
-
-                                        <p className='text-[22px] extralight py-2 '>Monday - Friday: 9am - 5pm</p>
-                                    </div>
                                 </div>
-                                <div className=' py-6 md:py-20' >
+                                <div className=' py-6 md:w-[50%] w-[100%] md:py-20' >
                                     <div className=' bg-[#fff] rounded-xl p-4 md:p-10 '>
                                         <div className='md:flex justify-between py-4' >
                                             <div>
@@ -266,63 +268,84 @@ export default function Home() {
 
 
                 {/* The Humble Trader */}
-                <section className='heading md:my-20'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='md:flex items-center mx-auto justify-between' >
-                                <div className='md:mr-20' >
-                                    <Image className='rounded-xl p-10' src={humbeleTraderBanner} alt="image" />
-                                </div>
-                                <div className='text-[#023A51] w-[100%] md:pl-20  ' >
-                                    <p className='text-[20px] my-10 ' >The Humble Trader</p>
-                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Analyze the performance of companies on the US Stock Exchange</p>
-                                    <p className='text-[22px] my-10 ' >Do your due diligence. Feel like an expert in a matter <br /> of seconds. You won’t believe how easy <br /> we’ve made it is to discern a good company from a <br /> bad one.</p>
-                                    <button className='green_rounded_btn' >List of publicly traded companies</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                {/* T.R.A.M Search Engine Optimization */}
-                <section className='heading my-20 '>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] flex justify-center flex-wrap w-10/12 md:w-11/12 '>
-                            <div>
-                                <div className='flex items-center' >
-                                    <Image src={rocketIcon} alt='image' />
-                                    <p className='text-[20px] ml-4  ' >T.R.A.M Search Engine Optimization</p>
-                                </div>
-                                <h1 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ' >A step-by-step <br /> course for ranking <br /> on Google</h1>
-                                <p className='text-[20px]'  >We teach you the professional way to manage <br /> the organic success of any idea, product or <br /> service on the internet</p>
-                                <button className='green_rounded_btn my-10' >Start learning today</button>
-                            </div>
-                            <div className='pt-[40px] md:pl-20 '>
-                                <div className='md:flex items-center ' >
-                                    <Image className='rounded-xl' src={homePageSeoTram} alt="img" />
-                                    <div className='ml-8'>
-                                        <Image className='rounded-xl' src={homePageSeoCourse} alt="img" />
-                                        <div>
-                                            <Image className='rounded-xl block ' src={humbleLogo} alt="img" />
+                {
+                    theHumbleTrader && (
+                        <section className='heading md:my-20'>
+                            <div className=" container w-12/12 mx-auto max-w-screen-xl">
+                                <div className='mx-auto flex w-10/12 md:w-11/12  '>
+                                    <div className='flex flex-col md:flex-row md:items-center mx-auto md:justify-between' >
+                                        <div className='md:mr-20 mt-10 md:mt-[0px] md:w-[45%] order-1 md:order-none ' >
+                                            <Image className='rounded-xl p-10' src={theHumbleTrader.image.data[0].attributes.url} layout="responsive" width="100%" height="100%" alt="image" />
+                                        </div>
+                                        <div className='text-[#023A51] w-[100%] md:w-[55%] md:pl-10  ' >
+                                            <p className='text-[20px] my-10 ' >{theHumbleTrader.lable.name}</p>
+                                            <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{theHumbleTrader.heading}</p>
+                                            <p className='text-[22px] my-10 ' >{theHumbleTrader.description}</p>
+                                            <Green_rounded_btn href={theHumbleTrader.actionButton.href} >{theHumbleTrader.actionButton.label}</Green_rounded_btn>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </section>
+                    )
+                }
+
+
+
+                {/* T.R.A.M Search Engine Optimization */}
+                {
+                    TRAMSearchEngine && (
+                        <section className='heading my-20 '>
+                            <div className=" container w-12/12 mx-auto max-w-screen-xl">
+                                <div className='mx-auto text-[#023A51] flex justify-center flex-wrap w-10/12 md:w-11/12 '>
+                                    <div className='w-[100%] md:w-[55%]'>
+                                        <div className='flex items-center' >
+                                            {
+                                                TRAMSearchEngine.title_with_picture && (
+                                                    <>
+                                                        <img src={TRAMSearchEngine.title_with_picture.smallPicture.data.attributes.url} alt='image' />
+
+                                                        <p className='text-[20px] ml-4  ' >{TRAMSearchEngine.title_with_picture.title}</p>
+                                                    </>
+                                                )
+                                            }
+                                        </div>
+                                        <h2 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ' >{TRAMSearchEngine.heading}</h2>
+                                        <p className='text-[20px]'  >{TRAMSearchEngine.description}</p>
+                                        <div className={'mt-10'}>
+                                            <Green_rounded_btn href={TRAMSearchEngine.actionButton.href}  >{TRAMSearchEngine.actionButton.label}</Green_rounded_btn>
+                                        </div>
+                                    </div>
+                                    <div className='pt-[40px] md:pl-20 w-[100%] md:w-[45%] '>
+                                        <div className='flex flex-col md:flex-row justify-center md:items-center ' >
+                                            <div className='flex justify-center'>
+                                                <img className='rounded-xl' src={TRAMSearchEngine.images.data[0].attributes.url} alt="img" />
+                                                <div className='ml-8'>
+                                                    <img className='rounded-xl' src={TRAMSearchEngine.images.data[1].attributes.url} alt="img" />
+                                                    <div>
+                                                        <img className='rounded-xl ' src={TRAMSearchEngine.images.data[2].attributes.url} alt="img" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                }
+
 
 
                 {/* We are a full-service digital company */}
                 <section className='heading my-20 '>
                     <div className=" container py-20 w-12/12 mx-auto bg-[#e0ecf0] flex justify-center flex-wrap max-w-screen-xl">
-                        <div className='px-4' >
-                            <Image src={htNewsletterBanner} alt="image" />
+                        <div className='px-4 md:w-[50%]' >
+                            <img src={WeAreAFullService.image.data[0].attributes.url} alt="image" />
                         </div>
-                        <div className='p-6 pl-10 text-[#023A51]'>
-                            <h1 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px]  py-10  ' >We are a full-service <br /> digital company</h1>
-                            <p className='text-[20px]' >Digital is our passion. So much so, we are happy to share <br /> just about every bit of it with you. Be it our skills, <br /> knowledge or processes. As a marketing agency we earn <br /> a living through our services, but as an entity we look to <br /> teach and improve the lives of the public.</p>
+                        <div className='p-6 pl-10 text-[#023A51] md:w-[50%] '>
+                            <h1 className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px]  py-10  ' >{WeAreAFullService.heading}</h1>
+                            <p className='text-[20px]' >{WeAreAFullService.description}</p>
                             <br />
                             <p className='text-[20px]' >Subscribe below to our magazine, the Humble  Mind for <br /> our latest updates.</p>
                             <h2 className='text-[24px] font-bold py-6 ' >Hear from us first</h2>
@@ -337,12 +360,12 @@ export default function Home() {
                 <section className='heading my-20 '>
                     <div className=" py-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
                         <div className='text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
-                            <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-semibold ' >Be a Humble Voter</p>
-                            <p className=" text-[20px] text-wrap leading-10 px-10 " >At Humble Titan we seek to explore all the ways we may empower people with the information. Not only is it our hope to help you make better business decisions, we also strive to shape a world that reflects the best of our collective intentions. For this reason, we’ve built Humble Voter. Discover officials who represent you, stay informed on upcoming elections and maintain contact with those chosen to serve your community. </p>
+                            <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-semibold ' >{beHumbleVoter.heading}</p>
+                            <p className=" text-[20px] text-wrap leading-10 px-10 " >{beHumbleVoter.description}</p>
 
                         </div>
                         <div className=' md:w-[50%] w-[100%] px-4 ' >
-                            <Image className='rounded-xl ' src={HTHomeVoterBanner} alt="image" />
+                            <img className='rounded-xl ' src={beHumbleVoter.image.data[0].attributes.url} alt="image" />
                         </div>
                     </div>
                 </section>
@@ -352,30 +375,56 @@ export default function Home() {
                 {/* No matter who you are, */}
                 <section className='heading py-20 bg-[#f9fafb]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <h1 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >No matter who you are, <br /> we’ve got what you need <span className='text-[#2cbc63]' >.</span></h1>
+                        <h3 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >{no_matter_who_you_are.heading}</h3>
                         <div className='flex flex-wrap text-[#023A51] justify-around' >
-                            <div className=' rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
-                                <h1 className='text-[40px] text-center ' >Individuals<span className='text-[#2cbc63]' >.</span></h1>
-                                <Image className='rounded-xl' src={HTHomeIndivisual} alt="image" />
-                                <p className='text-[20px] '>“As long as we are a brand, you’ll always be our priority. As far as business and politics are concerned, we never want you to feel as though you need to pay for the critical information you need to make informed decisions.”</p>
-                                <p className='text-[20px] py-3' ><span className='font-bold' >Bayo Adesina</span> Founder</p>
-                            </div>
-                            <div className='rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] '  >
-                                <h1 className='text-[40px] text-center' style={{ lineHeight: '69px', letterSpacing: '-2px' }} >Businesses <span className='text-[#2cbc63]'>.</span></h1>
-                                <Image className='rounded-xl' src={HTHomeBusiness} alt="image" />
-                                <p className='text-[20px]' >“‘It’s not enough to have a website, businesses need a strategic one. Your competitors are taking advantage of the opportunities afforded by the digital marketing landscape. Are you keeping up? Would you like us to deliver an edge?”</p>
-                                <p className='text-[20px] py-3' ><span className='font-bold' >Hafiz Adesina</span> , Growth Strategist</p>
-                            </div>
-                            <div className='rounded-xl p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
-                                <h1 className='text-[40px] text-center' style={{ lineHeight: '69px', letterSpacing: '-2px' }} >Entrepreneurs<span className='text-[#2cbc63]'>.</span></h1>
-                                <Image className='rounded-xl' src={HTHomeEntrepreneur} alt="image" />
-                                <p className='text-[20px]' >“It’s simple. Want to get an idea discovered online? Explain it to us, will take care of the rest.”</p>
-                                <p className='text-[20px] py-3' ><span className='font-bold' >Rilwan Adesina</span> , Lead Developer</p>
-                            </div>
+                            {
+                                no_matter_who_you_are?.vertical_cards?.map((item) => {
+                                    return (
+                                        <div key={item.id} className=' rounded-xl my-2 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
+                                            <h2 className='text-[35px] md:text-[40px] font-bold text-center ' >{item.heading}</h2>
+                                            <div className='my-6'>
+                                                <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                            </div>
+                                            <p className='text-[22px] text-[#59667d] '>{item.qouted_text}</p>
+                                            <p className='text-[20px] py-3' ><span className='font-bold' >{item.personName}</span> {item.roll}</p>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
+                    </div>
+                </section>
+
+                {/* last section */}
+                <section className='heading my-20 '>
+                    <div className="  p-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
+                        <ReactMarkdown
+                            components={{
+
+                                p: ({ node, ...props }) => <p className="text-[26px] text-[#59667d] " {...props} />,
+                                a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] text-[#59667d] hover:text-underline " {...props} />,
+                            }}
+
+                            className=''>{last_words}</ReactMarkdown>
                     </div>
                 </section>
             </Layout>
         </>
     )
 }
+
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/home`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+}  

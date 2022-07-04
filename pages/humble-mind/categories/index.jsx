@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Layout from "../../../components/Layout";
-import Image from 'next/image'
 import Link from 'next/link'
 import { FaSearch } from "react-icons/fa";
 

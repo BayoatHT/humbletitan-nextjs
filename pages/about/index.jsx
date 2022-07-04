@@ -23,7 +23,6 @@ import { useRouter } from 'next/router'
 
 export default function About({ contents }) {
     const { header, hero, ht_digital_services, meetTheTeam_section, ourOffices, ourValue_section, overview, section_with_image, section_with_image_left, trustedByCompanies } = contents.data.attributes
-    console.log(section_with_image_left.actionButton.href)
     const router = useRouter()
     return (
         <>
