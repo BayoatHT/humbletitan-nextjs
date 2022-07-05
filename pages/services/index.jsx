@@ -5,6 +5,10 @@ import Image from 'next/image'
 import { FaCheck, FaChartLine, FaUserTie, FaStar } from 'react-icons/fa'
 import { GiElectric } from 'react-icons/gi'
 import GetAQuote from '../../components/GetAQuote'
+import axios from 'axios';
+import Link from 'next/link'
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
+import * as Fontawesome from 'react-icons/fa'
 
 
 import Digitalmarketingservicesfeatured from '../../assets/imgs/Digital-marketing-services-featured-600x586.jpg'
@@ -21,11 +25,13 @@ import industriesniche from '../../assets/imgs/industries-niche.jpg'
 
 
 
-export default function Services() {
+export default function Services({ contents }) {
+    console.log(contents)
+    const { header, IndustriesWeServe, bayo_quote, cotactUs, ht_digital_services, ourValue, services_cards, top_section } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>Services - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
 
@@ -36,14 +42,16 @@ export default function Services() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
-                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >Services</p>
-                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>Humble Titan Digital Services<span className='text-[#2cbc63]'>.</span></h1>
+                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >{top_section.lable.name}</p>
+                                    <h1 className=' text-[50px] font-bold md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{top_section.heading}</h1>
                                     <br />
-                                    <p className='text-[22px] ' >We&apos;re here to help. Get in touch to discover how we deliver the remarkable like no other agency can.</p>
+                                    <p className='text-[22px] ' >{top_section.description}</p>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <Image className='rounded-xl p-10' src={Digitalmarketingservicesfeatured} alt="image" />
+                                    <div className='p-10'>
+                                        <img className='rounded-xl' src={top_section.image.data[0].attributes.url} alt="image" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -55,10 +63,44 @@ export default function Services() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='text-[#023A51] py-12 ' >
-                                <h2 className=' text-[40px] md:text-[50px] text-center font-bold leading-[45px] md:leading-[59px] tracking-[-2px] '>Elite services at your disposal. <br /> Make your selection below<span className='text-[#2cbc63]'>...</span></h2>
+                                <h2 className=' text-[40px] md:text-[50px] text-center font-bold leading-[45px] md:leading-[59px] tracking-[-2px] '>{services_cards.heading}</h2>
                                 <br />
                                 <div className='md:flex justify-around flex-wrap w-[100%] '>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
+                                    {
+                                        services_cards.serviceCards.map((item) => {
+                                            return (
+                                                <div key={item.id} className='rounded-lg bg-[#fff] px-10 p-6 pb-10 shadow-lg md:w-[45%] w-[100%] mb-12 '>
+                                                    <div className="flex justify-center w-[100%]">
+                                                        <img src={item.image.data.attributes.url} alt="image" />
+
+                                                    </div>
+                                                    <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >{item.title}</h2>
+                                                    <br />
+                                                    <p className='text-[#59667d] text-[20px] md:text-[22px]  '>{item.description}</p>
+                                                    <br />
+                                                    {
+                                                        item.features.map((item) => {
+                                                            return (
+                                                                <div key={item.id}>
+
+                                                                    <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />{item.text}</p>
+                                                                    <br />
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                    <br />
+                                                    <div className=''>
+                                                        <div className='font-bold w-[100%] flex justify-center '>
+                                                            <Green_rounded_btn href={item.actionButton.href}  >{item.actionButton.label}</Green_rounded_btn>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
                                         <Image src={WebDesignht} alt="image" />
                                         <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Web Design</h2>
                                         <br />
@@ -174,8 +216,8 @@ export default function Services() {
                                         <div className='flex justify-center'>
                                             <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
 
-                                        </div>
-                                    </div>
+                                        </div> 
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -189,11 +231,11 @@ export default function Services() {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 flex justify-center md:w-11/12  '>
                             <div className='text-[#023A51] text-center w-[100%] md:w-[70%]  ' >
-                                <h1 className=' text-[30px] md:text-[36px] font-bold leading-[39px] md:leading-[48px] tracking-[-1px] '>Have an online desire that needs <br /> addressing<span className='text-[#2cbc63]'>?</span></h1>
+                                <h2 className=' text-[30px] md:text-[36px] font-bold leading-[39px] md:leading-[48px] tracking-[-1px] '>{cotactUs.text}</h2>
                                 <br />
-                                <p className='text-[22px] text-[#59667d] ' >Backed by 11 years of experience, we are ready to offer simple <br /> and effective solutions to your complex problems.</p>
+                                <p className='text-[22px] text-[#59667d] ' >{cotactUs.text2}</p>
                                 <br />
-                                <button className='green_rounded_btn font-bold' >Contact us</button>
+                                <Green_rounded_btn href={cotactUs.actionButton.href} >{cotactUs.actionButton.label}</Green_rounded_btn>
                             </div>
                         </div>
                     </div>
@@ -202,20 +244,22 @@ export default function Services() {
 
 
                 {/* HT Testimonial Bayo */}
-                <section className='heading my-10 my-10 md:my-20'>
+                <section className='heading my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='md:flex items-center mx-auto justify-between' >
-                                <div className='md:mr-20 md:w-[45%] ' >
-                                    <Image className='rounded-xl p-10' src={HTTestimonialBayo} alt="image" />
+                            <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
+                                <div className='md:mr-20 md:w-[45%] mb-5 order-1 md:order-none ' >
+                                    <div className='p-10'>
+                                        <img className='rounded-xl' src={bayo_quote.image.data.attributes.url} alt="image" />
+                                    </div>
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[45%]  ' >
-                                    <Image src={HTLogoIcons} alt='image' />
-                                    <p className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>Let us put our passion for business, politics, and marketing to work for you<span className='text-[#2cbc63]'>.</span></p>
+                                    <img src={bayo_quote.logo.data.attributes.url} alt='image' />
+                                    <p className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>{bayo_quote.heading}</p>
                                     <br />
-                                    <p className='text-[22px] ' >Lots of marketers like to tell you what they can do for you. It’s my hope that this website shows you our level of expertise, and how much we can deliver.</p>
+                                    <p className='text-[22px] ' >{bayo_quote.message}</p>
                                     <br />
-                                    <p className='text-[18px] text-[#59667d] py-3' ><span className='font-bold text-[#023A51] ' >Bayo Adesina, MBA</span> <br /> Founder - Hemisferio</p>
+                                    <p className='text-[18px] text-[#59667d] py-3' ><span className='font-bold text-[#023A51] ' >{bayo_quote.name}</span> <br />{bayo_quote.roll}</p>
                                 </div>
                             </div>
                         </div>
@@ -228,34 +272,25 @@ export default function Services() {
                     <div className=" container w-12/12 bg-[#023A51] shadow-xl py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#fff]  md:flex items-center w-10/12 md:w-11/12 '>
                             <div className='md:w-5/10 ' >
-                                <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-bold tracking-[-2px] py-10  ' >Humble Titan Digital. Our Values<span className='text-[#2cbc63]'>.</span></p>
+                                <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-bold tracking-[-2px] py-10  ' >{ourValue.heading}</p>
 
-                                <p className='text-[20px] pr-10 '  >We believe lasting success is founded on a set of principles clients can always count on. As a family business, we are eager to welcome you as one of our own.</p>
+                                <p className='text-[20px] pr-10 '  >{ourValue.description}</p>
                             </div>
                             <div className='pt-[40px] md:flex flex-wrap justify-around md:w-5/10 '>
-                                <div className='md:flex justify-around'>
-                                    <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] ' >
-                                        <FaStar className='text-[26px] ' />
-                                        <p className='text-[24px] font-bold ' >Creativity</p>
-                                        <p className='text-[18px]  ' >We embrace the opportunity to solve your challenge.</p>
-                                    </div>
-                                    <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <GiElectric className='text-[26px] ' />
-                                        <p className='text-[24px] font-bold ' >Passion</p>
-                                        <p className='text-[18px]' >Your success means as much to us as it does to you.</p>
-                                    </div>
-                                </div>
-                                <div className='md:flex justify-around'>
-                                    <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <FaUserTie className='text-[26px] ' />
-                                        <p className='text-[24px] font-bold ' >Professionalism</p>
-                                        <p className='text-[18px]' >Respect and Integrity are among our fundamentals.</p>
-                                    </div>
-                                    <div className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] '>
-                                        <FaChartLine className='text-[26px] ' />
-                                        <p className='text-[24px] font-bold ' >Value-centricity</p>
-                                        <p className='text-[18px]' >We cut out the fluff and focus on providing a service that makes a difference.</p>
-                                    </div>
+                                <div className='flex flex-wrap justify-around'>
+                                    {
+                                        ourValue.value_cards.map((item) => {
+                                            return (
+                                                <div key={item.id} className='bg-[#023A51] p-10 rounded mb-2 md:w-[48%] ' >
+                                                    <div className=' text-[26px]'>
+                                                        {React.createElement(Fontawesome[item.iconClassName ? item.iconClassName : 'FaMinus'])}
+                                                    </div>
+                                                    <p className='text-[24px] font-bold ' >{item.title}</p>
+                                                    <p className='text-[18px]  ' >{item.description}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
 
                             </div>
@@ -270,15 +305,15 @@ export default function Services() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
-                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >Industries we serve</p>
-                                    <h1 className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>Extensive range of specialty and niche industries experience<span className='text-[#2cbc63]'>.</span></h1>
+                                    <p className='text-[26px] font-bold my-10 text-[#2cbc63] ' >{IndustriesWeServe.lable.name}</p>
+                                    <h2 className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>{IndustriesWeServe.heading}</h2>
                                     <br />
-                                    <p className='text-[22px] ' >The most sensitive aspect of our work is getting to know you and your vision. Aside from that, we are ready to stun you with our commitment to excellence. Whether you are a for-profit, charity, political campaign, e-commerce, educational platform or other. Get in touch.</p>
+                                    <p className='text-[22px] ' >{IndustriesWeServe.description}</p>
                                     <br />
-                                    <button className='green_rounded_btn' >View all Industries</button>
+                                    <Green_rounded_btn href={IndustriesWeServe.actionButton.href} >{IndustriesWeServe.actionButton.label}</Green_rounded_btn>
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <Image className='rounded-xl p-10' src={industriesniche} alt="image" />
+                                    <img className='rounded-xl p-10' src={IndustriesWeServe.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -292,3 +327,18 @@ export default function Services() {
         </>
     )
 }
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services-page`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+} 

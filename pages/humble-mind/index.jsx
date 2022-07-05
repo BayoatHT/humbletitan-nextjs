@@ -12,7 +12,11 @@ import ReactPaginate from 'react-paginate';
 import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import GetAQuote from '../../components/GetAQuote';
 
-export default function Magazine({ data, categories }) {
+export default function Magazine({ data, categories, contents }) {
+
+    const { hero, header, ht_digital_services } = contents.data.attributes
+
+
     const [browseText, setBrowseText] = useState(<button className='text-[#fff] font-semibold' >Browse</button>)
     const blogs = data.data
     const pageCount = data.meta.pagination?.pageCount
@@ -29,10 +33,13 @@ export default function Magazine({ data, categories }) {
             return null
         }
     }
+
+    console.log(contents)
+
     return (
         <>
             <Head>
-                <title>Magazine - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
 
             <Layout>
@@ -41,7 +48,7 @@ export default function Magazine({ data, categories }) {
                 <section className='heading py-20 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 text-center md:w-11/12 '>
-                            <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >Magazine</h1>
+                            <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >{hero.heading}</h1>
                             <div className='flex items-center justify-center'>
 
                                 <div className=' mt-4 bg-[#fff] p-2 rounded max-w-max'>
@@ -183,6 +190,13 @@ export default function Magazine({ data, categories }) {
 export async function getServerSideProps(ctx) {
     const pageNumber = ctx.query.page > 0 ? ctx.query.page : 1
     var data;
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/humble-mind`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`)
         .then((result) => {
             data = result.data
@@ -198,6 +212,7 @@ export async function getServerSideProps(ctx) {
         })
     return {
         props: {
+            contents,
             data,
             categories
         }

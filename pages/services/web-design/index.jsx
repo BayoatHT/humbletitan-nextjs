@@ -7,7 +7,8 @@ import { GiElectric } from 'react-icons/gi'
 import { RiCodeBoxFill } from 'react-icons/ri'
 import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
 import { SiMinutemailer } from 'react-icons/si'
-
+import qs from 'qs'
+import axios from 'axios'
 
 import HTwebdesignfeatured from '../../../assets/imgs/HT-web-design-featured-600x586.png'
 import webdesignexpectations from '../../../assets/imgs/web-design-expectations-1024x1024.jpg'
@@ -17,7 +18,8 @@ import otherSeoService from '../../../assets/imgs/other-seo-service.jpg'
 import otherContentMarketingService from '../../../assets/imgs/other-content-marketing-service.jpg'
 import otherWebManagementService from '../../../assets/imgs/other-web-management-service.jpg'
 
-export default function WebDesign() {
+export default function WebDesign({ contents }) {
+    console.log(contents)
     return (
         <>
             <Head>
@@ -430,3 +432,76 @@ export default function WebDesign() {
         </>
     )
 }
+export const getServerSideProps = async () => {
+    var contents;
+
+    const query = qs.stringify({
+        populate: {
+            header: {
+                populate: '*'
+            },
+            service_specialties: {
+                populate: '*'
+            },
+            whatYouCanExpect: {
+                populate: '*'
+            },
+            service_features: {
+                populate: {
+                    features: {
+                        populate: "*"
+                    },
+                    actionButton: {
+                        populate: "*"
+                    }
+                }
+            },
+            business_impact: {
+                populate: '*'
+            },
+            ourValue: {
+                populate: '*'
+            },
+            topSection: {
+                populate: "*"
+            },
+            our_commitment: {
+                populate: {
+                    service_deliverables: {
+                        populate: '*'
+                    },
+                    commitmentCard2: {
+                        populate: '*'
+                    }
+                }
+            },
+            contact2: {
+                populate: '*'
+            },
+            tellUs_section: {
+                populate: '*'
+            },
+            otherServices: {
+                populate: {
+                    otherService: {
+                        populate: '*'
+                    }
+                }
+            },
+        },
+    }, {
+        encodeValuesOnly: true, // prettify URL
+    });
+
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services/1?${query}`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+} 

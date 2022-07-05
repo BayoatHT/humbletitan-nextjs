@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../../components/Layout";
 import Image from 'next/image'
+import axios from 'axios'
+import qs from 'qs'
 
 import tramfeaturedauthority from '../../../assets/imgs/tram-featured-authority-600x586.jpg'
 import TRAMTrafficFactors from '../../../assets/imgs/TRAM-54-Traffic-Factors-400x282.jpg'
@@ -28,7 +30,8 @@ import otherseoservice from '../../../assets/imgs/other-seo-service-200x200.jpg'
 import otherwebmanagementservice from '../../../assets/imgs/other-web-management-service-200x200.jpg'
 import GetAQuote from '../../../components/GetAQuote';
 
-export default function AuthorityCourse() {
+export default function AuthorityCourse({ contents }) {
+    console.log(contents)
     return (
         <>
             <Head>
@@ -568,3 +571,63 @@ export default function AuthorityCourse() {
         </>
     )
 }
+
+export const getServerSideProps = async () => {
+    var contents;
+
+    const query = qs.stringify({
+        populate: {
+            header: {
+                populate: '*'
+            },
+            hero: {
+                populate: '*'
+            },
+            tableOfContents: {
+                populate: '*'
+            },
+            completeMethod: {
+                populate: '*'
+            },
+            chapters: {
+                populate: {
+                    lessonCards: {
+                        populate: '*'
+                    }
+                }
+            },
+            tramStandardPacks: {
+                populate: {
+                    image: true,
+                    tramPackages: {
+                        populate: '*'
+                    }
+                }
+            },
+            otherServices: {
+                populate: {
+                    otherService: {
+                        populate: '*'
+                    }
+                }
+            },
+            ht_digital_services: {
+                populate: '*'
+            },
+        },
+    }, {
+        encodeValuesOnly: true, // prettify URL
+    });
+
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses/1?${query}`)
+        .then(({ data }) => {
+            contents = data
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: JSON.parse(JSON.stringify(contents))
+        }
+    }
+} 
