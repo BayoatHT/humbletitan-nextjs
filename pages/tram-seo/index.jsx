@@ -2,6 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
+import axios from 'axios'
+import Link from 'next/link'
+import * as Fontawesome from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown';
 
 import TRAMOnlineTrainingBayo from '../../assets/imgs/TRAM-online-training-bayo-1-600x586.jpg'
 import TramTechnical1 from '../../assets/imgs/Tram-technical-1.png'
@@ -16,12 +20,17 @@ import blogInsights from '../../assets/imgs/blog-insights.png'
 
 import { FaChevronRight } from 'react-icons/fa'
 import GetAQuote from '../../components/GetAQuote';
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
+import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
-export default function TramSeo() {
+export default function TramSeo({ contents }) {
+    console.log(contents)
+    const { header, Hero, exploreFreeCourse, ht_digital_services, otherCoreOfferings, seo_courses_cards, tramPackages, tramSeoLessons } = contents.data.attributes
+
     return (
         <>
             <Head>
-                <title>TRAM SEO Course - Humble Titan</title>
+                <title>{header.title}</title>
             </Head>
             <Layout>
 
@@ -32,15 +41,15 @@ export default function TramSeo() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
-                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>The SEO T.R.A.M Method<span className='text-[#2cbc63]'>.</span></h1>
+                                    <h1 className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{Hero.heading}</h1>
                                     <br />
-                                    <p className='text-[22px] ' >We offer step-by-step SEO knowledge development. We walk you through specific deliverables to solve complex search problems. Plus, we provide the professional coaching you need to work in-house or in a digital marketing agency.</p>
+                                    <p className='text-[22px] ' >{Hero.description}</p>
                                     <br />
-                                    <button className='green_rounded_btn' >Jump to a Free Lesson</button>
+                                    <Green_rounded_btn href={Hero.actionButton.href} className='green_rounded_btn' >{Hero.actionButton.label}</Green_rounded_btn>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <Image className='rounded-xl p-10' src={TRAMOnlineTrainingBayo} alt="image" />
+                                    <img className='rounded-xl p-10' src={Hero.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -53,46 +62,32 @@ export default function TramSeo() {
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='md:flex mx-auto justify-around' >
                                 <div className='text-[#023A51] w-[100%] md:w-[31%]  ' >
-                                    <h2 className=' text-[26px] md:text-[36px] font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Learn Search Engine Optimization</h2>
+                                    <h2 className=' text-[26px] md:text-[36px] font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{seo_courses_cards.heading}</h2>
                                     <br />
-                                    <p className='text-[22px] text-[#59667d] ' >My name is Bayo and SEO has changed my life. It has taken me all over the world where I have had the chance to service businesses of all sizes (From mom and pop shops to fortune 100 household names). The SEO TRAM method is my way of showing appreciation for my craft. It’s my hope you find as much joy in Search Engine Optimization as I do. The sky’s not the limit.</p>
+                                    <p className='text-[22px] text-[#59667d] ' >{seo_courses_cards.description}</p>
                                     <br />
 
 
                                 </div>
                                 <div className='md:ml-20 md:flex flex-wrap justify-between text-[#023A51] w-[100%] md:w-[65%] ' >
                                     <div className=' w-[100%] border rounded-xl divide-y-4 divide-[#f8cf33] divide-solid p-6 ' style={{ backgroundImage: 'linear-gradient(180deg, #e0ecf0 0%,#ffffff 100%)', backgroundPosition: 'left top', backgroundRepeat: 'no-repeat' }} >
-                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Begin your SEO Education</p>
-                                        <p className=' text-[26px] md:text-[36px] pt-4 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '><span className='italic'>Free</span> Standard Package Offered Below</p>
+                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{seo_courses_cards.heading2}</p>
+                                        <p className=' text-[26px] md:text-[36px] pt-4 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{seo_courses_cards.heading3}</p>
                                     </div>
-                                    <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                        <Image src={TramTechnical1} alt="image" />
-                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Technical SEO</p>
-                                        <p className='text-[22px] text-[#59667d] ' >Ensure your site and network are technically sound. Make sure your site neither hinders the work search engines nor the experience of web users.</p>
-                                        <br />
-                                        <button className='green_rounded_btn w-[100%] '>Learn Web Tech</button>
-                                    </div>
-                                    <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                        <Image src={tramRelevance} alt="image" />
-                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Ranking SEO</p>
-                                        <p className='text-[22px] text-[#59667d] ' >Discover search opportunities. Researching keywords, content, and relevant pages that will drive traffic to the site.</p>
-                                        <br />
-                                        <button className='green_rounded_btn w-[100%] '>Learn to Rank Online</button>
-                                    </div>
-                                    <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                        <Image src={tramAuthority1} alt="image" />
-                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Authority SEO</p>
-                                        <p className='text-[22px] text-[#59667d] ' >You become an authority in your niche either by getting extremely lucky (we are talking lottery winner luck) or by implementing an intelligent strategy. This section is for those who won’t leave their digital success to chance.</p>
-                                        <br />
-                                        <button className='green_rounded_btn w-[100%] '>Learn Digital PR</button>
-                                    </div>
-                                    <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                        <Image src={TramMonitoring} alt="image" />
-                                        <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Monitoring SEO</p>
-                                        <p className='text-[22px] text-[#59667d] ' >Learn how to read, interpret and examine relevant reports to maintain or boost performance. This section is for those who don’t take chances.</p>
-                                        <br />
-                                        <button className='green_rounded_btn w-[100%] '>Learn Data Analysis</button>
-                                    </div>
+                                    {
+                                        seo_courses_cards.seoCourseCards.map((item) => {
+                                            return (
+                                                <div key={item.id} className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
+                                                    <img src={item.image.data.attributes.url} alt="image" />
+                                                    <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{item.title}</p>
+                                                    <p className='text-[22px] text-[#59667d] ' >{item.description}</p>
+                                                    <br />
+                                                    <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -104,9 +99,48 @@ export default function TramSeo() {
                 <section className='heading pb-10 bg-[#e0ecf0]'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
-                            <p className=' text-[50px] text-[#023A51] md:text-[60px] py-20 text-center leading-[50px] md:leading-[69px] tracking-[-2px] '>Choose your TRAM Package</p>
+                            <p className=' text-[50px] text-[#023A51] md:text-[60px] py-20 text-center leading-[50px] md:leading-[69px] tracking-[-2px] '>{tramPackages.heading}</p>
                             <div className='md:flex mx-auto items-start justify-around' >
-                                <div className='text-[#023A51] mb-8 bg-[#f2f3f5] p-2 w-[100%] md:w-[30%] group ' >
+                                {
+                                    tramPackages.tramSinglePackage.map((item) => {
+                                        return (
+                                            <div key={item.id} className='text-[#023A51] mb-8 bg-[#f2f3f5] p-2 w-[100%] md:w-[30%] group ' >
+                                                <div className='border divide-y-2 divide-solid ' >
+                                                    <p className='bg-[#65bc7b] text-[#fff] text-[36px] font-bold text-center py-3 ' >{item.title}</p>
+                                                    <div>
+                                                        {
+                                                            item.Price.toLowerCase() == 'free' ? (
+                                                                <p className='text-[#65bc7b] flex justify-center text-[50px] md:text-[75px] leading-[79px] font-bold text-center py-4 ' >{item.Price} </p>
+                                                            ) : (
+                                                                <p className='text-[#65bc7b] flex justify-center text-[50px] md:text-[75px] leading-[79px] font-bold text-center py-4 ' ><span className='text-[#59667d] text-[30px] ' >$</span>{item.Price}<span className='text-[30px] text-[#65bc7b] ' >99</span> </p>
+
+                                                            )
+                                                        }
+                                                        {
+                                                            item.description && (
+                                                                <p className='text-[24px] text-center font-bold italic text-[#59667d] pb-4 ' >{item.description}</p>
+                                                            )
+                                                        }
+                                                    </div>
+
+                                                    {
+                                                        item.packageFeatures.map((item) => {
+                                                            return (
+                                                                <p key={item.id} className='text-[#59667d] text-[22px] text-center py-4 bg-[#fff] group-hover:bg-[#f2f3f5] ' >{item.name}</p>
+
+                                                            )
+                                                        })
+                                                    }
+                                                    <div className='flex justify-center '>
+                                                        <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn my-2' >{item.actionButton.label}</Green_rounded_btn>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className='text-[#023A51] mb-8 bg-[#f2f3f5] p-2 w-[100%] md:w-[30%] group ' >
                                     <div className='border divide-y-2 divide-solid ' >
                                         <p className='bg-[#65bc7b] text-[#fff] text-[36px] font-bold text-center py-3 ' >Standard</p>
                                         <p className='text-[#65bc7b] flex justify-center text-[50px] md:text-[75px] leading-[79px] font-bold text-center py-4 ' > <span className='text-[#59667d] text-[30px] ' >$</span> Free</p>
@@ -165,13 +199,17 @@ export default function TramSeo() {
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
 
                             <div className='rounded-xl bg-[#d1e8e5] mx-auto md:w-[70%] p-4 md:flex justify-between items-center '>
                                 <p className='text-[24px] text-[#2cbc63] font-bold ' >Rather trust us to manage your website?</p>
-                                <button className='green_rounded_btn'> Talk to us! </button>
+                                <br />
+                                <Link href="/contact" passHref>
+                                    <a className='green_rounded_btn'> Talk to us! </a>
+
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -183,11 +221,24 @@ export default function TramSeo() {
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='md:flex mx-auto justify-around' >
                                 <div className='text-[#023A51] w-[100%] md:w-[31%]  ' >
-                                    <p className=' text-[26px] md:text-[36px] font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Other Humble Titan Core offerings.</p>
+                                    <p className=' text-[26px] md:text-[36px] font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{otherCoreOfferings.heading}</p>
                                     <br />
                                 </div>
                                 <div className='md:ml-20 md:flex flex-wrap justify-between text-[#023A51] w-[100%] md:w-[65%] ' >
-                                    <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
+                                    {
+                                        otherCoreOfferings.otherOfferingsCards.map((item) => {
+                                            return (
+                                                <div key={item.id} className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
+                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                    <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{item.title}</p>
+                                                    <p className='text-[22px] text-[#59667d] ' >{item.description}</p>
+                                                    <br />
+                                                    <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* <div className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
                                         <Image className='rounded-xl' src={stocks2} alt="image" />
                                         <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>Business</p>
                                         <p className='text-[22px] text-[#59667d] ' >We provide everything you need to make smarter investments.</p>
@@ -200,7 +251,7 @@ export default function TramSeo() {
                                         <p className='text-[22px] text-[#59667d] ' >Your one-stop shop for the most relevant political information.</p>
                                         <br />
                                         <button className='green_rounded_btn w-[100%] '>Stay Informed</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -214,21 +265,24 @@ export default function TramSeo() {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className=' w-[100%] md:w-[50%]  ' >
-                                    <p className=' text-[50px] md:text-[60px] font-bold leading-[50px] md:leading-[69px] tracking-[-2px] '>Explore the Free SEO Course<span className='text-[#2cbc63]'>.</span></p>
+                                    <p className=' text-[50px] md:text-[60px] font-bold leading-[50px] md:leading-[69px] tracking-[-2px] '>{exploreFreeCourse.heading}</p>
                                     <br />
-                                    <p className='text-[22px] text-[#2cbc63] font-bold ' >Organic search performance provided by an industry-leading expert</p>
+                                    <p className='text-[22px] text-[#2cbc63] font-bold ' >{exploreFreeCourse.description}</p>
                                     <br />
-                                    <p className='text-[22px] ' >The S.E.O T.R.A.M method is the all-encompassing guide to high-level search optimization performance. Browse and learn.</p>
+                                    <ReactMarkdown
+                                        components={{
+                                            p: ({ node, ...props }) => <p className="text-[22px] mb-6" {...props} />
+                                        }}
+                                    >
+                                        {exploreFreeCourse.details}
+                                    </ReactMarkdown>
+
                                     <br />
-                                    <p className='text-[22px] ' >I’ve dedicated my professional career towards contributing to the success of small, medium-sized, and large businesses. Now, I want to empower anyone that has the vision to excel online</p>
-                                    <br />
-                                    <p className='text-[22px] ' >This guide is for those who seek true and deep knowledge of search engine optimization. You’ll only find this comprehensive walk-through on Humble Titan.</p>
-                                    <br />
-                                    <button className='green_rounded_btn' >Learn how to be visible on the internet</button>
+                                    <Green_rounded_btn href={exploreFreeCourse.actionButton.href} >{exploreFreeCourse.actionButton.label}</Green_rounded_btn>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <Image className='rounded-xl p-10' src={weDeliverExpertise} alt="image" />
+                                    <img className='rounded-xl p-10' src={exploreFreeCourse.image.data.attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -242,11 +296,34 @@ export default function TramSeo() {
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='flex flex-col items-center mb-20 ' >
                                 <div className='md:w-[50%] text-center'>
-                                    <p className=' text-[40px] text-[#023A51] font-bold md:text-[50px] mb-4 leading-[50px] md:leading-[59px] tracking-[-2px] '>Check out sample TRAM SEO lessons below</p>
+                                    <p className=' text-[40px] text-[#023A51] font-bold md:text-[50px] mb-4 leading-[50px] md:leading-[59px] tracking-[-2px] '>{tramSeoLessons.heading}</p>
                                 </div>
                             </div>
                             <div className='md:flex flex-wrap mx-auto items-start justify-center' >
-                                <div className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[24%] p-4 py-10 ' >
+                                {
+                                    tramSeoLessons.seoLessonCard.map((item) => {
+                                        return (
+                                            <div key={item.id} className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[24%] p-4 py-10 mb-8 ' >
+                                                <p className='green-first text-[26px] font-bold md:text-[36px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '>{item.title}</p>
+                                                <br />
+                                                {
+                                                    item.features.map((item) => {
+                                                        return (
+                                                            <p key={item.id} className='text-[19px] text-[#59667d] flex mb-3 ' ><FaChevronRight className='translate-y-2 text-[18px] mr-[12px]' color='#2cbc63' />{item.text}</p>
+                                                        )
+                                                    })
+                                                }
+                                                <br />
+
+                                                <div className='flex justify-center'>
+                                                    <Green_rounded_btn href={item.actionButton.href} >{item.actionButton.label}</Green_rounded_btn>
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                {/* <div className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[24%] p-4 py-10 ' >
                                     <p className=' text-[26px] font-bold md:text-[36px] text-center leading-[29px] md:leading-[35px] tracking-[-1px] '><span className='text-[#2cbc63]'>T</span>echnical<span className='text-[#2cbc63]'>.</span></p>
                                     <br />
                                     <p className='text-[19px] text-[#59667d] flex mb-3 ' ><FaChevronRight className='translate-y-2 text-[18px] mr-[12px]' color='#2cbc63' />Set up a site on WordPress</p>
@@ -323,11 +400,11 @@ export default function TramSeo() {
                                         <button className='green_rounded_btn' > More M …</button>
 
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
-                            <div className='flex justify-center'>
+                            <div className='flex justify-center mt-10'>
 
-                                <button className='green_rounded_btn_outlined mt-10'>View All TRAM Lessons</button>
+                                <Green_rounded_btn_outlined href={tramSeoLessons.viewAllBtn.href} >{tramSeoLessons.viewAllBtn.label}</Green_rounded_btn_outlined>
                             </div>
                         </div>
                     </div>
@@ -335,7 +412,7 @@ export default function TramSeo() {
 
 
                 {/* On the cutting edge. */}
-                <section className='heading my-10 bg-[#f9fafb] md:my-20'>
+                <section className='heading my-10 py-10 bg-[#f9fafb] md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='md:flex mx-auto items-center justify-around' >
@@ -389,3 +466,18 @@ export default function TramSeo() {
         </>
     )
 }
+
+export const getServerSideProps = async () => {
+    var contents;
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/tram-seo`)
+        .then(({ data }) => {
+            contents = JSON.parse(JSON.stringify(data))
+        }).catch((error) => {
+            console.log(error)
+        })
+    return {
+        props: {
+            contents: contents
+        }
+    }
+} 

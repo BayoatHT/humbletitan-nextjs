@@ -333,6 +333,9 @@ body {
 .b-rad-6_abcd {
     border-radius: 6px;
 }
+.green-first::first-letter{
+    color: #2cbc63;
+}
 
 .b-rad-12_abcd {
     border-radius: 12px;

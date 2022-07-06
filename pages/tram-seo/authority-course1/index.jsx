@@ -598,7 +598,9 @@ export const getServerSideProps = async () => {
             },
             tramStandardPacks: {
                 populate: {
-                    image: true,
+                    image: {
+                        populate: "*"
+                    },
                     tramPackages: {
                         populate: '*'
                     }
@@ -619,15 +621,15 @@ export const getServerSideProps = async () => {
         encodeValuesOnly: true, // prettify URL
     });
 
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses/1?${query}`)
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses/2?${query}`)
         .then(({ data }) => {
-            contents = data
+            contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
     return {
         props: {
-            contents: JSON.parse(JSON.stringify(contents))
+            contents: contents
         }
     }
 } 
