@@ -125,7 +125,7 @@ export default function AuthorityCourse({ contents }) {
                                 {
                                     completeMethod.courseCards?.map((item) => {
                                         return (
-                                            <a key={item.id} href={item.href} className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
+                                            <a key={item.id} href={`/tram-seo${item.href}`} className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
                                                 <p className='text-[#E0C600] text-[24px] font-bold  '>Part {item.partNumber}</p>
                                                 <p className='text-[#023A51] text-[34px] font-bold green-first  '>{item.name}</p>
                                             </a>

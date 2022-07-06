@@ -1,8 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import Layout from "../../components/Layout";
-import Image from 'next/image'
-import Link from 'next/link'
 import axios from 'axios';
 
 import * as Fontawesome from 'react-icons/fa'
@@ -194,13 +192,13 @@ export const getServerSideProps = async () => {
     var contents;
     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/contact`)
         .then(({ data }) => {
-            contents = data
+            contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
     return {
         props: {
-            contents: JSON.parse(JSON.stringify(contents))
+            contents: contents
         }
     }
 } 
