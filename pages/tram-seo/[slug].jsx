@@ -30,6 +30,7 @@ import otherseoservice from '../../assets/imgs/other-seo-service-200x200.jpg'
 import otherwebmanagementservice from '../../assets/imgs/other-web-management-service-200x200.jpg'
 import GetAQuote from '../../components/GetAQuote';
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
+import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
 export default function AuthorityCourse({ contents }) {
     console.log(contents)
@@ -271,7 +272,7 @@ export default function AuthorityCourse({ contents }) {
                                         {
                                             tramStandardPacks.tramPackages.map((item) => {
                                                 return (
-                                                    <div key={item.id} className='text-[#023A51] mb-8 bg-[#f2f3f5] p-2 w-[100%] md:w-[30%] group ' >
+                                                    <div key={item.id} className='text-[#023A51] mb-8 bg-[#f2f3f5] p-2 w-[100%] md:w-[48%] group ' >
                                                         <div className='border divide-y-2 divide-solid ' >
                                                             <p className='bg-[#65bc7b] text-[#fff] text-[36px] font-bold text-center py-3 ' >{item.title}</p>
                                                             <div>
@@ -620,7 +621,7 @@ export default function AuthorityCourse({ contents }) {
                                         )
                                     })
                                 }
-                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
+                                {/* <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
                                     <Image className='rounded-lg' src={otherwebdesignservice} alt="image" />
                                     <div className='ml-6'>
                                         <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Web Design</p>
@@ -651,11 +652,11 @@ export default function AuthorityCourse({ contents }) {
                                         <br />
                                         <p className='text-[22px] text-[#59667d] '>We will manage the day-to-day operations of your website.</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className='flex justify-center'>
-                                <button className='green_rounded_btn_outlined'> View All Services</button>
+                                <Green_rounded_btn_outlined href={otherServices.actionButton.href} className='green_rounded_btn_outlined'>{otherServices.actionButton.label}</Green_rounded_btn_outlined>
                             </div>
                         </div>
                     </div>
@@ -676,52 +677,6 @@ export default function AuthorityCourse({ contents }) {
 export const getServerSideProps = async (ctx) => {
     const { query: { slug } } = ctx
     var contents;
-
-    const query = qs.stringify({
-        populate: {
-            header: {
-                populate: '*'
-            },
-            hero: {
-                populate: '*'
-            },
-            tableOfContents: {
-                populate: '*'
-            },
-            completeMethod: {
-                populate: '*'
-            },
-            chapters: {
-                populate: {
-                    lessonCards: {
-                        populate: '*'
-                    }
-                }
-            },
-            tramStandardPacks: {
-                populate: {
-                    image: {
-                        populate: "*"
-                    },
-                    tramPackages: {
-                        populate: '*'
-                    }
-                }
-            },
-            otherServices: {
-                populate: {
-                    otherService: {
-                        populate: '*'
-                    }
-                }
-            },
-            ht_digital_services: {
-                populate: '*'
-            },
-        },
-    }, {
-        encodeValuesOnly: true, // prettify URL
-    });
 
     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses?filters[slug][$eq]=${slug}`)
         .then(({ data }) => {
