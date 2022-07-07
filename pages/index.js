@@ -122,26 +122,7 @@ export default function Home({ contents }) {
                                         )
                                     })
                                 }
-                                {/* <div className='hover:scale-105 transition duration-300 group ' >
-                                    <Image className=' rounded-xl group-hover:drop-shadow-lg cursor-pointer ' src={DigitalServices} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Digital Marketing <br /> Services</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleTrader} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Stocks & Business <br /> Analysis</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={TRAMSEO} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >TRAM SEO <br /> Course</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={HumbleVoter} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Politics & Ballot <br /> Information</p>
-                                </div>
-                                <div className='hover:scale-105 transition duration-300 group '>
-                                    <Image className=' rounded-xl hover:shadow-lg group-hover:drop-shadow-lg cursor-pointer' src={Humblemind} alt="image" />
-                                    <p className='text-[26px] mb-6 text-center' >Educational <br /> Resources</p>
-                                </div> */}
+
                             </div>
                         </div>
                     </div>
@@ -186,9 +167,9 @@ export default function Home({ contents }) {
                 </section>
 
                 {/* contact us */}
-                <section className='heading py-20'>
+                <section className=' py-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto flex w-11/12 '>
+                        <div className='mx-auto w-11/12 '>
                             <div className='mx-auto px-2 md:px-4 justify-between flex flex-wrap  rounded-xl  bg-[#023A51] '>
                                 <div className='text-[#fff] md:pl-2 py-20 w-[100%] md:w-[50%] ' >
                                     <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{tellUs_section.text}</p>
@@ -404,7 +385,7 @@ export default function Home({ contents }) {
                             <ReactMarkdown
                                 components={{
 
-                                    p: ({ node, ...props }) => <p className="text-[24px] text-[#59667d] " {...props} />,
+                                    p: ({ node, ...props }) => <p className="text-[22px] text-[#59667d] " {...props} />,
                                     a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] text-[#59667d] hover:text-underline " {...props} />,
                                 }}
 

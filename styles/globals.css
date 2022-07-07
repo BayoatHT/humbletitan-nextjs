@@ -1080,7 +1080,7 @@ input {
     height: 4px;
     background-color: #023A51;
     margin-bottom: 0.4rem;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
 .cross .line:nth-child(1) {
@@ -1101,7 +1101,7 @@ input {
 }
 
 .nav-active {
-    height: 100vh;
+    /* height: 100vh; */
     transition: all 0.4s;
     display: flex;
     flex-direction: column;

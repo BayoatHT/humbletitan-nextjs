@@ -21,6 +21,7 @@ import {
   FaYoutube,
   FaBookReader,
   FaBars,
+  FaAngleDown
 } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
@@ -569,7 +570,9 @@ const Header = () => {
           <div className="abcd_col-12 abcd_h-70 abcd_row justify-content">
             <div className="header_main_logo responsive-logo abcd_row abcd_justify-between abcd_relative abcd_h-fit">
               {/* <img c src="https://www.designinguru.com/imgs/HT-Standard-Logo.png" alt="Humble Titan Logo" /> */}
-              <Image src={logo_header} alt="Logo" />
+              <Link href="/" passHref>
+                <Image src={logo_header} alt="Logo" />
+              </Link>
             </div>
             <div className="mt-[25px] mr-[25px] ">
               <button className={togglerClasses} onClick={() => navToggle()}>
@@ -591,9 +594,9 @@ const Header = () => {
                 Politics
               </a>
               <div
-                className="absolute right-10 top-[22px]"
+                className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => politicsStylesHandler()} >
-                <FaChevronDown className={politicsIcon} />
+                <FaAngleDown size={25} className={politicsIcon} />
 
               </div>
             </div>
@@ -622,9 +625,9 @@ const Header = () => {
                 Services
               </a>
               <div
-                className="absolute right-10 top-[22px]"
+                className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => servicesStylesHandler()} >
-                <FaChevronDown className={servicesIcon}
+                <FaAngleDown className={servicesIcon}
                 />
 
               </div>
@@ -654,9 +657,9 @@ const Header = () => {
                 Tram SEO Course
               </a>
               <div
-                className="absolute right-10 top-[22px]"
+                className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => tramStylesHandler()} >
-                <FaChevronDown className={tramIcon}
+                <FaAngleDown className={tramIcon}
                 />
 
               </div>
@@ -683,6 +686,9 @@ const Header = () => {
             {/* Dropdown contents ends */}
             <a href=" /humble-mind" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/humble-mind') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               magazine
+            </a>
+            <a href=" /the-team" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/the-team') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
+              The Team
             </a>
             <a href=" /contact" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/contact' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               Hire Us
