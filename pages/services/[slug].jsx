@@ -40,7 +40,7 @@ export default function service({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl p-10' src={topSection.image.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={topSection.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -81,10 +81,10 @@ export default function service({ contents }) {
                 {/* Service expectations */}
                 <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto flex w-10/12 md:w-11/12  '>
+                        <div className='mx-auto w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <div className='p-10'>
+                                    <div className='p-2'>
                                         <img className='rounded-xl' src={whatYouCanExpect.image.data[0].attributes.url} alt="image" />
                                     </div>
                                 </div>
@@ -99,33 +99,34 @@ export default function service({ contents }) {
                                     </ReactMarkdown>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div className='flex flex-wrap justify-around my-20 '>
-                            {
-                                service_features.features.map((item) => {
-                                    return (
-                                        <div key={item.id} className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
-                                            <p className='text-[20px] text-[#59667d]  '>{item.title}</p>
-                                            <br />
-                                            <hr />
-                                            <p className='text-[34px] font-bold text-[#023A51] ' >{item.description}</p>
 
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                            <div className='flex flex-wrap justify-around my-20 '>
+                                {
+                                    service_features.features.map((item) => {
+                                        return (
+                                            <div key={item.id} className='md:w-[30%] bg-[#f9fafb] mb-4 rounded-lg p-6 w-[90%] text-center '>
+                                                <p className='text-[20px] text-[#59667d]  '>{item.title}</p>
+                                                <br />
+                                                <hr />
+                                                <p className='text-[34px] font-bold text-[#023A51] ' >{item.description}</p>
+
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
 
 
-                        <div className='flex flex-col items-center  ' >
-                            <div className='md:w-[33%] text-center'>
-                                <p className='text-[22px] text-[#59667d] ' >{service_features.text}</p>
-                                <div className='my-6'>
-                                    <Green_rounded_btn href={service_features.actionButton.href} >{service_features.actionButton.label}</Green_rounded_btn>
+                            <div className='flex flex-col  ' >
+                                <div className='md:w-[33%] text-center'>
+                                    <p className='text-[22px] text-[#59667d] ' >{service_features.text}</p>
+                                    <div className='my-6'>
+                                        <Green_rounded_btn href={service_features.actionButton.href} >{service_features.actionButton.label}</Green_rounded_btn>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -138,7 +139,7 @@ export default function service({ contents }) {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <img className='rounded-xl p-10' src={business_impact.image.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={business_impact.image.data[0].attributes.url} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >{business_impact.lable.name}</p>

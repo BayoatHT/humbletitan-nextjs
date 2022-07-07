@@ -26,7 +26,6 @@ import industriesniche from '../../assets/imgs/industries-niche.jpg'
 
 
 export default function Services({ contents }) {
-    console.log(contents)
     const { header, IndustriesWeServe, bayo_quote, cotactUs, ht_digital_services, ourValue, services_cards, top_section } = contents.data.attributes
     return (
         <>
@@ -49,7 +48,7 @@ export default function Services({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <div className='p-10'>
+                                    <div className='p-2'>
                                         <img className='rounded-xl' src={top_section.image.data[0].attributes.url} alt="image" />
                                     </div>
                                 </div>
@@ -249,7 +248,7 @@ export default function Services({ contents }) {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[45%] mb-5 order-1 md:order-none ' >
-                                    <div className='p-10'>
+                                    <div className='p-2'>
                                         <img className='rounded-xl' src={bayo_quote.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
@@ -313,7 +312,7 @@ export default function Services({ contents }) {
                                     <Green_rounded_btn href={IndustriesWeServe.actionButton.href} >{IndustriesWeServe.actionButton.label}</Green_rounded_btn>
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <img className='rounded-xl p-10' src={IndustriesWeServe.image.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={IndustriesWeServe.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>

@@ -33,7 +33,6 @@ import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
 export default function AuthorityCourse({ contents }) {
-    console.log(contents)
     const { hero, header, chapters, completeMethod, ht_digital_services, otherServices, tableOfContents, tramStandardPacks } = contents.data[0]?.attributes
     return (
         <>
@@ -610,7 +609,7 @@ export default function AuthorityCourse({ contents }) {
                                 {
                                     otherServices.otherService.map((item) => {
                                         return (
-                                            <div key={item.id} className='flex items-center group w-[100%] md:w-[46%] mb-12'>
+                                            <div key={item.id} className='flex flex-col md:flex-row items-center group w-[100%] md:w-[46%] mb-12'>
                                                 <img className='rounded-lg' src={item.image.data.attributes.url} alt="image" />
                                                 <div className='ml-6'>
                                                     <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>{item.title}</p>
@@ -656,7 +655,7 @@ export default function AuthorityCourse({ contents }) {
                             </div>
 
                             <div className='flex justify-center'>
-                                <Green_rounded_btn_outlined href={otherServices.actionButton.href} className='green_rounded_btn_outlined'>{otherServices.actionButton.label}</Green_rounded_btn_outlined>
+                                <Green_rounded_btn_outlined href={otherServices.actionButton.href}>{otherServices.actionButton.label}</Green_rounded_btn_outlined>
                             </div>
                         </div>
                     </div>

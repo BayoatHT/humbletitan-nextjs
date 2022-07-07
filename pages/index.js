@@ -396,16 +396,20 @@ export default function Home({ contents }) {
                 </section>
 
                 {/* last section */}
-                <section className='heading my-20 '>
-                    <div className="  p-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
-                        <ReactMarkdown
-                            components={{
+                <section className='my-20 '>
+                    <div className='container w-12/12 flex justify-center mx-auto max-w-screen-xl' >
 
-                                p: ({ node, ...props }) => <p className="text-[26px] text-[#59667d] " {...props} />,
-                                a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] text-[#59667d] hover:text-underline " {...props} />,
-                            }}
 
-                            className=''>{last_words}</ReactMarkdown>
+                        <div className=" w-10/12">
+                            <ReactMarkdown
+                                components={{
+
+                                    p: ({ node, ...props }) => <p className="text-[24px] text-[#59667d] " {...props} />,
+                                    a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] text-[#59667d] hover:text-underline " {...props} />,
+                                }}
+
+                                className=''>{last_words}</ReactMarkdown>
+                        </div>
                     </div>
                 </section>
             </Layout>
