@@ -59,11 +59,11 @@ export default function service({ contents }) {
                                 service_specialties.specialty.map((item) => {
                                     return (
                                         <div key={item.id} className='flex justify-between md:w-[45%] mb-6  '>
-                                            <div className=' text-[#2cbc63] text-[60px] '>
+                                            <div className=' text-[#2cbc63] text-[30px] md:text-[60px] '>
                                                 {React.createElement(Fontawesome[item.iconClassName ? item.iconClassName : "FaMinus"])}
                                             </div>
                                             <div className='ml-2'>
-                                                <p className=' text-[26px] font-semibold  '>{item.title}
+                                                <p className=' text-[24px] font-semibold  '>{item.title}
                                                 </p>
                                                 <br />
                                                 <p className='text-[22px] ' >{item.details}</p>

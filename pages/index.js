@@ -170,7 +170,7 @@ export default function Home({ contents }) {
                 <section className=' py-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-11/12 '>
-                            <div className='mx-auto px-2 md:px-4 justify-between flex flex-wrap  rounded-xl  bg-[#023A51] '>
+                            <div className='mx-auto px-4 md:px-8 justify-between flex flex-wrap  rounded-xl  bg-[#023A51] '>
                                 <div className='text-[#fff] md:pl-2 py-20 w-[100%] md:w-[50%] ' >
                                     <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{tellUs_section.text}</p>
 
