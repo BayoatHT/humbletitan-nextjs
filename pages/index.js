@@ -256,7 +256,7 @@ export default function Home({ contents }) {
                                 <div className='mx-auto flex w-10/12 md:w-11/12  '>
                                     <div className='flex flex-col md:flex-row md:items-center mx-auto md:justify-between' >
                                         <div className='md:mr-20 mt-10 md:mt-[0px] md:w-[45%] order-1 md:order-none ' >
-                                            <Image className='rounded-xl p-10' src={theHumbleTrader.image.data[0].attributes.url} layout="responsive" width="100%" height="100%" alt="image" />
+                                            <Image className='rounded-xl' src={theHumbleTrader.image.data[0].attributes.url} layout="responsive" width="100%" height="100%" alt="image" />
                                         </div>
                                         <div className='text-[#023A51] w-[100%] md:w-[55%] md:pl-10  ' >
                                             <p className='text-[20px] my-10 ' >{theHumbleTrader.lable.name}</p>

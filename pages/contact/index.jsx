@@ -170,7 +170,7 @@ export default function Contact({ contents }) {
                                     <p className='text-[18px] '>{client_feedback.roll}</p>
                                 </div>
                                 <div className='md:mr-22 mt-10 md:mt-0 md:w-[45%]' >
-                                    <div className='p-10'>
+                                    <div className='p-2'>
                                         <img className='rounded-xl' src={client_feedback.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>

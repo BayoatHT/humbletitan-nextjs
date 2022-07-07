@@ -49,7 +49,7 @@ export default function TramSeo({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl p-10' src={Hero.image.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={Hero.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -282,7 +282,7 @@ export default function TramSeo({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <img className='rounded-xl p-10' src={exploreFreeCourse.image.data.attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={exploreFreeCourse.image.data.attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>

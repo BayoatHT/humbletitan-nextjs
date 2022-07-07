@@ -56,7 +56,7 @@ export default function AuthorityCourse({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl p-10' src={hero.heroImage.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={hero.heroImage.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>
@@ -349,7 +349,7 @@ export default function AuthorityCourse({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl p-10' src={tramStandardPacks.image.data[0].attributes.url} alt="image" />
+                                    <img className='rounded-xl' src={tramStandardPacks.image.data[0].attributes.url} alt="image" />
                                 </div>
                             </div>
                         </div>

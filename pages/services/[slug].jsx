@@ -15,6 +15,7 @@ import otherSeoService from '../../assets/imgs/other-seo-service.jpg'
 import otherContentMarketingService from '../../assets/imgs/other-content-marketing-service.jpg'
 import otherWebManagementService from '../../assets/imgs/other-web-management-service.jpg'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
+import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
 export default function service({ contents }) {
     console.log(contents);
@@ -356,7 +357,7 @@ export default function service({ contents }) {
                         <div className='mx-auto w-10/12 md:w-11/12'>
                             <div className='flex flex-wrap items-center justify-around md:justify-between'>
                                 <p className='text-[26px] md:text-[36px] text-[#023A51] mb-10 font-bold tracking-[-1px] ' >{otherServices.heading}</p>
-                                <Green_rounded_btn href={otherServices.actionButton.href} className='green_rounded_btn_outlined'>{otherServices.actionButton.label}</Green_rounded_btn>
+                                <Green_rounded_btn_outlined href={otherServices.actionButton.href} >{otherServices.actionButton.label}</Green_rounded_btn_outlined>
                             </div>
 
 
