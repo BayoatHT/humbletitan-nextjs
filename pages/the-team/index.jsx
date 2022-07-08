@@ -41,8 +41,8 @@ export default function TheTeam({ contents }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='flex flex-col md:flex-row items-center justify-around'>
-                                <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
+                            <div className='flex flex-col md:flex-row justify-around'>
+                                <div className='bg-[#fff] text-[#023A51] order-1 md:order-none transition p-4 md:p-10 rounded mb-2 md:w-[50%] ' >
                                     <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{bayo_mba.heading}</h2>
                                     <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{bayo_mba.heading2}</h3>
                                     <p className='text-[22px] font-light flex py-4' >{bayo_mba.description}</p>
@@ -63,8 +63,8 @@ export default function TheTeam({ contents }) {
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p> */}
                                 </div>
-                                <div className=' md:p-10 mb-2 md:w-[48%] '>
-                                    <div className='rounded-xl bg-[#fff] p-6  '>
+                                <div className=' md:p-10 my-2 md:w-[48%] order-none '>
+                                    <div className='rounded-xl bg-[#fff] p-2  '>
                                         <img className='rounded-xl' src={bayo_mba.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
@@ -79,13 +79,13 @@ export default function TheTeam({ contents }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='flex flex-col md:flex-row items-center justify-around'>
-                                <div className=' md:p-10 mb-2 md:w-[48%] order-2 md:order-none '>
-                                    <div className='rounded-xl bg-[#fff] p-6  '>
+                            <div className='flex flex-col md:flex-row justify-around'>
+                                <div className=' md:p-10 mb-2 md:w-[48%] '>
+                                    <div className='rounded-xl bg-[#fff] p-2  '>
                                         <img className='rounded-xl' src={rilwan.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
-                                <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
+                                <div className='bg-[#fff] text-[#023A51] transition p-2 md:p-10 rounded mb-2 md:w-[50%] ' >
                                     <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{rilwan.heading}</h2>
                                     <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{rilwan.heading2}</h3>
                                     <p className='text-[22px] font-light flex py-4' >{rilwan.description}</p>
@@ -117,8 +117,8 @@ export default function TheTeam({ contents }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='md:flex items-center justify-around'>
-                                <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[50%] ' >
+                            <div className='flex flex-col md:flex-row justify-around'>
+                                <div className='bg-[#fff] text-[#023A51] order-1 md:order-none transition p-2 md:p-10 rounded mb-2 md:w-[50%] ' >
                                     <h2 className='text-[30px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{hafiz.heading}</h2>
                                     <h3 className='text-[38px] font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{hafiz.heading2}</h3>
                                     <p className='text-[22px] font-light flex py-4' >{hafiz.description}</p>
@@ -136,7 +136,7 @@ export default function TheTeam({ contents }) {
                                     }
                                 </div>
                                 <div className=' md:p-10 mb-2 md:w-[48%] '>
-                                    <div className='rounded-xl bg-[#fff] p-6  '>
+                                    <div className='rounded-xl bg-[#fff] p-2 '>
                                         <img className='rounded-xl' src={hafiz.image.data.attributes.url} alt="image" />
                                     </div>
                                 </div>
@@ -177,9 +177,9 @@ export default function TheTeam({ contents }) {
                                         <Image className='rounded-xl' src={exceptionalResources} alt="image" />
                                     </div>
                                 </div>
-                                <div className='bg-[#fff] text-[#023A51] transition p-10 rounded mb-2 md:w-[58%] ' >
+                                <div className='bg-[#fff] text-[#023A51] transition p-2 md:p-10 rounded mb-2 md:w-[58%] ' >
                                     <p className=' text-[26px] md:text-[24px]  py-4 block font-bold text-center ' >{exceptional_resources.heading}</p>
-                                    <div className='md:flex justify-around'>
+                                    <div className='flex flex-col md:flex-row flex-wrap justify-around'>
                                         {
                                             exceptional_resources.value_cards.map((item) => {
                                                 return (
@@ -194,7 +194,7 @@ export default function TheTeam({ contents }) {
                                             })
                                         }
 
-                                        <div className='bg-[#f9fafb] flex flex-col justify-between p-10 rounded mb-2 md:w-[48%] '>
+                                        <div className='bg-[#f9fafb] flex flex-col justify-between md:p-10 p-4 rounded mb-2 md:w-[48%] '>
                                             <p className='text-[20px] font-bold ' >More Free Accounting Tools for Your Business</p>
                                             <div className='mt-5'>
                                                 <Green_rounded_btn href="/products" >View all tools</Green_rounded_btn>
@@ -209,7 +209,7 @@ export default function TheTeam({ contents }) {
 
 
                 {/* benefits from humble Titan */}
-                <section className='heading md:my-20 bg-[#f9fafb] '>
+                <section className='heading py-10 md:my-20 bg-[#f9fafb] '>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <h2 className='text-[26px] text-center font-bold md:text-[35px] pt-3 leading-[38px] md:leading-[38px] ' >{great_benifits.heading}</h2>
@@ -279,7 +279,7 @@ export default function TheTeam({ contents }) {
                                                         <h2 className='text-[30px] py-4 ' >{item.name}</h2>
                                                     </div>
                                                     <ReactMarkdown components={{
-                                                        p: ({ node, ...props }) => <p className="mr-4 text-[26px] " {...props} />,
+                                                        p: ({ node, ...props }) => <p className="mr-4 text-[20px] md:text-[26px] " {...props} />,
                                                         a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] hover:text-underline " {...props} />,
                                                     }} >
                                                         {item.details}
@@ -288,34 +288,7 @@ export default function TheTeam({ contents }) {
                                             )
                                         })
                                     }
-                                    <div className='py-6' >
-                                        <div className='flex items-center' >
-                                            <FaBuilding className='mr-4 text-[26px] ' />
-                                            <h2 className='text-[30px] py-4 ' >Office</h2>
-                                        </div>
 
-                                        <p className='text-[22px] extralight py-2 '>We work remotely to serve clients <br /> all over the world.</p>
-                                        <p className='text-[22px] extralight py-2 ' >HQ: Virginia Beach, Virginia</p>
-                                    </div>
-
-                                    <div className='py-6'>
-                                        <div className='flex items-center'>
-                                            <SiMinutemailer className='mr-4 text-[26px]' />
-                                            <h2 className='text-[30px] py-4 '>Contact</h2>
-                                        </div>
-
-                                        <p className='text-[22px] extralight py-2 '>support@humbletitan.com</p>
-                                        <p className='text-[22px] extralight py-2 '>bayo@humbletitan.com</p>
-                                    </div>
-
-                                    <div className='py-6'>
-                                        <div className='flex items-center'>
-                                            <FaHospitalUser className='mr-4 text-[26px]' />
-                                            <h2 className='text-[30px] py-4 ' >Open Hours</h2>
-                                        </div>
-
-                                        <p className='text-[22px] extralight py-2 '>Monday - Friday: 9am - 5pm</p>
-                                    </div>
                                 </div>
 
                                 <div className=' py-6 md:py-20' >

@@ -11,7 +11,7 @@ export default function Home() {
     const [allcompany, setAllcompany] = useState([])
     const getData = () => {
 
-        const url = `https://humbletitanapi.herokuapp.com/topgainers`
+        const url = `http://localhost:8000/topgainers`
         axios.get(url)
             .then(res => {
                 console.log(res)

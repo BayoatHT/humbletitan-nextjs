@@ -45,7 +45,10 @@ export default function TramSeo({ contents }) {
                                     <br />
                                     <p className='text-[22px] ' >{Hero.description}</p>
                                     <br />
-                                    <Green_rounded_btn href={Hero.actionButton.href} className='green_rounded_btn' >{Hero.actionButton.label}</Green_rounded_btn>
+                                    <div className='my-6'>
+                                        <Green_rounded_btn href={Hero.actionButton.href} className='green_rounded_btn' >{Hero.actionButton.label}</Green_rounded_btn>
+
+                                    </div>
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
@@ -77,12 +80,18 @@ export default function TramSeo({ contents }) {
                                     {
                                         seo_courses_cards.seoCourseCards.map((item) => {
                                             return (
-                                                <div key={item.id} className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                                    <img src={item.image.data.attributes.url} alt="image" />
+                                                <div key={item.id} className='p-6 rounded-lg border shadow my-6 w-[100%] lg:w-[49%] '  >
+                                                    <div className='flex justify-center'>
+                                                        <img src={item.image.data.attributes.url} alt="image" />
+
+                                                    </div>
                                                     <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{item.title}</p>
                                                     <p className='text-[22px] text-[#59667d] ' >{item.description}</p>
                                                     <br />
-                                                    <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+                                                    <div className='flex justify-center'>
+                                                        <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+
+                                                    </div>
                                                 </div>
                                             )
                                         })
@@ -229,11 +238,15 @@ export default function TramSeo({ contents }) {
                                         otherCoreOfferings.otherOfferingsCards.map((item) => {
                                             return (
                                                 <div key={item.id} className='p-6 rounded-lg border shadow my-6 w-[100%] md:w-[49%] '  >
-                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
-                                                    <p className=' text-[26px] md:text-[36px] pb-6 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{item.title}</p>
+                                                    <div className='flex flex-col items-center'>
+                                                        <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                        <p className=' text-[26px] md:text-[36px] py-4 font-bold leading-[35px] md:leading-[45px] tracking-[-1px] '>{item.title}</p>
+                                                    </div>
                                                     <p className='text-[22px] text-[#59667d] ' >{item.description}</p>
                                                     <br />
-                                                    <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+                                                    <div className='flex justify-center'>
+                                                        <Green_rounded_btn href={item.actionButton.href} className='green_rounded_btn w-[100%] '>{item.actionButton.label}</Green_rounded_btn>
+                                                    </div>
                                                 </div>
                                             )
                                         })

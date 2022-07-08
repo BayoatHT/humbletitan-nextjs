@@ -24,16 +24,16 @@ export default function Home() {
         let url = ''
         switch (mainFilter) {
             case "Country":
-                url = `https://humbletitanapi.herokuapp.com/countries/${name}?pageNo=${pNo}`
+                url = `http://localhost:8000/countries/${name}?pageNo=${pNo}`
                 break;
             case "Sector":
-                url = `https://humbletitanapi.herokuapp.com/sectors/${name}?pageNo=${pNo}`
+                url = `http://localhost:8000/sectors/${name}?pageNo=${pNo}`
                 break;
             case "Industry":
-                url = `https://humbletitanapi.herokuapp.com/industries/${name}?pageNo=${pNo}`
+                url = `http://localhost:8000/industries/${name}?pageNo=${pNo}`
                 break;
             case "Market Capitalization":
-                url = `https://humbletitanapi.herokuapp.com/mkCap/${name}?pageNo=${pNo}`
+                url = `http://localhost:8000/mkCap/${name}?pageNo=${pNo}`
                 break;
 
         }
@@ -54,7 +54,7 @@ export default function Home() {
     }
     const handleChangeMainFilter = (newValue) => {
         setMainFilter(newValue.value)
-        newValue.value === 'All Tickers' && axios.get(`https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`)
+        newValue.value === 'All Tickers' && axios.get(`http://localhost:8000/tickers_page/${pageNo}`)
             .then(res => {
                 let lastpNo = Math.ceil(res.data[1].itemLength / 30)
                 setLastPageNo(lastpNo)
@@ -62,7 +62,7 @@ export default function Home() {
             })
     }
     const handleChangeSearch = (newValue) => {
-        axios.get(`https://humbletitanapi.herokuapp.com/companynames?companyname=${newValue?.value}`)
+        axios.get(`http://localhost:8000/companynames?companyname=${newValue?.value}`)
             .then(res => {
                 setAllcompany(res?.data)
             })
@@ -70,7 +70,7 @@ export default function Home() {
 
     const getData = (pageNo) => {
 
-        const url = `https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`
+        const url = `http://localhost:8000/tickers_page/${pageNo}`
         axios.get(url)
             .then(res => {
                 let lastpNo = Math.ceil(res?.data[1]?.itemLength / 30)
@@ -80,7 +80,7 @@ export default function Home() {
     }
 
     const getSearch = () => {
-        const url = `https://humbletitanapi.herokuapp.com/companynames`
+        const url = `http://localhost:8000/companynames`
         axios.get(url)
             .then(res => {
                 console.log(res?.data, 'response hai')
@@ -143,12 +143,12 @@ export default function Home() {
                                 data?.Info?.companyname && <Newcard data={data} key={kay} />
 
                             )}
-                            <div className="abcd_col-12 abcd_row">
+                            {/* <div className="abcd_col-12 abcd_row">
                                 <div className='FooterPagination'>
                                     <Pagination increament={increament} decreament={decreament} pageNo={pageNo} moveBackward={moveBackward} moveForward={moveForward} />
 
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>

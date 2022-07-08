@@ -40,9 +40,8 @@ export default function About({ contents }) {
                                 <div className='flex flex-col md:flex-row items-center md:mt-20 justify-around mb-20 pb-10 ' >
                                     {
                                         hero.heroImage.data.map((item, index) => {
-                                            console.log(index);
                                             return (
-                                                <div key={index} className={` md:mx-3  ${index == 1 ? "order-2" : ""}`} >
+                                                <div key={index} className={` md:mx-3 my-2  ${index == 1 ? "order-2" : ""}`} >
                                                     <img className='rounded-xl' src={item.attributes.url} alt={item.attributes.name} width={item.attributes.width} height={item.attributes.height} />
                                                 </div>
                                             )
@@ -72,9 +71,9 @@ export default function About({ contents }) {
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className=' md:w-8/12 text-[#023A51] '>
                                 <ReactMarkdown components={{
-                                    h1: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10   leading-[69px] tracking-[-2px] " {...props} />,
-                                    h2: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10   leading-[69px] tracking-[-2px] " {...props} />,
-                                    h3: ({ node, ...props }) => <h3 className="text-[25px] md:text-[35px] pt-3 md:pt-10   md:leading-[50px]" {...props} />,
+                                    h1: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10  font-bold leading-[69px] tracking-[-2px] " {...props} />,
+                                    h2: ({ node, ...props }) => <h2 className="text-[45px] md:text-[55px] pt-3 md:pt-10  font-bold leading-[69px] tracking-[-2px] " {...props} />,
+                                    h3: ({ node, ...props }) => <h3 className="text-[25px] md:text-[35px] pt-3 md:pt-10 font-bold  md:leading-[50px]" {...props} />,
                                     p: ({ node, ...props }) => <p className="text-[22px] my-4" {...props} />,
                                     a: ({ node, ...props }) => <a className="text-[22px] text-[#2cbc63] hover:text-underline " {...props} />,
                                 }} >
@@ -125,11 +124,11 @@ export default function About({ contents }) {
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
-                                <div className='md:ml-20 order-2 md:order-1 my-10' >
+                            <div className='flex flex-col lg:flex-row items-center justify-between' >
+                                <div className='lg:ml-20 order-2 md:order-1 my-10' >
                                     <img className='rounded-xl' src={section_with_image.image.data[0].attributes.url} alt={section_with_image.image.data[0].attributes.name} />
                                 </div>
-                                <div className='text-[#023A51] w-[100%] md:pl-20  ' >
+                                <div className='text-[#023A51] w-[100%] lg:pl-20  ' >
                                     <p className='text-[26px] font-bold font-bold my-10 text-[#2cbc63] ' >{section_with_image.lable.name}</p>
                                     <h2 className=' text-[45px] md:text-[55px] font-medium leading-[50px] md:leading-[60px] tracking-[-2px] '>{section_with_image.heading}</h2>
                                     <ReactMarkdown
@@ -160,7 +159,7 @@ export default function About({ contents }) {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-center w-10/12 md:w-11/12 text-[#023A51] '>
                             <p className=' text-[26px] md:text-[24px]  py-4 block font-semibold text-center ' >{trustedByCompanies.title}</p>
-                            <div className='md:flex justify-around pb-10 md:py-10 ' >
+                            <div className='flex flex-col md:flex-row items-center justify-around pb-10 md:py-10 ' >
                                 {
                                     trustedByCompanies.companyLogos.data.map((item, index) => {
                                         return (
@@ -232,24 +231,29 @@ export default function About({ contents }) {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <h1 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >{meetTheTeam_section.heading}</h1>
                         <div className='flex flex-wrap text-[#023A51] justify-around' >
-                            {/* {
+                            {
                                 meetTheTeam_section.person.map((item, index) => {
                                     return (
-                                        <div key={index} className=' rounded-xl w-[90%] sm:w-[30%] mb-10 ' >
-                                            <Image className='rounded-xl' src={team1} alt="image" />
-                                            <p className='text-[30px] '>Richard Park</p>
-                                            <p className='text-[20px] ' >Director</p>
+                                        <div key={index} className=' rounded-xl w-[90%] sm:w-[45%] md:w-[30%]  mb-10 ' >
+                                            <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                            <p className='text-[30px] '>{item.name}</p>
+                                            <p className='text-[20px] ' >{item.roll}</p>
                                             <div className=' flex items-center mt-4 '>
-                                                <TiSocialTwitter className='text-[24px] mr-4 ' />
-                                                <IoLogoInstagram className='text-[24px] mr-4 ' />
-                                                <FaLinkedinIn className='text-[24px] mr-4 ' />
-                                                <AiOutlineMail className='text-[24px] mr-4 ' />
+                                                {
+                                                    item.social_links.map((item) => {
+                                                        return (
+                                                            <div key={item.id} className='text-[24px] mr-4 '>
+                                                                {React.createElement(Fontawesome[item.iconClass])}
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
                                             </div>
                                         </div>
                                     )
                                 })
-                            } */}
-                            <div className=' rounded-xl w-[90%] sm:w-[30%] mb-10 ' >
+                            }
+                            {/* <div className=' rounded-xl w-[90%] sm:w-[30%] mb-10 ' >
                                 <Image className='rounded-xl' src={team1} alt="image" />
                                 <p className='text-[30px] '>Richard Park</p>
                                 <p className='text-[20px] ' >Director</p>
@@ -314,7 +318,7 @@ export default function About({ contents }) {
                                     <FaLinkedinIn className='text-[24px] mr-4 ' />
                                     <AiOutlineMail className='text-[24px] mr-4 ' />
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -326,8 +330,8 @@ export default function About({ contents }) {
                 <section className='heading md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
-                                <div className='md:mr-20 order-2 md:order-1 mt-10' >
+                            <div className='flex flex-col lg:flex-row items-center mx-auto justify-between' >
+                                <div className='lg:ml-20 order-2 md:order-1 mt-10' >
                                     <img className='rounded-xl' src={section_with_image_left.image.data[0].attributes.url} alt="image" />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:pl-20  ' >

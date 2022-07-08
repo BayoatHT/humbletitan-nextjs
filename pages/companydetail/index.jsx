@@ -62,11 +62,11 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `http://localhost:4000/charts/${symbol.toUpperCase()}`
+        const url = `http://localhost:8000/charts/${symbol.toUpperCase()}`
         // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
         // const competitorsData = await axios.get(competitorsUrl)
-        setChartData(data?.chartData?.Item?.Info)  
+        setChartData(data?.chartData?.Item?.Info)
       }
     }
     getData()

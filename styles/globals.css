@@ -367,9 +367,9 @@ body {
     background-color: #2cbc63;
     color: #fff;
     font-size: 12px;
-    padding: 5px;
+    padding: 3px 5px;
     border-radius: 5px;
-    margin-left: 3px;
+    margin-left: 5px;
 }
 
 .header_main_logo_abcd {
@@ -2688,6 +2688,7 @@ input {
     padding: 13px 30px;
     color: white;
     font-size: 16px;
+    text-align: center;
     font-weight: bold;
     background-color: #2cbc63;
 }

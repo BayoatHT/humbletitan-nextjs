@@ -49,6 +49,8 @@ const Header = () => {
   const [tramIcon, setTramIcon] = useState('')
   const [servicesStyles, setServicesStyles] = useState([])
   const [servicesIcon, setServicesIcon] = useState('')
+  const [aboutStyles, setAboutStyles] = useState([])
+  const [aboutIcon, setAboutIcon] = useState('')
 
 
   const politicsStylesHandler = () => {
@@ -60,6 +62,8 @@ const Header = () => {
       setServicesIcon('')
       setTramStyles([])
       setTramIcon('')
+      setAboutStyles([])
+      setAboutIcon('')
     }
     else {
       setPoliticsStyles([])
@@ -77,7 +81,8 @@ const Header = () => {
       setPoliticsIcon('')
       setTramStyles([])
       setTramIcon('')
-
+      setAboutStyles([])
+      setAboutIcon('')
     }
     else {
       setServicesStyles([])
@@ -95,10 +100,31 @@ const Header = () => {
       setServicesIcon('')
       setPoliticsStyles([])
       setPoliticsIcon('')
+      setAboutStyles([])
+      setAboutIcon('')
     }
     else {
       setTramStyles([])
       setTramIcon('')
+    }
+  }
+
+
+  const aboutStylesHandler = () => {
+    if (!aboutStyles.includes('showDropdown')) {
+      setAboutStyles(['showDropdown'])
+      setAboutIcon('rotate')
+
+      setServicesStyles([])
+      setServicesIcon('')
+      setPoliticsStyles([])
+      setPoliticsIcon('')
+      setTramStyles([])
+      setTramIcon('')
+    }
+    else {
+      setAboutStyles([])
+      setAboutIcon('')
     }
   }
   return (
@@ -124,12 +150,12 @@ const Header = () => {
                     <a
 
                       href=" /products"
-                      className={`a_abcd text-[#023A51] font-semibold text-[12px]  `}
+                      className={`a_abcd text-[#023A51] transition duration-300 font-semibold text-[12px]  `}
                     >
                       Products
                     </a>
                   </li>
-                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/faqs' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] rounded transition duration-300 ${router.pathname == '/faqs' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /faqs"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"
@@ -137,7 +163,7 @@ const Header = () => {
                       FAQS
                     </a>
                   </li>
-                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/about' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] rounded transition duration-300 ${router.pathname == '/about' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /about"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"
@@ -145,7 +171,7 @@ const Header = () => {
                       About us
                     </a>
                   </li>
-                  <li className={`hover:bg-[#fff] rounded ${router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''} `}>
+                  <li className={`hover:bg-[#fff] transition duration-300 rounded ${router.pathname == '/the-team' ? 'rounded bg-[#fff]' : ''} `}>
                     <a
                       href=" /the-team"
                       className="a_abcd font-semibold text-[#023A51] text-[12px]"
@@ -246,7 +272,7 @@ const Header = () => {
                 </div>
                 <ul className="abcd_row abcd_justify-between abcd_nav abcd_align-center ul_abcd">
                   <li>
-                    <a href=" /" className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/" ? "active" : ""}`} >
+                    <a href=" /" className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/" ? "active" : ""}`} >
 
                       Home
                     </a>
@@ -254,10 +280,11 @@ const Header = () => {
                   <li className="abcd_mainmenu abcd_relative">
                     <a
                       href=" /politics"
-                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname.includes('/politics') ? "active" : router.pathname == "/due-diligence" ? "active" : router.pathname == "/bayo-search-consultant" ? "active" : router.pathname == "/activism" ? "active" : ""}`}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname.includes('/politics') ? "active" : router.pathname == "/due-diligence" ? "active" : router.pathname == "/bayo-search-consultant" ? "active" : router.pathname == "/activism" ? "active" : ""}`}
                     >
                       Politics{" "}
                       <FaChevronDown
+                        size={14}
                         style={{
                           position: "relative",
                           left: '2px',
@@ -298,7 +325,7 @@ const Header = () => {
                   <li>
                     <a
                       href=" /education"
-                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/education" ? "active" : ""}`}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/education" ? "active" : ""}`}
                     >
                       Education
                     </a>
@@ -306,10 +333,11 @@ const Header = () => {
                   <li className="abcd_mainmenu">
                     <a
                       href=" /services"
-                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/services" ? "active" : router.pathname == "/services/web-design" ? "active" : router.pathname == "/services/content-marketing" ? "active" : router.pathname == "/services/search-engine-optimization" ? "active" : router.pathname == "/services/web-performance-management" ? "active" : ""}`}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/services" ? "active" : router.pathname == "/services/web-design" ? "active" : router.pathname == "/services/content-marketing" ? "active" : router.pathname == "/services/search-engine-optimization" ? "active" : router.pathname == "/services/web-performance-management" ? "active" : ""}`}
                     >
                       Services{" "}
                       <FaChevronDown
+                        size={14}
                         style={{
                           position: "relative",
                           left: '2px',
@@ -384,11 +412,12 @@ const Header = () => {
                   <li className="abcd_mainmenu">
                     <a
                       href=" /tram-seo"
-                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname == "/tram-seo" ? "active" : router.pathname == "/tram-seo/technical-course" ? "active" : router.pathname == "/tram-seo/authority-course" ? "active" : router.pathname == "/tram-seo/ranking-course" ? "active" : router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/tram-seo" ? "active" : router.pathname == "/tram-seo/technical-course" ? "active" : router.pathname == "/tram-seo/authority-course" ? "active" : router.pathname == "/tram-seo/ranking-course" ? "active" : router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
                     >
                       <strong>TRAM SEO Course</strong>{" "}
-                      <span className="newbadge_abcd text-[16px] ">New</span>{" "}
+                      <span className="newbadge_abcd ">New</span>{" "}
                       <FaChevronDown
+                        size={14}
                         style={{
                           position: "relative",
                           left: "1px",
@@ -548,7 +577,7 @@ const Header = () => {
                   <li>
                     <a
                       href=" /humble-mind"
-                      className={`a_abcd text-[#023A51] font-semibold text-[20px] ${router.pathname.includes("/humble-mind") ? "active" : ""} `}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname.includes("/humble-mind") ? "active" : ""} `}
                     >
                       Magazine
                     </a>
@@ -596,7 +625,7 @@ const Header = () => {
               <div
                 className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => politicsStylesHandler()} >
-                <FaAngleDown size={25} className={politicsIcon} />
+                <FaAngleDown size={28} className={politicsIcon} />
 
               </div>
             </div>
@@ -613,7 +642,6 @@ const Header = () => {
                 Activism
               </a>
             </div>
-            {/* Dropdown contents ends */}
 
             <a href=" /education" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/education' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
               Education
@@ -627,7 +655,7 @@ const Header = () => {
               <div
                 className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => servicesStylesHandler()} >
-                <FaAngleDown className={servicesIcon}
+                <FaAngleDown size={28} className={servicesIcon}
                 />
 
               </div>
@@ -655,11 +683,12 @@ const Header = () => {
             <div className={`relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/tram-seo') ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
               <a href=" /tram-seo" >
                 Tram SEO Course
+                <span className="newbadge_abcd ">New</span>
               </a>
               <div
                 className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
                 onClick={() => tramStylesHandler()} >
-                <FaAngleDown className={tramIcon}
+                <FaAngleDown size={28} className={tramIcon}
                 />
 
               </div>
@@ -667,15 +696,32 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%]  hidden ${tramStyles}`}>
-              <a href="#" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /seo-dictionary" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Standard Package
+                <span className="newbadge_abcd ">Free</span>
               </a>
               <a href="#" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Passion Package
+                <span className="newbadge_abcd bg-[#eb4962] ">Coming 2023</span>
               </a>
               <a href="#" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 professional package
+                <span className="newbadge_abcd bg-[#eb4962] ">Coming 2023</span>
               </a>
+
+              <a href=" /tram-seo/technical-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                Techinal SEO
+              </a>
+              <a href=" /tram-seo/ranking-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                Ranking SEO
+              </a>
+              <a href=" /tram-seo/authority-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                Authority SEO
+              </a>
+              <a href=" /tram-seo/management-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                Monitoring SEO
+              </a>
+
               <a href=" /tram-seo" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 About the course
               </a>
@@ -684,15 +730,46 @@ const Header = () => {
               </a>
             </div>
             {/* Dropdown contents ends */}
+
+
+            <a href=" /products" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/products') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
+              Products
+            </a>
             <a href=" /humble-mind" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/humble-mind') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
-              magazine
+              Magazine
             </a>
-            <a href=" /the-team" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/the-team') ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
-              The Team
-            </a>
-            <a href=" /contact" className={`w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname == '/contact' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
-              Hire Us
-            </a>
+
+            <div className={`relative w-[100%] text-[#023A51] text-[20px] font-bold text-center py-4 hover:bg-[#fff] hover:text-[#2cbc63] transition duration-300 ${router.pathname.includes('/about') ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
+              <a href=" /about" >
+                About Us
+              </a>
+              <div
+                className="absolute right-0 top-0 h-[100%] flex items-center justify-center w-[60px] hover:bg-[#fff]"
+                onClick={() => aboutStylesHandler()} >
+                <FaAngleDown size={28} className={aboutIcon}
+                />
+
+              </div>
+            </div>
+
+            {/* Dropdown contents */}
+            <div className={`hidden ${aboutStyles}`}>
+              <a href=" /the-team" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300" >
+                The Team
+              </a>
+              <a href="#" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                Our Mission
+              </a>
+              <a href=" /faqs" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                FAQs
+              </a>
+            </div>
+
+            <div className="flex justify-center">
+              <a href=" /contact" className=" max-w-fit green_rounded_btn font-bold my-2">
+                Hire Us
+              </a>
+            </div>
 
 
           </div>

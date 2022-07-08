@@ -98,7 +98,7 @@ export default function Contact({ contents }) {
 
 
                             <div className=' md:w-8/12 ' >
-                                <p className='text-[#023A51] text-[50px] md:text-[60px] font-bold leading-[59px] md:leading-[69px] tracking-[-2px] ' >{details}</p>
+                                <p className='text-[#023A51] text-[45px] md:text-[60px] font-bold leading-[59px] md:leading-[69px] tracking-[-2px] ' >{details}</p>
                             </div>
                         </div>
 
@@ -136,7 +136,7 @@ export default function Contact({ contents }) {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
                             <div className=' text-center '  >
-                                <h2 className=' text-[50px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] ' >{heading_for_faqs}</h2>
+                                <h2 className=' text-[40px] md:text-[60px] text-[#023A51] font-bold leading-[55px] md:leading-[69px] tracking-[-2px] ' >{heading_for_faqs}</h2>
                                 <div className='flex flex-wrap text-[#023A51] justify-around mt-10 ' >
                                     {
                                         faqs.map((item) => {

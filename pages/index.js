@@ -37,7 +37,6 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 
 export default function Home({ contents }) {
-    console.log(contents)
     const { Header, Hero, TRAMSearchEngine, WeAreAFullService, beHumbleVoter, explore, last_words, no_matter_who_you_are, ourServices, services_gallery, tellUs_section, theHumbleTrader, weBoostSection } = contents?.data?.attributes
     const router = useRouter()
     return (
@@ -53,7 +52,9 @@ export default function Home({ contents }) {
                             <div className='md:w-[50%] '>
                                 <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >{Hero.heading} </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >{Hero.description}</h2>
-                                <Green_rounded_btn href={Hero.actionButton.href} >{Hero.actionButton.label}</Green_rounded_btn>
+                                <div className="flex md:justify-center" >
+                                    <Green_rounded_btn href={Hero.actionButton.href} >{Hero.actionButton.label}</Green_rounded_btn>
+                                </div>
                             </div>
                             <div className='mt-10 md:mt-0 md:h-[50%]' >
                                 <img src={Hero.heroImage.data[0].attributes.url} alt="image" />
@@ -74,7 +75,7 @@ export default function Home({ contents }) {
                                     <div className='ml-8'  >
                                         <img className='rounded-xl' src={weBoostSection.images.data[1].attributes.url} alt="img" />
                                         <div>
-                                            <img className='rounded-xl block ' src={weBoostSection.images.data[2].attributes.url} alt="img" />
+                                            <img className='rounded-xl ' src={weBoostSection.images.data[2].attributes.url} alt="img" />
                                         </div>
                                     </div>
 
@@ -89,7 +90,7 @@ export default function Home({ contents }) {
 
                                 <p className='text-[50px] md:text-[60px] text-[#023A51] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{weBoostSection.heading}</p>
 
-                                <div className=' md:flex justify-between items-center '>
+                                <div className=' '>
                                     <p className='text-[22px] extralight text-[#023A51] ' >{weBoostSection.description}</p>
                                     <div className='my-6'>
                                         <Green_rounded_btn href={weBoostSection.actionButton.href} >{weBoostSection.actionButton.label}</Green_rounded_btn>
@@ -185,7 +186,7 @@ export default function Home({ contents }) {
                                                         <h2 className='text-[30px] py-4 ' >{item.name}</h2>
                                                     </div>
                                                     <ReactMarkdown components={{
-                                                        p: ({ node, ...props }) => <p className="mr-4 text-[26px] " {...props} />,
+                                                        p: ({ node, ...props }) => <p className="mr-4 text-[20px] md:text-[26px] " {...props} />,
                                                         a: ({ node, ...props }) => <a className="hover:text-[#2cbc63] hover:text-underline " {...props} />,
                                                     }} >
                                                         {item.details}
@@ -299,9 +300,9 @@ export default function Home({ contents }) {
                                     </div>
                                     <div className='pt-[40px] md:pl-20 w-[100%] md:w-[45%] '>
                                         <div className='flex flex-col md:flex-row justify-center md:items-center ' >
-                                            <div className='flex justify-center'>
+                                            <div className='flex flex-wrap justify-center'>
                                                 <img className='rounded-xl' src={TRAMSearchEngine.images.data[0].attributes.url} alt="img" />
-                                                <div className='ml-8'>
+                                                <div className='md:ml-8 mt-4 md:mt-0 '>
                                                     <img className='rounded-xl' src={TRAMSearchEngine.images.data[1].attributes.url} alt="img" />
                                                     <div>
                                                         <img className='rounded-xl ' src={TRAMSearchEngine.images.data[2].attributes.url} alt="img" />
@@ -361,8 +362,8 @@ export default function Home({ contents }) {
                             {
                                 no_matter_who_you_are?.vertical_cards?.map((item) => {
                                     return (
-                                        <div key={item.id} className=' rounded-xl my-2 p-10 bg-[#fff] w-[90%] sm:w-[30%] ' >
-                                            <h2 className='text-[35px] md:text-[40px] font-bold text-center ' >{item.heading}</h2>
+                                        <div key={item.id} className=' rounded-xl my-2 p-10 bg-[#fff] overflow-hidden w-[90%] md:w-[30%] ' >
+                                            <h2 className='text-[24px] md:text-[30px] lg:text-[40px] font-bold text-center ' >{item.heading}</h2>
                                             <div className='my-6'>
                                                 <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
                                             </div>
