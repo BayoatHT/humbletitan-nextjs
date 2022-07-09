@@ -262,7 +262,7 @@ export default function Bayo_search_consultant({ contents }) {
                             <p className=' text-[26px] py-2 font-light '>What this means for you is access to a talent that’s able to guarantee a drastic improvement in your digital footprint. Plus, I ensure your strategy is competitive with the best in your industry.</p> */}
 
 
-                            <div className='text-center mt-10'>
+                            <div className='text-center flex justify-center mt-10'>
                                 <Green_rounded_btn href={who_I_am.actionButton.href}>{who_I_am.actionButton.label}</Green_rounded_btn>
 
                             </div>

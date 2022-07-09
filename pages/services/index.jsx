@@ -9,6 +9,7 @@ import axios from 'axios';
 import Link from 'next/link'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 import * as Fontawesome from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown'
 
 
 import Digitalmarketingservicesfeatured from '../../assets/imgs/Digital-marketing-services-featured-600x586.jpg'
@@ -68,7 +69,7 @@ export default function Services({ contents }) {
                                     {
                                         services_cards.serviceCards.map((item) => {
                                             return (
-                                                <div key={item.id} className='rounded-lg bg-[#fff] px-10 p-6 pb-10 shadow-lg md:w-[45%] w-[100%] mb-12 '>
+                                                <div key={item.id} className='rounded-lg bg-[#fff] px-6 md:px-10 py-6 pb-10 shadow-lg md:w-[45%] w-[100%] mb-12 '>
                                                     <div className="flex justify-center w-[100%]">
                                                         <img src={item.image.data.attributes.url} alt="image" />
 
@@ -229,7 +230,7 @@ export default function Services({ contents }) {
                 <section className='heading my-10 md:my-20'>
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto w-10/12 flex justify-center md:w-11/12  '>
-                            <div className='text-[#023A51] text-center w-[100%] md:w-[70%]  ' >
+                            <div className='text-[#023A51] flex flex-col items-center text-center w-[100%] md:w-[70%]  ' >
                                 <h2 className=' text-[30px] md:text-[36px] font-bold leading-[39px] md:leading-[48px] tracking-[-1px] '>{cotactUs.text}</h2>
                                 <br />
                                 <p className='text-[22px] text-[#59667d] ' >{cotactUs.text2}</p>
@@ -256,7 +257,7 @@ export default function Services({ contents }) {
                                     <img src={bayo_quote.logo.data.attributes.url} alt='image' />
                                     <p className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>{bayo_quote.heading}</p>
                                     <br />
-                                    <p className='text-[22px] ' >{bayo_quote.message}</p>
+                                    <ReactMarkdown className='text-[22px] ' >{bayo_quote.message}</ReactMarkdown>
                                     <br />
                                     <p className='text-[18px] text-[#59667d] py-3' ><span className='font-bold text-[#023A51] ' >{bayo_quote.name}</span> <br />{bayo_quote.roll}</p>
                                 </div>

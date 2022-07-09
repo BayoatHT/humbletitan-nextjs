@@ -14,7 +14,6 @@ import exceptionalResources from '../../assets/imgs/exceptional-resources-400x86
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
 export default function TheTeam({ contents }) {
-    console.log(contents)
     const { hero, header, bayo_mba, exceptional_resources, great_benifits, hafiz, rilwan, tellUs_section, trustedBy } = contents.data.attributes
     return (
         <>

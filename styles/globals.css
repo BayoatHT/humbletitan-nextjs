@@ -2691,6 +2691,7 @@ input {
     text-align: center;
     font-weight: bold;
     background-color: #2cbc63;
+    width: fit-content;
 }
 
 .green_rounded_btn:hover {

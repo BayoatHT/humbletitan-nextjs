@@ -5,7 +5,6 @@ import axios from 'axios';
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
 export default function index({ contents }) {
-    console.log(contents)
     const { faqs, hero, header, requestAQuote_section } = contents.data.attributes
     return (
         <>
@@ -57,7 +56,7 @@ export default function index({ contents }) {
                         <div className='mx-auto text-center  w-10/12 md:w-11/12 '>
                             <h2 className='text-[40px] font-semibold text-[#023A51] md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] md:px-10' >{requestAQuote_section.mainHeading}</h2>
                             <p className='text-[26px] text-[#2cbc63] md:text-[35px] mt-4 leading-[35px] md:leading-[44px] tracking-[-2px] md:px-10' >{requestAQuote_section.heading2}</p>
-                            <div className='my-6'>
+                            <div className='my-6 flex justify-center'>
                                 <Green_rounded_btn href={requestAQuote_section.actionButton.href} >{requestAQuote_section.actionButton.label}</Green_rounded_btn>
                             </div>
                             <p className='text-[16px] text-[#023A51]'>{requestAQuote_section.textBellow}</p>
@@ -77,13 +76,13 @@ export const getServerSideProps = async () => {
     var contents;
     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/faqs-page`)
         .then(({ data }) => {
-            contents = data
+            contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
     return {
         props: {
-            contents: JSON.parse(JSON.stringify(contents))
+            contents: contents
         }
     }
 }

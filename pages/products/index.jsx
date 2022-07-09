@@ -320,7 +320,7 @@ export default function Products({ contents }) {
                         <div className='mx-auto text-center  w-10/12 md:w-11/12 '>
                             <p className='text-[40px] font-bold text-[#023A51] md:text-[50px] leading-[50px] md:leading-[59px] tracking-[-2px] md:px-10' >{requestAQuote_section.mainHeading}</p>
                             <p className='text-[26px] text-[#2cbc63] md:text-[35px] mt-4 leading-[35px] md:leading-[44px] tracking-[-2px] md:px-10' >{requestAQuote_section.heading2}</p>
-                            <div className='my-6'>
+                            <div className='my-6 flex justify-center'>
                                 <Green_rounded_btn href={requestAQuote_section.actionButton.href ? requestAQuote_section.actionButton.href : ""} >{requestAQuote_section.actionButton.label}</Green_rounded_btn>
                             </div>
                             <p className='text-[16px] text-[#023A51]'>{requestAQuote_section.textbellow}</p>

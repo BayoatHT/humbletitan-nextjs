@@ -120,10 +120,10 @@ export default function service({ contents }) {
                             </div>
 
 
-                            <div className='flex flex-col  ' >
+                            <div className='flex flex-col items-center ' >
                                 <div className='md:w-[33%] text-center'>
                                     <p className='text-[22px] text-[#59667d] ' >{service_features.text}</p>
-                                    <div className='my-6'>
+                                    <div className='my-6 flex justify-center'>
                                         <Green_rounded_btn href={service_features.actionButton.href} >{service_features.actionButton.label}</Green_rounded_btn>
                                     </div>
 

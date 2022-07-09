@@ -52,9 +52,9 @@ export default function Home({ contents }) {
                             <div className='md:w-[50%] '>
                                 <h1 className='text-[50px] md:text-[60px] text-[#023A51] md:pt-10 leading-[55px] md:leading-[69px] tracking-[-3px] ' >{Hero.heading} </h1>
                                 <h2 className='text-[24px]  text-[#023A51] leading-7 py-8 ' >{Hero.description}</h2>
-                                <div className="flex md:justify-center" >
-                                    <Green_rounded_btn href={Hero.actionButton.href} >{Hero.actionButton.label}</Green_rounded_btn>
-                                </div>
+                                {/* <div className="flex md:justify-center" > */}
+                                <Green_rounded_btn href={Hero.actionButton.href} >{Hero.actionButton.label}</Green_rounded_btn>
+                                {/* </div> */}
                             </div>
                             <div className='mt-10 md:mt-0 md:h-[50%]' >
                                 <img src={Hero.heroImage.data[0].attributes.url} alt="image" />
@@ -300,9 +300,9 @@ export default function Home({ contents }) {
                                     </div>
                                     <div className='pt-[40px] md:pl-20 w-[100%] md:w-[45%] '>
                                         <div className='flex flex-col md:flex-row justify-center md:items-center ' >
-                                            <div className='flex flex-wrap justify-center'>
+                                            <div className='flex justify-center'>
                                                 <img className='rounded-xl' src={TRAMSearchEngine.images.data[0].attributes.url} alt="img" />
-                                                <div className='md:ml-8 mt-4 md:mt-0 '>
+                                                <div className='ml-8 mt-4 md:mt-0 '>
                                                     <img className='rounded-xl' src={TRAMSearchEngine.images.data[1].attributes.url} alt="img" />
                                                     <div>
                                                         <img className='rounded-xl ' src={TRAMSearchEngine.images.data[2].attributes.url} alt="img" />
@@ -356,8 +356,8 @@ export default function Home({ contents }) {
 
                 {/* No matter who you are, */}
                 <section className='heading py-20 bg-[#f9fafb]'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <h3 className=' text-[50px] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >{no_matter_who_you_are.heading}</h3>
+                    <div className=" container flex flex-col items-center w-12/12 mx-auto max-w-screen-xl">
+                        <h3 className=' text-[50px] font-semibold md:w-[60%] md:text-[60px] text-center leading-[69px] md:leading-[50px] tracking-[-2px] py-20 pt-[80px] text-[#023A51] ' >{no_matter_who_you_are.heading}</h3>
                         <div className='flex flex-wrap text-[#023A51] justify-around' >
                             {
                                 no_matter_who_you_are?.vertical_cards?.map((item) => {
