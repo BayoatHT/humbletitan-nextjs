@@ -487,7 +487,7 @@ const Header = () => {
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
                               href=" /tram-seo"
-                              className={`a_abcd ${router.pathname == "/" ? "active" : ""}`}
+                              className={`a_abcd ${router.pathname == "/tram-seo" ? "active" : ""}`}
                             >
                               About the course
                             </a>
@@ -498,7 +498,7 @@ const Header = () => {
                           <div className="abcd_fontset_para abcd_cursorpointer">
                             <a
                               href=" /bayo-search-consultant/"
-                              className={`a_abcd ${router.pathname == "/" ? "active" : ""}`}
+                              className={`a_abcd ${router.pathname == "/bayo-search-consultant" ? "active" : ""}`}
                             >
                               About the Founder
                             </a>
