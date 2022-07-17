@@ -1,11 +1,18 @@
 import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
 const MyChart = ({ chartData }) => {
-  console.log(chartData, "chartData Chart me bhi araha hai");
-  const result = Object.keys(chartData).map((key) => [(key), chartData[key]]);
-  console.log(result); 
+  console.log(chartData.Info, "chartData Chart me bhi araha hai");
+  // const result = Object.keys(chartData).map((key) => [(key), chartData[key]]);
+  const result = []
+  //   result = Object.keys(chartData.Info)
+  for (const key in chartData.Info) {
+    let obj = {}
+    if (key !== 'ticker'){Object.assign(obj, {name: key, data: chartData.Info[key]})
+    result.push(obj)}
+  }
+  console.log(result);
 
-  const MudassirLoru = [
+  const Loru = [
     {
       name: 'Python',
       student: 13,
@@ -43,14 +50,14 @@ const MyChart = ({ chartData }) => {
       <ResponsiveContainer width="100%" aspect={2}>
         <AreaChart
           height={300}
-          data={MudassirLoru}
+          data={result}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis  />
           <Tooltip />
           <Legend />
-          <Area type="monotone" dataKey="student" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="data" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
       </ResponsiveContainer>
     </>

@@ -45,18 +45,19 @@ export default function Careers({ contents }) {
 				<section className="heading my-10 md:my-20">
 					<div className=" container w-12/12 mx-auto max-w-screen-xl">
 						<div className="mx-auto flex w-10/12 md:w-11/12  ">
-							<div className="md:flex items-center mx-auto justify-between">
-								<div className="md:mr-20">
-									<img
-										className="rounded-xl "
-										src={
-											WhoWeAre.image.data[0].attributes
-												.url
-										}
-										alt="image"
-									/>
+							<div className="flex flex-col md:flex-row items-center mx-auto justify-between">
+								<div className="md:mr-20 w-[100%] md:w-[45%]">
+										<Image
+											className="rounded-xl"
+											src={WhoWeAre.image.data[0].attributes.url}
+											layout="responsive"
+											objectFit='cover'
+											width={WhoWeAre.image.data[0].attributes.width}
+											height={WhoWeAre.image.data[0].attributes.height}
+											alt={WhoWeAre.image.data[0].attributes.name}
+										/>
 								</div>
-								<div className="text-[#023A51] ">
+								<div className="text-[#023A51]  w-[100%] md:w-[45%]">
 									<p className="text-[30px] text-[#2cbc63] font-bold my-10 ">
 										{WhoWeAre.lable.name}
 									</p>
@@ -101,14 +102,14 @@ export default function Careers({ contents }) {
 									</p>
 								</div>
 								<div className="md:w-[40%]">
-									<img
-										className="rounded-xl"
-										src={
-											danaJohnson.image.data.attributes
-												.url
-										}
-										alt="image"
-									/>
+								<Image
+											className="rounded-xl "
+											src={danaJohnson.image.data.attributes.url}
+											layout="responsive"
+											width={danaJohnson.image.data.attributes.width}
+											height={danaJohnson.image.data.attributes.height}
+											alt={danaJohnson.image.data.attributes.name}
+										/>
 								</div>
 							</div>
 						</div>
@@ -118,7 +119,7 @@ export default function Careers({ contents }) {
 				{/* Our Values. */}
 				<section className="heading md:my-20 ">
 					<div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-						<div className="mx-auto text-[#023A51] flex flex-wrap items-center w-10/12 md:w-11/12 ">
+						<div className="mx-auto text-[#023A51] flex flex-col md:flex-row items-center w-10/12 md:w-11/12 ">
 							<div className="pt-[40px] flex flex-wrap justify-around md:w-[55%] md:order-none order-1 w-[100%] ">
 								{ourValue.value_cards.map((item) => {
 									return (
@@ -143,7 +144,7 @@ export default function Careers({ contents }) {
 									);
 								})}
 							</div>
-							<div className="md:w-[45%] ml-10 order-none md:order-1 ">
+							<div className="md:w-[45%] md:ml-10 order-none md:order-1 ">
 								<p className="text-[50px] md:text-[60px] font-bold leading-[50px] md:leading-[69px] tracking-[-2px] text-[#023A51] py-10  ">
 									{ourValue.heading}
 								</p>
@@ -169,7 +170,7 @@ export default function Careers({ contents }) {
 									return (
 										<div
 											key={item.id}
-											className="bg-[#e0ecf0] p-10 text-center flex flex-col items-center rounded mb-4 sm:w-[48%] md:w-[32%] "
+											className="bg-[#e0ecf0] p-10 text-center flex flex-col items-center rounded mb-4 w-[100%] sm:w-[48%] md:w-[32%] "
 										>
 											<div className="text-[26px] text-[#2cbc63]">
 												{React.createElement(
@@ -201,7 +202,7 @@ export default function Careers({ contents }) {
 									return (
 										<div
 											key={item.id}
-											className="bg-[#fff] p-6 rounded mb-4 sm:w-[48%] md:w-[24%] shadow "
+											className="bg-[#fff] p-6 rounded mb-4 w-[100%] sm:w-[48%] md:w-[24%] shadow "
 										>
 											<p className="text-[22px] font-bold text-[#023A51] ">
 												{item.title}

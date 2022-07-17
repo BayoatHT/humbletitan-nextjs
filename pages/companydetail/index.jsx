@@ -38,19 +38,25 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol.toUpperCase()}`
+        const url = `http://localhost:8000/companydetails/${symbol.toUpperCase()}`
         // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
+		console.log(data, "data")
         // const competitorsData = await axios.get(competitorsUrl)
-        setProfile(data?.companyProfile?.Item?.Info)
-        setShares(data?.companyShares?.Item?.Info)
-        setFinancial(data?.comapnyFinancialRatio?.Item?.Info)
-        setRating(data?.comapnyRating?.Item?.Info)
-        setFinancialgrowth(data?.comapnyFinancialGrowth?.Item?.Info)
-        setRealtimequotes(data?.comapnyRealTimeQuote?.Item?.Info)
-        setKeymatrics(data?.comapnyKeymetrics?.Item?.Info)
-
-
+        // setProfile(data?.companyProfile?.Item?.Info)
+        // setShares(data?.companyShares?.Item?.Info)
+        // setFinancial(data?.comapnyFinancialRatio?.Item?.Info)
+        // setRating(data?.comapnyRating?.Item?.Info)
+        // setFinancialgrowth(data?.comapnyFinancialGrowth?.Item?.Info)
+        // setRealtimequotes(data?.comapnyRealTimeQuote?.Item?.Info)
+        // setKeymatrics(data?.comapnyKeymetrics?.Item?.Info)
+        setProfile(data?.companyProfile[0]?.Info)
+        setShares(data?.companyShares[0]?.Info)
+        setFinancial(data?.comapnyFinancialRatio[0]?.Info)
+        setRating(data?.comapnyRating[0]?.Info)
+        setFinancialgrowth(data?.comapnyFinancialGrowth[0]?.Info)
+        setRealtimequotes(data?.comapnyRealTimeQuote[0]?.Info)
+        setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
       }
     }
     getData()
@@ -66,7 +72,7 @@ const CompantDetail = () => {
         // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
         // const competitorsData = await axios.get(competitorsUrl)
-        setChartData(data?.chartData?.Item?.Info)
+        setChartData(data?.chartData[0])
       }
     }
     getData()
@@ -74,9 +80,10 @@ const CompantDetail = () => {
 
   console.log(realtimequotes, "realtimequotes");
   console.log(chartData, "chartData");
+  console.log(profile, "profile");
 
   useEffect(() => {
-    if (profile.companyname) {
+    if (profile?.companyname) {
       let title = document.createElement('title')
       title.innerText = `${profile.companyname}  Stock - Humble Titan`
       let meta = document.createElement('meta')
