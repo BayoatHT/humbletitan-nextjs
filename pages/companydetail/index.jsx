@@ -57,6 +57,9 @@ const CompantDetail = () => {
         setFinancialgrowth(data?.comapnyFinancialGrowth[0]?.Info)
         setRealtimequotes(data?.comapnyRealTimeQuote[0]?.Info)
         setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
+        setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
+        setCompetitors(data?.competitors[0]?.Peers)
+        // console.log(competitors)
       }
     }
     getData()
@@ -81,6 +84,7 @@ const CompantDetail = () => {
   console.log(realtimequotes, "realtimequotes");
   console.log(chartData, "chartData");
   console.log(profile, "profile");
+  console.log(competitors, "competitors");
 
   useEffect(() => {
     if (profile?.companyname) {
@@ -159,14 +163,12 @@ const CompantDetail = () => {
       },
       {
         heading: 'List of Competitors',
-        listItems: [
-
-        ]
+        listItems: competitors?.map(item => item)
       },
-
+      
     ]
   }
-  competitors?.map(item => marketRating?.cards[2]?.listItems?.push(item))
+  // competitors?.map(item => marketRating?.cards[2]?.listItems?.push(item))
   const management =
   {
     heading: "A closer look at Management",
