@@ -38,10 +38,9 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `http://localhost:8000/companydetails/${symbol.toUpperCase()}`
+        const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol.toUpperCase()}`
         // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
-		console.log(data, "data")
         // const competitorsData = await axios.get(competitorsUrl)
         // setProfile(data?.companyProfile?.Item?.Info)
         // setShares(data?.companyShares?.Item?.Info)
@@ -58,8 +57,6 @@ const CompantDetail = () => {
         setRealtimequotes(data?.comapnyRealTimeQuote[0]?.Info)
         setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
         setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
-        setCompetitors(data?.competitors[0]?.Peers)
-        // console.log(competitors)
       }
     }
     getData()
@@ -71,20 +68,16 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `http://localhost:8000/charts/${symbol.toUpperCase()}`
-        // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
+        const url = `https://humbletitanapi.herokuapp.com/charts/${symbol.toUpperCase()}`
+        const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
-        // const competitorsData = await axios.get(competitorsUrl)
+        const competitorsData = await axios.get(competitorsUrl)
+        setCompetitors(competitorsData?.data)
         setChartData(data?.chartData[0])
       }
     }
     getData()
   }, [router])
-
-  console.log(realtimequotes, "realtimequotes");
-  console.log(chartData, "chartData");
-  console.log(profile, "profile");
-  console.log(competitors, "competitors");
 
   useEffect(() => {
     if (profile?.companyname) {
@@ -163,12 +156,13 @@ const CompantDetail = () => {
       },
       {
         heading: 'List of Competitors',
-        listItems: competitors?.map(item => item)
+        // listItems: competitors?.map(item => item)
+        listItems: []
       },
       
     ]
   }
-  // competitors?.map(item => marketRating?.cards[2]?.listItems?.push(item))
+  competitors?.map(item => marketRating?.cards[2]?.listItems?.push(item))
   const management =
   {
     heading: "A closer look at Management",

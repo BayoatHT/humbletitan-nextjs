@@ -18,7 +18,7 @@ export default function FilterData() {
 
         const getData = async () => {
 
-            const url = `http://localhost:8000/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
+            const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
             const { data } = await axios.get(url)
 
             setCustomPages(data)
