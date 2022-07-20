@@ -106,7 +106,6 @@ export default function Home() {
 		axios
 			.get(url)
 			.then((res) => {
-				console.log(res?.data, 'response hai');
 				setSearch(res?.data);
 			})
 			.catch((err) => {

@@ -1,19 +1,19 @@
 import Head from 'next/head'
-import Layout from '../../components/Layout';
-import Tickerslider from '../../components/companydetail/Tickerslider';
-import Company from '../../components/companydetail/companyprofile/Company';
+import Layout from '../../../components/Layout';
+// import Tickerslider from '../../../../components/companydetail/Tickerslider';
+import Company from '../../../components/companydetail/companyprofile/Company';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import BlueSection from '../../components/companydetail/bluesection/BlueSection';
-import Description from '../../components/companydetail/Description';
-import Financial from '../../components/companydetail/financial/Financial';
-import HowStock from '../../components/companydetail/stock/HowStock';
-import BusinessPerformance from '../../components/companydetail/BusinessPerformance';
-import SharesValue from '../../components/companydetail/sharecards/SharesValue';
-import DonateNow from '../../components/companydetail/DonateNow';
-import FinancialGrowth from '../../components/companydetail/financial/FinancialGrowth';
-import CTA from '../../components/companydetail/CTA';
-import Empower from '../../components/companydetail/empower/Empower';
+import BlueSection from '../../../components/companydetail/bluesection/BlueSection';
+import Description from '../../../components/companydetail/Description';
+import Financial from '../../../components/companydetail/financial/Financial';
+import HowStock from '../../../components/companydetail/stock/HowStock';
+import BusinessPerformance from '../../../components/companydetail/BusinessPerformance';
+import SharesValue from '../../../components/companydetail/sharecards/SharesValue';
+import DonateNow from '../../../components/companydetail/DonateNow';
+import FinancialGrowth from '../../../components/companydetail/financial/FinancialGrowth';
+import CTA from '../../../components/companydetail/CTA';
+import Empower from '../../../components/companydetail/empower/Empower';
 import { useRouter } from 'next/router';
 
 
@@ -30,11 +30,10 @@ const CompantDetail = () => {
   const [chartData, setChartData] = useState([])
   const router = useRouter()
 
-  console.log(rating, "rating");
+  const symbol = router.query.symbol?.replace("-stock", "")
 
   useEffect(() => {
 
-    const symbol = router.query.symbol
     const getData = async () => {
       if (symbol) {
 
@@ -49,22 +48,19 @@ const CompantDetail = () => {
         // setFinancialgrowth(data?.comapnyFinancialGrowth?.Item?.Info)
         // setRealtimequotes(data?.comapnyRealTimeQuote?.Item?.Info)
         // setKeymatrics(data?.comapnyKeymetrics?.Item?.Info)
-        setProfile(data?.companyProfile[0]?.Info)
-        setShares(data?.companyShares[0]?.Info)
-        setFinancial(data?.comapnyFinancialRatio[0]?.Info)
-        setRating(data?.comapnyRating[0]?.Info)
-        setFinancialgrowth(data?.comapnyFinancialGrowth[0]?.Info)
-        setRealtimequotes(data?.comapnyRealTimeQuote[0]?.Info)
-        setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
-        setKeymatrics(data?.comapnyKeymetrics[0]?.Info)
+        setProfile(data?.companyProfile?.Info)
+        setShares(data?.companyShares?.Info)
+        setFinancial(data?.comapnyFinancialRatio?.Info)
+        setRating(data?.comapnyRating?.Info)
+        setFinancialgrowth(data?.comapnyFinancialGrowth?.Info)
+        setRealtimequotes(data?.comapnyRealTimeQuote?.Info)
+        setKeymatrics(data?.comapnyKeymetrics?.Info)
       }
     }
     getData()
   }, [router])
 
   useEffect(() => {
-
-    const symbol = router.query.symbol
     const getData = async () => {
       if (symbol) {
 
@@ -73,25 +69,27 @@ const CompantDetail = () => {
         const { data } = await axios.get(url)
         const competitorsData = await axios.get(competitorsUrl)
         setCompetitors(competitorsData?.data)
-        setChartData(data?.chartData[0])
+        setChartData(data?.chartData)
       }
     }
     getData()
   }, [router])
 
+
+  // page title setting
   useEffect(() => {
     if (profile?.companyname) {
       let title = document.createElement('title')
-      title.innerText = `${profile.companyname}  Stock - Humble Titan`
+      title.innerText = `${symbol.toUpperCase()} Stock Report | ${profile?.companyname} | DD by HT`
       let meta = document.createElement('meta')
       meta.setAttribute('name', "description")
-      meta.setAttribute('content', profile?.description)
+      meta.setAttribute('content', ` Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`)
       let head = document.querySelector('head')
       head.appendChild(title)
       head.appendChild(meta)
     }
   }, [profile])
-
+  
   const due =
   {
     heading: "Before we do our due diligence",
@@ -426,6 +424,9 @@ const CompantDetail = () => {
 
       <Layout>
         {/* <Tickerslider /> */}
+        {/* <Head>
+          <title>{symbol.toUpperCase()} Stock Report | </title>
+        </Head> */}
         <Company profile={profile} shares={shares} realtimequotes={realtimequotes} />
         <BlueSection content={due} bigboxes />
         <Description description={profile?.description} chartData={chartData} />

@@ -299,7 +299,7 @@ const Header = () => {
                           className={`a_abcd ${router.pathname == "/due-diligence" ? "active" : ""}`}
                         >
                           {" "}
-                          ABCD Stock
+                          Due-diligence
                         </a>
                       </li>
                       <li className="abcd_menu-politics">
@@ -633,7 +633,7 @@ const Header = () => {
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${politicsStyles} `}>
               <a href=" /due-diligence" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/due-diligence' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
-                ABCD Stock
+                Due-diligence
               </a>
               <a href=" /bayo-search-consultant" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/bayo-search-consultant' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
                 Founder & Consultant
