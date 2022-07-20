@@ -77,18 +77,18 @@ const CompantDetail = () => {
 
 
   // page title setting
-  useEffect(() => {
-    if (profile?.companyname) {
-      let title = document.createElement('title')
-      title.innerText = `${symbol.toUpperCase()} Stock Report | ${profile?.companyname} | DD by HT`
-      let meta = document.createElement('meta')
-      meta.setAttribute('name', "description")
-      meta.setAttribute('content', ` Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`)
-      let head = document.querySelector('head')
-      head.appendChild(title)
-      head.appendChild(meta)
-    }
-  }, [profile])
+  // useEffect(() => {
+  //   if (profile?.companyname) {
+  //     let title = document.createElement('title')
+  //     title.innerText = `${symbol.toUpperCase()} Stock Report | ${profile?.companyname} | DD by HT`
+  //     let meta = document.createElement('meta')
+  //     meta.setAttribute('name', "description")
+  //     meta.setAttribute('content', ` Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`)
+  //     let head = document.querySelector('head')
+  //     head.appendChild(title)
+  //     head.appendChild(meta)
+  //   }
+  // }, [profile])
   
   const due =
   {
@@ -424,9 +424,10 @@ const CompantDetail = () => {
 
       <Layout>
         {/* <Tickerslider /> */}
-        {/* <Head>
-          <title>{symbol.toUpperCase()} Stock Report | </title>
-        </Head> */}
+        <Head>
+          <title>{symbol.toUpperCase()} Stock Report | {profile?.companyname} | DD by HT </title>
+          <meta name="description" content={`Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`} />
+        </Head>
         <Company profile={profile} shares={shares} realtimequotes={realtimequotes} />
         <BlueSection content={due} bigboxes />
         <Description description={profile?.description} chartData={chartData} />
