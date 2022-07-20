@@ -6,16 +6,6 @@ const Filter = ({ handleChange, label, options }) => {
     <>
       <div className=''>
         <span className='label-set-filter'>{label}</span>
-        {/* <input type="text" list='my-list' onChange={handleChange} />
-        <datalist id='my-list' >
-          {
-            options?.map((item, index) => {
-              return (
-                <option key={index} value={item.label}></option>
-              )
-            })
-          }
-        </datalist> */}
         <Select
           className="basic-single"
           classNamePrefix="select"

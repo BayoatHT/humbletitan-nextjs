@@ -150,6 +150,16 @@ export default function Home() {
 			</Head>
 			<Layout>
 				<div className="top-search-filter-abcd">
+				{/* <span className='label-set-filter'>Search Compnay by name:</span>
+					<input type="text" list='company-names' onChange={(e)=> handleChangeSearch(e.target)} className='tickers_search' />
+					<datalist id='company-names'  >
+						{search?.map((item, index) => {
+							return (
+								<option key={index} value={item.value}>{item.name}</option>
+							)
+						}) }
+						
+					</datalist> */}
 					<Filter
 						label="Search Compnay by name:"
 						handleChange={handleChangeSearch}

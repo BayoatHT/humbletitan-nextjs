@@ -2330,6 +2330,16 @@ input {
     margin-left: auto;
 }
 
+.tickers_search {
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+
+.tickers_search::-webkit-keygen-select{
+    display: none;
+    
+}
 @media (max-width: 768px) {
     .Filters {
         -webkit-box-pack: center;

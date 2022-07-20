@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../components/Layout';
-// import Tickerslider from '../../../../components/companydetail/Tickerslider';
+// import Tickerslider from '../../../components/companydetail/Tickerslider';
 import Company from '../../../components/companydetail/companyprofile/Company';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -425,7 +425,7 @@ const CompantDetail = () => {
       <Layout>
         {/* <Tickerslider /> */}
         <Head>
-          <title>{symbol.toUpperCase()} Stock Report | {profile?.companyname} | DD by HT </title>
+          <title> {symbol.toUpperCase()} Stock Report | {profile?.companyname} | DD by HT </title>
           <meta name="description" content={`Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`} />
         </Head>
         <Company profile={profile} shares={shares} realtimequotes={realtimequotes} />
