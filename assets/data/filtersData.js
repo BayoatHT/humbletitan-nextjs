@@ -234,12 +234,12 @@ export const sectorFilters = [
     {label: 'Financial', value: 'Financial'}
 ]
 
-export const mkCapFilters =[
-    {label:'$10000 - $20000',value:'$10000 - $20000'},
-    {label:'$30000 - $40000',value:'$30000 - $40000'},
-    {label:'$50000 - $60000',value:'$50000 - $60000'},
-    {label:'$70000 - $80000',value:'$70000 - $80000'},
-    {label:'$90000 - $100000',value:'$90000 - $100000'}
+export const mkCapFilters = [
+    {label: "$10000 - $20000", value:"$10000 - $20000"},
+    {label: "$30000 - $40000", value:"$30000 - $40000"},
+    {label: "$50000 - $60000", value:"$50000 - $60000"},
+    {label: "$70000 - $80000", value:"$70000 - $80000"},
+    {label: "$90000 - $100000", value:"$90000 - $100000"}
 ]
 
 export  const searchFilter = [
