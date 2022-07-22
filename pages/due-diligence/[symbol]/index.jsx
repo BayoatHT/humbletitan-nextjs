@@ -37,7 +37,7 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol.toUpperCase()}`
+        const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol?.toUpperCase()}`
         // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
         // const competitorsData = await axios.get(competitorsUrl)
@@ -64,8 +64,8 @@ const CompantDetail = () => {
     const getData = async () => {
       if (symbol) {
 
-        const url = `https://humbletitanapi.herokuapp.com/charts/${symbol.toUpperCase()}`
-        const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
+        const url = `https://humbletitanapi.herokuapp.com/charts/${symbol?.toUpperCase()}`
+        const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol?.toUpperCase()}`
         const { data } = await axios.get(url)
         const competitorsData = await axios.get(competitorsUrl)
         setCompetitors(competitorsData?.data)
@@ -425,7 +425,7 @@ const CompantDetail = () => {
       <Layout>
         {/* <Tickerslider /> */}
         <Head>
-          <title> {symbol.toUpperCase()} Stock Report | {profile?.companyname} | DD by HT </title>
+          <title> {symbol?.toUpperCase()} Stock Report | {profile?.companyname} | DD by HT </title>
           <meta name="description" content={`Do your Due Diligence on ${profile?.companyname}. Make money the smart way. Discover and research the ${profile?.sector} sector before investing.`} />
         </Head>
         <Company profile={profile} shares={shares} realtimequotes={realtimequotes} />
