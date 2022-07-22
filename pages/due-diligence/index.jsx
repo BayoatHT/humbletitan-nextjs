@@ -12,6 +12,7 @@ import {
 } from "../../assets/data/filtersData";
 import Newcard from "../../components/Newcard";
 import Layout from "../../components/Layout";
+import { Rings, BallTriangle } from "react-loading-icons";
 
 export default function Home() {
 	const [allcompany, setAllcompany] = useState([]);
@@ -28,7 +29,7 @@ export default function Home() {
 	}, [mainFilter]);
 
 	const filteration = (name, pNo) => {
-		let url = "";
+		let url;
 		switch (mainFilter) {
 			case "Country":
 				url = `https://humbletitanapi.herokuapp.com/countries/${name}?pageNo=${pNo}`;
@@ -40,7 +41,7 @@ export default function Home() {
 				url = `https://humbletitanapi.herokuapp.com/industries/${name}?pageNo=${pNo}`;
 				break;
 			case "Market Capitalization":
-				url = `https://humbletitanapi.herokuapp.com/mkCap/${name}?pageNo=${pNo}`;
+				url = `https://humbletitanapi.herokuapp.com/marketkCap/${name}?pageNo=${pNo}`;
 				break;
 		}
 		axios.get(url)
@@ -52,7 +53,7 @@ export default function Home() {
 				setLastPageNo(lastpNo);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log('filter error', err.message);
 			});
 	};
 
@@ -75,7 +76,7 @@ export default function Home() {
 					setAllcompany(res?.data[0]?.items);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.log(err.message);
 				});
 	};
 	const handleChangeSearch = (newValue) => {
@@ -182,7 +183,7 @@ export default function Home() {
 										sectorFilters) ||
 									(mainFilter === "Industry" &&
 										industryFilters) ||
-									(mainFilter === "Market Capitilization" &&
+									(mainFilter === "Market Capitalization" &&
 										mkCapFilters)
 								}
 							/>
@@ -200,13 +201,18 @@ export default function Home() {
 				<div className="pt-5_abcd pb-5_abcd">
 					<div className="abcd_container">
 						<div className="abcd_row keyvaluecards_abcd abcd_justify-betwee n  row_wraper_abcd">
-							{allcompany &&
+							{allcompany ?
 								allcompany?.map(
 									(data, kay) =>
 										data?.Info?.companyname && (
 											<Newcard data={data} key={kay} />
 										)
-								)}
+								) : 
+								<div className="">
+									<Rings/>
+								</div>
+								
+								}
 							{/* <div className="abcd_col-12 abcd_row">
                                 <div className='FooterPagination'>
                                     <Pagination increament={increament} decreament={decreament} pageNo={pageNo} moveBackward={moveBackward} moveForward={moveForward} />

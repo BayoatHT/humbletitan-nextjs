@@ -2,7 +2,7 @@ export const mainFilters = [
     { label: 'Country', value: 'Country' },
     { label: 'Industry', value: 'Industry' },
     { label: 'Sector', value: 'Sector' },
-    { label: 'Market Capitilization', value: 'Market Capitilization' },
+    { label: 'Market Capitalization', value: 'Market Capitalization' },
     { label: 'All Tickers', value: 'All Tickers' },
 ]
 
@@ -236,10 +236,14 @@ export const sectorFilters = [
 
 export const mkCapFilters = [
     {label: "$10000 - $20000", value:"$10000 - $20000"},
+    {label: "$20000 - $30000", value:"$20000 - $30000"},
     {label: "$30000 - $40000", value:"$30000 - $40000"},
+    {label: "$40000 - $50000", value:"$40000 - $50000"},
     {label: "$50000 - $60000", value:"$50000 - $60000"},
+    {label: "$60000 - $70000", value:"$60000 - $70000"},
     {label: "$70000 - $80000", value:"$70000 - $80000"},
-    {label: "$90000 - $100000", value:"$90000 - $100000"}
+    {label: "$80000 - $90000", value:"$80000 - $90000"},
+    {label: "$90000 - $100000", value:"$90000 - $100000"},
 ]
 
 export  const searchFilter = [
