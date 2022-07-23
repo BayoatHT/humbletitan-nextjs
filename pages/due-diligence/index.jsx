@@ -12,7 +12,7 @@ import {
 } from "../../assets/data/filtersData";
 import Newcard from "../../components/Newcard";
 import Layout from "../../components/Layout";
-import { Rings, BallTriangle } from "react-loading-icons";
+import { ThreeDots } from "react-loading-icons";
 
 export default function Home() {
 	const [allcompany, setAllcompany] = useState([]);
@@ -201,17 +201,17 @@ export default function Home() {
 				<div className="pt-5_abcd pb-5_abcd">
 					<div className="abcd_container">
 						<div className="abcd_row keyvaluecards_abcd abcd_justify-betwee n  row_wraper_abcd">
-							{allcompany ?
+							{allcompany.length > 0 ?
 								allcompany?.map(
 									(data, kay) =>
 										data?.Info?.companyname && (
 											<Newcard data={data} key={kay} />
 										)
-								) : 
-								<div className="">
-									<Rings/>
+								) : ( 
+								<div className="text-[#000] w-[100%] flex justify-center">
+									<ThreeDots className="w-[50px] h-[50px]" fill  />
 								</div>
-								
+								)
 								}
 							{/* <div className="abcd_col-12 abcd_row">
                                 <div className='FooterPagination'>
