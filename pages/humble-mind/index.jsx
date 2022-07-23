@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 
 import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
 import GetAQuote from '../../components/GetAQuote';
+import Newsletter from '../../components/Newsletter';
 
 export default function Magazine({ data, categories, contents }) {
 
@@ -33,8 +34,6 @@ export default function Magazine({ data, categories, contents }) {
             return null
         }
     }
-
-    console.log(contents)
 
     return (
         <>
@@ -80,9 +79,9 @@ export default function Magazine({ data, categories, contents }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='md:flex flex-wrap justify-around'>
+                            <div className='flex flex-col md:flex-row flex-wrap justify-around'>
                                 {
-                                    blogs?.map((blog) => {
+                                    blogs?.slice(0,3)?.map((blog) => {
                                         const post = blog?.attributes
                                         const blogImage = post.blogImage?.data?.attributes
                                         const blogImageUrl = blogImage && blogImage?.url
@@ -106,7 +105,36 @@ export default function Magazine({ data, categories, contents }) {
                                                     <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
                                                 <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
                                             </div>
-                                        )
+                                        ) 
+                                    })
+                                }
+                                <Newsletter/>
+                                {
+                                    blogs?.slice(3)?.map((blog) => {
+                                        const post = blog?.attributes
+                                        const blogImage = post.blogImage?.data?.attributes
+                                        const blogImageUrl = blogImage && blogImage?.url
+                                        return (
+                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
+                                                <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
+                                                    <a className="w-[100%] ">
+                                                        <div className='w-[100%] h-[100%]' >
+                                                            {
+                                                                blogImageUrl ? (
+                                                                    <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
+                                                                ) : (
+                                                                    <Image className='rounded' src={defaultBlogImage} layout="responsive" alt="" />
+
+                                                                )
+                                                            }
+                                                        </div>
+                                                    </a>
+                                                </Link>
+                                                <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref>
+                                                    <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
+                                                <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                            </div>
+                                        ) 
                                     })
                                 }
 
@@ -126,7 +154,7 @@ export default function Magazine({ data, categories, contents }) {
 
                                 {/* pagination */}
                                 <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
-                                    {pageCount < 2 === false && (
+                                    {pageCount > 1 && (
                                         <ReactPaginate
                                             onPageChange={(n) => router.push(`/humble-mind?page=${n.selected + 1}`)}
                                             pageCount={pageCount}
@@ -197,7 +225,7 @@ export async function getServerSideProps(ctx) {
         }).catch((error) => {
             console.log(error)
         })
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=8&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`)
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=6&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`)
         .then((result) => {
             data = result.data
         }).catch((error) => {

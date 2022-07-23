@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
 import Layout from "../../../../components/Layout";
 import Image from 'next/image'
@@ -6,21 +6,39 @@ import styles from './blog.module.css'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link'
-
-
-import UnemploymentTrap from '../../../../assets/imgs/Unemployment-Trap-min-600x423.jpg'
-import UndergroundEconomy from '../../../../assets/imgs/Underground-Economy-min-600x423.jpg'
+import qs from 'qs'
 import htdigitalmarketingsidebar from '../../../../assets/imgs/ht-digital-marketing-sidebar.png'
 import hthumbletradersidebar from '../../../../assets/imgs/ht-humble-trader-sidebar.png'
 import hthumblevotersidebar from '../../../../assets/imgs/ht-humble-voter-sidebar.png'
 
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import GetAQuote from '../../../../components/GetAQuote';
 
-export default function Blog({ data }) {
+export default function Blog({ data, slug }) {
     let blog = data.data[0]?.attributes
     const blogImage = blog?.blogImage?.data?.attributes
     const blogImageUrl = blogImage && blogImage?.url
+
+    const category =  blog?.category?.data?.attributes?.slug
+
+    const [relatedBlogs, setRelatedBlogs] = useState([])
+
+    const query = qs.stringify({
+        populate: {
+            blogs: {
+                populate: '*'
+            },
+        }
+    })
+    const getRelatedBlogs = async () => {
+        await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&${query}`).then(({data})=> {
+            setRelatedBlogs(data?.data[0].attributes?.blogs?.data?.filter((item)=> item?.attributes?.slug !== slug))
+        }).catch((error)=> {
+            console.log(error);
+        })
+    }
+    useEffect(()=> {
+        getRelatedBlogs()
+    }, [])
     return (
         <>
             <Head>
@@ -181,52 +199,49 @@ export default function Blog({ data }) {
 
 
                 {/* Magazines */}
-                <section className='heading md:my-20 '>
-                    <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className=' md:flex flex-wrap justify-around '>
+                {
+                    relatedBlogs?.length > 0 && (
+                    <section className='heading md:my-20 '>
+                        <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
+                            <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
+                            <h2 className=' mx-auto text-[40px] md:text-[50px] font-bold text-[#023A51] leading-[59px] md:leading-[69px] ' >Countinue Reading</h2>
                                 <div className='md:flex flex-wrap justify-around'>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] ' >
-                                        <Image className='rounded' src={UnemploymentTrap} alt="image" />
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Friendly Assessment 2021</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                    <div className='bg-[#fff] cursor-pointer transition p-10 p-10 text-center flex flex-col items-center rounded mb-2 md:w-[48%] '>
-                                        <Image className='rounded' src={UndergroundEconomy} alt="image" />
-                                        <p className='text-[30px] text-center md:text-[40px] text-[#023A51] pt-3 leading-[40px] hover:text-[#2cbc63] ease-in duration-300 ' >Approaches to Increase Online Dating Sites Profile (for Women)</p>
-                                        <p className='text-[12px] mt-4 hover:text-[#2cbc63]' >April 29, 2022|Uncategorized</p>
-                                    </div>
-                                </div>
+                                    {
+                                        relatedBlogs?.slice(0,3)?.map((blog) => {
+                                            const post = blog?.attributes
+                                            const blogImage = post.blogImage?.data?.attributes
+                                            const blogImageUrl = blogImage && blogImage?.url
+                                            return (
+                                                <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
+                                                    <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
+                                                        <a className="w-[100%] ">
+                                                            <div className='w-[100%] h-[100%]' >
+                                                                {
+                                                                    blogImageUrl ? (
+                                                                        <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
+                                                                    ) : (
+                                                                        <Image className='rounded' src={defaultBlogImage} layout="responsive" alt="" />
 
-                                <div className='paginations flex justify-center md:justify-end md:w-[100%] '>
-                                    <div className='flex w-[200px]  '>
-                                        <p className='text-[12px] flex cursor-pointer items-center mr-2' ><BsChevronLeft /> Previuos  </p>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border' >1</span>
-                                        <span className='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63] ' >2</span>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border  ' >3</span>
-                                        <p className='text-[12px] flex cursor-pointer items-center mr-2' >Next <BsChevronRight /> </p>
-                                    </div>
+                                                                    )
+                                                                }
+                                                            </div>
+                                                        </a>
+                                                    </Link>
+                                                    <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref>
+                                                        <a className='text-[26px] text-center font-semibold md:text-[32px] text-[#023A51] pt-3 leading-[35px] md:leading-[45px] hover:text-[#2cbc63] ease-in duration-300 '>{blog.attributes.title}</a></Link>
+                                                    <p className='text-[16px] mt-4 ' >{new Date(post.publishedAt).toDateString()} | <a href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}`} className='hover:text-[#2cbc63] font-bold '> {post.category.data?.attributes.name ? post.category.data?.attributes.name : 'Uncategorized'}</a></p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                    )
+                }
+                
 
 
                 {/* Get a Quote */}
@@ -243,6 +258,7 @@ export async function getServerSideProps(ctx) {
     return {
         props: {
             data,
+            slug
         },
     };
 }

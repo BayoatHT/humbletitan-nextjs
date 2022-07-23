@@ -13,6 +13,7 @@ import {
 import Newcard from "../../components/Newcard";
 import Layout from "../../components/Layout";
 import { ThreeDots } from "react-loading-icons";
+import Newsletter from "../../components/Newsletter";
 
 export default function Home() {
 	const [allcompany, setAllcompany] = useState([]);
@@ -198,27 +199,66 @@ export default function Home() {
 					/>
 				</div>
 
+                
+
 				<div className="pt-5_abcd pb-5_abcd">
 					<div className="abcd_container">
 						<div className="abcd_row keyvaluecards_abcd abcd_justify-betwee n  row_wraper_abcd">
-							{allcompany.length > 0 ?
-								allcompany?.map(
-									(data, kay) =>
-										data?.Info?.companyname && (
-											<Newcard data={data} key={kay} />
-										)
-								) : ( 
-								<div className="text-[#000] w-[100%] flex justify-center">
-									<ThreeDots className="w-[50px] h-[50px]" fill  />
-								</div>
+							{
+								allcompany.length < 1 && (
+									<div className="text-[#000] w-[100%] flex justify-center">
+										<ThreeDots className="w-[50px] h-[50px]" fill="#023A51"  />
+									</div>
 								)
-								}
-							{/* <div className="abcd_col-12 abcd_row">
+							}
+
+							{
+								allcompany?.slice(0,7)?.map(
+									(data, key) =>
+										data?.Info?.companyname && (
+											<Newcard data={data} key={key} /> 
+											
+										) 
+								)
+							}
+							{
+								allcompany.length > 0 && (
+									<Newsletter/>
+								)
+							}
+							{
+									allcompany?.slice(7, 14)?.map(
+										(data, key) =>
+										data?.Info?.companyname && (
+											<Newcard data={data} key={key} /> 
+											
+										) 
+									)
+								
+							}
+							{
+								allcompany.length > 0 && (
+									<Newsletter/>
+								)
+							}
+							{
+								allcompany?.slice(14,21)?.map(
+									(data, key) =>
+										data?.Info?.companyname && (
+											<Newcard data={data} key={key} /> 
+											
+										) 
+								)
+							}
+
+							
+
+							<div className="abcd_col-12 abcd_row">
                                 <div className='FooterPagination'>
                                     <Pagination increament={increament} decreament={decreament} pageNo={pageNo} moveBackward={moveBackward} moveForward={moveForward} />
 
                                 </div>
-                            </div> */}
+                            </div>
 						</div>
 					</div>
 				</div>

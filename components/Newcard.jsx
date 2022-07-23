@@ -24,7 +24,7 @@ const Newcard = ({ data }) => {
     return (
         <>
 
-            <div className="abcd_col-4 widthon100-abcd full-width_abcd keyvaluecard_abcd">
+            <div className="abcd_col-4 widthon100-abcd mb-2 full-width_abcd keyvaluecard_abcd">
                 <div className='new_card_top_abcd'>
                     <div className='card_logo_set'>
                         {/* {image ? <img className='' src={data?.Info?.image} alt={data?.Symbol} /> : */}

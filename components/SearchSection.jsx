@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../utils/store";
-import { Rings } from 'react-loading-icons'
+import { Puff } from 'react-loading-icons'
 
 
 export default function SearchSection(props) {
@@ -14,7 +14,7 @@ export default function SearchSection(props) {
     if (address == "") {
       alert("Input your full address");
     } else {
-      setSearchText(<Rings />);
+      setSearchText(<Puff />);
       dispatch({ type: "ADD_VOTER_ADDRESS", payload: address });
       localStorage.setItem("voter_address", address);
       router.push(`/politics/election-center/${address}`);
