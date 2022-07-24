@@ -50,7 +50,7 @@ export default function Blog({ data, slug }) {
                     <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
                         <div className='mx-auto w-10/12 md:w-8/12 '>
                             <div >
-                                <h1 className=' text-[50px] md:text-[60px] text-[#023A51] leading-[59px] md:leading-[69px] ' >{blog?.title}</h1>
+                                <h1 className=' text-[40px] md:text-[50px] font-semibold text-[#023A51] leading-[59px] md:leading-[69px] ' >{blog?.title}</h1>
                                 <p className='text-[26px] leading-[36px] text-[#023A51] py-5 '>{blog?.description} </p>
                                 <div className='flex justify-between py-6 text-[#023A51]'>
                                     <div className='flex'>
@@ -205,7 +205,7 @@ export default function Blog({ data, slug }) {
                         <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                             <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <h2 className=' mx-auto text-[40px] md:text-[50px] font-bold text-[#023A51] leading-[59px] md:leading-[69px] ' >Countinue Reading</h2>
-                                <div className='md:flex flex-wrap justify-around'>
+                                <div className='flex flex-wrap justify-around'>
                                     {
                                         relatedBlogs?.slice(0,3)?.map((blog) => {
                                             const post = blog?.attributes

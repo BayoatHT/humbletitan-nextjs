@@ -66,7 +66,7 @@ export default function OurMission({ contents }) {
                     <div className=" container w-12/12 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
                             <div className='md:flex items-center justify-around'>
-                                <div className='bg-[#fff] transition p-10 flex flex-col items-center rounded mb-2 md:w-[50%] ' >
+                                <div className='bg-[#fff] transition p-4 md:p-10 flex flex-col items-center rounded mb-2 md:w-[50%] ' >
 
                                     <h2 className='text-[30px] font-bold md:text-[40px] text-[#59667d] pt-3 leading-[38px] md:leading-[48px] ' >{donate.heading1}</h2>
                                     <h2 className='text-[30px] font-bold md:text-[40px] text-[#00989e] pt-3 leading-[38px] md:leading-[48px] ' >{donate.heading2}</h2>

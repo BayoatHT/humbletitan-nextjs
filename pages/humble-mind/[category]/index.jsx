@@ -85,14 +85,14 @@ export default function Category({ category, name, blogs }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='flex flex-col md:flex-row flex-wrap justify-around '>
+                            <div className='flex md:flex-row flex-wrap justify-around '>
                                     {
                                         blogsLoaded?.map((blog) => {
                                             const post = blog?.attributes
                                             const blogImage = post?.blogImage?.data?.attributes
                                             const blogImageUrl = blogImage && blogImage?.url
                                             return (
-                                                <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[33%] '>
+                                                <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 sm:w-[48%] md:w-[33%] '>
                                                     <Link href={`/humble-mind/${post?.category?.data?.attributes?.slug ? post?.category?.data?.attributes?.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                         <a className="w-[100%] ">
                                                             <div className='w-[100%] h-[100%]'>
@@ -128,7 +128,7 @@ export default function Category({ category, name, blogs }) {
                             {/* Load more button */}
                             {
                                 blogsLength > page && (
-                                    <div className='bg-[#f6f7f8] w-[100%] rounded cursor-pointer hover:bg-[#e7ecf0] group transition duration-150 '>
+                                    <div className='bg-[#f6f7f8] mx-auto w-[90%] rounded cursor-pointer hover:bg-[#e7ecf0] group transition duration-150 '>
                                         <a onClick={() => loadMorePosts()} ><p className='uppercase text-[#023A51] py-2 text-center text-[24px] group-hover:text-[25px] '>Load More Posts</p></a>
                                     </div>
                                 )

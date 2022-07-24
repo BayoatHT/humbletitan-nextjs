@@ -79,20 +79,20 @@ export default function Magazine({ data, categories, contents }) {
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
                         <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className='flex flex-col md:flex-row flex-wrap justify-around'>
+                            <div className='flex md:flex-row flex-wrap justify-around'>
                                 {
                                     blogs?.slice(0,3)?.map((blog) => {
                                         const post = blog?.attributes
                                         const blogImage = post.blogImage?.data?.attributes
                                         const blogImageUrl = blogImage && blogImage?.url
                                         return (
-                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
+                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-10 md:mb-4 sm:w-[48%] md:w-[32%] '>
                                                 <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                     <a className="w-[100%] ">
-                                                        <div className='w-[100%] h-[100%]' >
+                                                        <div className=' w-[100%] h-[100%]' >
                                                             {
                                                                 blogImageUrl ? (
-                                                                    <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt="" />
+                                                                    <Image className='rounded' src={blogImageUrl} layout="responsive" height={blogImage?.height ? blogImage?.height : '100%'} width={blogImage?.width ? blogImage?.width : '100%'} alt={blogImage?.name} />
                                                                 ) : (
                                                                     <Image className='rounded' src={defaultBlogImage} layout="responsive" alt="" />
 
@@ -115,7 +115,7 @@ export default function Magazine({ data, categories, contents }) {
                                         const blogImage = post.blogImage?.data?.attributes
                                         const blogImageUrl = blogImage && blogImage?.url
                                         return (
-                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-2 md:w-[32%] '>
+                                            <div key={blog?.id} className='bg-[#fff] p-2 transition text-center flex flex-col items-center rounded mb-10 md:mb-4 sm:w-[48%] md:w-[32%] '>
                                                 <Link href={`/humble-mind/${post.category.data?.attributes.slug ? post.category.data?.attributes.slug : 'uncategorized'}/blogs/${post?.slug}`} passHref >
                                                     <a className="w-[100%] ">
                                                         <div className='w-[100%] h-[100%]' >
