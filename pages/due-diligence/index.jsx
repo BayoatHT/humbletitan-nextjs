@@ -22,14 +22,16 @@ export default function Home() {
 	const [lastPageNo, setLastPageNo] = useState(1);
 	const [pageNo, setPageNo] = useState(1);
 	const [search, setSearch] = useState([]);
-
-	console.log(mainFilter);
+	const [companiesRenderable, setCompaniesRenderable] = useState(0);
+	const [isLoading, setIsLoading] = useState(false)
+	
 
 	useEffect(() => {
 		setPageNo(1);
 	}, [mainFilter]);
 
 	const filteration = (name, pNo) => {
+		setIsLoading(true)
 		let url;
 		switch (mainFilter) {
 			case "Country":
@@ -50,6 +52,7 @@ export default function Home() {
 				setAllcompany(
 					res.data[0]?.items ? res.data[0]?.items : res.data[0]
 				);
+				setIsLoading(false)
 				let lastpNo = Math.ceil(res.data[1].itemLength[0] / 30);
 				setLastPageNo(lastpNo);
 			})
@@ -75,12 +78,14 @@ export default function Home() {
 					let lastpNo = Math.ceil(res.data[1].itemLength / 30);
 					setLastPageNo(lastpNo);
 					setAllcompany(res?.data[0]?.items);
+					setIsLoading(false)
 				})
 				.catch((err) => {
 					console.log(err.message);
 				});
 	};
 	const handleChangeSearch = (newValue) => {
+		setIsLoading(true)
 		axios
 			.get(
 				`https://humbletitanapi.herokuapp.com/companynames?companyname=${newValue?.value}`
@@ -88,6 +93,7 @@ export default function Home() {
 			.then((res) => {
 				console.log("res", res);
 				setAllcompany(res?.data);
+				setIsLoading(false)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -95,6 +101,7 @@ export default function Home() {
 	};
 
 	const getData = (pageNo) => {
+		setIsLoading(true)
 		const url = `https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`;
 		axios
 			.get(url)
@@ -102,6 +109,7 @@ export default function Home() {
 				let lastpNo = Math.ceil(res?.data[1]?.itemLength / 30);
 				setLastPageNo(lastpNo);
 				setAllcompany(res?.data[0]?.items);
+				setIsLoading(false)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -120,10 +128,12 @@ export default function Home() {
 			});
 	};
 	useEffect(() => {
+		setIsLoading(true)
 		getData(pageNo);
 		getSearch();
 	}, []);
 
+	
 	const moveForward = () => {
 		setPageNo(lastPageNo);
 		mainFilter !== "All Tickers"
@@ -146,6 +156,10 @@ export default function Home() {
 		setPageNo(1);
 		mainFilter !== "All Tickers" ? filteration(filter, 1) : getData(1);
 	};
+
+	console.log("allcompany",allcompany?.length, allcompany)
+
+	console.log(companiesRenderable);
 
 	return (
 		<div>
@@ -205,7 +219,7 @@ export default function Home() {
 					<div className="abcd_container">
 						<div className="abcd_row keyvaluecards_abcd abcd_justify-betwee n  row_wraper_abcd">
 							{
-								allcompany.length < 1 && (
+								isLoading && (
 									<div className="text-[#000] w-[100%] flex justify-center">
 										<ThreeDots className="w-[50px] h-[50px]" fill="#023A51"  />
 									</div>
@@ -213,7 +227,7 @@ export default function Home() {
 							}
 
 							{
-								allcompany?.slice(0,7)?.map(
+								!isLoading && allcompany?.slice(0,6)?.map(
 									(data, key) =>
 										data?.Info?.companyname && (
 											<Newcard data={data} key={key} /> 
@@ -222,12 +236,12 @@ export default function Home() {
 								)
 							}
 							{
-								allcompany.length > 0 && (
+								!isLoading && allcompany?.length > 0 && (
 									<Newsletter/>
 								)
 							}
 							{
-									allcompany?.slice(7, 14)?.map(
+									!isLoading && allcompany?.slice(6, 12)?.map(
 										(data, key) =>
 										data?.Info?.companyname && (
 											<Newcard data={data} key={key} /> 
@@ -237,12 +251,27 @@ export default function Home() {
 								
 							}
 							{
-								allcompany.length > 0 && (
+								!isLoading && allcompany?.length > 11 && (
 									<Newsletter/>
 								)
 							}
 							{
-								allcompany?.slice(14,21)?.map(
+								!isLoading && allcompany?.slice(12,18)?.map(
+									(data, key) =>
+										data?.Info?.companyname && (
+											<Newcard data={data} key={key} /> 
+											
+										) 
+								)
+							}
+
+							{
+								!isLoading && allcompany?.length > 17 && (
+									<Newsletter/>
+								)
+							}
+							{
+								!isLoading && allcompany?.slice(18,24)?.map(
 									(data, key) =>
 										data?.Info?.companyname && (
 											<Newcard data={data} key={key} /> 

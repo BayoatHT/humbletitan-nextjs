@@ -22,9 +22,18 @@ export default function StateNews({ stateName, articles }) {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
         },
@@ -32,7 +41,9 @@ export default function StateNews({ stateName, articles }) {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          screenLeft: 5,
+          slidesToShow: 1.03,
+          accessibility: true,
           slidesToScroll: 1,
         },
       },
@@ -52,7 +63,7 @@ export default function StateNews({ stateName, articles }) {
               href={`${article.link}`}
               passHref
             ><a>
-                <div className="flex flex-col card m-[10px] border mx-[10px] h-[300px] rounded-lg">
+                <div className="flex flex-col card m-[10px] border mx-[10px] ml-4 h-[300px] rounded-lg">
                   <Image
                     src={`/api/imageProxy?url=${encodeURIComponent(
                       article.media
