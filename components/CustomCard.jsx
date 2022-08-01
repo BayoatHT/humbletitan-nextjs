@@ -38,7 +38,7 @@ const CustomCard = ({ customPages, query, headerText }) => {
                       </div>
                       <div className="abcd_row abcd_justify-between p-1_abcd abcd_wrap">
                         <div className="abcd_col-12 custom-card-full-width">
-                          <p>{headerText?.para}</p>
+                          <p>{headerText?.description}</p>
                         </div>
                       </div>
                     </div>
@@ -164,7 +164,7 @@ const CustomCard = ({ customPages, query, headerText }) => {
                         </div>
                       </div>
                       <Link
-                        href={`/companydetail?symbol=${item[0]?.symbol}`}
+                        href={`/due-diligence/${item[0]?.symbol.toLowerCase()}-stock`}
                         className="profile_font"
                       >
                         <a>
@@ -300,7 +300,7 @@ const CustomCard = ({ customPages, query, headerText }) => {
                       </div>
                     </div>
                     <Link
-                      href={`/companydetail?symbol=${item[0]?.symbol}`}
+                      href={`/due-diligence/${item[0]?.symbol.toLowerCase()}-stock`}
                       className="profile_font"
                     >
                       <a>

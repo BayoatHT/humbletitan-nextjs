@@ -8,7 +8,7 @@ export default function Home({ formedOfficials }) {
     return (
         <Layout>
             <Head>
-                <title>United States elected officials</title>
+                <title>United States Elected Officials</title>
                 <meta name="description" content="true" />
         <meta
           name="keywords"

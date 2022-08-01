@@ -68,7 +68,6 @@ export default function Category({ category, name, blogs }) {
     <>
       <Head>
         <title>
-          {' '}
           {name
             ? name
             : category === 'uncategorized'

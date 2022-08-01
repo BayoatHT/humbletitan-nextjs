@@ -63,7 +63,7 @@ export default function Blog({ data, slug }) {
         <meta name="robots" content="noindex" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:description" content={header?.description} />
+        <meta property="og:description" content={blog?.description} />
         <meta property="og:url" content="https://www.humbletitan.com/" />
         <meta property="og:site_name" content="Humble Titan" />
         <meta
@@ -241,7 +241,7 @@ export default function Blog({ data, slug }) {
                 </section>
 
 
-                {/* Magazines */}
+                {/* Magazines - Continue Reading */}
                 {
                     relatedBlogs?.length > 0 && (
                     <section className='heading md:my-20 '>

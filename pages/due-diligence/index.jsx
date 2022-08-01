@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Filter from '../../components/Filter'
 import Pagination from '../../components/Pagination'
+import Link from 'next/link'
+import Image from 'next/image'
 import {
   countryFilters,
   industryFilters,
@@ -14,6 +16,7 @@ import Newcard from '../../components/Newcard'
 import Layout from '../../components/Layout'
 import { ThreeDots } from 'react-loading-icons'
 import Newsletter from '../../components/Newsletter'
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 
 export default function Home() {
   const [allcompany, setAllcompany] = useState([])
@@ -24,12 +27,13 @@ export default function Home() {
   const [search, setSearch] = useState([])
   const [companiesRenderable, setCompaniesRenderable] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [customPages, setCustomPages] = useState([])
 
   useEffect(() => {
     setPageNo(1)
   }, [mainFilter])
 
-  const filteration = (name, pNo) => {
+  const filteration = async (name, pNo) => {
     setIsLoading(true)
     let url
     switch (mainFilter) {
@@ -46,7 +50,7 @@ export default function Home() {
         url = `https://humbletitanapi.herokuapp.com/marketkCap/${name}?pageNo=${pNo}`
         break
     }
-    axios
+    await axios
       .get(url)
       .then((res) => {
         setAllcompany(res.data[0]?.items ? res.data[0]?.items : res.data[0])
@@ -65,10 +69,10 @@ export default function Home() {
     setFilter(filter)
     filteration(filter, pageNo)
   }
-  const handleChangeMainFilter = (newValue) => {
+  const handleChangeMainFilter = async (newValue) => {
     setMainFilter(newValue.value)
     newValue.value === 'All Tickers' &&
-      axios
+      await axios
         .get(`https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`)
         .then((res) => {
           let lastpNo = Math.ceil(res.data[1].itemLength / 30)
@@ -80,9 +84,9 @@ export default function Home() {
           console.log(err.message)
         })
   }
-  const handleChangeSearch = (newValue) => {
+  const handleChangeSearch = async (newValue) => {
     setIsLoading(true)
-    axios
+    await axios
       .get(
         `https://humbletitanapi.herokuapp.com/companynames?companyname=${newValue?.value}`,
       )
@@ -96,25 +100,37 @@ export default function Home() {
       })
   }
 
-  const getData = (pageNo) => {
+  const getData = async (pageNo) => {
     setIsLoading(true)
     const url = `https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`
-    axios
+    await axios
       .get(url)
       .then((res) => {
         let lastpNo = Math.ceil(res?.data[1]?.itemLength / 30)
+        setIsLoading(false)
         setLastPageNo(lastpNo)
         setAllcompany(res?.data[0]?.items)
-        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  const getSearch = () => {
+  const getCustomPages = async ()=> {
+    await axios
+      .get('https://humbletitanapi.herokuapp.com/getAllCustomUrls')
+      .then(({ data }) => {
+        setCustomPages(data)
+        console.log("custompages", data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const getSearch = async () => {
     const url = `https://humbletitanapi.herokuapp.com/companynames`
-    axios
+    await axios
       .get(url)
       .then((res) => {
         setSearch(res?.data)
@@ -127,6 +143,7 @@ export default function Home() {
     setIsLoading(true)
     getData(pageNo)
     getSearch()
+    getCustomPages()
   }, [])
 
   const moveForward = () => {
@@ -305,6 +322,38 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+
+        {/* Stocks - More on the Go */}
+        { customPages.length > 0 &&
+                     (
+                    <section className='heading md:my-20 '>
+                        <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
+                            <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
+                            <h2 className=' mx-auto text-[30px] md:text-[40px] text-center font-bold text-[#023A51] leading-[59px] md:leading-[69px] ' >Explore More</h2>
+                                <div className='flex flex-wrap justify-around'>
+                                  {
+                                    customPages?.map((item, index)=> {
+                                      return (
+                                        <Link href={`/due-diligence/filtered/${item?.url}`} passHref key={index} >
+                                          <a className='w-[100%] flex flex-col sm:w-[48%] md:w-[32%] bg-[#023A51] rounded-lg p-4'>
+                                            <h2 className='text-[22px] md:text-[24px] font-semibold text-[#2cbc63]' >{item?.heading}</h2>
+                                            <p className='text-[18px] md:text-[20px] text-[#f6f7f8] truncate-2 flex-1 '>{item?.description}</p>
+                                            <div className="flex justify-center">
+                                              <Green_rounded_btn href={`/due-diligence/filtered/${item?.url}`}>See Details</Green_rounded_btn>
+                                            </div>
+                                          </a>
+                                        </Link>
+                                      )
+                                    })
+                                  }
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    )
+                }
       </Layout>
     </div>
   )

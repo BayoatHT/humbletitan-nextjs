@@ -22,7 +22,7 @@ export default function State({
   return (
     <Layout>
       <Head>
-                <title>{`election details for ${index}`}</title>
+                <title>{`Election Details for ${index}`}</title>
                 <meta name="description" content="true" />
         <meta
           name="keywords"

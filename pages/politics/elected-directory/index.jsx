@@ -11,7 +11,7 @@ export default function index({ officials }) {
     <>
       <Layout>
       <Head>
-                <title>United States Elected directory</title>
+                <title>United States Elected Directory</title>
                 <meta name="description" content="" />
         <meta
           name="keywords"
