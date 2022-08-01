@@ -2,7 +2,6 @@ import Link from 'next/link'
 
 const CustomCard = ({ customPages, query, headerText }) => {
   const MAX_LENGTH = 300
-  console.log(customPages, query)
   return (
     <>
       <div className="abcd_container pt-5_abcd pb-5_abcd">

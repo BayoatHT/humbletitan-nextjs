@@ -336,7 +336,7 @@ export default function Home() {
                                     customPages?.map((item, index)=> {
                                       return (
                                         <Link href={`/due-diligence/filtered/${item?.url}`} passHref key={index} >
-                                          <a className='w-[100%] flex flex-col sm:w-[48%] md:w-[32%] bg-[#023A51] rounded-lg p-4'>
+                                          <a className='w-[100%] flex flex-col sm:w-[48%] md:w-[32%] bg-[#023A51] rounded-lg p-4 mb-4'>
                                             <h2 className='text-[22px] md:text-[24px] font-semibold text-[#2cbc63]' >{item?.heading}</h2>
                                             <p className='text-[18px] md:text-[20px] text-[#f6f7f8] truncate-2 flex-1 '>{item?.description}</p>
                                             <div className="flex justify-center">
