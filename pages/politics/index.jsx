@@ -15,6 +15,44 @@ export default function index({ majorElections }) {
     <>
       <Head>
         <title>Politics - Humble Titan</title>
+        <meta name="description" content="Find out where to vote. See what's on the ballot. Contact your election officials." /> 
+        <meta
+          name="keywords"
+          content="stocks,The Humble Voter, polictics, ballot"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="5 days" />
+        <meta name="author" content="humbletitan.com" />
+        <meta charset="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <meta name="robots" content="noindex" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="true" />
+        <meta property="og:description" content="true" />
+        <meta property="og:url" content="true" />
+        <meta property="og:site_name" content="true" />
+        <meta property="og:image" content="true" />
+        <meta name="twitter:card" content="true" />
+        <meta name="twitter:site" content="true" />
+        <meta name="twitter:creator" content="true" />
+        <meta name="twitter:title" content="true" />
+        <meta name="twitter:description" content="true" />
+        <meta name="twitter:domain" content="true" />
+        <meta name="twitter:image" content="true" />
+        <meta name="twitter:url" content="true" />
+        <meta itemProp="image" content="true" />
+        <meta itemProp="name" content="true" />
+        <meta itemProp="description" content="true" />
+        <meta name="geo.region" content="true" />
+        <meta name="geo.placename" content="true" />
+        <meta name="geo.position" content="true" />
+        <meta name="ICBM" content="true" />
+        <meta name="true" content="true" />
+        <meta name="next-head-count" content="32" />
       </Head>
       <Layout >
         {/* Hero */}

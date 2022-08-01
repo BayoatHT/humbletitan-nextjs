@@ -1,15 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
-import Layout from "../../components/Layout";
-import Accordion from "../../components/accordion/Accordion"
-import Typewriter from "typewriter-effect";
-import ReactMarkdown from 'react-markdown';
+import Layout from '../../components/Layout'
+import Accordion from '../../components/accordion/Accordion'
+import Typewriter from 'typewriter-effect'
+import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 
 import * as Fontawesome from 'react-icons/fa'
-import { FaPlus, FaNewspaper, FaPhoneVolume, FaCashRegister, FaChevronDown } from 'react-icons/fa'
-import { IoMdCheckmarkCircle, IoMdSearch, } from 'react-icons/io'
+import {
+  FaPlus,
+  FaNewspaper,
+  FaPhoneVolume,
+  FaCashRegister,
+  FaChevronDown,
+} from 'react-icons/fa'
+import { IoMdCheckmarkCircle, IoMdSearch } from 'react-icons/io'
 import { IoDesktopSharp } from 'react-icons/io5'
 import { AiOutlineDesktop } from 'react-icons/ai'
 import { GoRadioTower, GoMailRead } from 'react-icons/go'
@@ -39,147 +45,246 @@ import MyJourneyChapter2 from '../../assets/imgs/My-journey-Chapter-2.jpg'
 import MyJourneyChapter1 from '../../assets/imgs/My-journey-Chapter-1.jpg'
 import ByBayo from '../../assets/imgs/By-Bayo-200x121.png'
 import axios from 'axios'
-import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
-
-
+import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 
 export default function Bayo_search_consultant({ contents }) {
-    const { discover_my_story_text, header, hero, myIntro_section, feedback, my_quote, what_I_offer_section, what_you_get, who_I_am, Iam_trustedBy_section, Im_Impressed_by, chapters, iconClassName, organizations_I_work_with, questions_to_ask, } = contents.data.attributes
-    return (
-        <>
-            <Head>
-                <title>{header.title}</title>
-            </Head>
-            <Layout>
-                {/* Hero */}
-                <section className='heading py-10 bg-[#e0ecf0]'>
-                    <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
-                        <div className='mx-auto flex justify-center w-10/12 md:w-11/12 '>
-                            <div className='md:w-[60%]' >
-                                <h1 className=' text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ' >{hero.heading}</h1>
-                                <p className=' text-[24px] text-center md:text-[26px] text-[#023A51] pt-3 leading-[36px] ' >{hero.description}</p>
-                            </div>
+  const {
+    discover_my_story_text,
+    header,
+    hero,
+    myIntro_section,
+    feedback,
+    my_quote,
+    what_I_offer_section,
+    what_you_get,
+    who_I_am,
+    Iam_trustedBy_section,
+    Im_Impressed_by,
+    chapters,
+    iconClassName,
+    organizations_I_work_with,
+    questions_to_ask,
+  } = contents.data.attributes
+  return (
+    <>
+      <Head>
+        <title>{header.title}</title>
+        <meta name="description" content={header?.description} />
+        <meta
+          name="keywords"
+          content="stocks, Marketing Consultant, SEO, polictics,"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="5 days" />
+        <meta name="author" content="humbletitan.com" />
+        <meta charset="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <meta name="robots" content="noindex" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="true" />
+        <meta property="og:description" content="true" />
+        <meta property="og:url" content="true" />
+        <meta property="og:site_name" content="true" />
+        <meta property="og:image" content="true" />
+        <meta name="twitter:card" content="true" />
+        <meta name="twitter:site" content="true" />
+        <meta name="twitter:creator" content="true" />
+        <meta name="twitter:title" content="true" />
+        <meta name="twitter:description" content="true" />
+        <meta name="twitter:domain" content="true" />
+        <meta name="twitter:image" content="true" />
+        <meta name="twitter:url" content="true" />
+        <meta itemProp="image" content="true" />
+        <meta itemProp="name" content="true" />
+        <meta itemProp="description" content="true" />
+        <meta name="geo.region" content="true" />
+        <meta name="geo.placename" content="true" />
+        <meta name="geo.position" content="true" />
+        <meta name="ICBM" content="true" />
+        <meta name="true" content="true" />
+        <meta name="next-head-count" content="32" />
+      </Head>
+      <Layout>
+        {/* Hero */}
+        <section className="heading py-10 bg-[#e0ecf0]">
+          <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
+            <div className="mx-auto flex justify-center w-10/12 md:w-11/12 ">
+              <div className="md:w-[60%]">
+                <h1 className=" text-[50px] text-center md:text-[60px] text-[#023A51] pt-3 leading-[69px] ">
+                  {hero.heading}
+                </h1>
+                <p className=" text-[24px] text-center md:text-[26px] text-[#023A51] pt-3 leading-[36px] ">
+                  {hero.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="heading py-20 bg-[#e0ecf0]">
+          <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
+            <div className="mx-auto w-10/12 md:w-11/12 ">
+              <div className="">
+                <p className=" text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ">
+                  {myIntro_section.heading}
+                </p>
+                <p className=" text-[50px] md:text-[70px] font-semibold pt-3 leading-[59px] md:leading-[79px] tracking-[-2px] ">
+                  {myIntro_section.heading2}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* I ensure organizations succeed online */}
+        <section className="heading my-20">
+          <div className=" container w-12/12 mx-auto max-w-screen-xl">
+            <div className="mx-auto flex w-10/12 md:w-11/12  ">
+              <div className="md:flex mx-auto justify-between">
+                <div className="text-[#023A51] w-[100%] md:mr-20 ">
+                  <p className=" text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] ">
+                    {myIntro_section.titleBig}
+                  </p>
+                  <p className="text-[30px] my-10 ">
+                    {myIntro_section.description}
+                  </p>
+                  <Green_rounded_btn href={myIntro_section.actionButton.href}>
+                    {myIntro_section.actionButton.label}
+                  </Green_rounded_btn>
+                  <div className="my-10 md:my-0 ">
+                    {myIntro_section.abilities?.map((item) => {
+                      return (
+                        <div key={item.id} className="flex ">
+                          <div className=" text-[#f86011] text-[22px] translate-y-[22px] ">
+                            {React.createElement(Fontawesome[item.iconClass])}
+                          </div>
+                          <p className="text-[22px] font-light flex py-4 ml-[12px] ">
+                            {item.text}
+                          </p>
                         </div>
-                    </div>
-                </section>
-                <section className='heading py-20 bg-[#e0ecf0]'>
-                    <div className=" container w-12/12 mx-auto bg-[#e0ecf0] max-w-screen-xl">
-                        <div className='mx-auto w-10/12 md:w-11/12 '>
-                            <div className='' >
-                                <p className=' text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >{myIntro_section.heading}</p>
-                                <p className=' text-[50px] md:text-[70px] font-semibold pt-3 leading-[59px] md:leading-[79px] tracking-[-2px] ' >{myIntro_section.heading2}</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* I ensure organizations succeed online */}
-                <section className='heading my-20'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto flex w-10/12 md:w-11/12  '>
-                            <div className='md:flex mx-auto justify-between' >
-                                <div className='text-[#023A51] w-[100%] md:mr-20 ' >
-                                    <p className=' text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px] '>{myIntro_section.titleBig}</p>
-                                    <p className='text-[30px] my-10 ' >{myIntro_section.description}</p>
-                                    <Green_rounded_btn href={myIntro_section.actionButton.href} >{myIntro_section.actionButton.label}</Green_rounded_btn>
-                                    <div className='my-10 md:my-0 '>
-                                        {
-                                            myIntro_section.abilities?.map((item) => {
-                                                return (
-                                                    <div key={item.id} className="flex " >
-                                                        <div className=' text-[#f86011] text-[22px] translate-y-[22px] '>
-                                                            {React.createElement(Fontawesome[item.iconClass])}
-                                                        </div>
-                                                        <p className='text-[22px] font-light flex py-4 ml-[12px] ' >{item.text}</p>
-                                                    </div>
-
-
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  ' color='#f86011' /> Establish a strong presence online </p>
+                      )
+                    })}
+                  </div>
+                  {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  ' color='#f86011' /> Establish a strong presence online </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Reach more people than ever before </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
                                     <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p> */}
-                                </div>
-                                <div className=' w-[100%] h-[100%]' >
-                                    <div className=' relative ' style={{ backgroundImage: `url(${myIntro_section.image.data.attributes.url})`, width: '100%', height: '100%', backgroundPosition: "center top", backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-
-                                        <div className='absolute bottom-0 left-0 text-[#023a51] w-[80%] p-6 bg-[#fff] shadow-xl '>
-                                            <img className='' width={150} height={25} src={myIntro_section.my_quote.logo.data.attributes.url} alt="image" />
-                                            <p className='text-[20px] font-light '>{myIntro_section.my_quote.text}</p>
-                                            <p className='text-[22px] py-3 font-bold' >{myIntro_section.my_quote.name}<span className='text-[#59667d] font-normal text-[20px] block ' >{myIntro_section.my_quote.roll}</span></p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div className=" w-[100%] h-[100%]">
+                  <div
+                    className=" relative "
+                    style={{
+                      backgroundImage: `url(${myIntro_section.image.data.attributes.url})`,
+                      width: '100%',
+                      height: '100%',
+                      backgroundPosition: 'center top',
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                    }}
+                  >
+                    <div className="absolute bottom-0 left-0 text-[#023a51] w-[80%] p-6 bg-[#fff] shadow-xl ">
+                      <img
+                        className=""
+                        width={150}
+                        height={25}
+                        src={myIntro_section.my_quote.logo.data.attributes.url}
+                        alt="image"
+                      />
+                      <p className="text-[20px] font-light ">
+                        {myIntro_section.my_quote.text}
+                      </p>
+                      <p className="text-[22px] py-3 font-bold">
+                        {myIntro_section.my_quote.name}
+                        <span className="text-[#59667d] font-normal text-[20px] block ">
+                          {myIntro_section.my_quote.roll}
+                        </span>
+                      </p>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                {/* What I offer */}
-                <section className='heading mt-[1100px] md:my-20 '>
-                    <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <p className=' text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[122px] tracking-[-3px] ' >{what_I_offer_section.title}</p>
-                            <div className='md:flex justify-around mt-4'>
-                                <div className='bg-[#00989e] relative cursor-pointer transition p-10 text-center items-center rounded mb-6 md:mr-4 '  >
-                                    <span className='absolute top-0 left-0 border z-0 ' style={{ backgroundImage: `url(${boxbgsvg.src})`, width: '100%', height: '100%', backgroundPosition: 'bottom left', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></span>
-                                    <p className='text-[#fff] text-[26px] md:text-[40px] font-semibold' ><span className='mr-4'>1.</span>
-                                        {what_I_offer_section.my_offers[0].title}
-                                    </p>
+        {/* What I offer */}
+        <section className="heading mt-[1100px] md:my-20 ">
+          <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
+            <div className="mx-auto text-[#023A51] w-10/12 md:w-11/12 ">
+              <p className=" text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[122px] tracking-[-3px] ">
+                {what_I_offer_section.title}
+              </p>
+              <div className="md:flex justify-around mt-4">
+                <div className="bg-[#00989e] relative cursor-pointer transition p-10 text-center items-center rounded mb-6 md:mr-4 ">
+                  <span
+                    className="absolute top-0 left-0 border z-0 "
+                    style={{
+                      backgroundImage: `url(${boxbgsvg.src})`,
+                      width: '100%',
+                      height: '100%',
+                      backgroundPosition: 'bottom left',
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                    }}
+                  ></span>
+                  <p className="text-[#fff] text-[26px] md:text-[40px] font-semibold">
+                    <span className="mr-4">1.</span>
+                    {what_I_offer_section.my_offers[0].title}
+                  </p>
+                </div>
+                <div className="bg-[#00989e] cursor-pointer transition p-10 text-center items-center rounded mb-6 md:ml-4 ">
+                  <p className="text-[#fff] text-[26px] md:text-[40px] font-semibold ">
+                    <span className="mr-4">2.</span>
+                    {what_I_offer_section.my_offers[1].title}
+                  </p>
+                </div>
+              </div>
+              <div className="md:flex justify-around mt-4">
+                <div className=" transition p-4 md:p-10 md:text-center items-center rounded md:mr-4 ">
+                  <p className="text-[#59667d] text-[30px]">
+                    {what_I_offer_section.my_offers[0].description}
+                  </p>
+                </div>
+                <div className=" transition p-4 md:p-10 md:text-center items-center rounded md:ml-4 ">
+                  <p className="text-[#59667d] text-[30px] ">
+                    {what_I_offer_section.my_offers[1].description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                                </div>
-                                <div className='bg-[#00989e] cursor-pointer transition p-10 text-center items-center rounded mb-6 md:ml-4 '>
-                                    <p className='text-[#fff] text-[26px] md:text-[40px] font-semibold ' ><span className='mr-4'>2.</span>
-                                        {what_I_offer_section.my_offers[1].title}
-
-                                    </p>
-
-                                </div>
-                            </div>
-                            <div className='md:flex justify-around mt-4'>
-                                <div className=' transition p-4 md:p-10 md:text-center items-center rounded md:mr-4 '  >
-                                    <p className='text-[#59667d] text-[30px]' >
-                                        {what_I_offer_section.my_offers[0].description}
-                                    </p>
-
-                                </div>
-                                <div className=' transition p-4 md:p-10 md:text-center items-center rounded md:ml-4 '>
-                                    <p className='text-[#59667d] text-[30px] ' >
-                                        {what_I_offer_section.my_offers[1].description}
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
+        {/* What you get */}
+        <section className="heading py-20 bg-[#f9fafb]">
+          <div className=" container w-12/12 mx-auto max-w-screen-xl">
+            <div className="mx-auto w-10/12 md:w-11/12">
+              <p className="text-[55px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[64px] md:leading-[122px] tracking-[-3px] ">
+                {what_you_get.heading}
+              </p>
+              <div className="flex mx-auto flex-wrap justify-around text-[#023A51] mt-10">
+                {what_you_get.features.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className=" border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 "
+                    >
+                      <div className=" w-[100%] flex justify-center mb-2 ">
+                        <img
+                          className="rounded-xl"
+                          src={item.image.data.attributes.url}
+                          alt="image"
+                        />
+                      </div>
+                      <p className="text-[20px] font-semibold ">{item.title}</p>
+                      <p className="text-[20px] py-3">{item.description}</p>
                     </div>
-                </section>
-
-
-
-                {/* What you get */}
-                <section className='heading py-20 bg-[#f9fafb]'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto w-10/12 md:w-11/12' >
-                            <p className='text-[55px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[64px] md:leading-[122px] tracking-[-3px] ' >{what_you_get.heading}</p>
-                            <div className='flex mx-auto flex-wrap justify-around text-[#023A51] mt-10' >
-                                {
-                                    what_you_get.features.map((item) => {
-                                        return (
-                                            <div key={item.id} className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
-                                                <div className=' w-[100%] flex justify-center mb-2 '>
-                                                    <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
-                                                </div>
-                                                <p className='text-[20px] font-semibold '>{item.title}</p>
-                                                <p className='text-[20px] py-3' >{item.description}</p>
-                                            </div>
-                                        )
-                                    })
-                                }
-                                {/* <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
+                  )
+                })}
+                {/* <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
                                     <Image className='rounded-xl' src={humbleBrandVisibility} alt="image" />
                                     <p className='text-[20px] '>Increased brand visibility</p>
                                     <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
@@ -199,208 +304,237 @@ export default function Bayo_search_consultant({ contents }) {
                                     <p className='text-[20px]' >Monthly management & reporting</p>
                                     <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
                                 </div> */}
-                            </div>
-                        </div>
-                    </div>
-                </section>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                {/* Who I am */}
-                <section className='heading md:my-20'>
-                    <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
-                        <h2 className='text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ' >{who_I_am.heading}</h2>
-                        <div className='mx-auto text-[#fff] bg-[#053366] p-10 md:p-20 py-10 mt-10 rounded-xl '>
-                            <p className=' text-[30px] md:text-[45px] text-center font-bold leading-[39px] md:leading-[54px] tracking-[-2px] mb-4 '>{who_I_am.title}</p>
-                            <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4  '>{who_I_am.title2}</p>
-                            <div>
-                                <p className=' text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4 '>
-                                    <Typewriter
-                                        options={{
-                                            autoStart: true,
-                                            loop: true
-                                        }}
-                                        onInit={(typewriter) => {
+        {/* Who I am */}
+        <section className="heading md:my-20">
+          <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
+            <h2 className="text-[60px] md:text-[102px] font-bold text-[#00989e] pt-3 leading-[69px] md:leading-[122px] tracking-[-3px] ">
+              {who_I_am.heading}
+            </h2>
+            <div className="mx-auto text-[#fff] bg-[#053366] p-10 md:p-20 py-10 mt-10 rounded-xl ">
+              <p className=" text-[30px] md:text-[45px] text-center font-bold leading-[39px] md:leading-[54px] tracking-[-2px] mb-4 ">
+                {who_I_am.title}
+              </p>
+              <p className=" text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4  ">
+                {who_I_am.title2}
+              </p>
+              <div>
+                <p className=" text-[26px] md:text-[40px] text-center font-bold font-poppins leading-[35px] md:leading-[60px] mb-4 ">
+                  <Typewriter
+                    options={{
+                      autoStart: true,
+                      loop: true,
+                    }}
+                    onInit={(typewriter) => {
+                      typewriter
+                        .typeString(who_I_am.typeWriterText[0].text)
+                        .pauseFor(1000)
+                        .deleteAll()
+                        .typeString(who_I_am.typeWriterText[1].text)
+                        .pauseFor(1000)
+                        .deleteAll()
+                        .typeString(who_I_am.typeWriterText[2].text)
+                        .pauseFor(1000)
+                        .deleteAll()
+                        .typeString(who_I_am.typeWriterText[3].text)
+                        .pauseFor(1000)
+                        .deleteAll()
+                        .typeString(who_I_am.typeWriterText[4].text)
+                        .pauseFor(1000)
+                        .deleteAll()
+                        .typeString(who_I_am.typeWriterText[5].text)
+                        .pauseFor(1000)
+                        .start()
+                    }}
+                  />
+                </p>
+              </div>
 
-                                            typewriter
-                                                .typeString(who_I_am.typeWriterText[0].text)
-                                                .pauseFor(1000)
-                                                .deleteAll()
-                                                .typeString(who_I_am.typeWriterText[1].text)
-                                                .pauseFor(1000)
-                                                .deleteAll()
-                                                .typeString(who_I_am.typeWriterText[2].text)
-                                                .pauseFor(1000)
-                                                .deleteAll()
-                                                .typeString(who_I_am.typeWriterText[3].text)
-                                                .pauseFor(1000)
-                                                .deleteAll()
-                                                .typeString(who_I_am.typeWriterText[4].text)
-                                                .pauseFor(1000)
-                                                .deleteAll()
-                                                .typeString(who_I_am.typeWriterText[5].text)
-                                                .pauseFor(1000)
-                                                .start();
-                                        }}
-                                    />
-                                </p>
-                            </div>
-
-                            <br />
-                            <div>
-                                <ReactMarkdown className=''
-                                    components={{
-                                        p: ({ node, ...props }) => <p className=' text-[24px] md:text-[26px] mb-10' {...props} />
-                                    }}
-                                >{who_I_am.details}
-                                </ReactMarkdown>
-
-                            </div>
-                            {/* <p></p>
+              <br />
+              <div>
+                <ReactMarkdown
+                  className=""
+                  components={{
+                    p: ({ node, ...props }) => (
+                      <p
+                        className=" text-[24px] md:text-[26px] mb-10"
+                        {...props}
+                      />
+                    ),
+                  }}
+                >
+                  {who_I_am.details}
+                </ReactMarkdown>
+              </div>
+              {/* <p></p>
                             <p className=' text-[26px] py-2 font-light'>My name is Bayo Adesina, the founder of Humble Titan and creator of the SEO TRAM method. </p>
                             <br />
                             <p className=' text-[26px] py-2 font-light '>This means, on one hand, I’m responsible for helping people understand business, economics, and the stock market. While, on the other hand, I created and gave away the highest level of organic search education online.</p>
                             <br />
                             <p className=' text-[26px] py-2 font-light '>What this means for you is access to a talent that’s able to guarantee a drastic improvement in your digital footprint. Plus, I ensure your strategy is competitive with the best in your industry.</p> */}
 
+              <div className="text-center flex justify-center mt-10">
+                <Green_rounded_btn href={who_I_am.actionButton.href}>
+                  {who_I_am.actionButton.label}
+                </Green_rounded_btn>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                            <div className='text-center flex justify-center mt-10'>
-                                <Green_rounded_btn href={who_I_am.actionButton.href}>{who_I_am.actionButton.label}</Green_rounded_btn>
+        {/* I’m trusted by the world’s largest businesses to: */}
+        <section className="heading my-10 md:my-20">
+          <div className=" container flex justify-center w-12/12 mx-auto max-w-screen-xl">
+            <div className="w-[70%] text-[#023A51] ">
+              <p className="text-[26px] md:text-[45px] text-center font-semibold leading-[35px] md:leading-[56px]  ">
+                {Iam_trustedBy_section.heading}
+              </p>
+              <br />
+              {Iam_trustedBy_section.my_work.map((item) => {
+                return (
+                  <div key={item.id} className="flex ">
+                    <div className=" text-[#2cbc63] text-[22px] translate-y-[22px] ">
+                      {React.createElement(Fontawesome[item.iconClass])}
+                    </div>
+                    <p className="text-[22px] flex py-4 ml-[12px] ">
+                      {item.text}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
 
+        {/* FeedBack */}
+        <section className="heading my-20 ">
+          <div className=" py-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
+            <div className=" md:w-[50%] w-[100%] px-4 shadow-xl ">
+              <img
+                className="rounded-xl "
+                src={feedback?.image.data.attributes.url}
+                alt="image"
+              />
+            </div>
+            <div className=" p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ">
+              <p className="text-[26px] md:text-[35px] leading-[35px] md:leading-[44px] md:font-bold ">
+                {feedback.heading}
+              </p>
+              <p className="text-[20px] pt-3 font-bold">{feedback.name}</p>
+              <p>{feedback.roll}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Questions to ask */}
+        <section className="heading md:my-20 ">
+          <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
+            <div className="mx-auto text-[#023A51] w-10/12 md:w-11/12 ">
+              <p className=" text-[60px] md:text-[100px] font-bold pt-3 leading-[69px] md:leading-[120px] tracking-[-3px] ">
+                {questions_to_ask.heading}
+              </p>
+              <div className="md:flex justify-between  py-20">
+                <div className="md:w-[50%] mb-20 ">
+                  <div className="mt-4 w-[90%] mb-10 ">
+                    <p className="text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ">
+                      {questions_to_ask.traditional_marketing_qs.heading}
+                    </p>
+                    <p className="text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ">
+                      {questions_to_ask.traditional_marketing_qs.description}
+                    </p>
+                  </div>
+
+                  <div className=" mb-6  ">
+                    {questions_to_ask.traditional_marketing_qs.questions.map(
+                      (item) => {
+                        return (
+                          <div key={item.id} className="flex mb-10 ">
+                            <div className=" text-[#f86011] text-[60px] ">
+                              {React.createElement(
+                                Fontawesome[item.iconClassName],
+                              )}
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                {/* I’m trusted by the world’s largest businesses to: */}
-                <section className='heading my-10 md:my-20'>
-                    <div className=" container flex justify-center w-12/12 mx-auto max-w-screen-xl">
-                        <div className='w-[70%] text-[#023A51] '>
-                            <p className='text-[26px] md:text-[45px] text-center font-semibold leading-[35px] md:leading-[56px]  ' >{Iam_trustedBy_section.heading}</p>
-                            <br />
-                            {
-                                Iam_trustedBy_section.my_work.map((item) => {
-                                    return (
-                                        <div key={item.id} className="flex " >
-                                            <div className=' text-[#2cbc63] text-[22px] translate-y-[22px] '>
-                                                {React.createElement(Fontawesome[item.iconClass])}
-                                            </div>
-                                            <p className='text-[22px] flex py-4 ml-[12px] ' >{item.text}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                </section>
-
-                {/* FeedBack */}
-                <section className='heading my-20 '>
-                    <div className=" py-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
-                        <div className=' md:w-[50%] w-[100%] px-4 shadow-xl ' >
-                            <img className='rounded-xl ' src={feedback?.image.data.attributes.url} alt="image" />
-                        </div>
-                        <div className=' p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
-                            <p className='text-[26px] md:text-[35px] leading-[35px] md:leading-[44px] md:font-bold ' >{feedback.heading}</p>
-                            <p className='text-[20px] pt-3 font-bold' >{feedback.name}</p>
-                            <p>{feedback.roll}</p>
-
-                        </div>
-                    </div>
-                </section>
-
-
-
-                {/* Questions to ask */}
-                <section className='heading md:my-20 '>
-                    <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <p className=' text-[60px] md:text-[100px] font-bold pt-3 leading-[69px] md:leading-[120px] tracking-[-3px] ' >{questions_to_ask.heading}</p>
-                            <div className='md:flex justify-between  py-20'>
-                                <div className='md:w-[50%] mb-20 '>
-                                    <div className='mt-4 w-[90%] mb-10 '>
-                                        <p className='text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >{questions_to_ask.traditional_marketing_qs.heading}</p>
-                                        <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >{questions_to_ask.traditional_marketing_qs.description}</p>
-
-                                    </div>
-
-                                    <div className=' mb-6  '>
-                                        {
-                                            questions_to_ask.traditional_marketing_qs.questions.map((item) => {
-                                                return (
-                                                    <div key={item.id} className="flex mb-10 " >
-                                                        <div className=' text-[#f86011] text-[60px] '>
-                                                            {React.createElement(Fontawesome[item.iconClassName])}
-                                                        </div>
-                                                        <div className='ml-3'>
-                                                            <p className=' text-[26px] font-semibold  '>{item.title}
-                                                            </p>
-                                                            <br />
-                                                            <p className='text-[22px] ' >{item.details}</p>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-
-                                        }
-                                    </div>
-
-                                </div>
-
-                                <div className='md:w-[50%]'>
-                                    <div className='mt-4 w-[90%] mb-10 '>
-                                        <p className='text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ' >{questions_to_ask.digital_marketing_qs.heading}</p>
-                                        <p className='text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ' >{questions_to_ask.digital_marketing_qs.description}</p>
-
-                                    </div>
-
-                                    <div className=' mb-6  '>
-                                        {
-                                            questions_to_ask.digital_marketing_qs.questions.map((item) => {
-                                                return (
-                                                    <div key={item.id} className="flex mb-10 " >
-                                                        <div className=' text-[#f86011] text-[60px] '>
-                                                            {React.createElement(Fontawesome[item.iconClassName])}
-                                                        </div>
-                                                        <div className='ml-3'>
-                                                            <p className=' text-[26px] font-semibold  '>{item.title}
-                                                            </p>
-                                                            <br />
-                                                            <p className='text-[22px] ' >{item.details}</p>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-
-                                        }
-                                    </div>
-
-                                </div>
+                            <div className="ml-3">
+                              <p className=" text-[26px] font-semibold  ">
+                                {item.title}
+                              </p>
+                              <br />
+                              <p className="text-[22px] ">{item.details}</p>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                          </div>
+                        )
+                      },
+                    )}
+                  </div>
+                </div>
 
+                <div className="md:w-[50%]">
+                  <div className="mt-4 w-[90%] mb-10 ">
+                    <p className="text-[32px] md:text-[40px] leading-[39px] md:leading-[49px] font-bold text-[#00989e] mb-6 ">
+                      {questions_to_ask.digital_marketing_qs.heading}
+                    </p>
+                    <p className="text-[26px] md:text-[30px] leading-[35px] md:leading-[39px] ">
+                      {questions_to_ask.digital_marketing_qs.description}
+                    </p>
+                  </div>
 
+                  <div className=" mb-6  ">
+                    {questions_to_ask.digital_marketing_qs.questions.map(
+                      (item) => {
+                        return (
+                          <div key={item.id} className="flex mb-10 ">
+                            <div className=" text-[#f86011] text-[60px] ">
+                              {React.createElement(
+                                Fontawesome[item.iconClassName],
+                              )}
+                            </div>
+                            <div className="ml-3">
+                              <p className=" text-[26px] font-semibold  ">
+                                {item.title}
+                              </p>
+                              <br />
+                              <p className="text-[22px] ">{item.details}</p>
+                            </div>
+                          </div>
+                        )
+                      },
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                {/* Organizations I work with */}
-                <section className='heading py-20 bg-[#f9fafb]'>
-                    <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
+        {/* Organizations I work with */}
+        <section className="heading py-20 bg-[#f9fafb]">
+          <div className=" container w-10/12 md:w-11/12 mx-auto max-w-screen-xl">
+            <p className="text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ">
+              {organizations_I_work_with.heading}
+            </p>
 
-                        <p className='text-[50px] md:text-[102px] font-semibold text-[#00989e] pt-3 leading-[59px] md:leading-[132px] tracking-[-3px] ' >{organizations_I_work_with.heading}</p>
-
-                        <div className='flex flex-wrap text-[#023A51] mt-10 justify-around' >
-                            {
-                                organizations_I_work_with.feature.map((item) => {
-                                    return (
-                                        <div key={item.id} className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                            <p className='text-[35px] '>{item.title}</p>
-                                            <p className='text-[20px] py-3' >{item.description}</p>
-                                            <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
-                                        </div>
-                                    )
-                                })
-                            }
-                            {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
+            <div className="flex flex-wrap text-[#023A51] mt-10 justify-around">
+              {organizations_I_work_with.feature.map((item) => {
+                return (
+                  <div
+                    key={item.id}
+                    className=" rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10"
+                  >
+                    <p className="text-[35px] ">{item.title}</p>
+                    <p className="text-[20px] py-3">{item.description}</p>
+                    <img
+                      className="rounded-xl"
+                      src={item.image.data.attributes.url}
+                      alt="image"
+                    />
+                  </div>
+                )
+              })}
+              {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
                                 <p className='text-[35px] '>Politicians</p>
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humblePoliticians} alt="image" />
@@ -430,66 +564,86 @@ export default function Bayo_search_consultant({ contents }) {
                                 <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
                                 <Image className='rounded-xl' src={humbleEnterprises} alt="image" />
                             </div> */}
+            </div>
+          </div>
+        </section>
 
+        {/* Discover my story */}
+        <section className="heading py-20 bg-[#f9fafb]">
+          <div className=" container w-12/12 mx-auto max-w-screen-xl">
+            <div className="mx-auto w-10/12 md:w-11/12">
+              <div className="flex flex-col text-[#023A51] items-center">
+                <p className=" text-center text-[40px] font-bold ">
+                  {discover_my_story_text}
+                </p>
+                <div className=" text-[#2cbc63] mt-4 text-[70px] ">
+                  {React.createElement(Fontawesome[iconClassName])}
+                </div>
+                {/* <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' /> */}
+              </div>
+            </div>
+
+            {/* cahpters */}
+            {chapters.map((item) => {
+              return (
+                <div key={item.id}>
+                  <div className="mx-auto w-10/12 md:w-11/12">
+                    <div>
+                      <p className=" text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]">
+                        {item.chapterIntro.chateperNumber}
+                      </p>
+                      <p className=" text-[50px] md:text-[102px] font-bold leading-[50px] md:leading-[122px] tracking-[-3px] text-[#00989e] ">
+                        {item.chapterIntro.heading}
+                      </p>
+                      <p className=" text-[30px] md:text-[40px] font-light leading-[39px] md:leading-[49px] tracking-[-2px] py-8 text-[#59667d] ">
+                        {item.chapterIntro.where}
+                      </p>
+                      <div className=" py-10 flex flex-wrap items-center justify-between mx-auto ">
+                        <div className=" md:w-[50%] w-[100%] px-4 ">
+                          <img
+                            className="rounded-xl "
+                            src={item.chapterIntro.image.data[0].attributes.url}
+                            alt="image"
+                          />
                         </div>
-                    </div>
-                </section>
-
-
-                {/* Discover my story */}
-                <section className='heading py-20 bg-[#f9fafb]'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto w-10/12 md:w-11/12'>
-                            <div className='flex flex-col text-[#023A51] items-center'>
-                                <p className=' text-center text-[40px] font-bold '>{discover_my_story_text}</p>
-                                <div className=' text-[#2cbc63] mt-4 text-[70px] '>
-                                    {React.createElement(Fontawesome[iconClassName])}
-                                </div>
-                                {/* <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' /> */}
-                            </div>
+                        <div className="text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ">
+                          <div>
+                            <Accordion
+                              active="true"
+                              title={item.chapterIntro.theChallange}
+                              content={item.chapterIntro.challangeDetails}
+                            />
+                            <Accordion
+                              title={item.chapterIntro.thePlan}
+                              content={item.chapterIntro.planDetails}
+                            />
+                            <Accordion
+                              title={item.chapterIntro.theAttitude}
+                              content={item.chapterIntro.attitudeDetails}
+                            />
+                          </div>
                         </div>
+                      </div>
+                      <div className=" pt-12 md:px-12 ">
+                        <div className=" rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ">
+                          <p className="text-[24px] font-bold text-center">
+                            The Story
+                          </p>
+                          <br />
 
-                        {/* cahpters */}
-                        {
-                            chapters.map((item) => {
-                                return (
-
-                                    <div key={item.id}  >
-                                        <div className='mx-auto w-10/12 md:w-11/12' >
-                                            <div >
-                                                <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]' >{item.chapterIntro.chateperNumber}</p>
-                                                <p className=' text-[50px] md:text-[102px] font-bold leading-[50px] md:leading-[122px] tracking-[-3px] text-[#00989e] ' >{item.chapterIntro.heading}</p>
-                                                <p className=' text-[30px] md:text-[40px] font-light leading-[39px] md:leading-[49px] tracking-[-2px] py-8 text-[#59667d] ' >{item.chapterIntro.where}</p>
-                                                <div className=" py-10 flex flex-wrap items-center justify-between mx-auto ">
-                                                    <div className=' md:w-[50%] w-[100%] px-4 ' >
-                                                        <img className='rounded-xl ' src={item.chapterIntro.image.data[0].attributes.url} alt="image" />
-                                                    </div>
-                                                    <div className='text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ' >
-                                                        <div>
-                                                            <Accordion active="true" title={item.chapterIntro.theChallange} content={item.chapterIntro.challangeDetails} />
-                                                            <Accordion
-                                                                title={item.chapterIntro.thePlan}
-                                                                content={item.chapterIntro.planDetails}
-                                                            />
-                                                            <Accordion
-                                                                title={item.chapterIntro.theAttitude}
-                                                                content={item.chapterIntro.attitudeDetails}
-                                                            />
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div className=' pt-12 md:px-12 '>
-                                                    <div className=' rounded shadow-xl bg-[#fff] md:p-10 p-6 rounded text-[#023A51] ' >
-                                                        <p className='text-[24px] font-bold text-center'>The Story</p>
-                                                        <br />
-
-                                                        <ReactMarkdown components={{
-                                                            p: ({ node, ...props }) => <p className='text-[22px] leading-[39px] text-[#59667d]' {...props} />
-                                                        }}>
-                                                            {item.theStory}
-                                                        </ReactMarkdown>
-                                                        {/* <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
+                          <ReactMarkdown
+                            components={{
+                              p: ({ node, ...props }) => (
+                                <p
+                                  className="text-[22px] leading-[39px] text-[#59667d]"
+                                  {...props}
+                                />
+                              ),
+                            }}
+                          >
+                            {item.theStory}
+                          </ReactMarkdown>
+                          {/* <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
                                                         <br />
                                                         <p className='text-[22px] leading-[39px] text-[#59667d] '>My journey has been exciting, intimidating, and fulfilling. </p>
                                                         <br />
@@ -520,44 +674,70 @@ export default function Bayo_search_consultant({ contents }) {
                                                         <p className='text-[22px] leading-[39px] text-[#59667d] '>By the end of this period of my life, I’d accumulated 11 years of management experience. Now, I’m enjoying the ride. Continue to chapter 4 to learn what got me here.</p>
                                                         <br />
                                                         <br /> */}
-                                                        <div className='flex justify-center mt-10'>
-                                                            <Green_rounded_btn href={item.getInTouch.href} className='orange_roudend_btn '>{item.getInTouch.label}</Green_rounded_btn>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className='py-10 md:py-20'>
-                                                    <p className=' text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ' >{item.theReturn.heading}</p>
-                                                    <p className=' text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ' >{item.theReturn.description}</p>
-                                                    <div className='md:flex justify-around my-10 '>
-                                                        <div className='p-4 md:p-10 border-2 md:mr-2'>
-                                                            <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >{item.theReturn.reflectionHeading}</p>
-                                                            <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >{item.theReturn.reflectionDetails}</p>
+                          <div className="flex justify-center mt-10">
+                            <Green_rounded_btn
+                              href={item.getInTouch.href}
+                              className="orange_roudend_btn "
+                            >
+                              {item.getInTouch.label}
+                            </Green_rounded_btn>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="py-10 md:py-20">
+                        <p className=" text-[50px] md:text-[60px] text-center font-bold leading-[69px] md:leading-[50px] tracking-[-2px] pt-[50px] text-[#023A51] ">
+                          {item.theReturn.heading}
+                        </p>
+                        <p className=" text-[30px] md:text-[40px] text-center font-light leading-[39px] md:leading-[49px] py-8 tracking-[-2px] text-[#59667d] ">
+                          {item.theReturn.description}
+                        </p>
+                        <div className="md:flex justify-around my-10 ">
+                          <div className="p-4 md:p-10 border-2 md:mr-2">
+                            <p className=" text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ">
+                              {item.theReturn.reflectionHeading}
+                            </p>
+                            <p className=" text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ">
+                              {item.theReturn.reflectionDetails}
+                            </p>
+                          </div>
+                          <div className="p-4 md:p-10 border-2 mt-4 md:mt-0 md:ml-2">
+                            <p className=" text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ">
+                              {item.theReturn.lessonsLearnedHeadeing}
+                            </p>
+                            <p className=" text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ">
+                              {item.theReturn.lessonsLearnedDetails}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                                                        </div>
-                                                        <div className='p-4 md:p-10 border-2 mt-4 md:mt-0 md:ml-2'>
-                                                            <p className=' text-[40px] md:text-[50px] text-center font-bold leading-[49px] md:leading-[59px] tracking-[-2px]  pt-10 text-[#023A51] ' >{item.theReturn.lessonsLearnedHeadeing}</p>
-                                                            <p className=' text-[20px] md:text-[22px] text-center leading-[29px] md:leading-[31px]  py-10 text-[#59667d] ' >{item.theReturn.lessonsLearnedDetails}</p>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div className='py-10'>
-                                                    <p className=' text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px]  md:pt-10 text-[#023A51] ' >{item.jumpToChapters.heading}</p>
-                                                    <div className='flex md:flex-row flex-col items-center md:justify-around mt-10'>
-                                                        {
-                                                            item.jumpToChapters.chapterLinks.map((item) => {
-                                                                return (
-                                                                    <div key={item.id} className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                                        <Link passHref href={item.href}>
-                                                                            <a><img className='rounded-xl  ' src={item.imageWithChapterNumber.data.attributes.url} alt="image" /></a>
-                                                                        </Link>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                        {/* <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
+                      <div className="py-10">
+                        <p className=" text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px]  md:pt-10 text-[#023A51] ">
+                          {item.jumpToChapters.heading}
+                        </p>
+                        <div className="flex md:flex-row flex-col items-center md:justify-around mt-10">
+                          {item.jumpToChapters.chapterLinks.map((item) => {
+                            return (
+                              <div
+                                key={item.id}
+                                className="hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300"
+                              >
+                                <Link passHref href={item.href}>
+                                  <a>
+                                    <img
+                                      className="rounded-xl  "
+                                      src={
+                                        item.imageWithChapterNumber.data
+                                          .attributes.url
+                                      }
+                                      alt="image"
+                                    />
+                                  </a>
+                                </Link>
+                              </div>
+                            )
+                          })}
+                          {/* <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
                                                             <Image className='rounded-xl  ' src={ToTheTop} alt="image" />
                                                         </div>
                                                         <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
@@ -575,38 +755,47 @@ export default function Bayo_search_consultant({ contents }) {
                                                         <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
                                                             <Image className='rounded-xl' src={MyJourneyChapter1} alt="image" />
                                                         </div> */}
-                                                    </div>
-                                                </div>
-                                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mx-auto">
+                    <div
+                      className=" px-10 md:flex justify-between items-center py-10 md:py-20 bg-[#00989e]"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(105deg, #004188 12%,rgba(255,255,255,0) 77%)',
+                        backgroundPosition: 'center center',
+                        backgroundRepeat: 'no-repeat',
+                      }}
+                    >
+                      <div>
+                        <Image src={ByBayo} alt="image" />
+                      </div>
+                      <div className="text-[#fff] md:w-[50%] ">
+                        <p className="text-[45px] trancking-[-2px] font-poppins font-bold tracking-[-2px] leading-[52px] ">
+                          {item.chapterConclusion.text}
+                        </p>
+                        <p className="text-[22px] pt-10 trancking-[-2px] font-poppins font-semibold ">
+                          {item.chapterConclusion.text2}
+                        </p>
+                      </div>
+                      <div className="mt-6">
+                        <Green_rounded_btn
+                          href={item.chapterConclusion.actionButton.href}
+                          className="text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 "
+                        >
+                          {item.chapterConclusion.actionButton.label}
+                        </Green_rounded_btn>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
 
-                                        </div>
-                                        <div className='mx-auto'>
-                                            <div className=' px-10 md:flex justify-between items-center py-10 md:py-20 bg-[#00989e]' style={{ backgroundImage: 'linear-gradient(105deg, #004188 12%,rgba(255,255,255,0) 77%)', backgroundPosition: 'center center', backgroundRepeat: "no-repeat", }} >
-                                                <div>
-                                                    <Image src={ByBayo} alt="image" />
-
-                                                </div>
-                                                <div className='text-[#fff] md:w-[50%] '>
-                                                    <p className='text-[45px] trancking-[-2px] font-poppins font-bold tracking-[-2px] leading-[52px] '>{item.chapterConclusion.text}</p>
-                                                    <p className='text-[22px] pt-10 trancking-[-2px] font-poppins font-semibold '>{item.chapterConclusion.text2}</p>
-
-                                                </div>
-                                                <div className='mt-6'>
-                                                    <Green_rounded_btn href={item.chapterConclusion.actionButton.href} className='text-[#0e6ace] hover:text-[#fff] bg-[#fff] hover:bg-[#2cbc63] text-[20px] text-center rounded-[50px] py-[13px] px-[30px] transition duration-300 '>{item.chapterConclusion.actionButton.label}</Green_rounded_btn>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                )
-                            })
-                        }
-
-
-
-                        {/* cahpter 4 */}
-                        {/* <div>
+            {/* cahpter 4 */}
+            {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mb-10 mt-20 tracking-[-3px] text-[#f86011]' >Chapter 4</p>
@@ -767,10 +956,8 @@ export default function Bayo_search_consultant({ contents }) {
                             </div>
                         </div> */}
 
-
-
-                        {/* cahpter 3 */}
-                        {/* <div>
+            {/* cahpter 3 */}
+            {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 3</p>
@@ -939,9 +1126,8 @@ export default function Bayo_search_consultant({ contents }) {
                             </div>
                         </div> */}
 
-
-                        {/* cahpter 2 */}
-                        {/* <div>
+            {/* cahpter 2 */}
+            {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 2</p>
@@ -1105,10 +1291,8 @@ export default function Bayo_search_consultant({ contents }) {
                             </div>
                         </div> */}
 
-
-
-                        {/* cahpter 1 */}
-                        {/* <div>
+            {/* cahpter 1 */}
+            {/* <div>
                             <div className='mx-auto w-10/12 md:w-11/12' >
                                 <div >
                                     <p className=' text-[50px] md:text-[50px] font-bold leading-[59px] md:leading-[89px] mt-20 tracking-[-3px] text-[#f86011]' >Chapter 1</p>
@@ -1271,25 +1455,26 @@ export default function Bayo_search_consultant({ contents }) {
                                 </div>
                             </div>
                         </div> */}
-                    </div>
-                </section>
-            </Layout>
-        </>
-    )
+          </div>
+        </section>
+      </Layout>
+    </>
+  )
 }
 
-
 export const getServerSideProps = async () => {
-    var contents;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant`)
-        .then(({ data }) => {
-            contents = data
-        }).catch((error) => {
-            console.log(error)
-        })
-    return {
-        props: {
-            contents: JSON.parse(JSON.stringify(contents))
-        }
-    }
+  var contents
+  await axios
+    .get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant`)
+    .then(({ data }) => {
+      contents = data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  return {
+    props: {
+      contents: JSON.parse(JSON.stringify(contents)),
+    },
+  }
 }

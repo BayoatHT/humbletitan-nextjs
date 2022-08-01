@@ -1,24 +1,31 @@
 import Head from 'next/head'
-import Layout from '../../components/Layout'
-import CustomCard from '../../components/CustomCard'
+import Layout from '../../../components/Layout'
+import CustomCard from '../../../components/CustomCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-export default function FilterData() {
-  const [customPages, setCustomPages] = useState([])
-  const router = useRouter()
+export default function FilterData({ contents }) {
+  const query = {
+    filterlabel: contents.filterlabel,
+    filterCondition: contents.filterCondition,
+    filterValue: contents.filterValue,
+  }
 
-  const query = router.query
-  useEffect(() => {
-    const getData = async () => {
-      const url = `http://localhost:8000/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
-      const { data } = await axios.get(url)
-      setCustomPages(data)
-    }
-    getData()
-  }, [query])
-  console.log(customPages)
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     // const url = `http://localhost:8000/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
+  //     const url = `http://localhost:8000/filtered-data/${query.customUrl}`
+  //     try {
+  //       const { data } = await axios.get(url)
+  //       console.log('resData', data)
+  //       setCustomPages(data)
+  //     } catch (error) {
+  //       console.log(error.message)
+  //     }
+  //   }
+  //   getData()
+  // }, [query])
 
   return (
     <div>
@@ -26,7 +33,7 @@ export default function FilterData() {
         <title>Filtered Pages || Humble Titan</title>
         <meta
           name="description"
-          content="Humble Titan is providing you data of more than seven thousands tickers from all over the world."
+          content={`Humble Titan is providing you data of more than seven thousands tickers from all over the world.`}
         />
         <meta
           name="keywords"
@@ -67,8 +74,29 @@ export default function FilterData() {
         <meta name="next-head-count" content="32" />
       </Head>
       <Layout>
-        <CustomCard query={query} customPages={customPages} />
+        <CustomCard
+          headerText={contents.headerText}
+          query={query}
+          customPages={contents.data}
+        />
       </Layout>
     </div>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  const {
+    query: { customUrl },
+  } = ctx
+  let contents = {}
+  const url = `http://localhost:8000/filtered-data/${customUrl}`
+  try {
+    const { data } = await axios.get(url)
+    contents = JSON.parse(JSON.stringify(data))
+  } catch (error) {
+    console.log(error.message)
+  }
+  return {
+    props: { contents },
+  }
 }
