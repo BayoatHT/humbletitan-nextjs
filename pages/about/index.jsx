@@ -44,7 +44,7 @@ export default function About({ contents }) {
           content="stocks, Marketing Consultant, SEO, polictics,"
         />
         <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="5 days" />
         <meta name="author" content="Bayo adesina" />

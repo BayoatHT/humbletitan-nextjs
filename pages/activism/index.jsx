@@ -38,11 +38,11 @@ export default function Activism({ contents }) {
           content="stocks, Marketing Consultant, SEO, polictics,"
         />
         <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="5 days" />
         <meta name="author" content="Bayo adesina" />
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <meta name="robots" content="noindex" />

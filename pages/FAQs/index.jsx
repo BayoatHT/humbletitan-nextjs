@@ -4,7 +4,7 @@ import Layout from '../../components/Layout'
 import axios from 'axios'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 
-export default function index({ contents }) {
+export default function Faqs({ contents }) {
   const { faqs, hero, header, requestAQuote_section } = contents.data.attributes
   return (
     <>
@@ -16,11 +16,11 @@ export default function index({ contents }) {
           content="stocks, Marketing Consultant, SEO, polictics,"
         />
         <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="5 days" />
         <meta name="author" content="humbletitan.com" />
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <meta name="robots" content="noindex" />
