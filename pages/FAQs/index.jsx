@@ -4,7 +4,7 @@ import Layout from '../../components/Layout'
 import axios from 'axios'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 
-export default function Faqs({ contents }) {
+export default function Index({ contents }) {
   const { faqs, hero, header, requestAQuote_section } = contents.data.attributes
   return (
     <>
@@ -116,7 +116,11 @@ export default function Faqs({ contents }) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({req, res}) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   var contents
   await axios
     .get(`https://humble-titan-strapi.herokuapp.com/api/faqs-page`)
