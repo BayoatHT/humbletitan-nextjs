@@ -29,51 +29,46 @@ import blogInsights from '../../assets/imgs/blog-insights.png'
 
 
 export default function SeoDictionary({ contents }) {
-    console.log(contents)
     const { hero, header, dictionary_items } = contents.data.attributes
 
     return (
         <>
             <Head>
-                <title>{header.title}</title>
-                <meta name="description" content={header?.description} />
-                <meta
-                name="keywords"
-                content="stocks, Marketing Consultant, SEO, polictics,"
-                />
-                <meta name="robots" content="index, follow" />
-                <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-                <meta name="language" content="English" />
-                <meta name="revisit-after" content="5 days" />
-                <meta name="author" content="humbletitan.com" />
-                <meta charSet="UTF-8" />
-                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="viewport" content="width=device-width, user-scalable=no" />
-                <meta name="robots" content="noindex" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="true" />
-                <meta property="og:description" content="true" />
-                <meta property="og:url" content="true" />
-                <meta property="og:site_name" content="true" />
-                <meta property="og:image" content="true" />
-                <meta name="twitter:card" content="true" />
-                <meta name="twitter:site" content="true" />
-                <meta name="twitter:creator" content="true" />
-                <meta name="twitter:title" content="true" />
-                <meta name="twitter:description" content="true" />
-                <meta name="twitter:domain" content="true" />
-                <meta name="twitter:image" content="true" />
-                <meta name="twitter:url" content="true" />
-                <meta itemProp="image" content="true" />
-                <meta itemProp="name" content="true" />
-                <meta itemProp="description" content="true" />
-                <meta name="geo.region" content="true" />
-                <meta name="geo.placename" content="true" />
-                <meta name="geo.position" content="true" />
-                <meta name="ICBM" content="true" />
-                <meta name="true" content="true" />
-                <meta name="next-head-count" content="32" />
+            <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || "" } />
+        <meta name="keywords" content={header?.keywords || "" }/>
+        <meta name="robots" content={header?.robots || ""} />
+        <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
+        <meta property="og:description" content={header?.og_description || ""} />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta name="twitter:description" content={header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image} />
+        <meta name="twitter:url" content={header?.twitter_url} />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta itemProp="description" content={header?.itemProp_description || ""} />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
+        <meta name="ICBM" content="true" />
+        <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ""} />
             </Head>
             <Layout>
                 {/* Hero */}
@@ -1236,9 +1231,9 @@ export default function SeoDictionary({ contents }) {
                                     <p className='text-[36px] font-bold  '>Bayo</p>
                                     <p className='text-[#59667d] text-center text-[18px] my-4 '>I believe we should all get to live the life of our dreams. We are here for you.</p>
                                     <div className='flex px-4 justify-center'>
-                                        <Link className='text-[26px] mx-2' title='Facebook' href="https://www.facebook.com/FansOfKindness"><FaFacebookF /></Link>
-                                        <Link className='text-[26px] mx-2' title='Twitter' href="https://twitter.com/bonds_kindness"><TiSocialTwitter /></Link>
-                                        <Link className='text-[26px] mx-2' title='Instagram' href="https://www.instagram.com/thequotecouple"><TiSocialInstagram /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Facebook' href="https://www.facebook.com/FansOfKindness"><FaFacebookF /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Twitter' href="https://twitter.com/bonds_kindness"><TiSocialTwitter /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Instagram' href="https://www.instagram.com/thequotecouple"><TiSocialInstagram /></Link>
 
                                     </div>
                                 </div>
@@ -1252,9 +1247,9 @@ export default function SeoDictionary({ contents }) {
                                     <p className='text-[36px] font-bold  '>Kristina</p>
                                     <p className='text-[#59667d] text-center text-[18px] my-4 '>We’ve created Bonds & Kindness to help you make the most out of your life.</p>
                                     <div className='flex px-4 justify-center'>
-                                        <Link className='text-[26px] mx-2' title='Facebook' href="https://www.facebook.com/FansOfKindness"><FaFacebookF /></Link>
-                                        <Link className='text-[26px] mx-2' title='Twitter' href="https://twitter.com/bkmag_es"><TiSocialTwitter /></Link>
-                                        <Link className='text-[26px] mx-2' title='Instagram' href="https://www.instagram.com/thequotecouple"><TiSocialInstagram /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Facebook' href="https://www.facebook.com/FansOfKindness"><FaFacebookF /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Twitter' href="https://twitter.com/bkmag_es"><TiSocialTwitter /></Link>
+                                        <Link passHref className='text-[26px] mx-2' title='Instagram' href="https://www.instagram.com/thequotecouple"><TiSocialInstagram /></Link>
 
                                     </div>
                                 </div>
@@ -1429,9 +1424,18 @@ export const getServerSideProps = async () => {
         }).catch((error) => {
             console.log(error)
         })
-    return {
-        props: {
-            contents: contents
+
+        if(!contents){
+            return {
+                redirect: {
+                    destination: '/404/',
+                },
+            }
+        }else{
+            return {
+                props: {
+                    contents: contents
+                }
+            }
         }
-    }
 } 

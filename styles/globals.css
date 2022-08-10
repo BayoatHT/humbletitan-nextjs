@@ -19,6 +19,12 @@
     font-family: 'Manrope', Helvetica, sans-serif;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 html {
     scroll-behavior: smooth;
 }

@@ -17,10 +17,7 @@ export default function Category({ category, name, blogs }) {
   const blogsLength = Math.ceil(blogs?.length / 6)
   const [page, setPage] = useState(1)
   const [blogsLoaded, setBlogsLoaded] = useState(blogs?.slice(0, 6))
-  console.log(blogs)
-  console.log(category)
-  console.log(name)
-  // console.log(blogsLoaded)
+
   const [loading, setLoading] = useState(false)
 
   const handleFilter = (e) => {
@@ -89,7 +86,6 @@ export default function Category({ category, name, blogs }) {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="true" />
@@ -112,7 +108,7 @@ export default function Category({ category, name, blogs }) {
         <meta name="geo.placename" content="true" />
         <meta name="geo.position" content="true" />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
+        
         <meta name="next-head-count" content="32" />
       </Head>
       <Layout>
@@ -298,11 +294,19 @@ export async function getServerSideProps(ctx) {
       })
   }
 
-  return {
-    props: {
-      blogs,
-      category,
-      name,
+  if (!blogs){
+    return {
+      redirect: {
+        destination: '/404/',
     },
+    }
+  }else{
+    return {
+      props: {
+        blogs,
+        category,
+        name,
+      },
+    }
   }
 }

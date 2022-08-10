@@ -19,4 +19,21 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
+export const getServerSideProps = async () => {
+  var contents;
+  await axios.get(`https://humble-titan-strapi.herokuapp.com/api/our-mission`)
+      .then(({ data }) => {
+          contents = data
+          console.log("_page",contents);
+      }).catch((error) => {
+          console.log(error)
+      })
+  return {
+      props: {
+          contents: JSON.parse(JSON.stringify(contents))
+      }
+  }
+}  
+
+
 export default MyApp;

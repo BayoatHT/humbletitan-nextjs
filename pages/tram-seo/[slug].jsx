@@ -37,45 +37,41 @@ export default function AuthorityCourse({ contents }) {
     return (
         <>
             <Head>
-                <title>{header.title}</title>
-                <meta name="description" content={header?.description} />
-                <meta
-                name="keywords"
-                content="stocks, Marketing Consultant, SEO, polictics,"
-                />
-                <meta name="robots" content="index, follow" />
+                <title>{header?.title || "Humble Titan"}</title>
+                <meta name="description" content={header?.metaDescription || "" } />
+                <meta name="keywords" content={header?.keywords || "" }/>
+                <meta name="robots" content={header?.robots || ""} />
                 <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-                <meta name="language" content="English" />
-                <meta name="revisit-after" content="5 days" />
-                <meta name="author" content="humbletitan.com" />
+                <meta name="language" content={header?.language || ""} />
+                <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+                <meta name="author" content={header?.author || "humble titan"} />
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, user-scalable=no" />
-                <meta name="robots" content="noindex" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="true" />
-                <meta property="og:description" content="true" />
-                <meta property="og:url" content="true" />
-                <meta property="og:site_name" content="true" />
-                <meta property="og:image" content="true" />
-                <meta name="twitter:card" content="true" />
-                <meta name="twitter:site" content="true" />
-                <meta name="twitter:creator" content="true" />
-                <meta name="twitter:title" content="true" />
-                <meta name="twitter:description" content="true" />
-                <meta name="twitter:domain" content="true" />
-                <meta name="twitter:image" content="true" />
-                <meta name="twitter:url" content="true" />
-                <meta itemProp="image" content="true" />
-                <meta itemProp="name" content="true" />
-                <meta itemProp="description" content="true" />
-                <meta name="geo.region" content="true" />
-                <meta name="geo.placename" content="true" />
-                <meta name="geo.position" content="true" />
+                <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+                <meta property="og:type" content={header?.og_type || "article"} />
+                <meta property="og:title" content={header?.og_title || ""} />
+                <meta property="og:description" content={header?.og_description || ""} />
+                <meta property="og:url" content={header?.org_url || ""} />
+                <meta property="og:site_name" content={header?.og_site_name || ""} />
+                <meta property="og:image" content={header?.og_image || ""} />
+                <meta name="twitter:card" content={header?.twitter_card || ""} />
+                <meta name="twitter:site" content={header?.twitter_site || ""} />
+                <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+                <meta name="twitter:title" content={header?.twitter_title || ""} />
+                <meta name="twitter:description" content={header?.twitter_description || ""} />
+                <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+                <meta name="twitter:image" content={header?.twitter_image} />
+                <meta name="twitter:url" content={header?.twitter_url} />
+                <meta itemProp="image" content={header?.itemProp_image || ""} />
+                <meta itemProp="name" content={header?.itemProp_name || ""} />
+                <meta itemProp="description" content={header?.itemProp_description || ""} />
+                <meta name="geo.region" content={header?.geo_region || ""} />
+                <meta name="geo.placename" content={header?.geo_placename || ""} />
+                <meta name="geo.position" content={header?.geo_position || ""} />
                 <meta name="ICBM" content="true" />
-                <meta name="true" content="true" />
                 <meta name="next-head-count" content="32" />
+                <link rel="canonical" href={header?.canonicalUrl || ""} />
             </Head>
             <Layout>
 
@@ -94,7 +90,12 @@ export default function AuthorityCourse({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl' src={hero.heroImage.data[0].attributes.url} alt="image" />
+                                    <Image className='rounded-xl' 
+                                    src={hero.heroImage?.data[0]?.attributes?.url} 
+                                    alt={hero.heroImage?.data[0]?.attributes?.name}
+                                    width={hero.heroImage?.data[0]?.attributes?.width}
+                                    height={hero.heroImage?.data[0]?.attributes?.height}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -122,39 +123,6 @@ export default function AuthorityCourse({ contents }) {
                                         )
                                     })
                                 }
-                                {/* <a href='#chapter20' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 20</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Domains</p>
-                                </a>
-                                <a href='#chapter21' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 21</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Internal Authority</p>
-                                </a>
-                                <a href='#chapter22' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 22</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Concepts</p>
-                                </a>
-                                <a href='#chapter23' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 23</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Beware</p>
-                                </a>
-                                <a href='#chapter24' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 24</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Backlinks</p>
-                                </a>
-                                <a href='#chapter25' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 25</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Traffic</p>
-                                </a>
-                                <a href='#chapter26' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 26</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>The User</p>
-                                </a>
-                                <a href='#chapter27' className='text-[#023A51] mb-4 bg-[#fff] border hover:bg-[#e0ecf0] rounded-lg p-4  w-[95%] md:w-[23%]' style={{ boxShadow: '0px 0px 5px 2px rgba(89,102,125,0.75)' }} >
-                                    <p className='text-[#E0C600] text-[24px] font-bold  '>Chapter 27</p>
-                                    <p className='text-[#023A51] text-[34px] font-bold  '>Local Search</p>
-                                </a> */}
-
                             </div>
 
                             <p className='text-[24px] font-bold text-[#2cbc63] my-4 mb-8 ' >{completeMethod.heading}</p>
@@ -192,7 +160,13 @@ export default function AuthorityCourse({ contents }) {
                                                 item.lessonCards?.map((item) => {
                                                     return (
                                                         <div key={item.id} className='p-6 rounded-lg border text-[#023A51] shadow my-6 w-[100%] md:w-[32%] '  >
-                                                            <img className='rounded-xl' src={item.image.data?.attributes?.url} alt="image" />
+                                                            <Image className='rounded-xl' 
+                                                            priority
+                                                            src={item.image?.data?.attributes?.url ||  TRAMOutreach} 
+                                                            alt={item.image?.data?.attributes?.name}
+                                                            width={item.image?.data?.attributes?.width}
+                                                            height={item.image?.data?.attributes?.height}
+                                                            />
                                                             <br />
                                                             <p className='text-[22px] font-bold ' >Lesson {item.lessonNumber}</p>
                                                             <br />
@@ -387,7 +361,12 @@ export default function AuthorityCourse({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl' src={tramStandardPacks.image.data[0].attributes.url} alt="image" />
+                                    <Image className='rounded-xl' 
+                                    src={tramStandardPacks?.image?.data[0]?.attributes?.url} 
+                                    alt={tramStandardPacks?.image?.data[0]?.attributes?.name}
+                                    width={tramStandardPacks?.image?.data[0]?.attributes?.width}
+                                    height={tramStandardPacks?.image?.data[0]?.attributes?.height}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -648,7 +627,12 @@ export default function AuthorityCourse({ contents }) {
                                     otherServices.otherService.map((item) => {
                                         return (
                                             <div key={item.id} className='flex flex-col md:flex-row items-center group w-[100%] md:w-[46%] mb-12'>
-                                                <img className='rounded-lg' src={item.image.data.attributes.url} alt="image" />
+                                                <Image className='rounded-lg' 
+                                                src={item.image?.data?.attributes?.url} 
+                                                alt={item.image?.data?.attributes?.name}
+                                                width={item.image?.data?.attributes?.width}
+                                                height={item.image?.data?.attributes?.height}
+                                                />
                                                 <div className='ml-6'>
                                                     <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>{item.title}</p>
                                                     <br />
@@ -658,38 +642,6 @@ export default function AuthorityCourse({ contents }) {
                                         )
                                     })
                                 }
-                                {/* <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
-                                    <Image className='rounded-lg' src={otherwebdesignservice} alt="image" />
-                                    <div className='ml-6'>
-                                        <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Web Design</p>
-                                        <br />
-                                        <p className='text-[22px] text-[#59667d] '>We will build a website that reflects your business objectives.</p>
-                                    </div>
-                                </div>
-                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
-                                    <Image className='rounded-lg' src={othercontentmarketingservice} alt="image" />
-                                    <div className='ml-6'>
-                                        <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Content Marketing</p>
-                                        <br />
-                                        <p className='text-[22px] text-[#59667d] '>Outdo your competitors. Give users the content they need.</p>
-                                    </div>
-                                </div>
-                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
-                                    <Image className='rounded-lg' src={otherseoservice} alt="image" />
-                                    <div className='ml-6'>
-                                        <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Search Engine Optimization</p>
-                                        <br />
-                                        <p className='text-[22px] text-[#59667d] '>Improve organic visibility. Reach more users online.</p>
-                                    </div>
-                                </div>
-                                <div className='flex items-center group w-[100%] md:w-[46%] mb-12'>
-                                    <Image className='rounded-lg' src={otherwebmanagementservice} alt="image" />
-                                    <div className='ml-6'>
-                                        <p className='text-[24px] font-bold text-[#023A51] group-hover:text-[#2cbc63] transition duration-150  '>Website Management</p>
-                                        <br />
-                                        <p className='text-[22px] text-[#59667d] '>We will manage the day-to-day operations of your website.</p>
-                                    </div>
-                                </div> */}
                             </div>
 
                             <div className='flex justify-center'>
@@ -701,8 +653,7 @@ export default function AuthorityCourse({ contents }) {
 
 
 
-                {/* get a quote */}
-
+                {/* Quote Component */}
                 <GetAQuote />
 
             </Layout>
@@ -715,15 +666,73 @@ export const getServerSideProps = async (ctx) => {
     const { query: { slug } } = ctx
     var contents;
 
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses?filters[slug][$eq]=${slug}`)
+    const query = qs.stringify({
+        populate: {
+            navImage: {
+                populate: "*"
+            },
+            header: {
+                populate: '*'
+            },
+            hero: {
+                populate: '*'
+            },
+            tableOfContents: {
+                populate: '*'
+            },
+            completeMethod: {
+                populate: '*'
+            },
+            chapters: {
+                populate: {
+                    lessonCards: {
+                        populate: '*'
+                    }
+                }
+            },
+            tramStandardPacks: {
+                populate: {
+                    image: {
+                        populate: "*"
+                    },
+                    tramPackages: {
+                        populate: '*'
+                    }
+                }
+            },
+            otherServices: {
+                populate: {
+                    otherService: {
+                        populate: '*'
+                    },
+                    actionButton: {
+                        populate: '*'
+                    }
+                }
+            },
+            ht_digital_services: {
+                populate: '*'
+            },
+        },
+    })
+
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/courses?filters[slug][$eq]=${slug}&${query}`)
         .then(({ data }) => {
             contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
-    return {
-        props: {
-            contents: contents
+        if(!contents?.data?.length){
+            return {
+                redirect: {
+                    destination: '/404/',
+                },
+            }
+        }else{
+            return {
+                props: {
+                    contents: contents
+                }
+            }
         }
-    }
 } 

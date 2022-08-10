@@ -2,38 +2,14 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Image from 'next/image'
 import Head from 'next/head'
-import heroImg from '../assets/imgs/bayo-ht-homepage-600x586.jpg'
-import htgoforit from '../assets/imgs/ht-go-for-it-we-got-you.jpg'
-import workTogether from '../assets/imgs/home-page-work-together.jpg'
-import humbleLogo from '../assets/imgs/humble-home-logo.png'
-import DigitalServices from '../assets/imgs/home-content-Humble-Digital-Services.jpg'
-import HumbleTrader from '../assets/imgs/home-content-Humble-Trader.jpg'
-import HumbleVoter from '../assets/imgs/home-content-Humble-Voter.jpg'
-import TRAMSEO from '../assets/imgs/home-content-TRAM-SEO.jpg'
-import Humblemind from '../assets/imgs/home-content-Humble-mind.jpg'
-import helloicon from '../assets/imgs/hello-icon.png'
-import humbeleTraderBanner from '../assets/imgs/Home-banner-humble-trader-600x625.jpg'
-import homePageSeoTram from '../assets/imgs/home-page-seo-tram.jpg'
-import homePageSeoCourse from '../assets/imgs/home-page-seo-course.jpg'
-import htNewsletterBanner from '../assets/imgs/ht-newsletter-banner.jpg'
-import HTHomeVoterBanner from '../assets/imgs/HT-home-voter-banner.jpg'
-import HTHomeIndivisual from '../assets/imgs/ht-home-individuals-400x400.png'
-import HTHomeBusiness from '../assets/imgs/ht-home-business-400x400.png'
-import HTHomeEntrepreneur from '../assets/imgs/ht-home-entrepreneur-400x400.png'
-import HTHomeBanner from '../assets/imgs/ht-home-banner-2.jpg'
-import homeContentManagementService from '../assets/imgs/home-content-management-service.jpg'
-import homeSeoService from '../assets/imgs/home-seo-service.jpg'
-import homeWebAndMobileDesign from '../assets/imgs/home-web-and-mobile-design.jpg'
-import homeWebManagement from '../assets/imgs/home-web-management.jpg'
 import * as Fontawesome from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
-import rocketIcon from '../assets/imgs/rocket-icon.png'
+import qs from 'qs'
+import Newsletter2 from '../components/Newsletter2'
 
-import { FaBuilding, FaHospitalUser } from 'react-icons/fa'
-import { SiMinutemailer } from 'react-icons/si'
 import Green_rounded_btn from '../components/buttons/Green_rounded_btn'
-import { useRouter } from 'next/router'
 import axios from 'axios'
+import ContactForm from '../components/ContactForm'
 
 export default function Home({ contents }) {
   const {
@@ -51,56 +27,44 @@ export default function Home({ contents }) {
     theHumbleTrader,
     weBoostSection,
   } = contents?.data?.attributes
-  const router = useRouter()
   return (
     <>
       <Head>
-        <title>{Header.title}</title>
-        <meta name="description" content={Header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta
-          property="og:title"
-          content="Elite Digital Marketing Services | Business &amp; Politics Made Digital"
-        />
-        <meta name="robots" content="index, follow" />
+        <title>{Header?.title || "Humble Titan"}</title>
+        <meta name="description" content={Header?.metaDescription || "" } />
+        <meta name="keywords" content={Header?.keywords || "" }/>
+        <meta name="robots" content={Header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="Bayo adesina" />
+        <meta name="language" content={Header?.language || ""} />
+        <meta name="revisit-after" content={ Header?.revisitAfter || "5 days"} />
+        <meta name="author" content={Header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content={Header?.description} />
-        <meta property="og:url" content="https://www.humbletitan.com/" />
-        <meta property="og:site_name" content="Humble Titan" />
-        <meta
-          property="article:modified_time"
-          content="2022-08-01T08:28:57+00:00"
-        />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:locale" content={ Header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={Header?.og_type || "article"} />
+        <meta property="og:title" content={Header?.og_title || ""} />
+        <meta property="og:description" content={Header?.og_description || ""} />
+        <meta property="og:url" content={Header?.org_url || ""} />
+        <meta property="og:site_name" content={Header?.og_site_name || ""} />
+        <meta property="og:image" content={Header?.og_image || ""} />
+        <meta name="twitter:card" content={Header?.twitter_card || ""} />
+        <meta name="twitter:site" content={Header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={Header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={Header?.twitter_title || ""} />
+        <meta name="twitter:description" content={Header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={Header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={Header?.twitter_image} />
+        <meta name="twitter:url" content={Header?.twitter_url} />
+        <meta itemProp="image" content={Header?.itemProp_image || ""} />
+        <meta itemProp="name" content={Header?.itemProp_name || ""} />
+        <meta itemProp="description" content={Header?.itemProp_description || ""} />
+        <meta name="geo.region" content={Header?.geo_region || ""} />
+        <meta name="geo.placename" content={Header?.geo_placename || ""} />
+        <meta name="geo.position" content={Header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={Header?.canonicalUrl || ""} />
       </Head>
       <Layout>
         {/* Hero */}
@@ -121,7 +85,11 @@ export default function Home({ contents }) {
                 {/* </div> */}
               </div>
               <div className="mt-10 md:mt-0 md:h-[50%]">
-                <img src={Hero.heroImage.data[0].attributes.url} alt="image" />
+                <Image src={Hero.heroImage.data[0].attributes.url} 
+                  alt={Hero.heroImage.data[0].attributes.name}
+                  width={Hero.heroImage.data[0].attributes.width}
+                  height={Hero.heroImage.data[0].attributes.height}
+                />
               </div>
             </div>
           </div>
@@ -132,23 +100,29 @@ export default function Home({ contents }) {
           <div className=" container w-12/12 mx-auto max-w-screen-xl">
             <div className="mx-auto flex flex-wrap justify-around w-10/12 md:w-11/12 ">
               <div className="pt-[40px] md:w-[50%] ">
-                <div className="flex items-center ">
-                  <img
+                <div className="flex items-center h-[100%] ">
+                  <Image
                     className="rounded-xl"
                     src={weBoostSection.images.data[0].attributes.url}
-                    alt="img"
+                    alt={weBoostSection.images.data[0].attributes.name}
+                    width={weBoostSection.images.data[0].attributes.width || "100%"}
+                    height={weBoostSection.images.data[0].attributes.height || "100%"}
                   />
                   <div className="ml-8">
-                    <img
+                    <Image
                       className="rounded-xl"
                       src={weBoostSection.images.data[1].attributes.url}
-                      alt="img"
+                      alt={weBoostSection.images.data[1].attributes.name}
+                      width={weBoostSection.images.data[1].attributes.width || "100%"}
+                      height={weBoostSection.images.data[1].attributes.height || "100%"}
                     />
                     <div>
-                      <img
+                      <Image
                         className="rounded-xl "
                         src={weBoostSection.images.data[2].attributes.url}
-                        alt="img"
+                        alt={weBoostSection.images.data[2].attributes.name}
+                        width={weBoostSection.images.data[2].attributes.width || "100%"}
+                        height={weBoostSection.images.data[2].attributes.height || "100%"}
                       />
                     </div>
                   </div>
@@ -156,12 +130,11 @@ export default function Home({ contents }) {
               </div>
               <div className="mt-10 md:w-[50%] md:pl-10">
                 <div className="md:flex items-center">
-                  <img
-                    src={
-                      weBoostSection.title_with_picture.smallPicture.data
-                        .attributes.url
-                    }
-                    alt="img"
+                  <Image
+                    src={weBoostSection.title_with_picture.smallPicture.data.attributes.url}
+                    alt={weBoostSection.title_with_picture.smallPicture.data.attributes.name}
+                    width={weBoostSection.title_with_picture.smallPicture.data.attributes.width || "100%"}
+                    height={weBoostSection.title_with_picture.smallPicture.data.attributes.height || "100%"}
                   />
                   <p className="text-[20px] extralight text-[#023A51] ">
                     {weBoostSection.title_with_picture.title}
@@ -215,10 +188,12 @@ export default function Home({ contents }) {
                       key={index}
                       className=" md:w-[19%] sm:w-[30%] w-[100%] flex flex-col items-center "
                     >
-                      <img
+                      <Image
                         className=" rounded-xl hover:drop-shadow-lg hover:scale-105 transition duration-300 cursor-pointer "
                         src={item.image.data.attributes.url}
-                        alt="image"
+                        alt={item.image.data.attributes.name}
+                        width={item.image.data.attributes.width || "100%"}
+                        height={item.image.data.attributes.height || "100%"}
                       />
                       <p className="text-[22px] leading-[30px] text-center mb-6 w-[100%]">
                         {item.description}
@@ -274,10 +249,9 @@ export default function Home({ contents }) {
                   >
                     <Image
                       src={item.image.data.attributes.url}
-                      width="100%"
-                      height="100%"
-                      layout="fixed"
-                      alt="image"
+                      alt={item.image.data.attributes.name}
+                      width={item.image.data.attributes.width || "100%"}
+                      height={item.image.data.attributes.height || "100%"}
                     />
 
                     <h2 className="text-[32px] py-2">{item.title}</h2>
@@ -331,115 +305,7 @@ export default function Home({ contents }) {
                   })}
                 </div>
                 <div className=" py-6 md:w-[50%] w-[100%] md:py-20">
-                  <div className=" bg-[#fff] rounded-xl p-4 md:p-10 ">
-                    <div className="md:flex justify-between py-4">
-                      <div>
-                        <label
-                          className="text-[#34495E] my-6 md:py-3 text-[20px] "
-                          htmlFor="name"
-                        >
-                          Name *
-                        </label>
-                        <input
-                          className="block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%] "
-                          type="text"
-                          required
-                          placeholder="John Stuart"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          className="text-[#34495E] py-3 text-[20px] "
-                          htmlFor="name"
-                        >
-                          Phone *
-                        </label>
-                        <input
-                          className="block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%] "
-                          type="tel"
-                          required
-                          placeholder="(123)-456-7890"
-                        />
-                      </div>
-                    </div>
-                    <div className="md:flex justify-between py-4">
-                      <div>
-                        <label
-                          className="text-[#34495E] py-3 text-[20px]"
-                          htmlFor="name"
-                        >
-                          Email address *
-                        </label>
-                        <input
-                          className="block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%]"
-                          type="text"
-                          required
-                          placeholder="name@company.com"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          className="text-[#34495E] py-3 text-[20px]"
-                          htmlFor="name"
-                        >
-                          Service interested in *
-                        </label>
-                        <select
-                          className="block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] md:w-[90%]"
-                          required
-                          placeholder="(123)-456-7890"
-                        >
-                          <option value="search engine optimization">
-                            Search Engine Optimaization
-                          </option>
-                          <option value="web design">Web Design</option>
-                          <option value="content marketing">
-                            Content Marketing
-                          </option>
-                          <option value="website management">
-                            Website management
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="py-4 ">
-                      <div>
-                        <label
-                          className="text-[#34495E] py-3 text-[20px]"
-                          htmlFor="subject"
-                        >
-                          Subject
-                        </label>
-                        <input
-                          className="block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] "
-                          type="text"
-                          placeholder="Quote request for"
-                        />
-                      </div>
-                    </div>
-                    <div className="py-4 ">
-                      <div>
-                        <label
-                          className="text-[#34495E] py-3 text-[20px]"
-                          htmlFor="subject"
-                        >
-                          How can we help?
-                        </label>
-                        <textarea
-                          className="block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] "
-                          type="text"
-                          placeholder="I need help with the next problem"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div className="py-4 ">
-                      <div>
-                        <button className="green_rounded_btn">
-                          Get in touch
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <ContactForm/>
                 </div>
               </div>
             </div>
@@ -491,12 +357,11 @@ export default function Home({ contents }) {
                   <div className="flex items-center">
                     {TRAMSearchEngine.title_with_picture && (
                       <>
-                        <img
-                          src={
-                            TRAMSearchEngine.title_with_picture.smallPicture
-                              .data.attributes.url
-                          }
-                          alt="image"
+                        <Image
+                          src={TRAMSearchEngine.title_with_picture.smallPicture.data.attributes.url}
+                          alt={TRAMSearchEngine.title_with_picture.smallPicture.data.attributes.name}
+                          width={TRAMSearchEngine.title_with_picture.smallPicture.data.attributes.width || "100%"}
+                          height={TRAMSearchEngine.title_with_picture.smallPicture.data.attributes.height || "100%"}
                         />
 
                         <p className="text-[20px] ml-4  ">
@@ -520,22 +385,28 @@ export default function Home({ contents }) {
                 <div className="pt-[40px] md:pl-20 w-[100%] md:w-[45%] ">
                   <div className="flex flex-col md:flex-row justify-center md:items-center ">
                     <div className="flex justify-center">
-                      <img
+                      <Image
                         className="rounded-xl"
                         src={TRAMSearchEngine.images.data[0].attributes.url}
-                        alt="img"
+                        alt={TRAMSearchEngine.images.data[0].attributes.name}
+                        width={TRAMSearchEngine.images.data[0].attributes.width || "100%"}
+                        height={TRAMSearchEngine.images.data[0].attributes.height || "100%"}
                       />
                       <div className="ml-8 mt-4 md:mt-0 ">
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={TRAMSearchEngine.images.data[1].attributes.url}
-                          alt="img"
+                          alt={TRAMSearchEngine.images.data[1].attributes.name}
+                          width={TRAMSearchEngine.images.data[1].attributes.width || "100%"}
+                          height={TRAMSearchEngine.images.data[1].attributes.height || "100%"}
                         />
                         <div>
-                          <img
+                          <Image
                             className="rounded-xl "
                             src={TRAMSearchEngine.images.data[2].attributes.url}
-                            alt="img"
+                            alt={TRAMSearchEngine.images.data[2].attributes.name}
+                            width={TRAMSearchEngine.images.data[2].attributes.width || "100%"}
+                            height={TRAMSearchEngine.images.data[2].attributes.height || "100%"}
                           />
                         </div>
                       </div>
@@ -551,9 +422,11 @@ export default function Home({ contents }) {
         <section className="heading my-20 ">
           <div className=" container py-20 w-12/12 mx-auto bg-[#e0ecf0] flex justify-center flex-wrap max-w-screen-xl">
             <div className="px-4 md:w-[50%]">
-              <img
+              <Image
                 src={WeAreAFullService.image.data[0].attributes.url}
-                alt="image"
+                alt={WeAreAFullService.image.data[0].attributes.name}
+                width={WeAreAFullService.image.data[0].attributes.width || "100%"}
+                height={WeAreAFullService.image.data[0].attributes.height || "100%"}
               />
             </div>
             <div className="p-6 pl-10 text-[#023A51] md:w-[50%] ">
@@ -566,7 +439,7 @@ export default function Home({ contents }) {
                 Subscribe below to our magazine, the Humble Mind for <br /> our
                 latest updates.
               </p>
-              <h2 className="text-[24px] font-bold py-6 ">
+              {/* <h2 className="text-[24px] font-bold py-6 ">
                 Hear from us first
               </h2>
               <input
@@ -574,7 +447,9 @@ export default function Home({ contents }) {
                 type="text"
                 placeholder="Enter your email"
               />
-              <button className="green_rounded_btn my-10">Subscribe</button>
+              <button className="green_rounded_btn my-10">Subscribe</button> */}
+
+              <Newsletter2/>
             </div>
           </div>
         </section>
@@ -586,15 +461,17 @@ export default function Home({ contents }) {
               <p className="text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] font-semibold ">
                 {beHumbleVoter.heading}
               </p>
-              <p className=" text-[20px] text-wrap leading-10 px-10 ">
+              <p className=" text-[20px] text-wrap leading-10 md:px-10 ">
                 {beHumbleVoter.description}
               </p>
             </div>
             <div className=" md:w-[50%] w-[100%] px-4 ">
-              <img
+              <Image
                 className="rounded-xl "
                 src={beHumbleVoter.image.data[0].attributes.url}
-                alt="image"
+                alt={beHumbleVoter.image.data[0].attributes.name}
+                width={beHumbleVoter.image.data[0].attributes.width || "100%"}
+                height={beHumbleVoter.image.data[0].attributes.height || "100%"}
               />
             </div>
           </div>
@@ -617,10 +494,12 @@ export default function Home({ contents }) {
                       {item.heading}
                     </h2>
                     <div className="my-6">
-                      <img
+                      <Image
                         className="rounded-xl"
                         src={item.image.data.attributes.url}
-                        alt="image"
+                        alt={item.image.data.attributes.name}
+                        width={item.image.data.attributes.width || "100%"}
+                        height={item.image.data.attributes.height || "100%"}
                       />
                     </div>
                     <p className="text-[22px] text-[#59667d] ">
@@ -667,8 +546,96 @@ export default function Home({ contents }) {
 
 export const getServerSideProps = async () => {
   var contents
+  const query = qs.stringify({
+    populate: {
+      Header: {
+          populate: '*'
+      },
+      Hero: {
+          populate: '*'
+      },
+      weBoostSection: {
+          populate: {
+              actionButton: {
+                populate: '*'
+              },
+              images: {
+                populate: '*'
+              },
+              link: {
+                populate: '*'
+              },
+              title_with_picture: {
+                  populate: '*'
+              }
+          }
+      },
+      explore: {
+          populate: {
+              Offerings: {
+                  populate: '*'
+              }
+          }
+      },
+      ourServices: {
+          populate: {
+              BackgroundImage: {
+                populate: '*'
+              },
+              marketSmarter: {
+                  populate: '*'
+              }
+          }
+      },
+      services_gallery: {
+          populate: {
+              single_service: {
+                  populate: '*'
+              }
+          }
+      },
+      tellUs_section: {
+          populate: '*'
+      },
+      theHumbleTrader: {
+          populate: '*'
+      },
+      TRAMSearchEngine: {
+          populate: {
+              actionButton: {
+                populate: '*'
+              },
+              images: {
+                populate: '*'
+              },
+              link: {
+                populate: '*'
+              },
+              title_with_picture: {
+                  populate: '*'
+              }
+          }
+      },
+      WeAreAFullService: {
+          populate: '*'
+      },
+      beHumbleVoter: {
+          populate: '*'
+      },
+      no_matter_who_you_are: {
+          populate: {
+              vertical_cards: {
+                  populate: '*'
+              }
+          }
+      },
+      ht_digital_services: {
+          populate: '*'
+      },
+  },
+  })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/home`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/home?${query}`)
     .then(({ data }) => {
       contents = data
     })

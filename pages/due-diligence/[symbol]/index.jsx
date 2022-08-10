@@ -1039,7 +1039,7 @@ const CompantDetail = () => {
           <meta name="geo.placename" content="true" />
           <meta name="geo.position" content="true" />
           <meta name="ICBM" content="true" />
-          <meta name="true" content="true" />
+          
           <meta name="next-head-count" content="32" />
         </Head>
         <Company

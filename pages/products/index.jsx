@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Layout from "../../components/Layout";
 import Image from 'next/image'
 import axios from 'axios'
+import qs from 'qs'
 import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
 
 import Deliverable1 from '../../assets/imgs/1-Deliverable-Data-Studio.jpg'
@@ -40,12 +41,45 @@ import DiscoverMore from '../../components/DiscoverMore'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 
 export default function Products({ contents }) {
-    console.log(contents)
     const { header, hero, explore, other_products, products_list, requestAQuote_section } = contents.data.attributes
     return (
         <>
             <Head>
-                <title>{header.title}</title>
+                <title>{header?.title || "Humble Titan"}</title>
+                <meta name="description" content={header?.metaDescription || "" } />
+                <meta name="keywords" content={header?.keywords || "" }/>
+                <meta name="robots" content={header?.robots || ""} />
+                <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
+                <meta name="language" content={header?.language || ""} />
+                <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+                <meta name="author" content={header?.author || "humble titan"} />
+                <meta charSet="UTF-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, user-scalable=no" />
+                <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+                <meta property="og:type" content={header?.og_type || "article"} />
+                <meta property="og:title" content={header?.og_title || ""} />
+                <meta property="og:description" content={header?.og_description || ""} />
+                <meta property="og:url" content={header?.org_url || ""} />
+                <meta property="og:site_name" content={header?.og_site_name || ""} />
+                <meta property="og:image" content={header?.og_image || ""} />
+                <meta name="twitter:card" content={header?.twitter_card || ""} />
+                <meta name="twitter:site" content={header?.twitter_site || ""} />
+                <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+                <meta name="twitter:title" content={header?.twitter_title || ""} />
+                <meta name="twitter:description" content={header?.twitter_description || ""} />
+                <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+                <meta name="twitter:image" content={header?.twitter_image} />
+                <meta name="twitter:url" content={header?.twitter_url} />
+                <meta itemProp="image" content={header?.itemProp_image || ""} />
+                <meta itemProp="name" content={header?.itemProp_name || ""} />
+                <meta itemProp="description" content={header?.itemProp_description || ""} />
+                <meta name="geo.region" content={header?.geo_region || ""} />
+                <meta name="geo.placename" content={header?.geo_placename || ""} />
+                <meta name="geo.position" content={header?.geo_position || ""} />
+                <meta name="ICBM" content="true" />
+                <meta name="next-head-count" content="32" />
+                <link rel="canonical" href={header?.canonicalUrl || ""} />
             </Head>
             <Layout>
                 {/* Hero */}
@@ -85,7 +119,13 @@ export default function Products({ contents }) {
                                     products_list.product_cards.map((item) => {
                                         return (
                                             <div key={item.id} className=' sm:w-[49%] lg:w-[32%] w-[100%] flex flex-col items-center mb-6 border rounded-lg p-5 md:p-10 '>
-                                                <img className='rounded-xl ' src={item.image.data.attributes.url} alt="image" />
+                                                <Image
+                                                    className="rounded-xl"
+                                                    src={item.image.data.attributes.url}
+                                                    alt={item.image.data.attributes.name}
+                                                    width={item.image.data.attributes.width}
+                                                    height={item.image.data.attributes.height}
+                                                />
                                                 <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >{item.title}</p>
                                                 <p className='text-[20px] text-[#59667d] text-left py-2' >{item.description}</p>
                                                 <div className='mt-5'>
@@ -95,139 +135,6 @@ export default function Products({ contents }) {
                                         )
                                     })
                                 }
-                                {/* <div className=' sm:w-[49%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-4 md:p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable1} alt="image" />
-                                    <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Custom Data Studio Dashboards</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >An easy way for anyone to understand business web performance. Automate custom reports to track web KPI.</p>
-                                    <button className='text-[#59667d] font-bold text-[22px] cursor-pointer '>Track Performance</button>
-                                </div>
-                                <div className=' sm:w-[49%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable1} alt="image" />
-                                    <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Custom Data Studio Dashboards</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >An easy way for anyone to understand business web performance. Automate custom reports to track web KPI.</p>
-                                    <button className='text-[#59667d] font-bold text-[22px] cursor-pointer '>Track Performance</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable2} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >OnPage Optimization Recommendations</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Identify the most impactful meta titles, descriptions, and headers. Get the most out of each web page.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Attract traffic to more pages</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable3} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Schema Recommendations</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Make sure your site is able to speak directly to search engines. Effectively communicate the value of pages, products, and services.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Schema your site</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable4} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Keyword Map</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Purposefully map out all the queries you’d like your site to rank for. Prepare every single web page for success.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Map online success</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable5} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Keyword List</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Generate a list of all the queries your customers are searching before they find you or your competitors.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Acquire a search list</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable6} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Site Architecture Review</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Ensure the page hierarchy of your site is set up in a way that resonates with search engines and users.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Improve the foundation of your site</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable7} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Technical SEO Audit</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >No point in having a good-looking site if Google doesn’t understand it. We perform thorough web health checks.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Improve your site health</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable8} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Backlink Audit</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Backlinks play a crucial role in web performance. We’ll let you know how much you need to succeed, and clean up toxic links.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Rank higher, faster</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable9} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Blog Content</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >We deliver the content you need to stand out online.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Improve blog strategy</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable10} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Competitor Analysis</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Discover every smart move your competitors have made online. Set up your brand for excellence.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Keep an eye on competitors</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable11} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Content Gap Analysis</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Tell us who your competitors are. We’ll tell you all the pages you need to outperform them.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Cover all web gaps</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable12} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Internal Link Audit</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >The way your site interacts with itself matters to search engines. We document and highlight all opportunities.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Improve the structure of your site</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable13} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Infographic Design</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >We deliver stunning informational graphics that keep users on your site for longer. Attract the interest of news outlets and relevant publications.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Request infographics</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable14} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >New Landing Page Design</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >We combine SEO, UX/UI to deliver prototype pages that are certain to perform.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Design a new landing page</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable15} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Featured Snippet Audit</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Awareness online isn’t just about links on search engines results pages. We map out a plan to claim video, table, list, and other results on position zero.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Feature on search results</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable16} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >HTML Sitemap Design</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >An XML sitemap is easy enough, but an HTML sitemap ought to balance the goals of the brand and the interests of users.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Optimize your sitemap</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable17} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Google Search Console & Analytics Integration</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >We get your site ready to measure performance. We’ll customize segments and conversions to match KPI.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Set up performance tracking</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable18} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Core Web Vitals Optimization</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Set up dashboards that help you identify opportunities to improve the User experience from Google’s perspective.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Optimize for User Experience</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable19} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Image Optimizations</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Ensure your site’s images are optimized for both the visually impaired and search performance.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Optimize your site’s images</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable20} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Page Speed Optimization</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >The way your site interacts with itself matters to search engines. We document and highlight all opportunities.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Improve site speed</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={Deliverable21} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Content Planner</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >We deliver a schedule which highlight what, when and how of new page creation. We also point out the type of positions you may expect to claim.</p>
-                                    <button className='text-[#59667d] font-bold text-[24px] cursor-pointer '>Select your content plan</button>
-                                </div> */}
-
                             </div>
 
                         </div>
@@ -261,7 +168,13 @@ export default function Products({ contents }) {
                                     other_products.product_cards.map((item) => {
                                         return (
                                             <div key={item.id} className=' sm:w-[49%] lg:w-[32%] w-[100%] flex flex-col items-center mb-6 border rounded-lg p-5 md:p-10 '>
-                                                <img className='rounded-xl ' src={item.image.data.attributes.url} alt="image" />
+                                                <Image
+                                                    className="rounded-xl"
+                                                    src={item.image.data.attributes.url}
+                                                    alt={item.image.data.attributes.name}
+                                                    width={item.image.data.attributes.width}
+                                                    height={item.image.data.attributes.height}
+                                                />
                                                 <p className=' text-[24px] md:text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >{item.title}</p>
                                                 <p className='text-[20px] text-[#59667d] text-left py-2' >{item.description}</p>
                                                 {
@@ -276,38 +189,6 @@ export default function Products({ contents }) {
                                         )
                                     })
                                 }
-                                {/* <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-5 md:p-10 '>
-                                    <Image className='rounded-xl ' src={serviceIconLong} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >The TRAM SEO App</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Our extensive TRAM SEO course adapted to your favorite mobile device</p>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={ProductPolitics} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Politics in your Pocket</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >The Humble voter intends to make political engagement fun.</p>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={ProductHumbleTrader} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Humble Trader App</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Never invest without understanding the value of the company you want to be a part of.</p>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={ProductHTCMS} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >HT CMS</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >A proprietary web and content management system that takes advantage of the latest technologies.</p>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={ProductTheHumbleMind} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >The Humble Mind App</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >Our educational platform aims to educate while offering perspective on the life journey of our users.</p>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[32%] w-[100%] mb-6 border rounded-lg p-10 '>
-                                    <Image className='rounded-xl ' src={ProductLanguageApp} alt="image" />
-                                    <p className='text-[30px] text-[#023A51] font-bold leading-[35px] py-2' >Language App</p>
-                                    <p className='text-[20px] text-[#59667d] text-left py-2' >An ambitious project which aims to teach Spanish to English speakers through an innovative approach.</p>
-                                </div> */}
-
-
                             </div>
 
                         </div>
@@ -339,15 +220,50 @@ export default function Products({ contents }) {
 
 export const getServerSideProps = async () => {
     var contents;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/products-page`)
+
+    const query = qs.stringify({
+        populate: {
+            header: {
+                populate: '*'
+            },
+            hero: {
+                populate: '*'
+            },
+            products_list: {
+                populate: {
+                    product_cards: {
+                        populate: '*'
+                    }
+                }
+            },
+            other_products: {
+                populate: {
+                    product_cards: {
+                        populate: '*'
+                    }
+                }
+            },
+            requestAQuote_section: {
+                populate: '*'
+            },
+            explore: {
+                populate: {
+                    Offerings: {
+                        populate: '*'
+                    }
+                }
+            },
+        },
+    })
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/products-page?${query}`)
         .then(({ data }) => {
-            contents = data
+            contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
     return {
         props: {
-            contents: JSON.parse(JSON.stringify(contents))
+            contents: contents
         }
     }
 }

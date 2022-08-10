@@ -144,7 +144,7 @@ export default function Home() {
     getData(pageNo)
     getSearch()
     getCustomPages()
-  }, [])
+  }, [pageNo])
 
   const moveForward = () => {
     setPageNo(lastPageNo)
@@ -168,10 +168,6 @@ export default function Home() {
     setPageNo(1)
     mainFilter !== 'All Tickers' ? filteration(filter, 1) : getData(1)
   }
-
-  console.log('allcompany', allcompany?.length, allcompany)
-
-  console.log(companiesRenderable)
 
   return (
     <div>
@@ -215,7 +211,7 @@ export default function Home() {
         <meta name="geo.placename" content="true" />
         <meta name="geo.position" content="true" />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
+        
         <meta name="next-head-count" content="32" />
       </Head>
       <Layout>

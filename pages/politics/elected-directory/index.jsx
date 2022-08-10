@@ -6,7 +6,7 @@ import BrowseByState from "../../../components/BrowseByState";
 import AllRepresentatives from "../../../components/AllRepresentatives";
 import axios from "axios";
 
-export default function index({ officials }) {
+export default function Index({ officials }) {
   return (
     <>
       <Layout>
@@ -25,7 +25,6 @@ export default function index({ officials }) {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="true" />
@@ -48,7 +47,7 @@ export default function index({ officials }) {
         <meta name="geo.placename" content="true" />
         <meta name="geo.position" content="true" />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
+        
         <meta name="next-head-count" content="32" />
             </Head>
         <TopTitle />

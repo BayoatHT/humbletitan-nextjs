@@ -10,17 +10,9 @@ import Link from 'next/link'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
 import * as Fontawesome from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
+import qs from 'qs'
 
 
-import Digitalmarketingservicesfeatured from '../../assets/imgs/Digital-marketing-services-featured-600x586.jpg'
-import WebDesignht from '../../assets/imgs/Web-Design-ht-4-400x400.png'
-import SEOht from '../../assets/imgs/SEO-ht-4-400x400.png'
-import ContentMarketinght from '../../assets/imgs/Content-Marketing-ht-4-400x400.png'
-import webManagmentht from '../../assets/imgs/web-Managment-ht-4-400x400.png'
-import DueDiligenceht from '../../assets/imgs/Due-Diligence-ht-4-400x400.png'
-import Educationht from '../../assets/imgs/Education-ht-4-400x400.png'
-import HTTestimonialBayo from '../../assets/imgs/HT-Testimonial-Bayo-600x585.jpg'
-import HTLogoIcons from '../../assets/imgs/HT-Logo-Icons.png'
 import industriesniche from '../../assets/imgs/industries-niche.jpg'
 
 
@@ -31,45 +23,41 @@ export default function Services({ contents }) {
     return (
         <>
             <Head>
-                <title>{header.title}</title>
-                <meta name="description" content={header?.description} />
-                <meta
-                name="keywords"
-                content="stocks, Marketing Consultant, SEO, polictics,"
-                />
-                <meta name="robots" content="index, follow" />
+                <title>{header?.title || "Humble Titan"}</title>
+                <meta name="description" content={header?.metaDescription || "" } />
+                <meta name="keywords" content={header?.keywords || "" }/>
+                <meta name="robots" content={header?.robots || ""} />
                 <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-                <meta name="language" content="English" />
-                <meta name="revisit-after" content="5 days" />
-                <meta name="author" content="humbletitan.com" />
+                <meta name="language" content={header?.language || ""} />
+                <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+                <meta name="author" content={header?.author || "humble titan"} />
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, user-scalable=no" />
-                <meta name="robots" content="noindex" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="true" />
-                <meta property="og:description" content="true" />
-                <meta property="og:url" content="true" />
-                <meta property="og:site_name" content="true" />
-                <meta property="og:image" content="true" />
-                <meta name="twitter:card" content="true" />
-                <meta name="twitter:site" content="true" />
-                <meta name="twitter:creator" content="true" />
-                <meta name="twitter:title" content="true" />
-                <meta name="twitter:description" content="true" />
-                <meta name="twitter:domain" content="true" />
-                <meta name="twitter:image" content="true" />
-                <meta name="twitter:url" content="true" />
-                <meta itemProp="image" content="true" />
-                <meta itemProp="name" content="true" />
-                <meta itemProp="description" content="true" />
-                <meta name="geo.region" content="true" />
-                <meta name="geo.placename" content="true" />
-                <meta name="geo.position" content="true" />
+                <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+                <meta property="og:type" content={header?.og_type || "article"} />
+                <meta property="og:title" content={header?.og_title || ""} />
+                <meta property="og:description" content={header?.og_description || ""} />
+                <meta property="og:url" content={header?.org_url || ""} />
+                <meta property="og:site_name" content={header?.og_site_name || ""} />
+                <meta property="og:image" content={header?.og_image || ""} />
+                <meta name="twitter:card" content={header?.twitter_card || ""} />
+                <meta name="twitter:site" content={header?.twitter_site || ""} />
+                <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+                <meta name="twitter:title" content={header?.twitter_title || ""} />
+                <meta name="twitter:description" content={header?.twitter_description || ""} />
+                <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+                <meta name="twitter:image" content={header?.twitter_image} />
+                <meta name="twitter:url" content={header?.twitter_url} />
+                <meta itemProp="image" content={header?.itemProp_image || ""} />
+                <meta itemProp="name" content={header?.itemProp_name || ""} />
+                <meta itemProp="description" content={header?.itemProp_description || ""} />
+                <meta name="geo.region" content={header?.geo_region || ""} />
+                <meta name="geo.placename" content={header?.geo_placename || ""} />
+                <meta name="geo.position" content={header?.geo_position || ""} />
                 <meta name="ICBM" content="true" />
-                <meta name="true" content="true" />
                 <meta name="next-head-count" content="32" />
+                <link rel="canonical" href={header?.canonicalUrl || ""} />
             </Head>
             <Layout>
 
@@ -88,7 +76,12 @@ export default function Services({ contents }) {
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
                                     <div className='p-2'>
-                                        <img className='rounded-xl' src={top_section.image.data[0].attributes.url} alt="image" />
+                                        <Image className='rounded-xl' 
+                                        src={top_section.image.data[0].attributes.url} 
+                                        alt={top_section.image.data[0].attributes.name}
+                                        width={top_section.image.data[0].attributes.width}
+                                        height={top_section.image.data[0].attributes.height}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +102,12 @@ export default function Services({ contents }) {
                                             return (
                                                 <div key={item.id} className='rounded-lg bg-[#fff] px-6 md:px-10 py-6 pb-10 shadow-lg md:w-[45%] w-[100%] mb-12 '>
                                                     <div className="flex justify-center w-[100%]">
-                                                        <img src={item.image.data.attributes.url} alt="image" />
+                                                        <Image 
+                                                        src={item.image.data.attributes.url} 
+                                                        alt={item.image.data.attributes.name}
+                                                        width={item.image.data.attributes.width}
+                                                        height={item.image.data.attributes.height}
+                                                        />
 
                                                     </div>
                                                     <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >{item.title}</h2>
@@ -132,130 +130,11 @@ export default function Services({ contents }) {
                                                         <div className='font-bold w-[100%] flex justify-center '>
                                                             <Green_rounded_btn href={item.actionButton.href}  >{item.actionButton.label}</Green_rounded_btn>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             )
                                         })
                                     }
-                                    {/* <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
-                                        <Image src={WebDesignht} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Web Design</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>More than design. We transform your vision into an online reality.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Translate your Brand Online</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Establish web presence</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />User-friendly & Modern Design</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> The Latest Web Technology </p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Websites for All Verticals </p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div>
-                                    </div>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
-                                        <Image src={SEOht} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Search Engine Optimization</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>Extend your brand’s organic reach. Attract thousands of new visitors to your website.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Technical Web Optimization</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Meta Data & Content Optimization</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Web Authority Optimization</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Web Performance Monitoring </p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div>
-                                    </div>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
-                                        <Image src={ContentMarketinght} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Content Marketing</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>With a focus on engagement, we specialize in brand elevating web content.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Diverse Offering of Content</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Decisions backed by Research and Data</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Team of Experienced Professionals</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Thorough Quality Checks</p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div>
-                                    </div>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
-                                        <Image src={webManagmentht} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Web Management</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>Let’s take care of your bsuiness. We will manage the day-to-day operations of your website.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Deep Client Relationships</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />SWOT Analysis</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Market, Trends, and Competitor Insights</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' /> Constant Reporting and Feedback</p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div>
-                                    </div>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-12 '>
-                                        <Image src={DueDiligenceht} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Due Diligence Reports</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>Discover the real value of the business behind stocks. Invest wisely.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Company Profiles</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Financial Ratios</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Historic Performance</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Growth Overview</p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div>
-                                    </div>
-                                    <div className='rounded-lg bg-[#fff] px-10 p-6 shadow-lg md:w-[45%] w-[100%] mb-6 md:mb-12 '>
-                                        <Image src={Educationht} alt="image" />
-                                        <h2 className='text-[30px] md:text-[40px] text-center font-bold leading-[39px] md:leading-[49px] tracking-[-2px] ' >Education</h2>
-                                        <br />
-                                        <p className='text-[#59667d] text-[20px] md:text-[22px]  '>Empower yourself with the knowledge and confidence to manage your future.</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />TRAM SEO Course</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Business Education</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Economics Education</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Politcal Education</p>
-                                        <br />
-                                        <p className='text-[20px] md:text-[22px] text-[#59667d] flex ' ><FaCheck className='translate-y-2  mr-[12px]' color='#2cbc63' />Life Skills</p>
-                                        <br />
-                                        <div className='flex justify-center'>
-                                            <button className='green_rounded_btn font-bold w-[100%] '>Discover More</button>
-
-                                        </div> 
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -288,11 +167,20 @@ export default function Services({ contents }) {
                             <div className='flex flex-col md:flex-row items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[45%] mb-5 order-1 md:order-none ' >
                                     <div className='p-2'>
-                                        <img className='rounded-xl' src={bayo_quote.image.data.attributes.url} alt="image" />
+                                        <Image className='rounded-xl' 
+                                        src={bayo_quote.image.data.attributes.url}
+                                        alt={bayo_quote.image.data.attributes.name}
+                                        width={bayo_quote.image.data.attributes.width}
+                                        height={bayo_quote.image.data.attributes.height}
+                                         />
                                     </div>
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[45%]  ' >
-                                    <img src={bayo_quote.logo.data.attributes.url} alt='image' />
+                                    <Image src={bayo_quote.logo.data.attributes.url}
+                                     alt={bayo_quote.logo.data.attributes.name}
+                                     width={bayo_quote.logo.data.attributes.width}
+                                     height={bayo_quote.logo.data.attributes.height}
+                                     />
                                     <p className=' text-[40px] md:text-[50px] font-bold leading-[50px] md:leading-[59px] tracking-[-1px] '>{bayo_quote.heading}</p>
                                     <br />
                                     <ReactMarkdown className='text-[22px] ' >{bayo_quote.message}</ReactMarkdown>
@@ -351,7 +239,12 @@ export default function Services({ contents }) {
                                     <Green_rounded_btn href={IndustriesWeServe.actionButton.href} >{IndustriesWeServe.actionButton.label}</Green_rounded_btn>
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] mt-10 md:mt-0 ' >
-                                    <img className='rounded-xl' src={IndustriesWeServe.image.data[0].attributes.url} alt="image" />
+                                    <Image className='rounded-xl' 
+                                    src={IndustriesWeServe.image.data[0].attributes.url}
+                                    alt={IndustriesWeServe.image.data[0].attributes.name}
+                                    width={IndustriesWeServe.image.data[0].attributes.width}
+                                    height={IndustriesWeServe.image.data[0].attributes.height}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -368,7 +261,40 @@ export default function Services({ contents }) {
 
 export const getServerSideProps = async () => {
     var contents;
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services-page`)
+
+    const query = qs.stringify({
+        populate: {
+            header: {
+                populate: '*'
+            },
+            top_section: {
+                populate: '*'
+            },
+            cotactUs: {
+                populate: '*'
+            },
+            bayo_quote: {
+                populate: '*'
+            },
+            ourValue: {
+                populate: '*'
+            },
+            IndustriesWeServe: {
+                populate: "*"
+            },
+            ht_digital_services: {
+                populate: '*'
+            },
+            services_cards: {
+                populate: {
+                    serviceCards: {
+                        populate: '*'
+                    }
+                }
+            },
+        },
+    })
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services-page?${query}`)
         .then(({ data }) => {
             contents = data
         }).catch((error) => {

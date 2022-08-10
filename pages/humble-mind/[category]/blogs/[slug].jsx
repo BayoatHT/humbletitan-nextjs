@@ -12,6 +12,9 @@ import hthumbletradersidebar from '../../../../assets/imgs/ht-humble-trader-side
 import hthumblevotersidebar from '../../../../assets/imgs/ht-humble-voter-sidebar.png'
 
 import GetAQuote from '../../../../components/GetAQuote';
+import Newsletter2 from '../../../../components/Newsletter2';
+import ContactForm2 from '../../../../components/ContactForm2';
+import Newsletter from '../../../../components/Newsletter';
 
 export default function Blog({ data, slug }) {
     let blog = data.data[0]?.attributes
@@ -30,15 +33,27 @@ export default function Blog({ data, slug }) {
         }
     })
     const getRelatedBlogs = async () => {
-        await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&${query}`).then(({data})=> {
-            setRelatedBlogs(data?.data[0].attributes?.blogs?.data?.filter((item)=> item?.attributes?.slug !== slug))
-        }).catch((error)=> {
-            console.log(error);
-        })
+        if (category){
+            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&${query}`).then(({data})=> {
+                setRelatedBlogs(data?.data[0].attributes?.blogs?.data?.filter((item)=> item?.attributes?.slug !== slug))
+                // console.log(relatedBlogs)
+            }).catch((error)=> {
+                console.log(error);
+            })
+        }else{
+            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*`).then(({data})=> {
+                setRelatedBlogs(data.data?.filter((item)=> item?.attributes?.slug !== slug))
+                // console.log(relatedBlogs)
+            }).catch((error)=> {
+                console.log(error);
+            })
+        }
     }
     useEffect(()=> {
         getRelatedBlogs()
     }, [])
+
+    console.log(relatedBlogs)
     return (
         <>
             <Head>
@@ -60,7 +75,6 @@ export default function Blog({ data, slug }) {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content={blog?.description} />
@@ -86,7 +100,7 @@ export default function Blog({ data, slug }) {
         <meta name="geo.placename" content="true" />
         <meta name="geo.position" content="true" />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
+        
         <meta name="next-head-count" content="32" />
             </Head>
             <Layout>
@@ -99,7 +113,7 @@ export default function Blog({ data, slug }) {
                                 <p className='text-[26px] leading-[36px] text-[#023A51] py-5 '>{blog?.description} </p>
                                 <div className='flex justify-between py-6 text-[#023A51]'>
                                     <div className='flex'>
-                                        <Link href={`/humble-mind/${blog?.category?.data?.attributes?.name ? blog.category.data.attributes.name : 'Uncategorized'}`}  ><a className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer'> {blog?.category?.data?.attributes?.name ? blog.category.data.attributes.name : 'Uncategorized'}</a></Link>
+                                        <Link href={`/humble-mind/${blog?.category?.data?.attributes?.slug ? blog.category.data.attributes.slug : 'uncategorized'}`}  ><a className='pl-2 hover:text-[#2cbc63] font-bold cursor-pointer'> {blog?.category?.data?.attributes?.name ? blog.category.data.attributes.name : 'Uncategorized'}</a></Link>
 
                                     </div>
                                     <p className='font-bold'>{new Date(blog?.createdAt).toDateString()}</p>
@@ -143,50 +157,7 @@ export default function Blog({ data, slug }) {
                                     <Image src={htdigitalmarketingsidebar} alt="ht-digital-marketing-sidebar.png" />
 
                                     <div className=' py-6 md:py-20' >
-                                        <div className=' bg-[#eaeaea] p-4 '>
-                                            <div className=' py-4' >
-                                                <div>
-                                                    <label className='text-[#34495E] my-6 md:py-3 text-[20px] ' htmlFor="name">Name *</label>
-                                                    <input className='block p-2 border rounded text-[20px] w-[100%] ' type="text" required placeholder='John Stuart' />
-                                                </div>
-                                                <div className=' py-4'>
-                                                    <label className='text-[#34495E] py-3 text-[20px] ' htmlFor="name">Phone *</label>
-                                                    <input className='block p-2 border rounded text-[20px] w-[100%] ' type="tel" required placeholder='(123)-456-7890' />
-                                                </div>
-                                            </div>
-                                            <div className=' py-4'>
-                                                <div>
-                                                    <label className='text-[#34495E] py-3 text-[20px]' htmlFor="name">Email address *</label>
-                                                    <input className='block p-2 border rounded text-[20px] w-[100%]' type="text" required placeholder='name@company.com' />
-                                                </div>
-                                                <div className=' py-4'>
-                                                    <label className='text-[#34495E] py-3 text-[20px]' htmlFor="name">Service interested in *</label>
-                                                    <select className='block p-2 border rounded outline-none text-[#34495E] text-[20px] w-[100%]' required placeholder='(123)-456-7890'>
-                                                        <option value="search engine optimization">Search Engine Optimaization</option>
-                                                        <option value="web design">Web Design</option>
-                                                        <option value="content marketing">Content Marketing</option>
-                                                        <option value="website management">Website management</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div className='py-4 '>
-                                                <div>
-                                                    <label className='text-[#34495E] py-3 text-[20px]' htmlFor="subject">Subject</label>
-                                                    <input className='block p-2 border rounded outline-none text-[#34495E] text-[20px] w-[100%] ' type="text" placeholder='Quote request for' />
-                                                </div>
-                                            </div>
-                                            <div className='py-4 '>
-                                                <div>
-                                                    <label className='text-[#34495E] py-3 text-[20px]' htmlFor="subject">How can we help?</label>
-                                                    <textarea className='block p-2 border rounded outline-none text-[#34495E] text-[20px] w-[100%] ' type="text" placeholder='I need help with the next problem'></textarea>
-                                                </div>
-                                            </div>
-                                            <div className='py-4 '>
-                                                <div>
-                                                    <button className='green_rounded_btn'>Get in touch</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ContactForm2/>
                                     </div>
 
                                     {/* ht-humble-trader-sidebar */}
@@ -195,17 +166,7 @@ export default function Blog({ data, slug }) {
 
 
                                     {/* Hear from usfirst */}
-                                    <div className='my-10 py-10 bg-[#eaeaea]  '>
-                                        <p className='text-[24px] text-[#023A51] text-center font-bold '>Hear from us first</p>
-                                        <div className='px-4'>
-                                            <input className='block p-2 my-5 border rounded-lg text-[20px] w-[100%]' type="email" required placeholder='Enter your email' />
-
-                                        </div>
-                                        <div className='flex justify-center'>
-
-                                            <button className='green_rounded_btn'>Get in touch</button>
-                                        </div>
-                                    </div>
+                                    <Newsletter2/>
 
 
                                     {/* ht-humble-voter-sidebar */}
@@ -223,20 +184,7 @@ export default function Blog({ data, slug }) {
                 {/* Newsletter */}
                 <section className='heading md:my-20 '>
                     <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-                        <div className='mx-auto text-[#023A51] w-10/12 md:w-11/12 '>
-                            <div className="md:flex items-center justify-around p-10 shadow-sm shadow-[#888] rounded-xl  text-[#023A51]">
-                                <div >
-                                    <p className='text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px]  py-10  ' >Join to newsletter<span className='text-[#2cbc63]' >.</span></p>
-                                    <p className='text-[20px]' >Don’t miss out on the latest from Humble Titan.</p>
-                                </div>
-                                <div className=' '>
-                                    <h2 className='text-[24px] font-bold py-6 ' >Hear from us first</h2>
-                                    <input className='block outline-[#2cbc63] border p-2 rounded-xl text-[20px] w-[100%]' type="text" placeholder='Enter your email' />
-                                    <button className='green_rounded_btn my-10 px-10' >Subscribe</button>
-                                </div>
-                            </div>
-
-                        </div>
+                        <Newsletter/>
                     </div>
                 </section>
 
@@ -298,10 +246,19 @@ export default function Blog({ data, slug }) {
 export async function getServerSideProps(ctx) {
     const { query: { slug } } = ctx
     const { data } = await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
-    return {
-        props: {
-            data,
-            slug
-        },
-    };
+    if(!data.data.length){
+        return {
+            redirect: {
+                destination: '/humble-mind/',
+            },
+        }
+    }else{
+        return {
+            props: {
+                data,
+                slug
+            },
+        }
+    }
+
 }

@@ -50,23 +50,18 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="abcd_row abcd_justify-between mb-2_abcd footer_second_row_abcd">
-                        <div className="abcd_col-4 full-width_abcd">
+                        <div className="abcd_col-4 font-semibold text-center md:text-left text-[#023A51] full-width_abcd">
                             <span>© 2021 • Humble Titan • Brought to by The Adesina United</span>
                         </div>
                         <div className="abcd_col-4 full-width_abcd mt-15_abcd text-center_abcd">
-                            {/* <i className="fab fa-facebook"></i>
-                            <i className="fab fa-twitter"></i>
-                            <i className="fab fa-instagram"></i>
-                            <i className="fab fa-linkedin"></i>
-                            <i className="fab fa-youtube"></i> */}
-                            <FaFacebookF />
-                            <FaTwitter />
-                            <FaInstagram />
-                            <FaLinkedinIn />
-                            <FaYoutube />
+                            <FaFacebookF color='#023A51' />
+                            <FaTwitter color='#023A51' />
+                            <FaInstagram color='#023A51' />
+                            <FaLinkedinIn color='#023A51' />
+                            <FaYoutube color='#023A51' />
                         </div>
                         <div className="abcd_col-4 txt-center_abcd mt-15_abcd full-width_abcd">
-                            <span onClick={() => backToTop()} className="text-[16px] font-semibold cursor-pointer hover:text-[18px] transition-all duration-150 " >Back to top</span>
+                            <span onClick={() => backToTop()} className="text-[16px] text-[#023A51] font-semibold cursor-pointer hover:text-[18px] transition-all duration-150 " >Back to top</span>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ import Accordion from '../../components/accordion/Accordion'
 import Typewriter from 'typewriter-effect'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import qs from 'qs'
 
 import * as Fontawesome from 'react-icons/fa'
 import {
@@ -68,45 +69,41 @@ export default function Bayo_search_consultant({ contents }) {
   return (
     <>
       <Head>
-        <title>{header.title}</title>
-        <meta name="description" content={header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta name="robots" content="index, follow" />
+      <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || "" } />
+        <meta name="keywords" content={header?.keywords || "" }/>
+        <meta name="robots" content={header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="humbletitan.com" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="true" />
-        <meta property="og:description" content="true" />
-        <meta property="og:url" content="true" />
-        <meta property="og:site_name" content="true" />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
+        <meta property="og:description" content={header?.og_description || ""} />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta name="twitter:description" content={header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image || ""} />
+        <meta name="twitter:url" content={header?.twitter_url || ""} />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta itemProp="description" content={header?.itemProp_description || ""} />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ''} />
       </Head>
       <Layout>
         {/* Hero */}
@@ -168,10 +165,6 @@ export default function Bayo_search_consultant({ contents }) {
                       )
                     })}
                   </div>
-                  {/* <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  ' color='#f86011' /> Establish a strong presence online </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Reach more people than ever before </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Amplify and maximize communication on all fronts (traditional & digital) </p>
-                                    <p className='text-[22px] font-light flex py-4 ' ><FaPlus className='translate-y-2  mr-[12px]' color='#f86011' /> Use data to make better marketing decisions </p> */}
                 </div>
                 <div className=" w-[100%] h-[100%]">
                   <div
@@ -186,12 +179,12 @@ export default function Bayo_search_consultant({ contents }) {
                     }}
                   >
                     <div className="absolute bottom-0 left-0 text-[#023a51] w-[80%] p-6 bg-[#fff] shadow-xl ">
-                      <img
+                      <Image
                         className=""
-                        width={150}
-                        height={25}
                         src={myIntro_section.my_quote.logo.data.attributes.url}
-                        alt="image"
+                        alt={myIntro_section.my_quote.logo.data.attributes.name}
+                        width={myIntro_section.my_quote.logo.data.attributes.width}
+                        height={myIntro_section.my_quote.logo.data.attributes.height}
                       />
                       <p className="text-[20px] font-light ">
                         {myIntro_section.my_quote.text}
@@ -273,10 +266,12 @@ export default function Bayo_search_consultant({ contents }) {
                       className=" border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 "
                     >
                       <div className=" w-[100%] flex justify-center mb-2 ">
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={item.image.data.attributes.url}
-                          alt="image"
+                          alt={item.image.data.attributes.name}
+                          width={item.image.data.attributes.width}
+                          height={item.image.data.attributes.height}
                         />
                       </div>
                       <p className="text-[20px] font-semibold ">{item.title}</p>
@@ -284,26 +279,6 @@ export default function Bayo_search_consultant({ contents }) {
                     </div>
                   )
                 })}
-                {/* <div className=' border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
-                                    <Image className='rounded-xl' src={humbleBrandVisibility} alt="image" />
-                                    <p className='text-[20px] '>Increased brand visibility</p>
-                                    <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
-                                </div>
-                                <div className='border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 '  >
-                                    <Image className='rounded-xl' src={humbleConversions} alt="image" />
-                                    <p className='text-[20px]' >More quality conversions</p>
-                                    <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
-                                </div>
-                                <div className='border-2 border-collapse md:border-r-0 p-10 w-[90%] sm:w-[25%] mb-4 ' >
-                                    <Image className='rounded-xl' src={humbleCustomerBase} alt="image" />
-                                    <p className='text-[20px]' >Growth of customer base</p>
-                                    <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
-                                </div>
-                                <div className='border-2 border-collapse p-10 w-[90%] sm:w-[25%] mb-4 ' >
-                                    <Image className='rounded-xl' src={humbleManagement} alt="image" />
-                                    <p className='text-[20px]' >Monthly management & reporting</p>
-                                    <p className='text-[20px] py-3' >Elementum posuere mauris, ac ultricies eu orci massa at id tincidunt.</p>
-                                </div> */}
               </div>
             </div>
           </div>
@@ -414,10 +389,12 @@ export default function Bayo_search_consultant({ contents }) {
         <section className="heading my-20 ">
           <div className=" py-10 flex flex-wrap justify-between items-center container w-12/12 mx-auto max-w-screen-xl">
             <div className=" md:w-[50%] w-[100%] px-4 shadow-xl ">
-              <img
+              <Image
                 className="rounded-xl "
                 src={feedback?.image.data.attributes.url}
-                alt="image"
+                alt={feedback?.image.data.attributes.name}
+                width={feedback?.image.data.attributes.width}
+                height={feedback?.image.data.attributes.height}
               />
             </div>
             <div className=" p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ">
@@ -526,44 +503,16 @@ export default function Bayo_search_consultant({ contents }) {
                   >
                     <p className="text-[35px] ">{item.title}</p>
                     <p className="text-[20px] py-3">{item.description}</p>
-                    <img
+                    <Image
                       className="rounded-xl"
                       src={item.image.data.attributes.url}
-                      alt="image"
+                      alt={item.image.data.attributes.name}
+                      width={item.image.data.attributes.width}
+                      height={item.image.data.attributes.height}
                     />
                   </div>
                 )
               })}
-              {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                <p className='text-[35px] '>Politicians</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humblePoliticians} alt="image" />
-                            </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                <p className='text-[35px] '>Political Campaigns</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humblePoliticalCampaigns} alt="image" />
-                            </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                <p className='text-[35px] '>NGOs</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humbleNgos} alt="image" />
-                            </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                <p className='text-[35px] '>Charities</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                            </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                <p className='text-[35px] '>Universities</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humbleUniversities} alt="image" />
-                            </div>
-                            <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                <p className='text-[35px] '>Enterprise Business</p>
-                                <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                <Image className='rounded-xl' src={humbleEnterprises} alt="image" />
-                            </div> */}
             </div>
           </div>
         </section>
@@ -579,7 +528,6 @@ export default function Bayo_search_consultant({ contents }) {
                 <div className=" text-[#2cbc63] mt-4 text-[70px] ">
                   {React.createElement(Fontawesome[iconClassName])}
                 </div>
-                {/* <FaChevronDown className='text-[30px] md:text-[45px] text-[#2cbc63] cursor-pointer mt-4 font-bold ' /> */}
               </div>
             </div>
 
@@ -600,10 +548,12 @@ export default function Bayo_search_consultant({ contents }) {
                       </p>
                       <div className=" py-10 flex flex-wrap items-center justify-between mx-auto ">
                         <div className=" md:w-[50%] w-[100%] px-4 ">
-                          <img
+                          <Image
                             className="rounded-xl "
                             src={item.chapterIntro.image.data[0].attributes.url}
-                            alt="image"
+                            alt={item.chapterIntro.image.data[0].attributes.name}
+                            width={item.chapterIntro.image.data[0].attributes.width}
+                            height={item.chapterIntro.image.data[0].attributes.height}
                           />
                         </div>
                         <div className="text-center p-4 md:p-10 text-[#023A51] md:w-[50%] w-[100%] ">
@@ -643,37 +593,6 @@ export default function Bayo_search_consultant({ contents }) {
                           >
                             {item.theStory}
                           </ReactMarkdown>
-                          {/* <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m a Search Professional who does what he was born to do – Lead, teach and solve complex problems online (Not looking to do much else). </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>My journey has been exciting, intimidating, and fulfilling. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Like most, my plans have changed over different periods of my life. I tend to switch gears after accomplishing what I set out to achieve. Presently, I’m taking on my most challenging mission. I plan to elevate the digital standards of as many organizations and professionals as possible. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>That’s what Humble Titan is all about. That’s why I invented the SEO TRAM method (an educational course). And this is what motivates me to service organizations around the world. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>If you choose to continue reading, you’ll discover why “right now” feels like my time to unleash. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>As for what I do? If you have a big idea and want it to reach people on the internet, I take care of that. I’m dedicated to precisely that. I start with organic reach, then I work your bespoke strategy into paid and social channels.</p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>As for how I support your ambitions? My practice is to set up teams and organizations for digital success. Plus, I design strategies that establish synergy – once we mature your digital scope, we tap into your traditional approach. This is what I’d consider my edge.</p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>It may help to think of me as the internet whisperer, helpful to those who may have made their fortune through traditional marketing. My work is the most impactful when I can address all marketing considerations before your brand ever engages an online user. My ability to translate complex search and digital marketing concepts to high-level stakeholders sets me apart. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>But I’m only useful once I get to know you, your organization, and your goals. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Till you get in touch, I’d like to offer my story.  </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>Take a look below. I’ve cataloged my very organic (pun intended) journey.</p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>To spice up your reading a bit, I’ve chronicled my adventures in reverse order. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>We start from all you’ve read above. We continue after this moment of gratitude. </p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>I’m thankful for the trials of each stage of my adventure and for all those I’ve met. To my Family and Cristina, thank you. I hope the story inspires.</p>
-                                                        <br />
-                                                        <p className='text-[22px] leading-[39px] text-[#59667d] '>By the end of this period of my life, I’d accumulated 11 years of management experience. Now, I’m enjoying the ride. Continue to chapter 4 to learn what got me here.</p>
-                                                        <br />
-                                                        <br /> */}
                           <div className="flex justify-center mt-10">
                             <Green_rounded_btn
                               href={item.getInTouch.href}
@@ -724,37 +643,21 @@ export default function Bayo_search_consultant({ contents }) {
                               >
                                 <Link passHref href={item.href}>
                                   <a>
-                                    <img
+                                    <Image
                                       className="rounded-xl  "
                                       src={
                                         item.imageWithChapterNumber.data
                                           .attributes.url
                                       }
-                                      alt="image"
+                                      alt={item.imageWithChapterNumber.data.attributes.name}
+                                      width={item.imageWithChapterNumber.data.attributes.width}
+                                      height={item.imageWithChapterNumber.data.attributes.height}
                                     />
                                   </a>
                                 </Link>
                               </div>
                             )
                           })}
-                          {/* <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl  ' src={ToTheTop} alt="image" />
-                                                        </div>
-                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl' src={MyJourneyChapter5} alt="image" />
-                                                        </div>
-                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl' src={MyJourneyChapter4} alt="image" />
-                                                        </div>
-                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl' src={MyJourneyChapter3} alt="image" />
-                                                        </div>
-                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl' src={MyJourneyChapter2} alt="image" />
-                                                        </div>
-                                                        <div className='hover:scale-105 mb-4 hover:shadow-xl cursor-pointer rounded-xl transition duration-300' >
-                                                            <Image className='rounded-xl' src={MyJourneyChapter1} alt="image" />
-                                                        </div> */}
                         </div>
                       </div>
                     </div>
@@ -1464,17 +1367,113 @@ export default function Bayo_search_consultant({ contents }) {
 
 export const getServerSideProps = async () => {
   var contents
+  const query = qs.stringify({
+    populate: {
+      header: {
+          populate: '*'
+      },
+      hero: {
+          populate: '*'
+      },
+      myIntro_section: {
+          populate: {
+              actionButton: {
+                  populate: '*'
+              },
+              abilities: {
+                  populate: '*'
+              },
+              my_quote: {
+                  populate: '*'
+              },
+              image: {
+                populate: true
+              }
+          }
+      },
+      what_I_offer_section: {
+          populate: '*'
+      },
+      what_you_get: {
+          populate: {
+              features: {
+                  populate: '*'
+              }
+          }
+      },
+      who_I_am: {
+          populate: "*"
+      },
+      Iam_trustedBy_section: {
+          populate: '*'
+      },
+      feedback: {
+          populate: '*'
+      },
+      questions_to_ask: {
+          populate: {
+              traditional_marketing_qs: {
+                  populate: {
+                      questions: {
+                          populate: "*"
+                      }
+                  }
+              },
+              digital_marketing_qs: {
+                  populate: {
+                      questions: {
+                          populate: "*"
+                      }
+                  }
+              }
+          }
+      },
+      organizations_I_work_with: {
+          populate: {
+              feature: {
+                  populate: '*'
+              }
+          }
+      },
+      chapters: {
+          populate: {
+              chapterIntro: {
+                  populate: '*'
+              },
+              theStory: {
+                  populate: '*'
+              },
+              getInTouch: {
+                  populate: '*'
+              },
+              theReturn: {
+                  populate: '*'
+              },
+              jumpToChapters: {
+                  populate: {
+                      chapterLinks: {
+                          populate: '*'
+                      }
+                  }
+              },
+              chapterConclusion: {
+                  populate: '*'
+              }
+          }
+      }
+  },
+  })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant?${query}`)
     .then(({ data }) => {
-      contents = data
+      contents = JSON.parse(JSON.stringify(data))
     })
     .catch((error) => {
       console.log(error)
     })
   return {
     props: {
-      contents: JSON.parse(JSON.stringify(contents)),
+      contents: contents,
     },
   }
 }

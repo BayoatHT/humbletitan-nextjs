@@ -16,52 +16,48 @@ import otherContentMarketingService from '../../assets/imgs/other-content-market
 import otherWebManagementService from '../../assets/imgs/other-web-management-service.jpg'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn';
 import Green_rounded_btn_outlined from '../../components/buttons/Green_rounded_btn_outlined';
+import ContactForm from '../../components/ContactForm';
 
 export default function service({ contents }) {
-    console.log(contents);
     const { header, business_impact, contact2, otherServices, ourValue, our_commitment, service_features, service_specialties, tellUs_section, topSection, whatYouCanExpect } = contents.data[0]?.attributes
     return (
         <>
             <Head>
-                <title>{header.title}</title>
-                <meta name="description" content={header?.description} />
-                <meta
-                name="keywords"
-                content="stocks, Marketing Consultant, SEO, polictics,"
-                />
-                <meta name="robots" content="index, follow" />
+                <title>{header?.title || "Humble Titan"}</title>
+                <meta name="description" content={header?.metaDescription || "" } />
+                <meta name="keywords" content={header?.keywords || "" }/>
+                <meta name="robots" content={header?.robots || ""} />
                 <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-                <meta name="language" content="English" />
-                <meta name="revisit-after" content="5 days" />
-                <meta name="author" content="humbletitan.com" />
+                <meta name="language" content={header?.language || ""} />
+                <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+                <meta name="author" content={header?.author || "humble titan"} />
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, user-scalable=no" />
-                <meta name="robots" content="noindex" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="true" />
-                <meta property="og:description" content="true" />
-                <meta property="og:url" content="true" />
-                <meta property="og:site_name" content="true" />
-                <meta property="og:image" content="true" />
-                <meta name="twitter:card" content="true" />
-                <meta name="twitter:site" content="true" />
-                <meta name="twitter:creator" content="true" />
-                <meta name="twitter:title" content="true" />
-                <meta name="twitter:description" content="true" />
-                <meta name="twitter:domain" content="true" />
-                <meta name="twitter:image" content="true" />
-                <meta name="twitter:url" content="true" />
-                <meta itemProp="image" content="true" />
-                <meta itemProp="name" content="true" />
-                <meta itemProp="description" content="true" />
-                <meta name="geo.region" content="true" />
-                <meta name="geo.placename" content="true" />
-                <meta name="geo.position" content="true" />
+                <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+                <meta property="og:type" content={header?.og_type || "article"} />
+                <meta property="og:title" content={header?.og_title || ""} />
+                <meta property="og:description" content={header?.og_description || ""} />
+                <meta property="og:url" content={header?.org_url || ""} />
+                <meta property="og:site_name" content={header?.og_site_name || ""} />
+                <meta property="og:image" content={header?.og_image || ""} />
+                <meta name="twitter:card" content={header?.twitter_card || ""} />
+                <meta name="twitter:site" content={header?.twitter_site || ""} />
+                <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+                <meta name="twitter:title" content={header?.twitter_title || ""} />
+                <meta name="twitter:description" content={header?.twitter_description || ""} />
+                <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+                <meta name="twitter:image" content={header?.twitter_image} />
+                <meta name="twitter:url" content={header?.twitter_url} />
+                <meta itemProp="image" content={header?.itemProp_image || ""} />
+                <meta itemProp="name" content={header?.itemProp_name || ""} />
+                <meta itemProp="description" content={header?.itemProp_description || ""} />
+                <meta name="geo.region" content={header?.geo_region || ""} />
+                <meta name="geo.placename" content={header?.geo_placename || ""} />
+                <meta name="geo.position" content={header?.geo_position || ""} />
                 <meta name="ICBM" content="true" />
-                <meta name="true" content="true" />
                 <meta name="next-head-count" content="32" />
+                <link rel="canonical" href={header?.canonicalUrl || ""} />
             </Head>
             <Layout>
 
@@ -79,7 +75,12 @@ export default function service({ contents }) {
 
                                 </div>
                                 <div className='md:ml-20 md:w-[50%] ' >
-                                    <img className='rounded-xl' src={topSection.image.data[0].attributes.url} alt="image" />
+                                    <Image className='rounded-xl' 
+                                    src={topSection.image.data[0].attributes.url}
+                                    alt={topSection.image.data[0].attributes.name}
+                                    width={topSection.image.data[0].attributes.width}
+                                    height={topSection.image.data[0].attributes.height}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -124,7 +125,12 @@ export default function service({ contents }) {
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
                                     <div className='p-2'>
-                                        <img className='rounded-xl' src={whatYouCanExpect.image.data[0].attributes.url} alt="image" />
+                                        <Image className='rounded-xl' 
+                                            src={whatYouCanExpect.image.data[0].attributes.url}
+                                            alt={whatYouCanExpect.image.data[0].attributes.name}
+                                            width={whatYouCanExpect.image.data[0].attributes.width}
+                                            height={whatYouCanExpect.image.data[0].attributes.height}
+                                         />
                                     </div>
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
@@ -178,7 +184,12 @@ export default function service({ contents }) {
                         <div className='mx-auto flex w-10/12 md:w-11/12  '>
                             <div className='md:flex items-center mx-auto justify-between' >
                                 <div className='md:mr-20 md:w-[50%] ' >
-                                    <img className='rounded-xl' src={business_impact.image.data[0].attributes.url} alt="image" />
+                                    <Image className='rounded-xl' 
+                                    src={business_impact.image.data[0].attributes.url} 
+                                    alt={business_impact.image.data[0].attributes.name}
+                                    width={business_impact.image.data[0].attributes.width}
+                                    height={business_impact.image.data[0].attributes.height}
+                                    />
                                 </div>
                                 <div className='text-[#023A51] w-[100%] md:w-[50%]  ' >
                                     <p className='text-[26px] font-bold mb-5 text-[#2cbc63] ' >{business_impact.lable.name}</p>
@@ -263,7 +274,12 @@ export default function service({ contents }) {
 
                                 <div className=' text-[#023A51] mr-[2px] shadow bg-[#fff] rounded w-[100%] md:w-[40%] p-10 ' >
                                     <div className='flex flex-col items-center ' >
-                                        <img src={our_commitment.commitmentCard2.lableImage.data.attributes.url} alt="image" />
+                                        <Image 
+                                        src={our_commitment.commitmentCard2.lableImage.data.attributes.url}
+                                        alt={our_commitment.commitmentCard2.lableImage.data.attributes.name}
+                                        width={our_commitment.commitmentCard2.lableImage.data.attributes.width}
+                                        height={our_commitment.commitmentCard2.lableImage.data.attributes.height}
+                                         />
 
                                     </div>
                                     <br />
@@ -303,90 +319,54 @@ export default function service({ contents }) {
                 </section>
 
 
-                {/* contact section */}
-                <section className='heading py-10 py-20'>
-                    <div className=" container w-12/12 mx-auto max-w-screen-xl">
-                        <div className='mx-auto w-11/12 md:w-11/12 bg-[#023A51] shadow-2xl rounded-xl '>
-                            <div className='mx-auto justify-between flex flex-wrap w-10/12 md:w-11/12  bg-[#023A51] '>
-                                <div className='text-[#fff] py-20 ' >
-                                    <p className='text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ' >{tellUs_section.text}</p>
-                                    {
-                                        tellUs_section.info.map((item) => {
-                                            return (
-                                                <div key={item.id} className='py-6' >
-                                                    <div className='flex items-center' >
-                                                        <div className=' mr-4 text-[26px]   '>
-                                                            {React.createElement(Fontawesome[item.iconClass ? item.iconClass : "FaMinus"])}
-                                                        </div>
-                                                        <h2 className='text-[30px] py-4 ' >{item.name}</h2>
-                                                    </div>
+                {/* contact us */}
+        <section className=" py-20">
+          <div className=" container w-12/12 mx-auto max-w-screen-xl">
+            <div className="mx-auto w-11/12 ">
+              <div className="mx-auto px-4 md:px-8 justify-between flex flex-wrap  rounded-xl  bg-[#023A51] ">
+                <div className="text-[#fff] md:pl-2 py-20 w-[100%] md:w-[50%] ">
+                  <p className="text-[40px] md:text-[60px] py-10 leading-[55px] md:leading-[69px] tracking-[-2px] ">
+                    {tellUs_section.text}
+                  </p>
 
-                                                    <ReactMarkdown
-                                                        components={{
-                                                            p: ({ node, ...props }) => <p className=' text-[22px] mb-6 ' {...props} />,
-                                                            a: ({ node, ...props }) => <a className=' text-[22px] hover:text-[#2cbc63] mb-6 ' {...props} />,
-
-                                                        }}
-                                                    >
-                                                        {item.details}
-                                                    </ReactMarkdown>
-
-                                                </div>
-                                            )
-                                        })
-                                    }
-
-                                </div>
-                                <div id='contact' className=' py-6 md:py-20' >
-                                    <div className=' bg-[#fff] rounded-xl p-4 md:p-10 '>
-                                        <div className='md:flex justify-between py-4' >
-                                            <div>
-                                                <label className='text-[#34495E] my-6 md:py-3 text-[20px] ' htmlFor="name">Name *</label>
-                                                <input className='block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%] ' type="text" required placeholder='John Stuart' />
-                                            </div>
-                                            <div>
-                                                <label className='text-[#34495E] py-3 text-[20px] ' htmlFor="name">Phone *</label>
-                                                <input className='block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%] ' type="tel" required placeholder='(123)-456-7890' />
-                                            </div>
-                                        </div>
-                                        <div className='md:flex justify-between py-4'>
-                                            <div>
-                                                <label className='text-[#34495E] py-3 text-[20px]' htmlFor="name">Email address *</label>
-                                                <input className='block p-2 border rounded-xl text-[20px] w-[100%] md:w-[90%]' type="text" required placeholder='name@company.com' />
-                                            </div>
-                                            <div>
-                                                <label className='text-[#34495E] py-3 text-[20px]' htmlFor="name">Service interested in *</label>
-                                                <select className='block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] md:w-[90%]' required placeholder='(123)-456-7890'>
-                                                    <option value="search engine optimization">Search Engine Optimaization</option>
-                                                    <option value="web design">Web Design</option>
-                                                    <option value="content marketing">Content Marketing</option>
-                                                    <option value="website management">Website management</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className='py-4 '>
-                                            <div>
-                                                <label className='text-[#34495E] py-3 text-[20px]' htmlFor="subject">Subject</label>
-                                                <input className='block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] ' type="text" placeholder='Quote request for' />
-                                            </div>
-                                        </div>
-                                        <div className='py-4 '>
-                                            <div>
-                                                <label className='text-[#34495E] py-3 text-[20px]' htmlFor="subject">How can we help?</label>
-                                                <textarea className='block p-2 border rounded-xl outline-none text-[#34495E] text-[20px] w-[100%] ' type="text" placeholder='I need help with the next problem'></textarea>
-                                            </div>
-                                        </div>
-                                        <div className='py-4 '>
-                                            <div>
-                                                <button className='green_rounded_btn'>Get in touch</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                  {tellUs_section.info.map((item) => {
+                    return (
+                      <div key={item.id} className="py-6">
+                        <div className="flex items-center">
+                          <div className="mr-4 text-[26px] text-[#fff]">
+                            {React.createElement(Fontawesome[item.iconClass])}
+                          </div>
+                          <h2 className="text-[30px] py-4 ">{item.name}</h2>
                         </div>
-                    </div>
-                </section>
+                        <ReactMarkdown
+                          components={{
+                            p: ({ node, ...props }) => (
+                              <p
+                                className="mr-4 text-[20px] md:text-[26px] "
+                                {...props}
+                              />
+                            ),
+                            a: ({ node, ...props }) => (
+                              <a
+                                className="hover:text-[#2cbc63] hover:text-underline "
+                                {...props}
+                              />
+                            ),
+                          }}
+                        >
+                          {item.details}
+                        </ReactMarkdown>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className=" py-6 md:w-[50%] w-[100%] md:py-20">
+                  <ContactForm/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
                 {/* Other Digital services. */}
@@ -404,7 +384,12 @@ export default function service({ contents }) {
                                     otherServices.otherService.map((item) => {
                                         return (
                                             <div key={item} className='p-10 border rounded-lg text-[#023A51] shadow w-[100%] md:w-[31%] mb-10 '>
-                                                <img className='rounded-xl' src={item.image.data.attributes.url} alt="image" />
+                                                <Image className='rounded-xl' 
+                                                src={item.image.data.attributes.url} 
+                                                alt={item.image.data.attributes.name}
+                                                width={item.image.data.attributes.width}
+                                                height={item.image.data.attributes.height}
+                                                />
                                                 <p className='text-[24px] tracking-[-0.5px] font-bold  '>{item.title}</p>
                                                 <br />
                                                 <p className='text-[18px] text-[#59667d] '>{item.description}</p>
@@ -430,6 +415,9 @@ export const getServerSideProps = async (ctx) => {
 
     const query = qs.stringify({
         populate: {
+            navImage: {
+                populate: true
+            },
             header: {
                 populate: '*'
             },
@@ -473,21 +461,38 @@ export const getServerSideProps = async (ctx) => {
             },
             tellUs_section: {
                 populate: '*'
-            }
+            },
+            otherServices: {
+                populate: {
+                    otherService: {
+                        populate: '*'
+                    },
+                    actionButton: {
+                        populate: "*"
+                    }
+                }
+            },
         },
-    }, {
-        encodeValuesOnly: true, // prettify URL
     });
-
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services?filters[slug][$eq]=${slug}`)
+            
+    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services?filters[slug][$eq]=${slug}&${query}`)
         .then(({ data }) => {
-            contents = data
+            contents = JSON.parse(JSON.stringify(data))
         }).catch((error) => {
             console.log(error)
         })
-    return {
-        props: {
-            contents: JSON.parse(JSON.stringify(contents))
+        
+    if(!contents?.data?.length){
+        return {
+            redirect: {
+                destination: '/404/',
+            },
+        }
+    }else{
+        return {
+            props: {
+                contents: contents
+            }
         }
     }
 } 

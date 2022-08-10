@@ -5,6 +5,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import Link from 'next/link'
 import GetAQuote from '../../components/GetAQuote'
+import qs from 'qs'
 
 import humblePoliticians from '../../assets/imgs/humble-politicians-400x174.jpg'
 import humblePoliticalCampaigns from '../../assets/imgs/humble-political-campaigns-400x174.jpg'
@@ -39,45 +40,41 @@ export default function Education({ contents }) {
   return (
     <>
       <Head>
-        <title>{header.title}</title>
-        <meta name="description" content={header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta name="robots" content="index, follow" />
+      <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || "" } />
+        <meta name="keywords" content={header?.keywords || "" }/>
+        <meta name="robots" content={header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="humbletitan.com" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="true" />
-        <meta property="og:description" content="true" />
-        <meta property="og:url" content="true" />
-        <meta property="og:site_name" content="true" />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
+        <meta property="og:description" content={header?.og_description || ""} />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta name="twitter:description" content={header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image} />
+        <meta name="twitter:url" content={header?.twitter_url} />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta itemProp="description" content={header?.itemProp_description || ""} />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ""} />
       </Head>
       <Layout>
         {/* Hero */}
@@ -118,35 +115,17 @@ export default function Education({ contents }) {
                       <a className=" rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10">
                         <p className="text-[35px] ">{item.title}</p>
                         <p className="text-[20px] py-3">{item.description}</p>
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={item.image.data.attributes.url}
-                          alt="image"
+                          alt={item.image.data.attributes.name}
+                          width={item.image.data.attributes.width}
+                          height={item.image.data.attributes.height}
                         />
                       </a>
                     </Link>
                   )
                 })}
-                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Business Dictionary</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticians} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Economics Dictionary</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticalCampaigns} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>NGOs</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleNgos} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Charities</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div> */}
               </div>
             </div>
           </div>
@@ -180,36 +159,17 @@ export default function Education({ contents }) {
                       <a className=" rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10">
                         <p className="text-[35px] ">{item.title}</p>
                         <p className="text-[20px] py-3">{item.description}</p>
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={item.image.data.attributes.url}
-                          alt="image"
+                          alt={item.image.data.attributes.name}
+                          width={item.image.data.attributes.width}
+                          height={item.image.data.attributes.height}
                         />
                       </a>
                     </Link>
                   )
                 })}
-
-                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Technical SEO</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticians} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Relevance SEO</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticalCampaigns} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Authority SEO</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleNgos} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Monitoring SEO</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div> */}
               </div>
             </div>
           </div>
@@ -252,50 +212,25 @@ export default function Education({ contents }) {
                   return (
                     <div
                       key={item.id}
-                      className=" sm:w-[49%] lg:w-[24.5%] w-[100%] mb-10  "
+                      className=" sm:w-[49%] lg:w-[24.5%] w-[100%] mb-10 p-[10px] flex flex-col items-center "
                     >
-                      <img
+                      <Image
                         className="rounded-lg"
                         src={item.image.data.attributes.url}
-                        alt="image"
+                        alt={item.image.data.attributes.name}
+                        width={item.image.data.attributes.width}
+                        height={item.image.data.attributes.height}
                       />
                       <h2 className="text-[30px] py-2">{item.title}</h2>
                       <p className="text-[18px] text-left  p-4">
                         {item.details}
                       </p>
-                      <Green_rounded_btn href={item.href}>
-                        {item.label}
-                      </Green_rounded_btn>
+                        <Green_rounded_btn href={item.href}>
+                          {item.label}
+                        </Green_rounded_btn>
                     </div>
                   )
                 })}
-                {/* <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10  ' >
-                                    <Image src={homeWebAndMobileDesign} alt="image" />
-                                    <h1 className='text-[30px] py-2' >Web & Mobile <br /> Design</h1>
-                                    <p className='text-[18px] text-left  p-4' >More than design. We transform your vision into an online reality.</p>
-                                    <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Get Design</button>
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
-                                    <Image src={homeSeoService} alt="image" />
-                                    <h1 className='text-[30px] py-2' >Search Engine Optimization</h1>
-                                    <p className='text-[18px] text-left p-4' >Extend your brand&apos;s organic reach. Attract thousands of new visitors to your website.</p>
-                                    <button className='text-[#fff] text-[20px] py-2 font-bold border rounded-[50px] px-10 bg-[#2cbc63] hover:bg-[#fff] hover:text-[#59667d] transition duration-300  ' >Optimize your site</button>
-
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
-                                    <Image src={homeContentManagementService} alt="image" />
-                                    <h1 className='text-[30px] py-2' >Content <br /> Marketing</h1>
-                                    <p className='text-[18px] text-left p-4' >With a focus on engagement, we specialize in brand elevating web content.</p>
-                                    <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Reach more users</button>
-
-                                </div>
-                                <div className=' sm:w-[50%] lg:w-[25%] w-[100%] mb-10 '>
-                                    <Image src={homeWebManagement} alt="image" />
-                                    <h1 className='text-[30px] py-2' >Website <br /> Management</h1>
-                                    <p className='text-[18px] text-left p-4' >Let&apos;s take care of your bsuiness. We will manage the day-to-day operations of your website.</p>
-                                    <button className='text-[#59667d] text-[20px] py-2 font-bold border rounded-[50px] px-10 hover:bg-[#2cbc63] hover:text-[#fff] transition duration-300  ' >Get a web manager</button>
-
-                                </div> */}
               </div>
             </div>
           </div>
@@ -320,35 +255,17 @@ export default function Education({ contents }) {
                       <a className=" rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10">
                         <p className="text-[35px] ">{item.title}</p>
                         <p className="text-[20px] py-3">{item.description}</p>
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={item.image.data.attributes.url}
-                          alt="image"
+                          alt={item.image.data.attributes.name}
+                          width={item.image.data.attributes.width}
+                          height={item.image.data.attributes.height}
                         />
                       </a>
                     </Link>
                   )
                 })}
-                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Activism</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticians} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Quotes</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humblePoliticalCampaigns} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Biographies</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleNgos} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Humble Mind Mag</p>
-                                    <p className='text-[20px] py-3' >Nullam et cursus neque, eget fringilla dolor, curabitur ac leo nunc. Vestibulum et mauris vel ante finibus.</p>
-                                    <Image className='rounded-xl' src={humbleCharities} alt="image" />
-                                </div> */}
               </div>
             </div>
           </div>
@@ -366,9 +283,79 @@ export default function Education({ contents }) {
 
 export const getServerSideProps = async () => {
   var contents
+  const query = qs.stringify({
+    populate: {
+      header: {
+          populate: '*'
+      },
+      hero: {
+          populate: '*'
+      },
+      educationalDictionaries: {
+          populate: {
+              feature: {
+                  populate: '*'
+              }
+          }
+      },
+      discover_full_seo_course: {
+          populate: {
+              features: {
+                  populate: {
+                      feature: {
+                          populate: "*"
+                      }
+                  }
+              }
+          }
+      },
+      discover_ht_magazine: {
+          populate: {
+              features: {
+                  populate: {
+                      feature: {
+                          populate: {
+                              image: {
+                                populate: "*"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      services_gallery: {
+          populate: {
+              single_service: {
+                  populate: '*'
+              }
+          }
+      },
+      ht_mind_mag: {
+          populate: {
+              feature: {
+                  populate: '*'
+              }
+          }
+      },
+      explore: {
+          populate: {
+              Offerings: {
+                  populate: '*'
+              }
+          }
+      },
+      ht_digital_services: {
+          populate: '*'
+      },
+  },
+  })
+
+
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/education`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/education?${query}`)
     .then(({ data }) => {
+      console.log(data);
       contents = data
     })
     .catch((error) => {

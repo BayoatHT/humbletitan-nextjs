@@ -1,88 +1,87 @@
-import React, { useState } from 'react'
-import Head from 'next/head'
-import Layout from '../../components/Layout'
-import Image from 'next/image'
-import axios from 'axios'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { Oval } from 'react-loading-icons'
-import ReactPaginate from 'react-paginate'
+import React, { useState } from "react";
+import Head from "next/head";
+import Layout from "../../components/Layout";
+import Image from "next/image";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Oval } from "react-loading-icons";
+import ReactPaginate from "react-paginate";
+import qs from 'qs'
 
-import defaultBlogImage from '../../assets/imgs/Blog-Post-header.jpg'
-import GetAQuote from '../../components/GetAQuote'
-import Newsletter from '../../components/Newsletter'
+import defaultBlogImage from "../../assets/imgs/Blog-Post-header.jpg";
+import GetAQuote from "../../components/GetAQuote";
+import Newsletter from "../../components/Newsletter";
 
 export default function Magazine({ data, categories, contents }) {
-  const { hero, header, ht_digital_services } = contents.data.attributes
+  const { hero, header, ht_digital_services } = contents.data.attributes;
 
   const [browseText, setBrowseText] = useState(
-    <button className="text-[#fff] font-semibold">Browse</button>,
-  )
-  const blogs = data.data
-  const pageCount = data.meta.pagination?.pageCount
+    <button className="text-[#fff] font-semibold">Browse</button>
+  );
+  const blogs = data.data;
+  const pageCount = data.meta.pagination?.pageCount;
 
-  const categoriesData = categories?.data
-  const router = useRouter()
+  const categoriesData = categories?.data;
+  const router = useRouter();
 
-  const [selectedTag, setSelectedtag] = useState('')
+  const [selectedTag, setSelectedtag] = useState("");
   const handleBrowse = () => {
-    if (selectedTag !== '') {
-      setBrowseText(<Oval className="p-2" />)
-      router.push(`/humble-mind/${selectedTag}`)
+    if (selectedTag !== "") {
+      setBrowseText(<Oval className="p-2" />);
+      router.push(`/humble-mind/${selectedTag}`);
     } else {
-      return null
+      return null;
     }
-  }
+  };
 
   return (
     <>
       <Head>
-        <title>{header.title}</title>
-        <meta name="description" content={header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta
-          property="og:title"
-          content="Elite Digital Marketing Services | Business &amp; Politics Made Digital"
-        />
-        <meta name="robots" content="index, follow" />
+        <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || ""} />
+        <meta name="keywords" content={header?.keywords || ""} />
+        <meta name="robots" content={header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="Bayo adesina" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content={header?.description} />
-        <meta property="og:url" content="https://www.humbletitan.com/" />
-        <meta property="og:site_name" content="Humble Titan" />
+        <meta property="og:locale" content={header?.og_locale || "en_US"} />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
         <meta
-          property="article:modified_time"
-          content="2022-08-01T08:28:57+00:00"
+          property="og:description"
+          content={header?.og_description || ""}
         />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta
+          name="twitter:description"
+          content={header?.twitter_description || ""}
+        />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image} />
+        <meta name="twitter:url" content={header?.twitter_url} />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta
+          itemProp="description"
+          content={header?.itemProp_description || ""}
+        />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ""} />
       </Head>
 
       <Layout>
@@ -109,7 +108,7 @@ export default function Magazine({ data, categories, contents }) {
                         <option key={item.id} value={item.attributes?.slug}>
                           {item.attributes?.name}
                         </option>
-                      )
+                      );
                     })}
                   </select>
                 </div>
@@ -130,9 +129,9 @@ export default function Magazine({ data, categories, contents }) {
             <div className="mx-auto text-[#023A51] w-10/12 md:w-11/12 ">
               <div className="flex md:flex-row flex-wrap justify-around">
                 {blogs?.slice(0, 3)?.map((blog) => {
-                  const post = blog?.attributes
-                  const blogImage = post.blogImage?.data?.attributes
-                  const blogImageUrl = blogImage && blogImage?.url
+                  const post = blog?.attributes;
+                  const blogImage = post.blogImage?.data?.attributes;
+                  const blogImageUrl = blogImage && blogImage?.url;
                   return (
                     <div
                       key={blog?.id}
@@ -142,7 +141,7 @@ export default function Magazine({ data, categories, contents }) {
                         href={`/humble-mind/${
                           post.category.data?.attributes.slug
                             ? post.category.data?.attributes.slug
-                            : 'uncategorized'
+                            : "uncategorized"
                         }/blogs/${post?.slug}`}
                         passHref
                       >
@@ -154,10 +153,10 @@ export default function Magazine({ data, categories, contents }) {
                                 src={blogImageUrl}
                                 layout="responsive"
                                 height={
-                                  blogImage?.height ? blogImage?.height : '100%'
+                                  blogImage?.height ? blogImage?.height : "100%"
                                 }
                                 width={
-                                  blogImage?.width ? blogImage?.width : '100%'
+                                  blogImage?.width ? blogImage?.width : "100%"
                                 }
                                 alt={blogImage?.name}
                               />
@@ -176,7 +175,7 @@ export default function Magazine({ data, categories, contents }) {
                         href={`/humble-mind/${
                           post.category.data?.attributes.slug
                             ? post.category.data?.attributes.slug
-                            : 'uncategorized'
+                            : "uncategorized"
                         }/blogs/${post?.slug}`}
                         passHref
                       >
@@ -185,29 +184,29 @@ export default function Magazine({ data, categories, contents }) {
                         </a>
                       </Link>
                       <p className="text-[16px] mt-4 ">
-                        {new Date(post.publishedAt).toDateString()} |{' '}
+                        {new Date(post.publishedAt).toDateString()} |{" "}
                         <a
                           href={`/humble-mind/${
                             post.category.data?.attributes.slug
                               ? post.category.data?.attributes.slug
-                              : 'uncategorized'
+                              : "uncategorized"
                           }`}
                           className="hover:text-[#2cbc63] font-bold "
                         >
-                          {' '}
+                          {" "}
                           {post.category.data?.attributes.name
                             ? post.category.data?.attributes.name
-                            : 'Uncategorized'}
+                            : "Uncategorized"}
                         </a>
                       </p>
                     </div>
-                  )
+                  );
                 })}
                 <Newsletter />
                 {blogs?.slice(3)?.map((blog) => {
-                  const post = blog?.attributes
-                  const blogImage = post.blogImage?.data?.attributes
-                  const blogImageUrl = blogImage && blogImage?.url
+                  const post = blog?.attributes;
+                  const blogImage = post.blogImage?.data?.attributes;
+                  const blogImageUrl = blogImage && blogImage?.url;
                   return (
                     <div
                       key={blog?.id}
@@ -217,7 +216,7 @@ export default function Magazine({ data, categories, contents }) {
                         href={`/humble-mind/${
                           post.category.data?.attributes.slug
                             ? post.category.data?.attributes.slug
-                            : 'uncategorized'
+                            : "uncategorized"
                         }/blogs/${post?.slug}`}
                         passHref
                       >
@@ -229,10 +228,10 @@ export default function Magazine({ data, categories, contents }) {
                                 src={blogImageUrl}
                                 layout="responsive"
                                 height={
-                                  blogImage?.height ? blogImage?.height : '100%'
+                                  blogImage?.height ? blogImage?.height : "100%"
                                 }
                                 width={
-                                  blogImage?.width ? blogImage?.width : '100%'
+                                  blogImage?.width ? blogImage?.width : "100%"
                                 }
                                 alt=""
                               />
@@ -251,7 +250,7 @@ export default function Magazine({ data, categories, contents }) {
                         href={`/humble-mind/${
                           post.category.data?.attributes.slug
                             ? post.category.data?.attributes.slug
-                            : 'uncategorized'
+                            : "uncategorized"
                         }/blogs/${post?.slug}`}
                         passHref
                       >
@@ -260,23 +259,23 @@ export default function Magazine({ data, categories, contents }) {
                         </a>
                       </Link>
                       <p className="text-[16px] mt-4 ">
-                        {new Date(post.publishedAt).toDateString()} |{' '}
+                        {new Date(post.publishedAt).toDateString()} |{" "}
                         <a
                           href={`/humble-mind/${
                             post.category.data?.attributes.slug
                               ? post.category.data?.attributes.slug
-                              : 'uncategorized'
+                              : "uncategorized"
                           }`}
                           className="hover:text-[#2cbc63] font-bold "
                         >
-                          {' '}
+                          {" "}
                           {post.category.data?.attributes.name
                             ? post.category.data?.attributes.name
-                            : 'Uncategorized'}
+                            : "Uncategorized"}
                         </a>
                       </p>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -306,12 +305,6 @@ export default function Magazine({ data, categories, contents }) {
                       activeClassName="active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] hover:text-[#023A51] border-[#2cbc63] bg-[#2cbc63] "
                     />
                   )}
-
-                  {/* <p className='text-[12px] flex cursor-pointer items-center mr-2' ><BsChevronLeft /> Previuos  </p>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border' >1</span>
-                                        <span className='active flex items-center mr-2 justify-center p-2 w-[30px] h-[30px] text-[#fff] border-[#2cbc63] bg-[#2cbc63] ' >2</span>
-                                        <span className='flex cursor-pointer items-center mr-2 justify-center p-2 w-[30px] h-[30px] border  ' >3</span>
-                                        <p className='text-[12px] flex cursor-pointer items-center mr-2' >Next <BsChevronRight /> </p> */}
                 </div>
               </div>
             </div>
@@ -321,31 +314,7 @@ export default function Magazine({ data, categories, contents }) {
         {/* Newsletter */}
         <section className="heading md:my-20 ">
           <div className=" container w-12/12 py-10 mx-auto max-w-screen-xl">
-            <div className="mx-auto text-[#023A51] w-10/12 md:w-11/12 ">
-              <div className="md:flex items-center justify-around p-10 shadow-sm shadow-[#888] rounded-xl  text-[#023A51]">
-                <div>
-                  <p className="text-[50px] md:text-[60px] leading-[50px] md:leading-[69px] tracking-[-2px]  py-10  ">
-                    Join to newsletter<span className="text-[#2cbc63]">.</span>
-                  </p>
-                  <p className="text-[20px]">
-                    Don’t miss out on the latest from Humble Titan.
-                  </p>
-                </div>
-                <div className=" ">
-                  <h2 className="text-[24px] font-bold py-6 ">
-                    Hear from us first
-                  </h2>
-                  <input
-                    className="block outline-[#2cbc63] border p-2 rounded-xl text-[20px] w-[100%]"
-                    type="text"
-                    placeholder="Enter your email"
-                  />
-                  <button className="green_rounded_btn my-10 px-10">
-                    Subscribe
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Newsletter />
           </div>
         </section>
 
@@ -353,45 +322,59 @@ export default function Magazine({ data, categories, contents }) {
         <GetAQuote />
       </Layout>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(ctx) {
-  const pageNumber = ctx.query.page > 0 ? ctx.query.page : 1
-  var data
-  var contents
+  const pageNumber = ctx.query.page > 0 ? ctx.query.page : 1;
+  var data;
+  var contents;
+
+  const query = qs.stringify({
+    populate: {
+      header: {
+          populate: '*'
+      },
+      hero: {
+          populate: '*'
+      },
+      ht_digital_services: {
+          populate: '*'
+      },
+  },
+  })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/humble-mind`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/humble-mind?${query}`)
     .then(({ data }) => {
-      contents = data
+      contents = data;
     })
     .catch((error) => {
-      console.log(error)
-    })
+      console.log(error);
+    });
   await axios
     .get(
-      `https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=6&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`,
+      `https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=6&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`
     )
     .then((result) => {
-      data = result.data
+      data = result.data;
     })
     .catch((error) => {
-      console.log(error)
-    })
-  var categories
+      console.log(error);
+    });
+  var categories;
   await axios
     .get(`https://humble-titan-strapi.herokuapp.com/api/categories?populate=*`)
     .then(({ data }) => {
-      categories = data
+      categories = data;
     })
     .catch((error) => {
-      console.log(error)
-    })
+      console.log(error);
+    });
   return {
     props: {
       contents,
       data,
       categories,
     },
-  }
+  };
 }

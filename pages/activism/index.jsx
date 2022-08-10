@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { FaAngleDown } from 'react-icons/fa'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
+import qs from 'qs'
 
 import htpageActivism from '../../assets/imgs/ht-page-Activism-400x174.jpg'
 import htpageHumanRights from '../../assets/imgs/ht-page-Human-Rights-400x174.jpg'
@@ -31,45 +32,41 @@ export default function Activism({ contents }) {
   return (
     <>
       <Head>
-        <title>{header.title}</title>
-        <meta name="description" content={header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta name="robots" content="index, follow" />
+      <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || "" } />
+        <meta name="keywords" content={header?.keywords || "" }/>
+        <meta name="robots" content={header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="Bayo adesina" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="true" />
-        <meta property="og:description" content="true" />
-        <meta property="og:url" content="true" />
-        <meta property="og:site_name" content="true" />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
+        <meta property="og:description" content={header?.og_description || ""} />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta name="twitter:description" content={header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image || ""} />
+        <meta name="twitter:url" content={header?.twitter_url || "" } />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta itemProp="description" content={header?.itemProp_description || ""} />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ''} />
       </Head>
       <Layout>
         {/* Hero */}
@@ -132,70 +129,17 @@ export default function Activism({ contents }) {
                       <a className=" rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10">
                         <p className="text-[35px] ">{item.title}</p>
                         <p className="text-[20px] py-3">{item.description}</p>
-                        <img
+                        <Image
                           className="rounded-xl"
                           src={item.image.data.attributes.url}
-                          alt="image"
+                          alt={item.image.data.attributes.name}
+                          width={item.image.data.attributes.width}
+                          height={item.image.data.attributes.height}
                         />
                       </a>
                     </Link>
                   )
                 })}
-                {/* <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Activism</p>
-                                    <p className='text-[20px] py-3' >A theory or practice emphasizing direct, forceful action, particularly in favor of or in opposition to one side of a controversial subject.</p>
-                                    <Image className='rounded-xl' src={htpageActivism} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Human Rights</p>
-                                    <p className='text-[20px] py-3' >Human rights are principles that acknowledge and protect the dignity of human beings. They govern the relationship between society and individuals.</p>
-                                    <Image className='rounded-xl' src={htpageHumanRights} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Sustainable Economy</p>
-                                    <p className='text-[20px] py-3' >A sustainable economy is one that maximizes overall well-being while aiming to use the fewest resources, causing the least environmental harm.</p>
-                                    <Image className='rounded-xl' src={htpageSustainableEconomy} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Environment & Nature</p>
-                                    <p className='text-[20px] py-3' >Nature and the environments are the phenomena of the physical world as a whole, encompassing plants, animals, the terrain, and other earthly aspects and products, as opposed to humans or human inventions.</p>
-                                    <Image className='rounded-xl' src={htpageEnvironmentandNature} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Sustainable Home</p>
-                                    <p className='text-[20px] py-3' >A sustainable home is one that has as little detrimental influence on the environment as possible. This entails conserving energy, avoiding environmental contaminants, and responsibly utilizing materials and resources while having a beneficial physical and psychological impact on its residents.</p>
-                                    <Image className='rounded-xl' src={htpageSustainableHome} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Climate Change</p>
-                                    <p className='text-[20px] py-3' >Long-term changes in temperature and weather patterns are referred to as climate change. These movements might be caused by natural causes, such as oscillations in the solar cycle. However, since the 1800s, human activities have been the primary cause of climate change, owing mostly to the use of fossil fuels such as coal, oil, and gas.</p>
-                                    <Image className='rounded-xl' src={htpageClimateChange} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Green Technology</p>
-                                    <p className='text-[20px] py-3' >Green technology is the technology that aims to lessen or reverse the consequences of human activities on the environment. It employs an ecologically friendly consideration to its production process or supply chain.</p>
-                                    <Image className='rounded-xl' src={htpageGreenTechnology} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Women Empowerment</p>
-                                    <p className='text-[20px] py-3' >Women’s empowerment can be described in a variety of ways, including respecting women’s perspectives or making an effort to seek them out, as well as elevating women’s position via education, awareness, literacy, and training.</p>
-                                    <Image className='rounded-xl' src={htpageWomanEmpowerment} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%]  mb-10' >
-                                    <p className='text-[35px] '>Economy</p>
-                                    <p className='text-[20px] py-3' >A large network of interconnected production, consumption, and trade activities that contribute in defining how finite resources are allocated is referred to as an economy.</p>
-                                    <Image className='rounded-xl' src={htpageEconomy} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Waste & Recycling</p>
-                                    <p className='text-[20px] py-3' >The process of transforming waste resources into new materials and things is known as recycling. This notion frequently includes the recovery of energy from waste materials.</p>
-                                    <Image className='rounded-xl' src={htpageWasteandRecycling} alt="image" />
-                                </div>
-                                <div className=' rounded-xl text-center p-8 md:p-14 bg-[#f5f5f7] md:w-[45%] w-[90%] mb-10 ' >
-                                    <p className='text-[35px] '>Eco Tourism</p>
-                                    <p className='text-[20px] py-3' >Ecotourism is tourism that centers around awareness of the environment and the local community. As eco-tourists, the goal is to visit an area with the well-being of the local people and nature in mind.</p>
-                                    <Image className='rounded-xl' src={htpageEcoTourism} alt="image" />
-                                </div> */}
               </div>
             </div>
           </div>
@@ -209,8 +153,36 @@ export default function Activism({ contents }) {
 
 export const getServerSideProps = async () => {
   var contents
+  const query = qs.stringify({
+    populate: {
+      header: {
+          populate: '*'
+      },
+      hero: {
+          populate: '*'
+      },
+      DiscoverWorldIssues: {
+          populate: {
+              features: {
+                  populate: {
+                      feature: {
+                          populate: "*"
+                      }
+                  }
+              }
+          }
+      },
+      Discoverwhyandwhere: {
+          populate: {
+              offerings: {
+                  populate: '*'
+              }
+          }
+      },
+  },
+  })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/activism`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/activism?${query}`)
     .then(({ data }) => {
       contents = data
     })

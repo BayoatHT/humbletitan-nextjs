@@ -3,51 +3,49 @@ import Head from 'next/head'
 import Layout from '../../components/Layout'
 import axios from 'axios'
 import Green_rounded_btn from '../../components/buttons/Green_rounded_btn'
+import qs from 'qs'
+
 
 export default function Index({ contents }) {
   const { faqs, hero, header, requestAQuote_section } = contents.data.attributes
   return (
     <>
       <Head>
-        <title>{header.title}</title>
-        <meta name="description" content={header?.description} />
-        <meta
-          name="keywords"
-          content="stocks, Marketing Consultant, SEO, polictics,"
-        />
-        <meta name="robots" content="index, follow" />
+      <title>{header?.title || "Humble Titan"}</title>
+        <meta name="description" content={header?.metaDescription || "" } />
+        <meta name="keywords" content={header?.keywords || "" }/>
+        <meta name="robots" content={header?.robots || ""} />
         <meta httpEquiv="Content-Type" content="text/html; charSet=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="5 days" />
-        <meta name="author" content="humbletitan.com" />
+        <meta name="language" content={header?.language || ""} />
+        <meta name="revisit-after" content={ header?.revisitAfter || "5 days"} />
+        <meta name="author" content={header?.author || "humble titan"} />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="true" />
-        <meta property="og:description" content="true" />
-        <meta property="og:url" content="true" />
-        <meta property="og:site_name" content="true" />
-        <meta property="og:image" content="true" />
-        <meta name="twitter:card" content="true" />
-        <meta name="twitter:site" content="true" />
-        <meta name="twitter:creator" content="true" />
-        <meta name="twitter:title" content="true" />
-        <meta name="twitter:description" content="true" />
-        <meta name="twitter:domain" content="true" />
-        <meta name="twitter:image" content="true" />
-        <meta name="twitter:url" content="true" />
-        <meta itemProp="image" content="true" />
-        <meta itemProp="name" content="true" />
-        <meta itemProp="description" content="true" />
-        <meta name="geo.region" content="true" />
-        <meta name="geo.placename" content="true" />
-        <meta name="geo.position" content="true" />
+        <meta property="og:locale" content={ header?.og_locale ||"en_US" } />
+        <meta property="og:type" content={header?.og_type || "article"} />
+        <meta property="og:title" content={header?.og_title || ""} />
+        <meta property="og:description" content={header?.og_description || ""} />
+        <meta property="og:url" content={header?.org_url || ""} />
+        <meta property="og:site_name" content={header?.og_site_name || ""} />
+        <meta property="og:image" content={header?.og_image || ""} />
+        <meta name="twitter:card" content={header?.twitter_card || ""} />
+        <meta name="twitter:site" content={header?.twitter_site || ""} />
+        <meta name="twitter:creator" content={header?.twitter_creator || ""} />
+        <meta name="twitter:title" content={header?.twitter_title || ""} />
+        <meta name="twitter:description" content={header?.twitter_description || ""} />
+        <meta name="twitter:domain" content={header?.twitter_domain || ""} />
+        <meta name="twitter:image" content={header?.twitter_image} />
+        <meta name="twitter:url" content={header?.twitter_url} />
+        <meta itemProp="image" content={header?.itemProp_image || ""} />
+        <meta itemProp="name" content={header?.itemProp_name || ""} />
+        <meta itemProp="description" content={header?.itemProp_description || ""} />
+        <meta name="geo.region" content={header?.geo_region || ""} />
+        <meta name="geo.placename" content={header?.geo_placename || ""} />
+        <meta name="geo.position" content={header?.geo_position || ""} />
         <meta name="ICBM" content="true" />
-        <meta name="true" content="true" />
         <meta name="next-head-count" content="32" />
+        <link rel="canonical" href={header?.canonicalUrl || ""} />
       </Head>
       <Layout>
         {/* Hero */}
@@ -121,9 +119,25 @@ export const getServerSideProps = async ({req, res}) => {
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=59'
   )
+  const query = qs.stringify({
+    populate: {
+      header: {
+          populate: '*'
+      },
+      hero: {
+          populate: '*'
+      },
+      faqs: {
+          populate: '*'
+      },
+      requestAQuote_section: {
+          populate: '*'
+      }
+  },
+  })
   var contents
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/faqs-page`)
+    .get(`https://humble-titan-strapi.herokuapp.com/api/faqs-page?${query}`)
     .then(({ data }) => {
       contents = JSON.parse(JSON.stringify(data))
     })

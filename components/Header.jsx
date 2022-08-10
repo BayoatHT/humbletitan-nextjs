@@ -20,14 +20,14 @@ import {
   FaLinkedinIn,
   FaYoutube,
   FaBookReader,
-  FaBars,
   FaAngleDown
 } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/router'
 
-const Header = () => {
+const Header = ({courses, services}) => {
+  console.log(courses);
   const router = useRouter()
   const [togglerClasses, setTogglerClasses] = useState([])
   const [navListClass, setNavListClass] = useState(['nav-inactive'])
@@ -345,73 +345,31 @@ const Header = () => {
                         }}
                       />
                     </a>
-                    <ul className="abcd_servicemenu abcd_row ul_abcd">
-                      <li className="abcd_servicemenu_li">
-                        <div className="abcd_menu_font">
-                          {" "}
-                          <a
-                            href=" /services/web-design"
-                            className={`a_abcd ${router.pathname == "/services/web-design" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Web Design
-                          </a>
-                        </div>
-                        {/* <img src="https://www.designinguru.com/imgs/web-design-menu-225x300.jpg" alt="" /> */}
-                        <Image src={web_design} alt="Web designing" />
-                      </li>
-                      <li className="abcd_servicemenu_li">
-                        <div className="abcd_menu_font">
-                          <a
-                            href=" /services/content-marketing"
-                            className={`a_abcd ${router.pathname == "/services/content-marketing" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Content Marketing
-                          </a>
-                        </div>
-                        {/* <img src="https://www.designinguru.com/imgs/content-marketing-menu-225x300.jpg" alt="" /> */}
-                        <Image
-                          src={content_marketing_menu}
-                          alt="content marketing menu"
-                        />
-                      </li>
-                      <li className="abcd_servicemenu_li">
-                        <div className="abcd_menu_font">
-                          <a
-                            href=" /services/search-engine-optimization"
-                            className={`a_abcd ${router.pathname == "/services/search-engine-optimization" ? "active" : ""}`}
-
-                          >
-                            {" "}
-                            SEO Optimization
-                          </a>
-                        </div>
-                        {/* <img src="https://www.designinguru.com/imgs/seo-menu-225x300.jpg" alt="" /> */}
-                        <Image src={seo_menu} alt="Seo menu" />
-                      </li>
-                      <li className="abcd_servicemenu_li">
-                        <div className="abcd_menu_font">
-                          <a
-                            href=" /services/web-performance-management"
-                            className={`a_abcd ${router.pathname == "/services/web-performance-management" ? "active" : ""}`}
-
-                          >
-                            {" "}
-                            Managment Services
-                          </a>
-                        </div>
-                        {/* <img src="https://www.designinguru.com/imgs/management-service-menu-225x300.jpg" alt="" /> */}
-                        <Image
-                          src={management_services}
-                          alt="management services"
-                        />
-                      </li>
+                    <ul className="abcd_servicemenu flex-wrap justify-center abcd_row ul_abcd ">
+                      {
+                        courses?.map((item)=> {
+                          return (
+                            <li key={item?.id} className="abcd_servicemenu_li flex flex-col items-center w-[25%]">
+                              <div className="abcd_menu_font">
+                                <a href={`/services/${item?.attributes?.slug}`} className={`a_abcd ${router.pathname === "/services" + item?.attributes?.slug ? "active" : ""}`}
+                                >
+                                  {item?.attributes?.name}
+                                </a>
+                              </div>
+                              <Image src={item?.attributes?.navImage?.data?.attributes?.url}
+                                width={item?.attributes?.navImage?.data?.attributes?.width || 180}
+                                height={item?.attributes?.navImage?.data?.attributes?.height || 250}
+                                alt={item?.attributes?.navImage?.data?.attributes?.hash}
+                               />
+                            </li>
+                          )
+                        })
+                      }
                     </ul>
                   </li>
                   <li className="abcd_mainmenu">
                     <a
-                      href=" /tram-seo"
+                      href=" /tram-seo/"
                       className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/tram-seo" ? "active" : router.pathname == "/tram-seo/technical-course" ? "active" : router.pathname == "/tram-seo/authority-course" ? "active" : router.pathname == "/tram-seo/ranking-course" ? "active" : router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
                     >
                       <strong>TRAM SEO Course</strong>{" "}
@@ -427,22 +385,22 @@ const Header = () => {
                     </a>
                     <ul className="abcd_servicemenu abcd_row ul_abcd">
                       <li className="abcd_servicemenu_li w60">
-                        <div className="abcd_row">
+                        <div className="abcd_row flex items-center">
                           <div>
                             <div>
-                              <FaBookReader />
-                            </div>
-                            <div className="abcd_button_free">
-                              <span className="abcd_free_font">Free</span>
+                              <FaBookReader size={30} color="#2cbc63" />
                             </div>
                           </div>
                           <div className="abcd_font_terms">
-                            <a
-                              href="#"
+                            <Link
+                              href="/seo-dictionary/"
                               className="a_abcd"
                             >
                               Standard Package
-                            </a>
+                            </Link>
+                          </div>
+                          <div className="abcd_button_free">
+                              <span className="abcd_free_font font-semibold">Free</span>
                           </div>
                         </div>
                         <div className="abcd_fontset_para mt-2_abcd">
@@ -524,7 +482,6 @@ const Header = () => {
                           </a>
                         </div>
                         <div className="abcd_menu_font">
-                          {/* <img className="abcd_imgwidth" src="https://www.designinguru.com/imgs/authority-tram-menu.jpg" alt="" /> */}
                           <Image src={authority_tram} alt="Authority tram" />
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
@@ -542,7 +499,6 @@ const Header = () => {
                         <br />
                         <br />
                         <div className="abcd_menu_font">
-                          {/* <img className="abcd_imgwidth" src="https://www.designinguru.com/imgs/relevance-tram-menu.jpg" alt="" /> */}
                           <Image src={relevent_tram} alt="Relevent tram" />
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
@@ -555,7 +511,6 @@ const Header = () => {
                           </a>
                         </div>
                         <div className="abcd_menu_font">
-                          {/* <img className="abcd_imgwidth" src="https://www.designinguru.com/imgs/monitoring-tram-menu.jpg" alt="" /> */}
                           <Image src={monitoring_tram} alt="Monitoring tram" />
                         </div>
                         <div className="abcd_16font abcd_cursorpointer ">
@@ -569,7 +524,6 @@ const Header = () => {
                         </div>
                       </li>
                       <li className="abcd_servicemenu_li w60 orangeBanner">
-                        {/* <img className="abcd_tramserach" src="https://www.designinguru.com/imgs/tram-banner-1.png" alt="" /> */}
                         <Image src={tram_banner} alt="tram banner" />
                       </li>
                     </ul>
@@ -598,7 +552,6 @@ const Header = () => {
         <div className="topnav">
           <div className="abcd_col-12 abcd_h-70 abcd_row justify-content">
             <div className="header_main_logo responsive-logo abcd_row abcd_justify-between abcd_relative abcd_h-fit">
-              {/* <img c src="https://www.designinguru.com/imgs/HT-Standard-Logo.png" alt="Humble Titan Logo" /> */}
               <Link href="/" passHref>
                 <Image src={logo_header} alt="Logo" />
               </Link>
@@ -663,18 +616,15 @@ const Header = () => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${servicesStyles} `}>
-              <a href=" /services/web-design" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/web-design' ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
-                Web Design
+            {
+              courses?.map((item)=> {
+                return (
+                  <a key={item?.id} href={`/services/${item?.attributes?.slug}`} className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/' + item?.attributes?.slug ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
+                {item?.attributes?.name}
               </a>
-              <a href=" /services/content-marketing" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/content-marketing' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
-                Content Marketing
-              </a>
-              <a href=" /services/search-engine-optimization" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/search-engine-optimization' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
-                Search Engine Optimization
-              </a>
-              <a href=" /services/web-performance-management" className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/web-performance-management' ? 'bg-[#fff] text-[#2cbc63]' : ''}`}>
-                Web Management
-              </a>
+                )
+              })
+            }
             </div>
             {/* Dropdown contents ends */}
 
