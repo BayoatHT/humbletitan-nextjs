@@ -10,6 +10,7 @@ import authority_tram from "../assets/imgs/authority-tram-menu.jpg";
 import relevent_tram from "../assets/imgs/relevance-tram-menu.jpg";
 import monitoring_tram from "../assets/imgs/monitoring-tram-menu.jpg";
 import tram_banner from "../assets/imgs/tram-banner-1.png";
+import placeHolderImage from "../assets/imgs/humble-home-logo.png";
 import Image from "next/image";
 import {
   FaChevronDown,
@@ -347,16 +348,16 @@ const Header = ({courses, services}) => {
                     </a>
                     <ul className="abcd_servicemenu flex-wrap justify-center abcd_row ul_abcd ">
                       {
-                        courses?.map((item)=> {
+                        services?.map((item)=> {
                           return (
                             <li key={item?.id} className="abcd_servicemenu_li flex flex-col items-center w-[25%]">
                               <div className="abcd_menu_font">
-                                <a href={`/services/${item?.attributes?.slug}`} className={`a_abcd ${router.pathname === "/services" + item?.attributes?.slug ? "active" : ""}`}
+                                <a href={`/services/${item?.attributes?.slug}`} className={`a_abcd ${router.asPath === "/services/" + item?.attributes?.slug+ "/" ? "active" : ""}`}
                                 >
                                   {item?.attributes?.name}
                                 </a>
                               </div>
-                              <Image src={item?.attributes?.navImage?.data?.attributes?.url}
+                              <Image src={item?.attributes?.navImage?.data?.attributes?.url || placeHolderImage }
                                 width={item?.attributes?.navImage?.data?.attributes?.width || 180}
                                 height={item?.attributes?.navImage?.data?.attributes?.height || 250}
                                 alt={item?.attributes?.navImage?.data?.attributes?.hash}
@@ -370,7 +371,7 @@ const Header = ({courses, services}) => {
                   <li className="abcd_mainmenu">
                     <a
                       href=" /tram-seo/"
-                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname == "/tram-seo" ? "active" : router.pathname == "/tram-seo/technical-course" ? "active" : router.pathname == "/tram-seo/authority-course" ? "active" : router.pathname == "/tram-seo/ranking-course" ? "active" : router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
+                      className={`a_abcd text-[#023A51] font-semibold text-[18px] ${router.pathname.includes("/tram-seo") ?  "active" : ""}`}
                     >
                       <strong>TRAM SEO Course</strong>{" "}
                       <span className="newbadge_abcd ">New</span>{" "}
@@ -383,21 +384,21 @@ const Header = ({courses, services}) => {
                         }}
                       />
                     </a>
-                    <ul className="abcd_servicemenu abcd_row ul_abcd">
-                      <li className="abcd_servicemenu_li w60">
+                    <ul className="abcd_servicemenu abcd_row ul_abcd w-[100%] ">
+                      <li className="abcd_servicemenu_li w-[40%] ">
                         <div className="abcd_row flex items-center">
                           <div>
                             <div>
                               <FaBookReader size={30} color="#2cbc63" />
                             </div>
                           </div>
-                          <div className="abcd_font_terms">
-                            <Link
-                              href="/seo-dictionary/"
-                              className="a_abcd"
+                          <div className="abcd_font_terms ">
+                            <a
+                              href=" /seo-dictionary/"
+                              className={`a_abcd ${router.pathname === '/seo-dictionary'? 'active' : ''} `}
                             >
                               Standard Package
-                            </Link>
+                            </a>
                           </div>
                           <div className="abcd_button_free">
                               <span className="abcd_free_font font-semibold">Free</span>
@@ -463,67 +464,40 @@ const Header = ({courses, services}) => {
                           </div>
                         </div>
                       </li>
-                      <li className="abcd_servicemenu_li">
+                      <li className="abcd_servicemenu_li w-[35%]">
                         <div className="abcd_menu_font">
                           {/* <img className="abcd_imgwidth" src="https://www.designinguru.com/imgs/1.png" alt="" /> */}
                           <Image src={one_p} alt="P One" />
                         </div>
-                        <div className="abcd_menu_font">
-                          {/* <img className="abcd_imgwidth" src="https://www.designinguru.com/imgs/technical-tram-menu.jpg" alt="" /> */}
-                          <Image src={technical_tram} alt="technical tram" />
-                        </div>
-                        <div className="abcd_16font abcd_cursorpointer ">
-                          <a
-                            href=" /tram-seo/technical-course"
-                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/technical-course" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Technical SEO
-                          </a>
-                        </div>
-                        <div className="abcd_menu_font">
-                          <Image src={authority_tram} alt="Authority tram" />
-                        </div>
-                        <div className="abcd_16font abcd_cursorpointer ">
-                          <a
-                            href=" /tram-seo/authority-course"
-                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/authority-course" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Authority SEO
-                          </a>
-                        </div>
+                        <div className="w-[100%] flex justify-around flex-wrap">
+                          {
+                            courses?.map((item)=> {
+                              return (
+                                <div key={item?.id} className="w-[50%] flex flex-col items-center mb-2 " >
+                                  <div className="abcd_menu_font  ">
+                                  <Image src={item?.attributes?.navImage?.data?.attributes?.url || placeHolderImage }
+                                    width={item?.attributes?.navImage?.data?.attributes?.width || 150}
+                                    height={item?.attributes?.navImage?.data?.attributes?.height || 90}
+                                    alt={item?.attributes?.navImage?.data?.attributes?.hash}
+                                   />
+                                  </div>
+                                  <div className="abcd_16font abcd_cursorpointer ">
+                                    <a
+                                      href={`/tram-seo/${item?.attributes?.slug}`}
+                                      className={`a_abcd text-[#023A51] ${router.asPath === "/tram-seo/" + item?.attributes?.slug +"/" ? "active" : ""}`}
+                                    >
+                                      {" "}
+                                      {item?.attributes?.name}
+                                    </a>
+                                  </div>
+                                </div>
+                              )
+                            })
+                          }
+                          
+                         </div>
                       </li>
-                      <li className="abcd_servicemenu_li">
-                        <br />
-                        <br />
-                        <br />
-                        <div className="abcd_menu_font">
-                          <Image src={relevent_tram} alt="Relevent tram" />
-                        </div>
-                        <div className="abcd_16font abcd_cursorpointer ">
-                          <a
-                            href=" /tram-seo/ranking-course"
-                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/ranking-course" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Ranking SEO
-                          </a>
-                        </div>
-                        <div className="abcd_menu_font">
-                          <Image src={monitoring_tram} alt="Monitoring tram" />
-                        </div>
-                        <div className="abcd_16font abcd_cursorpointer ">
-                          <a
-                            href=" /tram-seo/management-course"
-                            className={`a_abcd text-[#023A51] ${router.pathname == "/tram-seo/management-course" ? "active" : ""}`}
-                          >
-                            {" "}
-                            Monitoring SEO
-                          </a>
-                        </div>
-                      </li>
-                      <li className="abcd_servicemenu_li w60 orangeBanner">
+                      <li className="abcd_servicemenu_li orangeBanner w-[30%] ">
                         <Image src={tram_banner} alt="tram banner" />
                       </li>
                     </ul>
@@ -617,7 +591,7 @@ const Header = ({courses, services}) => {
             {/* Dropdown contents */}
             <div className={`w-[100%] hidden ${servicesStyles} `}>
             {
-              courses?.map((item)=> {
+              services?.map((item)=> {
                 return (
                   <a key={item?.id} href={`/services/${item?.attributes?.slug}`} className={`w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ${router.pathname == '/services/' + item?.attributes?.slug ? 'bg-[#fff] text-[#2cbc63]' : ''} `}>
                 {item?.attributes?.name}
@@ -646,7 +620,7 @@ const Header = ({courses, services}) => {
 
             {/* Dropdown contents */}
             <div className={`w-[100%]  hidden ${tramStyles}`}>
-              <a href=" /seo-dictionary" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+              <a href=" /seo-dictionary/" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 Standard Package
                 <span className="newbadge_abcd ">Free</span>
               </a>
@@ -658,20 +632,15 @@ const Header = ({courses, services}) => {
                 professional package
                 <span className="newbadge_abcd bg-[#eb4962] ">Coming 2023</span>
               </a>
-
-              <a href=" /tram-seo/technical-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
-                Techinal SEO
-              </a>
-              <a href=" /tram-seo/ranking-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
-                Ranking SEO
-              </a>
-              <a href=" /tram-seo/authority-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
-                Authority SEO
-              </a>
-              <a href=" /tram-seo/management-course" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
-                Monitoring SEO
-              </a>
-
+              {
+                courses?.map((item)=> {
+                  return (
+                    <a key={item?.id} href={`/tram-seo/${item?.attributes?.slug}`} className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
+                     {item?.attributes?.name}
+                    </a>
+                  )
+                })
+              }
               <a href=" /tram-seo" className="w-[100%] border-t border-[#fff] text-[#023A51] text-[16px] hover:text-[#2cbc63] font-bold text-center py-4 transition duration-300 ">
                 About the course
               </a>

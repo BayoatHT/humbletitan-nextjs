@@ -19,7 +19,7 @@ export default function ContactForm() {
 		if (name.length < 1) {
 			setError("name is necessary!");
 		} else if (phone.length < 10) {
-			setError("Please enter number of (11 digits atleast) ");
+			setError("Phone Number should be 11 digits atleast! ");
 		} else if (service.length < 1) {
 			setError("Please select a service!");
 		} else {
@@ -170,7 +170,7 @@ export default function ContactForm() {
 						{status === "error" && (
 							<div
 								className="text-[red]"
-								dangerouslySetInnerHTML={{ __html: message }}
+								dangerouslySetInnerHTML={{ __html: message === '0 - Please enter a value' ? "Please enter your Email" : message.slice(3) }}
 							/>
 						)}
 						{status === "success" && (
