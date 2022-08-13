@@ -28,7 +28,6 @@ import { useState } from "react";
 import { useRouter } from 'next/router'
 
 const Header = ({courses, services}) => {
-  console.log(courses);
   const router = useRouter()
   const [togglerClasses, setTogglerClasses] = useState([])
   const [navListClass, setNavListClass] = useState(['nav-inactive'])
