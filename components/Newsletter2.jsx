@@ -3,7 +3,7 @@ import MailchimpSubscribe from "react-mailchimp-subscribe";
 export default function Newsletter() {
   const [email, setEmail] = useState("");
 
-  const postUrl = `https://gmail.us1.list-manage.com/subscribe/post?u=${process.env.NEXT_PUBLIC_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_MAILCHIMP_ID}`;
+  const postUrl = `https://humbletitan.us9.list-manage.com/subscribe/post?u=${process.env.NEXT_PUBLIC_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_MAILCHIMP_ID}`;
   return (
     <MailchimpSubscribe
       url={postUrl}
@@ -26,7 +26,7 @@ export default function Newsletter() {
             {status === "error" && (
               <div
                 className="text-[red]"
-                dangerouslySetInnerHTML={{ __html: message }}
+                dangerouslySetInnerHTML={{ __html: message?.slice(3) }}
               />
             )}
             {status === "success" && (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 export default function ContactForm() {
-  const postUrl = `https://gmail.us1.list-manage.com/subscribe/post?u=${process.env.NEXT_PUBLIC_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_MAILCHIMP_ID}`;
+  const postUrl = `https://humbletitan.us9.list-manage.com/subscribe/post?u=${process.env.NEXT_PUBLIC_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_MAILCHIMP_ID}`;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -19,18 +19,18 @@ export default function ContactForm() {
     if (name.length < 1) {
       setError("name is necessary!");
     } else if (phone.length < 10) {
-      setError("Please enter number of (11 digits atleast) ");
+      setError("Phone Number should be 11 digits atleast!");
     } else if (service.length < 1) {
       setError("Please select a service!");
     } else {
       console.log("inside", error.length);
       subscribe({
         MERGE1: name,
-        MERGE4: phone,
-        MERGE0: email,
-        MERGE6: service,
-        MERGE2: subject,
-        MERGE3: body,
+				MERGE4: phone,
+				MERGE0: email,
+				MERGE2: service,
+				MERGE3: subject,
+				MERGE5: body,
       });
     }
 
@@ -161,7 +161,7 @@ export default function ContactForm() {
 						{status === "error" && (
 							<div
 								className="text-[red]"
-								dangerouslySetInnerHTML={{ __html: message }}
+								dangerouslySetInnerHTML={{ __html: message === '0 - Please enter a value' ? "Please enter your Email" : message?.slice(3) }}
 							/>
 						)}
 						{status === "success" && (
