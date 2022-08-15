@@ -7,7 +7,6 @@ import { Puff } from 'react-loading-icons'
 export default function SearchSection(props) {
   const { dispatch } = useContext(Store);
   const [searchText, setSearchText] = useState("Search");
-  //   const { data } = props;
   const router = useRouter();
   const [address, setAddress] = useState("");
   const searchHandler = () => {
