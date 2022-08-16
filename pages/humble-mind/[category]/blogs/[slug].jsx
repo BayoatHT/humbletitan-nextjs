@@ -34,14 +34,14 @@ export default function Blog({ data, slug }) {
     })
     const getRelatedBlogs = async () => {
         if (category){
-            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&${query}`).then(({data})=> {
+            await axios.get(`https://humbletitan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&${query}`).then(({data})=> {
                 setRelatedBlogs(data?.data[0].attributes?.blogs?.data?.filter((item)=> item?.attributes?.slug !== slug))
                 // console.log(relatedBlogs)
             }).catch((error)=> {
                 console.log(error);
             })
         }else{
-            await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*`).then(({data})=> {
+            await axios.get(`https://humbletitan-strapi.herokuapp.com/api/blogs?populate=*`).then(({data})=> {
                 setRelatedBlogs(data.data?.filter((item)=> item?.attributes?.slug !== slug))
                 // console.log(relatedBlogs)
             }).catch((error)=> {
@@ -245,7 +245,7 @@ export default function Blog({ data, slug }) {
 
 export async function getServerSideProps(ctx) {
     const { query: { slug } } = ctx
-    const { data } = await axios.get(`https://humble-titan-strapi.herokuapp.com/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
+    const { data } = await axios.get(`https://humbletitan-strapi.herokuapp.com/api/blogs?filters[slug][$eq]=${slug}&populate=*`)
     if(!data.data.length){
         return {
             redirect: {

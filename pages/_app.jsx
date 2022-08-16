@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
 
 export const getServerSideProps = async () => {
   var contents;
-  await axios.get(`https://humble-titan-strapi.herokuapp.com/api/our-mission`)
+  await axios.get(`https://humbletitan-strapi.herokuapp.com/api/our-mission`)
       .then(({ data }) => {
           contents = data
           console.log("_page",contents);

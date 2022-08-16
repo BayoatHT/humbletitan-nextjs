@@ -344,7 +344,7 @@ export async function getServerSideProps(ctx) {
   },
   })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/humble-mind?${query}`)
+    .get(`https://humbletitan-strapi.herokuapp.com/api/humble-mind?${query}`)
     .then(({ data }) => {
       contents = data;
     })
@@ -353,7 +353,7 @@ export async function getServerSideProps(ctx) {
     });
   await axios
     .get(
-      `https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=6&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`
+      `https://humbletitan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=6&pagination[page]=${pageNumber}&sort[0]=publishedAt%3Adesc`
     )
     .then((result) => {
       data = result.data;
@@ -363,7 +363,7 @@ export async function getServerSideProps(ctx) {
     });
   var categories;
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/categories?populate=*`)
+    .get(`https://humbletitan-strapi.herokuapp.com/api/categories?populate=*`)
     .then(({ data }) => {
       categories = data;
     })

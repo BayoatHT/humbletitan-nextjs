@@ -294,7 +294,7 @@ export const getServerSideProps = async () => {
             },
         },
     })
-    await axios.get(`https://humble-titan-strapi.herokuapp.com/api/services-page?${query}`)
+    await axios.get(`https://humbletitan-strapi.herokuapp.com/api/services-page?${query}`)
         .then(({ data }) => {
             contents = data
         }).catch((error) => {

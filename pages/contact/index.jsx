@@ -239,7 +239,7 @@ export const getServerSideProps = async () => {
   },
   })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/contact?${query}`)
+    .get(`https://humbletitan-strapi.herokuapp.com/api/contact?${query}`)
     .then(({ data }) => {
       contents = JSON.parse(JSON.stringify(data))
     })

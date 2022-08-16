@@ -1464,7 +1464,7 @@ export const getServerSideProps = async () => {
   },
   })
   await axios
-    .get(`https://humble-titan-strapi.herokuapp.com/api/bayo-search-consultant?${query}`)
+    .get(`https://humbletitan-strapi.herokuapp.com/api/bayo-search-consultant?${query}`)
     .then(({ data }) => {
       contents = JSON.parse(JSON.stringify(data))
     })

@@ -39,7 +39,7 @@ export default function Category({ category, name, blogs }) {
       setLoading(false)
     }, 400)
     // if (category === "uncategorized") {
-    //     await axios.get("https://humble-titan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=1000")
+    //     await axios.get("https://humbletitan-strapi.herokuapp.com/api/blogs?populate=*&pagination[pageSize]=1000")
     //         .then(({ data }) => {
     //             console.log(data)
     //             if (category === "uncategorized") {
@@ -52,7 +52,7 @@ export default function Category({ category, name, blogs }) {
     //             console.log(error)
     //         })
     // } else {
-    //     await axios.get(`https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
+    //     await axios.get(`https://humbletitan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&pagination[pageSize]=6&pagination[page]=${page}&populate=*`)
     //         .then(({ data }) => {
     //             console.log(data)
     //         }).catch((error) => {
@@ -270,7 +270,7 @@ export async function getServerSideProps(ctx) {
   if (category === 'uncategorized') {
     await axios
       .get(
-        `https://humble-titan-strapi.herokuapp.com/api/blogs?sort[0]=publishedAt%3Adesc&pagination[pageSize]=1000&&populate=%2a`,
+        `https://humbletitan-strapi.herokuapp.com/api/blogs?sort[0]=publishedAt%3Adesc&pagination[pageSize]=1000&&populate=%2a`,
       )
       .then(({ data }) => {
         blogs = data.data?.filter(
@@ -283,7 +283,7 @@ export async function getServerSideProps(ctx) {
   } else {
     await axios
       .get(
-        `https://humble-titan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&sort[0]=publishedAt%3Adesc&pagination[pageSize]=1000&${query2}`,
+        `https://humbletitan-strapi.herokuapp.com/api/categories?filters[slug][$eq]=${category}&sort[0]=publishedAt%3Adesc&pagination[pageSize]=1000&${query2}`,
       )
       .then(({ data }) => {
         blogs = data.data[0]?.attributes?.blogs?.data

@@ -16,8 +16,8 @@ const Layout = ({ children }) => {
       }
   })
 
-  const services = useSWR(`https://humble-titan-strapi.herokuapp.com/api/services?${query}`, axios)
-  const courses = useSWR(`https://humble-titan-strapi.herokuapp.com/api/courses?${query}`, axios)
+  const services = useSWR(`https://humbletitan-strapi.herokuapp.com/api/services?${query}`, axios)
+  const courses = useSWR(`https://humbletitan-strapi.herokuapp.com/api/courses?${query}`, axios)
 
 
   return (
