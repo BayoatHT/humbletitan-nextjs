@@ -38,16 +38,16 @@ export default function Home() {
     let url
     switch (mainFilter) {
       case 'Country':
-        url = `https://humbletitanapi.herokuapp.com/countries/${name}?pageNo=${pNo}`
+        url = `https://humbletitan-stocks.herokuapp.com/countries/${name}?pageNo=${pNo}`
         break
       case 'Sector':
-        url = `https://humbletitanapi.herokuapp.com/sectors/${name}?pageNo=${pNo}`
+        url = `https://humbletitan-stocks.herokuapp.com/sectors/${name}?pageNo=${pNo}`
         break
       case 'Industry':
-        url = `https://humbletitanapi.herokuapp.com/industries/${name}?pageNo=${pNo}`
+        url = `https://humbletitan-stocks.herokuapp.com/industries/${name}?pageNo=${pNo}`
         break
       case 'Market Capitalization':
-        url = `https://humbletitanapi.herokuapp.com/marketkCap/${name}?pageNo=${pNo}`
+        url = `https://humbletitan-stocks.herokuapp.com/marketkCap/${name}?pageNo=${pNo}`
         break
     }
     await axios
@@ -73,7 +73,7 @@ export default function Home() {
     setMainFilter(newValue.value)
     newValue.value === 'All Tickers' &&
       await axios
-        .get(`https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`)
+        .get(`https://humbletitan-stocks.herokuapp.com/tickers_page/${pageNo}`)
         .then((res) => {
           let lastpNo = Math.ceil(res.data[1].itemLength / 30)
           setLastPageNo(lastpNo)
@@ -88,7 +88,7 @@ export default function Home() {
     setIsLoading(true)
     await axios
       .get(
-        `https://humbletitanapi.herokuapp.com/companynames?companyname=${newValue?.value}`,
+        `https://humbletitan-stocks.herokuapp.com/companynames?companyname=${newValue?.value}`,
       )
       .then((res) => {
         console.log('res', res)
@@ -102,7 +102,7 @@ export default function Home() {
 
   const getData = async (pageNo) => {
     setIsLoading(true)
-    const url = `https://humbletitanapi.herokuapp.com/tickers_page/${pageNo}`
+    const url = `https://humbletitan-stocks.herokuapp.com/tickers_page/${pageNo}`
     await axios
       .get(url)
       .then((res) => {
@@ -118,7 +118,7 @@ export default function Home() {
 
   const getCustomPages = async ()=> {
     await axios
-      .get('https://humbletitanapi.herokuapp.com/getAllCustomUrls')
+      .get('https://humbletitan-stocks.herokuapp.com/getAllCustomUrls')
       .then(({ data }) => {
         setCustomPages(data)
         console.log("custompages", data)
@@ -129,7 +129,7 @@ export default function Home() {
   }
 
   const getSearch = async () => {
-    const url = `https://humbletitanapi.herokuapp.com/companynames`
+    const url = `https://humbletitan-stocks.herokuapp.com/companynames`
     await axios
       .get(url)
       .then((res) => {

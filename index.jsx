@@ -13,7 +13,7 @@ export default function FilterData() {
 
 
     //     const getData = (newValue) => {
-    //         const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${newValue?.value}&filterCondition=${newValue?.value}&filterValue=${newValue?.value}`
+    //         const url = `https://humbletitan-stocks.herokuapp.com/filtered-data?filterlabel=${newValue?.value}&filterCondition=${newValue?.value}&filterValue=${newValue?.value}`
     //         axios.get(url)
     //         .then(res=>console.log(res))
     //     } 
@@ -27,7 +27,7 @@ export default function FilterData() {
         console.log(query);
         const getData = async () => { 
 
-                const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
+                const url = `https://humbletitan-stocks.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
                 console.log(url)
                 const { data } = await axios.get(url)
                 console.log(data);

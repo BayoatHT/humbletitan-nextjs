@@ -89,7 +89,7 @@ export async function getServerSideProps(ctx) {
     query: { customUrl },
   } = ctx
   let contents = {}
-  const url = `https://humbletitanapi.herokuapp.com/filtered-data/${customUrl}`
+  const url = `https://humbletitan-stocks.herokuapp.com/filtered-data/${customUrl}`
   try {
     const { data } = await axios.get(url)
     contents = JSON.parse(JSON.stringify(data))

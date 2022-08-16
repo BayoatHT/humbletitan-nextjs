@@ -12,7 +12,7 @@ export default function FilterData() {
   const query = router.query
   useEffect(() => {
     const getData = async () => {
-      const url = `https://humbletitanapi.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
+      const url = `https://humbletitan-stocks.herokuapp.com/filtered-data?filterlabel=${query?.filterlabel}&filterCondition=${query?.filterCondition}&filterValue=${query?.filterValue}`
       const { data } = await axios.get(url)
       setCustomPages(data)
     }

@@ -33,8 +33,8 @@ const CompantDetail = () => {
   useEffect(() => {
     const getData = async () => {
       if (symbol) {
-        const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol?.toUpperCase()}`
-        // const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
+        const url = `https://humbletitan-stocks.herokuapp.com/companydetails/${symbol?.toUpperCase()}`
+        // const competitorsUrl = `https://humbletitan-stocks.herokuapp.com/competitors/${symbol.toUpperCase()}`
         const { data } = await axios.get(url)
         // const competitorsData = await axios.get(competitorsUrl)
         // setProfile(data?.companyProfile?.Item?.Info)
@@ -59,8 +59,8 @@ const CompantDetail = () => {
   useEffect(() => {
     const getData = async () => {
       if (symbol) {
-        const url = `https://humbletitanapi.herokuapp.com/charts/${symbol?.toUpperCase()}`
-        const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol?.toUpperCase()}`
+        const url = `https://humbletitan-stocks.herokuapp.com/charts/${symbol?.toUpperCase()}`
+        const competitorsUrl = `https://humbletitan-stocks.herokuapp.com/competitors/${symbol?.toUpperCase()}`
         const { data } = await axios.get(url)
         const competitorsData = await axios.get(competitorsUrl)
         setCompetitors(competitorsData?.data)
@@ -1069,8 +1069,8 @@ export default CompantDetail
 
 // export const getInitialProps = async ({ params }) => {
 //   const symbol = params.slug
-//   const url = `https://humbletitanapi.herokuapp.com/companydetails/${symbol.toUpperCase()}`
-//   const competitorsUrl = `https://humbletitanapi.herokuapp.com/competitors/${symbol.toUpperCase()}`
+//   const url = `https://humbletitan-stocks.herokuapp.com/companydetails/${symbol.toUpperCase()}`
+//   const competitorsUrl = `https://humbletitan-stocks.herokuapp.com/competitors/${symbol.toUpperCase()}`
 //   const { data } = await axios.get(url)
 //   const competitorsData = await axios.get(competitorsUrl)
 
