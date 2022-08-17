@@ -14,7 +14,7 @@ handler.get(async (req, res) => {
   const googleSheets = google.sheets({ version: "v4", auth: client });
 
   const spreadsheetId = "1ZNcwc9U6dYNzVOQmheECnnZDtH6zxdwbkT9Ns8iOX9k";
-  const range = "Copy of VIP 2022 Planned Coverage!A11:E900";
+  const range = "VIP 2022 Planned Coverage!A11:E900";
   const metaData = await googleSheets.spreadsheets.get({
     auth,
     spreadsheetId,

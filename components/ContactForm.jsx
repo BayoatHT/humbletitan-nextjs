@@ -14,7 +14,6 @@ export default function ContactForm() {
 	const submitHandler = (e, subscribe, status) => {
 		e.preventDefault();
 		setError("");
-		console.log(name.length, phone.length, email.length, service.length);
 
 		if (name.length < 1) {
 			setError("name is necessary!");

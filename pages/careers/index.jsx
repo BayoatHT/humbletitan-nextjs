@@ -9,7 +9,6 @@ import Link from 'next/link'
 import qs from 'qs'
 
 export default function Careers({ contents }) {
-  console.log(contents)
   const {
     header,
     hero,

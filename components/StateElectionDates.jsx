@@ -30,9 +30,7 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
 
                         <div className="flex mt-[20px] flex-col items-center justify-center">
                             <div>
-                                {data
-                                    ?.filter((item) => item.statusOfData !== "Expired" && new Date(item.electionDate) >= dateToday)
-                                    .map((item, index) => {
+                                {data?.filter((item) => item.statusOfData !== "Expired" && new Date(item.electionDate) >= dateToday)?.map((item, index) => {
                                         return (
                                             <div
                                                 key={index}
@@ -73,8 +71,7 @@ export default function StateElectionDates({ data, stateName, majorElections }) 
                                     </h2>
                                 </div>
 
-                                {majorElections
-                                    ?.filter((item) => !item.name.includes("Test"))
+                                {majorElections?.filter((item) => !item.name.includes("Test"))
                                     .map((item, index) => {
                                         return (
                                             <div key={index} className="flex justify-between flex-row ">

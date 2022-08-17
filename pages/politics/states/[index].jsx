@@ -115,7 +115,6 @@ export async function getServerSideProps(context) {
           });
         });
       formedOfficials = officials;
-      console.log(formedOfficials);
     })
     .catch((error) => {
       console.log(error.message);
@@ -124,9 +123,9 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("https://h-t.vercel.app/api/stateelections")
+    .get("http://localhost:3000/api/stateelections")
     .then((result) => {
-      console.log(result);
+      console.log("result", result);
       result.data.values.map((item) => {
         arr.push({
           state: item[0] || "",
@@ -146,7 +145,7 @@ export async function getServerSideProps(context) {
     })
     .catch((error) => {
       data = ''
-      console.log(error.message);
+      console.log("statesError",error.message);
     });
 
   var majorElections = [];
@@ -156,7 +155,6 @@ export async function getServerSideProps(context) {
     )
     .then((result) => {
       majorElections = result.data.elections;
-      console.log(majorElections);
     });
 
   return {
