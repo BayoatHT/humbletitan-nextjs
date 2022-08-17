@@ -179,7 +179,7 @@ export async function getServerSideProps(context) {
   const arr = [];
 
   await axios
-    .get("https://humbletitan-nextjs.vercel.app/api/stateelections")
+    .get("/api/stateelections")
     .then((result) => {
       result.data.values.map((item) => {
         arr.push({
