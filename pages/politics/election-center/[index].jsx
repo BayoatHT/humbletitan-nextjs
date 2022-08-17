@@ -65,7 +65,7 @@ export async function getServerSideProps(context) {
   var electionDates = [];
   await axios
     .get(
-      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${address}`
+      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${address}`
     )
     .then((result) => {
       const state = result.data.normalizedInput.state;
@@ -210,14 +210,14 @@ export async function getServerSideProps(context) {
   var contests = []
   await axios
     .get(
-      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+      `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=${process.env.NEXT_PUBLIC_API_KEY}`
     )
     .then((result) => {
       majorElections = result.data.elections;
       // majorElections = majorElections?.filter(e => !e.name.includes("Test"))
       id = majorElections[0].id
     }).then(async () => {
-      const { data } = await axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${address}&electionId=${id}`)
+      const { data } = await axios.get(`https://civicinfo.googleapis.com/civicinfo/v2/voterinfo?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${address}&electionId=${id}`)
       stateDetails = data?.state
       pollingLocations = data.pollingLocations ? data.pollingLocations : []
       contests = data?.contests

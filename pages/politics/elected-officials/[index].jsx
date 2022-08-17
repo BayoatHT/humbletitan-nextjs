@@ -61,7 +61,7 @@ export async function getServerSideProps(context) {
     var formedOfficials = [];
     await axios
         .get(
-            `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${address}`
+            `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${address}`
         )
         .then((result) => {
             officials = [...result.data.officials];

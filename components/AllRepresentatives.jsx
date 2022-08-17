@@ -53,7 +53,7 @@ export default function AllRepresentatives() {
     let stateOffices = []
     await axios
       .get(
-        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${stateInput}`
+        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${stateInput}`
       )
       .then((result) => {
         stateOfficials = [...result.data.officials];
@@ -68,7 +68,9 @@ export default function AllRepresentatives() {
           });
         setDefaultOfficials(stateOfficials);
         setAllOfficials(stateOfficials)
-      });
+      }).catch((erorr)=> {
+        console.log(erorr.message)
+      })
   }
   const levelChange = (level) => {
     if (level !== 'all') {
@@ -102,7 +104,7 @@ export default function AllRepresentatives() {
     async function fetchData() {
       await axios
         .get(
-          `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=Alaska`
+          `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=Alaska`
         )
         .then((result) => {
           stateOfficials = [...result.data.officials];
@@ -117,7 +119,9 @@ export default function AllRepresentatives() {
             });
           setDefaultOfficials(stateOfficials);
           setAllOfficials(stateOfficials)
-        });
+        }).catch((erorr)=> {
+          console.log(erorr.message)
+        })
     }
     fetchData()
 

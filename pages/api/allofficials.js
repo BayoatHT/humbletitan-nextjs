@@ -68,7 +68,7 @@ export default handler.get(async (req, res) => {
   for (let i = 0; i < states.length; i++) {
     await axios
       .get(
-        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${states[i]}`
+        `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${states[i]}`
       )
       .then((result) => {
         var officialsResult = [...result.data.officials];

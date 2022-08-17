@@ -76,14 +76,17 @@ export default function Index({ majorElections }) {
 
 export async function getServerSideProps() {
   var majorElections = [];
+  console.log(process.env.NEXT_PUBLIC_API_KEY)
   await axios
     .get(
-      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+      `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=${process.env.NEXT_PUBLIC_API_KEY}`
     )
     .then((result) => {
       majorElections = result.data.elections;
       majorElections = majorElections?.filter(e => !e.name.includes("Test"))
-    });
+    }).catch((error)=> {
+      console.log(error.message)
+    })
   return {
     props: {
       majorElections,

@@ -60,14 +60,11 @@ export default function Index({ officials }) {
 
 export async function getServerSideProps() {
   var officials = [];
-  // await axios.get("https://humble-titan.herokuapp.com/").then(({ data }) => {
-  //   officials = data;
-  // });
   let stateOfficials = []
   let stateOffices = []
   await axios
     .get(
-      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=Alaska`
+      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=Alaska&key=${process.env.NEXT_PUBLIC_API_KEY}`
     )
     .then((result) => {
       stateOfficials = [...result.data.officials];
@@ -81,7 +78,9 @@ export async function getServerSideProps() {
           });
         });
       officials = stateOfficials;
-    });
+    }).catch((error)=> {
+      console.log(error.message)
+    })
 
   return {
     props: {

@@ -101,7 +101,7 @@ export async function getServerSideProps(context) {
   var formedOfficials = [];
   await axios
     .get(
-      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY&address=${index}`
+      `https://civicinfo.googleapis.com/civicinfo/v2/representatives?key=${process.env.NEXT_PUBLIC_API_KEY}&address=${index}`
     )
     .then((result) => {
       officials = [...result.data.officials];
@@ -125,7 +125,6 @@ export async function getServerSideProps(context) {
   await axios
     .get("https://humbletitan-nextjs.vercel.app/api/stateelections")
     .then((result) => {
-      console.log("result", result);
       result.data.values.map((item) => {
         arr.push({
           state: item[0] || "",
@@ -145,17 +144,18 @@ export async function getServerSideProps(context) {
     })
     .catch((error) => {
       data = ''
-      console.log("statesError",error.message);
     });
 
   var majorElections = [];
   await axios
     .get(
-      "https://civicinfo.googleapis.com/civicinfo/v2/elections?key=AIzaSyCGCE_BQpdH1EhR0RnhJt9xMfIpkJMTmqY"
+      `https://civicinfo.googleapis.com/civicinfo/v2/elections?key=${process.env.NEXT_PUBLIC_API_KEY}`
     )
     .then((result) => {
       majorElections = result.data.elections;
-    });
+    }).catch((error)=> {
+      console.log(error.message)
+    })
 
   return {
     props: {
